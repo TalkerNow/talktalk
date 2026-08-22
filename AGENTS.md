@@ -6,7 +6,7 @@ Vitrine marketing **talker.now**. Pas le plugin WordPress. Chatbot WP pour TPE/P
 ## Marque
 talker.now. Accent rust `#C43F17`. Tokens complets : `public/brand/`. Voler les **gestes** de fin.ai (launcher, questions, rail, fenêtres) — jamais leurs textes, visuels ou claims. Talker n’est pas un agent CX entreprise.
 
-Logo officiel : `public/brand/talker-now-logo.svg` (wordmark) et `public/brand/talker-now-mark.svg` (bulle / ondes, même fichier). Source Drive `logo et declinaisons.zip`. **Ne pas redessiner.**
+Logo officiel (Drive « recherche sur logo ») : `public/brand/logo-principal.svg` (talker ink + `.now` rust + bulle 3 points en exposant). Sigle : `symbole.svg` (contour, 3 points noirs) / `symbole-plein.svg` (plein, points percés). **Interdit** : l’archive radio-ondes `talker-now-logo.svg` (ondes entre les mots). Ne pas redessiner.
 
 ## Chat / démo
 Le bot **pose** les questions (QCM / pastilles). Pas une barre « ask anything ». « Voir la démo » et le logo ouvrent **le même widget**. Desktop : launcher flottant bas-centre. Mobile : sigle seul, pas de wordmark.

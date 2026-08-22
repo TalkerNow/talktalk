@@ -1,14 +1,14 @@
 type MarkProps = {
   className?: string;
   title?: string;
+  filled?: boolean;
 };
 
-export function TalkerMark({ className, title }: MarkProps) {
+export function TalkerMark({ className, title, filled = false }: MarkProps) {
   return (
-    // Official rust bubble/waves from talker-now-logo.svg (cropped region).
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/brand/talker-now-mark.svg"
+      src={filled ? "/brand/symbole-plein.svg" : "/brand/symbole.svg"}
       alt={title ?? ""}
       className={className}
     />
@@ -19,7 +19,7 @@ export function TalkerWordmark({ compact = false }: { compact?: boolean }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/brand/talker-now-logo.svg"
+      src="/brand/logo-principal.svg"
       alt="talker.now"
       className={`h-7 w-auto ${compact ? "max-md:h-6" : ""}`}
     />
