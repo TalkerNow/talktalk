@@ -1,6 +1,6 @@
 # talker.now
 
-Site marketing de **Talker**, plugin WordPress pour TPE / PME (5–30 personnes). Ce dépôt n’est pas le plugin.
+Site marketing de **Talker**, plugin WordPress pour TPE / PME (5–30 personnes). Ce dépôt n’est pas le plugin. Brief agent (contraintes + direction look) : [`AGENTS.md`](./AGENTS.md).
 
 ## Lancer en local
 
