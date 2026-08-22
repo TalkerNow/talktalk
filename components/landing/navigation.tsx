@@ -35,7 +35,7 @@ export function Navigation() {
       <nav 
         className={`mx-auto transition-all duration-500 ${
           isScrolled || isMobileMenuOpen
-            ? "bg-background/80 backdrop-blur-xl border border-foreground/10 rounded-2xl shadow-lg max-w-[1200px]"
+            ? "bg-[#F7F6F4]/90 backdrop-blur-xl border border-foreground/10 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.06)] max-w-[1200px]"
             : "bg-transparent max-w-[1400px]"
         }`}
       >
@@ -69,7 +69,7 @@ export function Navigation() {
             </a>
             <Button
               size="sm"
-              className={`bg-foreground hover:bg-foreground/90 text-background rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
+              className={`bg-black hover:bg-black/90 text-white rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
             >
               Start creating
             </Button>
@@ -136,7 +136,7 @@ export function Navigation() {
               Sign in
             </Button>
             <Button 
-              className="flex-1 bg-foreground text-background rounded-full h-14 text-base"
+              className="flex-1 bg-black text-white rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Start creating

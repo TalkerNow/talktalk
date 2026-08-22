@@ -36,7 +36,7 @@ export function InfrastructureSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative py-32 lg:py-40 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Content */}
@@ -49,10 +49,10 @@ export function InfrastructureSection() {
               <span className="w-8 h-px bg-foreground/30" />
               Infrastructure
             </span>
-            <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-8">
+            <h2 className="text-5xl lg:text-7xl font-display font-semibold tracking-tight mb-8 leading-[0.95]">
               Global by
               <br />
-              default.
+              <span className="text-foreground/30">default.</span>
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-12">
               Deploy once, run everywhere. Our edge network spans 17 data centers 
@@ -62,15 +62,15 @@ export function InfrastructureSection() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8">
               <div>
-                <div className="text-4xl lg:text-5xl font-display mb-2">17</div>
+                <div className="text-4xl lg:text-5xl font-display font-light mb-2">17</div>
                 <div className="text-sm text-muted-foreground">Data centers</div>
               </div>
               <div>
-                <div className="text-4xl lg:text-5xl font-display mb-2">99.99%</div>
+                <div className="text-4xl lg:text-5xl font-display font-light mb-2">99.99%</div>
                 <div className="text-sm text-muted-foreground">Uptime SLA</div>
               </div>
               <div>
-                <div className="text-4xl lg:text-5xl font-display mb-2">&lt;50ms</div>
+                <div className="text-4xl lg:text-5xl font-display font-light mb-2">&lt;50ms</div>
                 <div className="text-sm text-muted-foreground">Global latency</div>
               </div>
             </div>
@@ -112,7 +112,7 @@ export function InfrastructureSection() {
                         <div className="text-sm text-muted-foreground">{location.region}</div>
                       </div>
                     </div>
-                    <span className="font-mono text-sm text-muted-foreground">{location.latency}</span>
+                    <span className="text-sm tabular-nums">{location.latency}</span>
                   </div>
                 ))}
               </div>

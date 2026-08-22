@@ -31,51 +31,23 @@ const features = [
 
 function DeployVisual() {
   return (
-    <svg viewBox="0 0 200 160" className="w-full h-full">
-      <defs>
-        <clipPath id="deployClip">
-          <rect x="30" y="20" width="140" height="120" rx="4" />
-        </clipPath>
-      </defs>
-      
-      {/* Container */}
-      <rect x="30" y="20" width="140" height="120" rx="4" fill="none" stroke="currentColor" strokeWidth="2" />
-      
-      {/* Animated bars */}
-      <g clipPath="url(#deployClip)">
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <rect
-            key={i}
-            x="40"
-            y={35 + i * 16}
-            width="120"
-            height="10"
-            rx="2"
-            fill="currentColor"
-            opacity="0.15"
-          >
-            <animate
-              attributeName="opacity"
-              values="0.15;0.8;0.15"
-              dur="2s"
-              begin={`${i * 0.15}s`}
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="width"
-              values="20;120;20"
-              dur="2s"
-              begin={`${i * 0.15}s`}
-              repeatCount="indefinite"
-            />
-          </rect>
-        ))}
-      </g>
-      
-      {/* Progress indicator */}
-      <circle cx="100" cy="155" r="3" fill="currentColor" opacity="0.3">
-        <animate attributeName="opacity" values="0.3;1;0.3" dur="1s" repeatCount="indefinite" />
-      </circle>
+    <svg viewBox="0 0 200 160" className="w-full h-full" fill="none">
+      <rect x="44" y="28" width="112" height="104" rx="4" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="44" y="28" width="112" height="18" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="54" cy="37" r="2" fill="currentColor" opacity="0.35" />
+      <circle cx="62" cy="37" r="2" fill="currentColor" opacity="0.35" />
+      <circle cx="70" cy="37" r="2" fill="currentColor" opacity="0.35" />
+      {[0, 1, 2, 3].map((i) => (
+        <line
+          key={i}
+          x1="58"
+          y1={64 + i * 16}
+          x2={i % 2 === 0 ? 142 : 118}
+          y2={64 + i * 16}
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+      ))}
     </svg>
   );
 }
@@ -134,96 +106,46 @@ function AIVisual() {
         );
       })}
       
-      {/* Pulse rings */}
-      <circle cx="100" cy="80" r="30" fill="none" stroke="currentColor" strokeWidth="1" opacity="0">
-        <animate attributeName="r" values="20;60" dur="2s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.5;0" dur="2s" repeatCount="indefinite" />
-      </circle>
     </svg>
   );
 }
 
 function CollabVisual() {
   return (
-    <svg viewBox="0 0 200 160" className="w-full h-full">
-      {/* User A */}
-      <g>
-        <rect x="30" y="50" width="50" height="60" rx="4" fill="none" stroke="currentColor" strokeWidth="2" />
-        <text x="55" y="85" textAnchor="middle" fontSize="20" fontFamily="monospace" fill="currentColor">A</text>
-        <circle cx="55" cy="35" r="12" fill="none" stroke="currentColor" strokeWidth="2" />
-      </g>
-      
-      {/* User B */}
-      <g>
-        <rect x="120" y="50" width="50" height="60" rx="4" fill="none" stroke="currentColor" strokeWidth="2" />
-        <text x="145" y="85" textAnchor="middle" fontSize="20" fontFamily="monospace" fill="currentColor">B</text>
-        <circle cx="145" cy="35" r="12" fill="none" stroke="currentColor" strokeWidth="2" />
-      </g>
-      
-      {/* Connection */}
-      <line x1="80" y1="80" x2="120" y2="80" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4">
-        <animate attributeName="stroke-dashoffset" values="0;-8" dur="0.5s" repeatCount="indefinite" />
-      </line>
-      
-      {/* Data packet */}
-      <circle r="4" fill="currentColor">
-        <animateMotion dur="1.5s" repeatCount="indefinite">
-          <mpath href="#dataPath" />
-        </animateMotion>
-      </circle>
-      <path id="dataPath" d="M 80 80 L 120 80" fill="none" />
-      
-      {/* Sync indicator */}
-      <g transform="translate(100, 130)">
-        <circle r="6" fill="none" stroke="currentColor" strokeWidth="2">
-          <animate attributeName="r" values="6;10;6" dur="1s" repeatCount="indefinite" />
-          <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite" />
-        </circle>
-      </g>
+    <svg viewBox="0 0 200 160" className="w-full h-full" fill="none">
+      <circle cx="58" cy="28" r="10" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M46 50c0-7 5.5-12 12-12s12 5 12 12" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="34" y="58" width="48" height="52" rx="3" stroke="currentColor" strokeWidth="1.5" />
+      <text x="58" y="91" textAnchor="middle" fontSize="22" fontFamily="ui-monospace, monospace" fill="currentColor">A</text>
+
+      <circle cx="142" cy="28" r="10" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M130 50c0-7 5.5-12 12-12s12 5 12 12" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="118" y="58" width="48" height="52" rx="3" stroke="currentColor" strokeWidth="1.5" />
+      <text x="142" y="91" textAnchor="middle" fontSize="22" fontFamily="ui-monospace, monospace" fill="currentColor">B</text>
+
+      <line x1="82" y1="84" x2="118" y2="84" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
+      <circle cx="100" cy="136" r="6" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   );
 }
 
 function SecurityVisual() {
   return (
-    <svg viewBox="0 0 200 160" className="w-full h-full">
-      {/* Shield */}
+    <svg viewBox="0 0 200 160" className="w-full h-full" fill="none">
       <path
-        d="M 100 20 L 150 40 L 150 90 Q 150 130 100 145 Q 50 130 50 90 L 50 40 Z"
-        fill="none"
+        d="M100 22 L152 42 L152 86 Q152 128 100 144 Q48 128 48 86 L48 42 Z"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="1.5"
       />
-      
-      {/* Inner shield */}
+      <rect x="86" y="78" width="28" height="22" rx="3" fill="currentColor" />
       <path
-        d="M 100 35 L 135 50 L 135 85 Q 135 115 100 128 Q 65 115 65 85 L 65 50 Z"
-        fill="currentColor"
-        opacity="0.1"
-      >
-        <animate attributeName="opacity" values="0.1;0.2;0.1" dur="2s" repeatCount="indefinite" />
-      </path>
-      
-      {/* Lock icon */}
-      <rect x="85" y="70" width="30" height="25" rx="3" fill="currentColor" />
-      <path
-        d="M 90 70 L 90 60 Q 90 50 100 50 Q 110 50 110 60 L 110 70"
-        fill="none"
+        d="M92 78 V68 Q92 56 100 56 Q108 56 108 68 V78"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.5"
         strokeLinecap="round"
       />
-      
-      {/* Keyhole */}
-      <circle cx="100" cy="80" r="4" fill="white" />
-      <rect x="98" y="82" width="4" height="8" fill="white" />
-      
-      {/* Scan lines */}
-      <line x1="60" y1="60" x2="140" y2="60" stroke="currentColor" strokeWidth="1" opacity="0">
-        <animate attributeName="y1" values="40;120;40" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="y2" values="40;120;40" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0;0.5;0" dur="3s" repeatCount="indefinite" />
-      </line>
+      <circle cx="100" cy="87" r="3" fill="#F7F6F4" />
+      <rect x="98.5" y="88" width="3" height="6" fill="#F7F6F4" />
     </svg>
   );
 }
@@ -267,7 +189,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 py-12 lg:py-20 border-b border-foreground/10">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 py-16 lg:py-28 border-b border-foreground/10">
         {/* Number */}
         <div className="shrink-0">
           <span className="font-mono text-sm text-muted-foreground">{feature.number}</span>
@@ -316,7 +238,7 @@ export function FeaturesSection() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative py-24 lg:py-32"
+      className="relative py-32 lg:py-40"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
@@ -326,7 +248,7 @@ export function FeaturesSection() {
             Capabilities
           </span>
           <h2
-            className={`text-4xl lg:text-6xl font-display tracking-tight transition-all duration-700 ${
+            className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >

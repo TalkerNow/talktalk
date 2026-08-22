@@ -61,7 +61,7 @@ export function SecuritySection() {
             <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-8">
               Trust is
               <br />
-              non-negotiable.
+              <span className="text-foreground/30">non-negotiable.</span>
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-12">
               Enterprise-grade security isn&apos;t optional. It&apos;s built into every layer 

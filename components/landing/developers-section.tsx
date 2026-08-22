@@ -54,34 +54,6 @@ const features = [
   },
 ];
 
-const codeAnimationStyles = `
-  .dev-code-line {
-    opacity: 0;
-    transform: translateX(-8px);
-    animation: devLineReveal 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  
-  @keyframes devLineReveal {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  .dev-code-char {
-    opacity: 0;
-    filter: blur(8px);
-    animation: devCharReveal 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  
-  @keyframes devCharReveal {
-    to {
-      opacity: 1;
-      filter: blur(0);
-    }
-  }
-`;
-
 export function DevelopersSection() {
   const [activeTab, setActiveTab] = useState(0);
   const [copied, setCopied] = useState(false);
@@ -108,7 +80,6 @@ export function DevelopersSection() {
 
   return (
     <section id="developers" ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
-      <style dangerouslySetInnerHTML={{ __html: codeAnimationStyles }} />
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left: Content */}

@@ -54,7 +54,7 @@ export function CtaSection() {
                 <h2 className="text-4xl lg:text-7xl font-display tracking-tight mb-8 leading-[0.95]">
                   Ready to build
                   <br />
-                  something great?
+                  <span className="text-foreground/30">something great?</span>
                 </h2>
 
                 <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-xl">
@@ -65,7 +65,7 @@ export function CtaSection() {
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <Button
                     size="lg"
-                    className="bg-foreground hover:bg-foreground/90 text-background px-8 h-14 text-base rounded-full group"
+                    className="bg-black hover:bg-black/90 text-white px-8 h-14 text-base rounded-full group"
                   >
                     Start building free
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />

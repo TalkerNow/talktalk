@@ -109,7 +109,7 @@ export function MetricsSection() {
             >
               Performance you
               <br />
-              can measure.
+              <span className="text-foreground/30">can measure.</span>
             </h2>
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
