@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "Optimus - Platform to Create",
   description:
     "The creative platform for teams who ship. Build, deploy, and scale with unprecedented velocity.",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

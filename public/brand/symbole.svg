@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-682.69 -622.02 1365.38 1365.38">
-<!-- talker.now  symbole seul -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-682.69 -622.02 1365.38 1365.38" role="img" aria-hidden="true">
 <path d="M -93.33 396.27 A 466.65 400.00 0 1 0 -291.66 315.72 L -312.50 554.69 Z" fill="none" stroke="#C43F17" stroke-width="66.70" stroke-linejoin="miter" stroke-miterlimit="10"/>
-<circle cx="-163.00" cy="0.00" r="60.00" fill="#111111"/>
-<circle cx="0.00" cy="0.00" r="60.00" fill="#111111"/>
-<circle cx="163.00" cy="0.00" r="60.00" fill="#111111"/>
+<circle cx="-163" cy="0" r="60" fill="#111111"/>
+<circle cx="0" cy="0" r="60" fill="#111111"/>
+<circle cx="163" cy="0" r="60" fill="#111111"/>
 </svg>
