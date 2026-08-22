@@ -1,54 +1,33 @@
-import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
-import { BetaSection } from "@/components/sections/beta";
-import { ContactSection } from "@/components/sections/contact";
-import { Hero } from "@/components/sections/hero";
-import { HowSection } from "@/components/sections/how";
-import { Reasons } from "@/components/sections/reasons";
-import { Situations } from "@/components/sections/situations";
-import { TalkerLauncher } from "@/components/talker/launcher";
-import { TalkerProvider } from "@/components/talker/provider";
-import { loadLandingContent } from "@/lib/content/load";
-import { site } from "@/lib/site";
+import { Navigation } from "@/components/landing/navigation";
+import { HeroSection } from "@/components/landing/hero-section";
+import { FeaturesSection } from "@/components/landing/features-section";
+import { HowItWorksSection } from "@/components/landing/how-it-works-section";
+import { InfrastructureSection } from "@/components/landing/infrastructure-section";
+import { MetricsSection } from "@/components/landing/metrics-section";
+import { IntegrationsSection } from "@/components/landing/integrations-section";
+import { SecuritySection } from "@/components/landing/security-section";
+import { DevelopersSection } from "@/components/landing/developers-section";
+import { TestimonialsSection } from "@/components/landing/testimonials-section";
+import { PricingSection } from "@/components/landing/pricing-section";
+import { CtaSection } from "@/components/landing/cta-section";
+import { FooterSection } from "@/components/landing/footer-section";
 
-export const revalidate = 3600;
-
-export default async function Home() {
-  const content = await loadLandingContent();
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Talker",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "WordPress",
-    url: site.url,
-    description: content.heroBody,
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "EUR",
-      description: "Beta gratuite, 1 000 conversations incluses",
-    },
-  };
-
+export default function Home() {
   return (
-    <TalkerProvider>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <SiteHeader content={content} />
-      <main>
-        <Hero content={content} />
-        <HowSection content={content} />
-        <Reasons content={content} />
-        <Situations content={content} />
-        <BetaSection content={content} />
-        <ContactSection content={content} />
-      </main>
-      <SiteFooter content={content} />
-      <TalkerLauncher />
-    </TalkerProvider>
+    <main className="relative min-h-screen overflow-x-hidden noise-overlay">
+      <Navigation />
+      <HeroSection />
+      <FeaturesSection />
+      <HowItWorksSection />
+      <InfrastructureSection />
+      <MetricsSection />
+      <IntegrationsSection />
+      <SecuritySection />
+      <DevelopersSection />
+      <TestimonialsSection />
+      <PricingSection />
+      <CtaSection />
+      <FooterSection />
+    </main>
   );
 }

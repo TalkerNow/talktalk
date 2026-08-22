@@ -19,7 +19,7 @@ export function TalkerWordmark({ compact = false }: { compact?: boolean }) {
   return (
     <span
       aria-label="talker.now"
-      className={`inline-flex items-center gap-2 text-[17px] leading-none ${compact ? "max-md:text-[15px]" : ""}`}
+      className={`inline-flex items-center gap-2 leading-none ${compact ? "text-[15px]" : "text-[17px]"}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
