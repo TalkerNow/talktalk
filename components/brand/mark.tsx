@@ -17,11 +17,20 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
 
 export function TalkerWordmark({ compact = false }: { compact?: boolean }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src="/brand/logo-principal.svg"
-      alt="talker.now"
-      className={`h-7 w-auto ${compact ? "max-md:h-6" : ""}`}
-    />
+    <span
+      aria-label="talker.now"
+      className={`inline-flex items-center gap-2 text-[17px] leading-none ${compact ? "max-md:text-[15px]" : ""}`}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/brand/symbole.svg"
+        alt=""
+        className="h-[1.05em] w-auto shrink-0"
+      />
+      <span className="tracking-[-0.02em]">
+        <span className="font-bold text-[#111111]">talker</span>
+        <span className="font-normal text-[#6B6B73]">.now</span>
+      </span>
+    </span>
   );
 }

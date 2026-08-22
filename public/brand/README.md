@@ -36,10 +36,16 @@ Pastilles statut : fonds teintés (ok / warn / danger / info / accent soft). Pas
 
 ## Logo
 
-Officiel (Drive « recherche sur logo ») :
+Header site (composé, pas `logo-principal.svg`) :
 
-- Wordmark : `logo-principal.svg` — talker `#111` + `.now` rust + bulle 3 points en exposant
-- Sigle contour : `symbole.svg` — launcher / header compact
-- Sigle plein : `symbole-plein.svg` — favicon / fond sombre
+- Gauche : `symbole.svg` — même hauteur que « talker », une ligne
+- `talker` `#111111` bold
+- `.now` `#6B6B73` regular — pas rust
 
-**Archive interdite** : `talker-now-logo.svg` (ondes radio entre les mots). Ne pas l’utiliser.
+Fichiers :
+
+- `symbole.svg` — launcher, header, mobile sigle
+- `symbole-plein.svg` — favicon / fond sombre
+- `logo-principal.svg` — archive Drive (rust `.now` + bulle après). Pas le header.
+
+**Interdit** : ondes radio entre les mots.
