@@ -34,15 +34,9 @@ Pastilles statut : fonds teintés (ok / warn / danger / info / accent soft). Pas
 
 (Le serif actuel du site se remplace à la prochaine passe look.)
 
-## Logo — TODO
+## Logo
 
-Sigle réel : **bulle de dialogue + 3 points**.
+Officiel (Drive `logo et declinaisons.zip` → `talker-now-logo.svg`) :
 
-Fichiers (pas dans ce dépôt) :
-
-- Drive `0 - talker.now / 4_design_et_brand`
-- `charte graphique.html`
-- `logo et declinaisons.zip`
-- `talker-kit-logo`
-
-Cap’tain dépose les fichiers ici. **Ne pas inventer un SVG « qui ressemble ».**
+- Wordmark : `talker-now-logo.svg`
+- Sigle (région bulle / ondes, même vecteurs) : `talker-now-mark.svg`
