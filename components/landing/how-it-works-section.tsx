@@ -99,16 +99,14 @@ export function HowItWorksSection() {
                   key={step.number}
                   type="button"
                   onClick={() => setActiveStep(index)}
-                  className={`w-full text-left py-7 lg:py-8 border-b border-white/10 transition-all duration-500 ${
-                    isActive ? "opacity-100" : "opacity-35 hover:opacity-60"
-                  }`}
+                  className="w-full text-left py-7 lg:py-8 border-b border-white/10 transition-colors duration-500"
                 >
                   <div className="flex items-start gap-6">
-                    <span className="font-display text-3xl text-white/30">{step.number}</span>
+                    <span className="font-display text-3xl text-white">{step.number}</span>
                     <div className="flex-1">
                       <h3
-                        className={`text-2xl lg:text-4xl font-display font-medium mb-3 inline-block ${
-                          isActive ? "text-white border-b-2 border-white pb-1" : "text-white/70"
+                        className={`text-2xl lg:text-4xl font-display font-medium mb-3 inline-block transition-colors duration-500 ${
+                          isActive ? "text-white border-b-2 border-white pb-1" : "text-white/60"
                         }`}
                       >
                         {step.title}
