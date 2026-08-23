@@ -26,9 +26,10 @@ export function TalkerGlobe() {
       mapBaseBrightness: 0,
       baseColor: [0.3, 0.3, 0.3],
       markerColor: [0.769, 0.247, 0.09],
-      glowColor: [1, 1, 1],
-      opacity: 0.85,
+      glowColor: [0.969, 0.965, 0.957],
+      opacity: 0.7,
       markers: [],
+      context: { alpha: true, premultipliedAlpha: true, antialias: true },
       onRender: (state) => {
         state.phi = phi;
         phi += 0.003;
@@ -44,6 +45,7 @@ export function TalkerGlobe() {
     <canvas
       ref={canvasRef}
       className="h-[500px] w-[500px] bg-transparent"
+      style={{ backgroundColor: "transparent" }}
       width={1000}
       height={1000}
       aria-hidden
