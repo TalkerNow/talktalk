@@ -52,9 +52,11 @@ export function CtaSection() {
               {/* Left content */}
               <div className="flex-1">
                 <h2 className="text-4xl lg:text-7xl font-display tracking-tight mb-8 leading-[0.95]">
-                  L&apos;agent qui
+                  Talker répond.
                   <br />
-                  <span className="text-foreground/30">vend à votre place</span>
+                  Talker vend.
+                  <br />
+                  <span className="text-foreground/30">à votre place.</span>
                 </h2>
 
                 <div className="flex flex-col sm:flex-row items-start gap-4 overflow-visible">
