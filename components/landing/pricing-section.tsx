@@ -122,7 +122,7 @@ export function PricingSection() {
           {plans.map((plan, idx) => (
             <div
               key={plan.name}
-              className={`relative flex flex-col overflow-visible p-8 lg:p-10 ${
+              className={`pricing-card relative flex flex-col overflow-visible p-8 lg:p-10 ${
                 plan.popular
                   ? "border border-black bg-background"
                   : "border border-foreground/12 bg-background"
@@ -169,6 +169,30 @@ export function PricingSection() {
                   </li>
                 ))}
               </ul>
+
+              <svg
+                className="pricing-card-frame pointer-events-none absolute inset-0 h-full w-full"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <rect
+                  className="pricing-card-stroke pricing-card-stroke-cw"
+                  pathLength="100"
+                  x="0.6"
+                  y="0.6"
+                  width="98.8"
+                  height="98.8"
+                />
+                <rect
+                  className="pricing-card-stroke pricing-card-stroke-ccw"
+                  pathLength="100"
+                  x="0.6"
+                  y="0.6"
+                  width="98.8"
+                  height="98.8"
+                />
+              </svg>
 
               <Button
                 variant="iridescent"
