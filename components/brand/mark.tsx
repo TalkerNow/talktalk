@@ -66,7 +66,8 @@ export function TalkerWordmark({
       aria-label="talker.now"
       className={cn(
         "inline-flex items-center gap-2 leading-none",
-        compact ? "text-[22px]" : "text-[24px]",
+        "whitespace-nowrap",
+        compact ? "text-[26px]" : "text-[28px]",
         className
       )}
     >
