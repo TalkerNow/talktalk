@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -9,9 +10,16 @@ const navLinks = [
   { name: "Fonctionnalités", href: "#features" },
   { name: "Comment ça marche", href: "#how-it-works" },
   { name: "Tarifs", href: "#pricing" },
+  { name: "Contact", href: "/contact" },
 ];
 
+function resolveNavHref(href: string, pathname: string) {
+  if (!href.startsWith("#")) return href;
+  return pathname === "/" ? href : `/${href}`;
+}
+
 export function Navigation() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -43,7 +51,7 @@ export function Navigation() {
             isScrolled ? "h-12 px-4 sm:px-5" : "h-20 px-6 lg:px-8"
           }`}
         >
-          <a href="#" className="flex items-center shrink-0">
+          <a href="/" className="flex items-center shrink-0">
             <TalkerWordmark compact={isScrolled} />
           </a>
 
@@ -52,7 +60,7 @@ export function Navigation() {
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={resolveNavHref(link.href, pathname)}
                 className="text-sm text-foreground/70 hover:text-foreground transition-colors duration-300 relative group"
               >
                 {link.name}
@@ -70,6 +78,9 @@ export function Navigation() {
               size="sm"
               variant="iridescent"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
+              onClick={() => {
+                window.location.href = "/#pricing";
+              }}
             >
               Créer mon agent gratuitement
             </Button>
@@ -106,7 +117,7 @@ export function Navigation() {
             {navLinks.map((link, i) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={resolveNavHref(link.href, pathname)}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`text-5xl font-display text-foreground hover:text-muted-foreground transition-all duration-500 ${
                   isMobileMenuOpen 
@@ -138,7 +149,10 @@ export function Navigation() {
             <Button 
               variant="iridescent"
               className="flex-1 rounded-full h-14 text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                window.location.href = "/#pricing";
+              }}
             >
               Créer mon agent gratuitement
             </Button>

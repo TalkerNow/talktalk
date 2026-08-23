@@ -22,7 +22,7 @@ const footerLinks = {
     { name: "À propos", href: "#" },
     { name: "Blog", href: "#" },
     { name: "Recrutement", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Contact", href: "/contact" },
     { name: "Devenir partenaire", href: "#" },
   ],
   Légal: [
@@ -50,7 +50,7 @@ export function FooterSection() {
         <div className="py-12 lg:py-16">
           <div className="grid grid-cols-2 md:grid-cols-6 gap-12 lg:gap-8">
             <div className="col-span-2">
-              <a href="#" className="inline-flex items-center gap-2 mb-6">
+              <a href="/" className="inline-flex items-center gap-2 mb-6">
                 <TalkerWordmark className="text-[28px]" />
                 <span className="text-xs text-muted-foreground font-mono">TM</span>
               </a>
