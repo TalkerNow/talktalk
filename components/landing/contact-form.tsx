@@ -44,7 +44,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="max-w-xl space-y-6 overflow-visible">
+    <form onSubmit={onSubmit} className="grid gap-6 overflow-visible md:grid-cols-2">
       <div>
         <label htmlFor="name" className="mb-2 block text-sm text-muted-foreground">
           Nom
@@ -95,7 +95,7 @@ export function ContactForm() {
           className={fieldClassName}
         />
       </div>
-      <div>
+      <div className="md:col-span-2">
         <label htmlFor="message" className="mb-2 block text-sm text-muted-foreground">
           Message
         </label>
@@ -107,14 +107,16 @@ export function ContactForm() {
           className={`${fieldClassName} resize-y`}
         />
       </div>
-      <Button
-        type="submit"
-        variant="iridescent"
-        disabled={pending}
-        className="rounded-full px-6 overflow-visible"
-      >
-        Envoyer
-      </Button>
+      <div className="overflow-visible md:col-span-2">
+        <Button
+          type="submit"
+          variant="iridescent"
+          disabled={pending}
+          className="rounded-full px-6 overflow-visible"
+        >
+          Envoyer
+        </Button>
+      </div>
     </form>
   );
 }

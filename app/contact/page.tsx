@@ -19,7 +19,9 @@ export default function ContactPage() {
         <p className="mb-12 max-w-xl text-xl leading-relaxed text-muted-foreground">
           Dites-nous où vous en êtes. On vous répond.
         </p>
-        <ContactForm />
+        <div className="overflow-visible rounded-3xl border border-[#C43F17]/30 bg-white p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] lg:p-12">
+          <ContactForm />
+        </div>
       </section>
       <FooterSection />
     </main>
