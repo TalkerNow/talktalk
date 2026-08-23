@@ -97,13 +97,13 @@ export function TalkerLauncherBubble() {
         }}
       >
         {!open ? (
-          <div className="pointer-events-none absolute bottom-full right-0 hidden w-max flex-col items-end gap-2 pb-3 opacity-0 transition-opacity duration-200 group-hover/talker:pointer-events-auto group-hover/talker:opacity-100 md:flex">
+          <div className="pointer-events-none absolute bottom-full right-0 hidden w-max flex-col items-end gap-1.5 pb-3 opacity-0 transition-opacity duration-200 group-hover/talker:pointer-events-auto group-hover/talker:opacity-100 md:flex">
             {invites.map((label) => (
               <button
                 key={label}
                 type="button"
                 onClick={() => openTalker()}
-                className="rounded-full border border-foreground/12 bg-[#F7F6F4] px-3.5 py-2 text-left text-[13px] text-[#111111] shadow-[0_6px_20px_rgba(0,0,0,0.06)] transition-colors hover:border-foreground/25"
+                className="rounded-full border border-foreground/10 bg-[#EFEDE9] px-3 py-1.5 text-left text-[12px] font-normal normal-case tracking-normal text-[#6B6B73] shadow-none transition-colors hover:bg-[#E8E6E2] hover:text-[#55555C]"
               >
                 {label}
               </button>
