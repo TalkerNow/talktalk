@@ -103,7 +103,7 @@ export function TalkerLauncherBubble() {
                 key={label}
                 type="button"
                 onClick={() => openTalker()}
-                className="rounded-full border border-foreground/10 bg-[#EFEDE9] px-3 py-1.5 text-left text-[12px] font-normal normal-case tracking-normal text-[#6B6B73] shadow-none transition-colors hover:bg-[#E8E6E2] hover:text-[#55555C]"
+                className="rounded-full border border-line bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink"
               >
                 {label}
               </button>
