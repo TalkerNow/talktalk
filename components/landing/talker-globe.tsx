@@ -14,6 +14,7 @@ export function TalkerGlobe() {
     if (!canvas) return;
 
     let phi = 0;
+    let frame = 0;
     const size = 500;
 
     const globe = createGlobe(canvas, {
@@ -34,13 +35,17 @@ export function TalkerGlobe() {
         { location: [40.71, -74.01], size: 0.03 },
         { location: [1.35, 103.82], size: 0.028 },
       ],
-      onRender: (state) => {
-        state.phi = phi;
-        phi += 0.0022;
-      },
     });
 
+    const tick = () => {
+      phi += 0.0022;
+      globe.update({ phi });
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+
     return () => {
+      cancelAnimationFrame(frame);
       globe.destroy();
     };
   }, []);
