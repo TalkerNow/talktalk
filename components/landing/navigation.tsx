@@ -89,20 +89,17 @@ export function Navigation() {
             </Button>
           </div>
 
-          <div className="flex items-center gap-1 md:hidden">
-            {!isScrolled ? <LanguageSwitcher /> : null}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="shrink-0 p-2 -mr-0.5"
-              aria-label={t.nav.menu}
-            >
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="shrink-0 p-2 -mr-0.5 md:hidden"
+            aria-label={t.nav.menu}
+          >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
             ) : (
               <Menu className="w-6 h-6" />
             )}
           </button>
-          </div>
         </div>
 
       </nav>
@@ -124,7 +121,7 @@ export function Navigation() {
                 key={link.name}
                 href={resolveNavHref(link.href, pathname)}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-5xl font-display text-foreground hover:text-muted-foreground transition-all duration-500 ${
+                className={`text-3xl font-display text-foreground hover:text-muted-foreground transition-all duration-500 ${
                   isMobileMenuOpen 
                     ? "opacity-100 translate-y-0" 
                     : "opacity-0 translate-y-4"
@@ -134,6 +131,16 @@ export function Navigation() {
                 {link.name}
               </a>
             ))}
+            <div
+              className={`transition-all duration-500 ${
+                isMobileMenuOpen
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: isMobileMenuOpen ? `${navLinks.length * 75}ms` : "0ms" }}
+            >
+              <LanguageSwitcher />
+            </div>
           </div>
           
           {/* Bottom CTAs */}

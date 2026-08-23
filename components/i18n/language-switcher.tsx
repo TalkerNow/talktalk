@@ -56,7 +56,7 @@ export function LanguageSwitcher() {
   return (
     <div
       ref={rootRef}
-      className="relative flex items-center self-center translate-y-[2px]"
+      className="relative flex items-center self-center"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
