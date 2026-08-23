@@ -294,13 +294,27 @@
   stroke-dashoffset: 48;
 }
 
+.pricing-card-popular .pricing-card-frame {
+  display: none;
+}
+
+.pricing-card-popular {
+  transition: border-color 200ms ease;
+}
+
+.pricing-card-popular:hover,
+.pricing-card-popular:focus-within {
+  border-color: #c43f17;
+}
+
 .pricing-card-badge {
+  z-index: 20;
   background: #000000;
   transition: background-color 200ms ease;
 }
 
-.pricing-card:hover .pricing-card-badge,
-.pricing-card:focus-within .pricing-card-badge {
+.pricing-card-popular:hover .pricing-card-badge,
+.pricing-card-popular:focus-within .pricing-card-badge {
   background: #c43f17;
 }
 
