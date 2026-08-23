@@ -172,24 +172,26 @@ export function PricingSection() {
 
               {!plan.popular && (
                 <svg
-                  className="pricing-card-frame pointer-events-none absolute -inset-px"
-                  aria-hidden="true"
+                  className="pricing-card-frame pointer-events-none absolute inset-0 h-full w-full"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  aria-hidden
                 >
                   <rect
                     className="pricing-card-stroke pricing-card-stroke-cw"
                     pathLength="100"
-                    x="0.5"
-                    y="0.5"
-                    width="calc(100% - 1px)"
-                    height="calc(100% - 1px)"
+                    x="0.6"
+                    y="0.6"
+                    width="98.8"
+                    height="98.8"
                   />
                   <rect
                     className="pricing-card-stroke pricing-card-stroke-ccw"
                     pathLength="100"
-                    x="0.5"
-                    y="0.5"
-                    width="calc(100% - 1px)"
-                    height="calc(100% - 1px)"
+                    x="0.6"
+                    y="0.6"
+                    width="98.8"
+                    height="98.8"
                   />
                 </svg>
               )}
