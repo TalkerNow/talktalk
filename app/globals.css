@@ -289,3 +289,34 @@
     transform: translateY(-7px);
   }
 }
+
+.talker-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  animation: talker-ripple 2s ease-out infinite;
+}
+
+.talker-ripple-rust {
+  border: 1.5px solid rgba(196, 63, 23, 0.45);
+}
+
+.talker-ripple-ink {
+  border: 1.5px solid rgba(17, 17, 17, 0.22);
+  animation-delay: 0.5s;
+}
+
+@keyframes talker-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  70% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
