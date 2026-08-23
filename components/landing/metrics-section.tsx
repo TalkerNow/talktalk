@@ -107,9 +107,9 @@ export function MetricsSection() {
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              Des résultats
+              votre tableau de bord,
               <br />
-              <span className="text-foreground/30">que vous pouvez compter.</span>
+              <span className="text-foreground/30">en direct</span>
             </h2>
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
