@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const steps = [
   {
@@ -15,8 +16,8 @@ const steps = [
   },
   {
     number: "3",
-    title: "Talker lit votre site et apprend votre métier, vos horaires, vos prestations.",
-    description: "",
+    title: "Talker lit votre site",
+    description: "il apprend votre métier, vos horaires, vos prestations.",
   },
 ];
 
@@ -73,7 +74,7 @@ export function HowItWorksSection() {
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="mb-8 lg:mb-10">
+        <div className="mb-12 lg:mb-16">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
             <span className="w-8 h-px bg-white/30" />
             Comment ça marche
@@ -98,7 +99,7 @@ export function HowItWorksSection() {
                   key={step.number}
                   type="button"
                   onClick={() => setActiveStep(index)}
-                  className={`w-full text-left py-5 lg:py-6 border-b border-white/10 transition-all duration-500 ${
+                  className={`w-full text-left py-7 lg:py-8 border-b border-white/10 transition-all duration-500 ${
                     isActive ? "opacity-100" : "opacity-35 hover:opacity-60"
                   }`}
                 >
@@ -106,7 +107,7 @@ export function HowItWorksSection() {
                     <span className="font-display text-3xl text-white/30">{step.number}</span>
                     <div className="flex-1">
                       <h3
-                        className={`text-2xl lg:text-3xl font-display font-medium mb-3 inline-block ${
+                        className={`text-2xl lg:text-4xl font-display font-medium mb-3 inline-block ${
                           isActive ? "text-white border-b-2 border-white pb-1" : "text-white/70"
                         }`}
                       >
@@ -115,7 +116,13 @@ export function HowItWorksSection() {
                       {isActive && (
                         <>
                           {step.description ? (
-                            <p className="text-white/55 leading-relaxed">
+                            <p
+                              className={`leading-relaxed ${
+                                index === 2
+                                  ? "text-[15px] text-white/60"
+                                  : "text-base lg:text-lg text-white/70"
+                              }`}
+                            >
                               {step.description}
                             </p>
                           ) : null}
@@ -129,10 +136,20 @@ export function HowItWorksSection() {
                 </button>
               );
             })}
-            <p className="pt-6 text-white/45 leading-relaxed">
-              Activez. C&apos;est en ligne et opérationnel. Commencez à récolter vos leads et vos
-              demandes.
-            </p>
+            <div className="mt-8 bg-white text-[#111111] px-6 py-6">
+              <p className="font-display text-2xl lg:text-3xl font-semibold tracking-tight leading-[1.15]">
+                Activez : c&apos;est en ligne et opérationnel.
+                <br />
+                Commencez à récolter vos leads et vos demandes.
+              </p>
+              <Button
+                asChild
+                variant="iridescent"
+                className="mt-6 rounded-full px-6 h-12"
+              >
+                <a href="#pricing">Commencer maintenant</a>
+              </Button>
+            </div>
           </div>
 
           <div className="lg:sticky lg:top-32 self-start">
