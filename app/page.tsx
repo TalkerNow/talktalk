@@ -6,7 +6,6 @@ import { HowItWorksSection } from "@/components/landing/how-it-works-section";
 import { InfrastructureSection } from "@/components/landing/infrastructure-section";
 import { MetricsSection } from "@/components/landing/metrics-section";
 import { IntegrationsSection } from "@/components/landing/integrations-section";
-import { DevelopersSection } from "@/components/landing/developers-section";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { FooterSection } from "@/components/landing/footer-section";
@@ -25,7 +24,6 @@ export default function Home() {
         <InfrastructureSection />
         <MetricsSection />
         <IntegrationsSection />
-        <DevelopersSection />
         <PricingSection />
         <CtaSection />
         <FooterSection />
