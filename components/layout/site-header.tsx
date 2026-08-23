@@ -38,7 +38,7 @@ export function SiteHeader({ content }: { content: LandingContent }) {
         <div className="mx-auto flex h-[68px] max-w-6xl items-center justify-between px-5">
           <button
             type="button"
-            onClick={openTalker}
+            onClick={() => openTalker()}
             className="rounded-md focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-ink"
             aria-label="Ouvrir Talker"
           >
@@ -102,7 +102,7 @@ export function SiteHeader({ content }: { content: LandingContent }) {
             </a>
             <button
               type="button"
-              onClick={openTalker}
+              onClick={() => openTalker()}
               className="rounded-full bg-ink px-4 py-2 text-[13px] text-paper transition-colors hover:bg-rust"
             >
               {content.primaryCta}
@@ -112,7 +112,7 @@ export function SiteHeader({ content }: { content: LandingContent }) {
           <div className="flex items-center gap-2 md:hidden">
             <button
               type="button"
-              onClick={openTalker}
+              onClick={() => openTalker()}
               className="rounded-full bg-ink px-3 py-1.5 text-[12px] text-paper"
             >
               Démo

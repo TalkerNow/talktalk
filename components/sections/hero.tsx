@@ -23,7 +23,7 @@ export function Hero({ content }: { content: LandingContent }) {
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <button
               type="button"
-              onClick={openTalker}
+              onClick={() => openTalker()}
               className="rounded-full bg-ink px-5 py-3 text-[14px] text-paper transition-colors hover:bg-rust"
             >
               {content.primaryCta}
