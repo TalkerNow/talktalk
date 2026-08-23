@@ -21,7 +21,7 @@ const plans = [
   {
     name: "Pro",
     description: "Pour les TPE et PME qui veulent convertir sérieusement",
-    price: { monthly: 29, annual: 29 },
+    price: { monthly: 35, annual: 29 },
     features: [
       "1 Talker",
       "Conversations illimitées",
@@ -38,7 +38,7 @@ const plans = [
     name: "Agence · 3",
     title: "Agence et entreprise",
     description: "3 passes",
-    price: { monthly: 45, annual: 45 },
+    price: { monthly: 69, annual: 45 },
     features: [
       "3 Talker",
       "Tout Pro inclus",
@@ -51,7 +51,7 @@ const plans = [
     name: "Agence · 10",
     title: "Agence et entreprise",
     description: "10 passes",
-    price: { monthly: 99, annual: 99 },
+    price: { monthly: 119, annual: 99 },
     features: [
       "10 Talker",
       "Tout Pro inclus",
@@ -111,6 +111,11 @@ export function PricingSection() {
           >
             Annuel
           </span>
+          {isAnnual && (
+            <span className="px-2 py-0.5 bg-black text-white text-[10px] font-mono uppercase tracking-wider">
+              -17%
+            </span>
+          )}
         </div>
 
         <div className="mt-3 grid items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -171,6 +176,10 @@ export function PricingSection() {
               </Button>
             </div>
           ))}
+        </div>
+
+        <div className="mt-6 border border-foreground/12 bg-background px-6 py-4 text-center text-sm leading-relaxed text-muted-foreground md:text-[15px] md:whitespace-nowrap">
+          Shopify et WooCommerce — 59 € pour un site. À partir de 10 sites : 29 € par site.
         </div>
       </div>
     </section>
