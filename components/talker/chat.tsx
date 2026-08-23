@@ -53,7 +53,7 @@ export function TalkerChat({
       ]);
       setStepId(intent);
       setPending(false);
-    }, 380);
+    }, 1800);
 
     return () => window.clearTimeout(timer);
   }, [resetKey, intent]);
@@ -82,7 +82,7 @@ export function TalkerChat({
       ]);
       setStepId(nextId);
       setPending(false);
-    }, 380);
+    }, 1800);
   };
 
   const submitEmail = (event: React.FormEvent) => {

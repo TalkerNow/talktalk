@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { TalkerChat } from "@/components/talker/chat";
 import { useTalker } from "@/components/talker/provider";
 
-const TYPING_MS = 2000;
-const PAUSE_MS = 3500;
+const TYPING_MS = 2400;
+const PAUSE_MS = 2000;
 const BUBBLE_PX = 80;
 
 const invites = [
