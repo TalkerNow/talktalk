@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { demoSteps } from "@/lib/content/demo";
-import { TalkerMark } from "@/components/brand/mark";
+import { TalkerWordmark } from "@/components/brand/mark";
+import { useTalker } from "./provider";
 
 type Message = {
   id: string;
@@ -17,6 +18,7 @@ export function TalkerChat({
   onClose?: () => void;
   variant?: "panel" | "window";
 }) {
+  const { intent, resetKey } = useTalker();
   const [stepId, setStepId] = useState("start");
   const [messages, setMessages] = useState<Message[]>([
     { id: "m0", from: "bot", text: demoSteps.start.bot },
@@ -25,6 +27,36 @@ export function TalkerChat({
   const [pending, setPending] = useState(false);
   const scroller = useRef<HTMLDivElement>(null);
   const step = demoSteps[stepId];
+
+  useEffect(() => {
+    setStepId("start");
+    setMessages([{ id: "m0", from: "bot", text: demoSteps.start.bot }]);
+    setEmail("");
+    setPending(false);
+
+    if (!intent) return;
+
+    const chip = demoSteps.start.chips?.find((item) => item.next === intent);
+    const next = demoSteps[intent];
+    if (!chip || !next) return;
+
+    setPending(true);
+    setMessages((current) => [
+      ...current,
+      { id: `u-${current.length}`, from: "user", text: chip.userText },
+    ]);
+
+    const timer = window.setTimeout(() => {
+      setMessages((current) => [
+        ...current,
+        { id: `b-${current.length}`, from: "bot", text: next.bot },
+      ]);
+      setStepId(intent);
+      setPending(false);
+    }, 380);
+
+    return () => window.clearTimeout(timer);
+  }, [resetKey, intent]);
 
   useEffect(() => {
     scroller.current?.scrollTo({
@@ -64,16 +96,11 @@ export function TalkerChat({
   const chrome = useMemo(
     () => (
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
-        <div className="flex items-center gap-2.5">
-          <TalkerMark className="size-6" />
-          <div>
-            <p className="text-[13px] font-medium leading-none text-ink">
-              Talker
-            </p>
-            <p className="mt-1 text-[11px] leading-none text-muted-2">
-              Le bot pose les questions
-            </p>
-          </div>
+        <div className="min-w-0">
+          <TalkerWordmark className="text-[16px]" />
+          <p className="mt-1.5 text-[11px] leading-none text-muted-2">
+            L&apos;assistant du cabinet
+          </p>
         </div>
         {onClose ? (
           <button
@@ -116,8 +143,13 @@ export function TalkerChat({
           </p>
         ))}
         {pending ? (
-          <p className="w-fit rounded-2xl bg-[#f1ece5] px-3 py-2 text-[13px] text-muted">
-            …
+          <p className="w-fit rounded-2xl bg-[#f1ece5] px-3.5 py-2.5">
+            <span className="inline-flex items-center gap-1" aria-hidden>
+              <span className="talker-typing-dot talker-typing-dot-1 size-1.5 rounded-full bg-[#111111]" />
+              <span className="talker-typing-dot talker-typing-dot-2 size-1.5 rounded-full bg-[#111111]" />
+              <span className="talker-typing-dot talker-typing-dot-3 size-1.5 rounded-full bg-[#111111]" />
+            </span>
+            <span className="sr-only">Talker écrit</span>
           </p>
         ) : null}
       </div>
@@ -147,7 +179,7 @@ export function TalkerChat({
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="email@atelier.fr"
+              placeholder={step.placeholder ?? "email@cabinet.fr"}
               className="min-w-0 flex-1 rounded-full border border-line bg-background px-3 py-2 text-[13px] outline-none focus:border-ink"
             />
             <button

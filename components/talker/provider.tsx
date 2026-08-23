@@ -8,11 +8,14 @@ import {
   useState,
 } from "react";
 
+export type TalkerIntent = "horaires" | "question" | "rdv";
+
 type TalkerContextValue = {
   open: boolean;
   setOpen: (open: boolean) => void;
-  openTalker: () => void;
+  openTalker: (intent?: TalkerIntent) => void;
   closeTalker: () => void;
+  intent: TalkerIntent | null;
   resetKey: number;
 };
 
@@ -20,9 +23,12 @@ const TalkerContext = createContext<TalkerContextValue | null>(null);
 
 export function TalkerProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [intent, setIntent] = useState<TalkerIntent | null>(null);
   const [resetKey, setResetKey] = useState(0);
 
-  const openTalker = useCallback(() => {
+  const openTalker = useCallback((nextIntent?: TalkerIntent) => {
+    setIntent(nextIntent ?? null);
+    setResetKey((key) => key + 1);
     setOpen(true);
   }, []);
 
@@ -33,7 +39,7 @@ export function TalkerProvider({ children }: { children: React.ReactNode }) {
   const handleSetOpen = useCallback((next: boolean) => {
     setOpen(next);
     if (next) {
-      setResetKey((key) => key);
+      setResetKey((key) => key + 1);
     }
   }, []);
 
@@ -43,9 +49,10 @@ export function TalkerProvider({ children }: { children: React.ReactNode }) {
       setOpen: handleSetOpen,
       openTalker,
       closeTalker,
+      intent,
       resetKey,
     }),
-    [open, handleSetOpen, openTalker, closeTalker, resetKey],
+    [open, handleSetOpen, openTalker, closeTalker, intent, resetKey],
   );
 
   return (

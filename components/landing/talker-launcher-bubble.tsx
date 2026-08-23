@@ -9,9 +9,9 @@ const PAUSE_MS = 3500;
 const BUBBLE_PX = 80;
 
 const invites = [
-  "Quels sont vos horaires ?",
-  "Demander une intervention",
-  "Prendre rendez-vous",
+  { label: "Quels sont vos horaires ?", intent: "horaires" as const },
+  { label: "Poser une question", intent: "question" as const },
+  { label: "Prendre rendez-vous", intent: "rdv" as const },
 ];
 
 export function TalkerLauncherBubble() {
@@ -98,14 +98,14 @@ export function TalkerLauncherBubble() {
       >
         {!open ? (
           <div className="pointer-events-none absolute bottom-full right-0 hidden w-max flex-col items-end gap-1.5 pb-3 opacity-0 transition-opacity duration-200 group-hover/talker:pointer-events-auto group-hover/talker:opacity-100 md:flex">
-            {invites.map((label) => (
+            {invites.map((invite) => (
               <button
-                key={label}
+                key={invite.label}
                 type="button"
-                onClick={() => openTalker()}
+                onClick={() => openTalker(invite.intent)}
                 className="rounded-full border border-line bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink"
               >
-                {label}
+                {invite.label}
               </button>
             ))}
           </div>

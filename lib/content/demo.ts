@@ -9,85 +9,88 @@ export type DemoStep = {
   bot: string;
   chips?: DemoChip[];
   askEmail?: boolean;
+  placeholder?: string;
 };
 
 export const demoSteps: Record<string, DemoStep> = {
   start: {
     id: "start",
-    bot: "Bonjour. Je suis Talker. Vous avez un site WordPress ?",
+    bot: "Bonjour. Je suis l'assistant du cabinet. Je peux vous donner les horaires, prendre un rendez-vous, ou transmettre une question.",
     chips: [
-      { label: "Oui", userText: "Oui, un site WordPress.", next: "size" },
-      { label: "Pas encore", userText: "Pas encore.", next: "not-yet" },
-      { label: "Autre CMS", userText: "On n’est pas sur WordPress.", next: "other" },
-    ],
-  },
-  size: {
-    id: "size",
-    bot: "Combien de personnes dans l’équipe ?",
-    chips: [
-      { label: "1 à 4", userText: "On est 1 à 4.", next: "small" },
-      { label: "5 à 30", userText: "On est 5 à 30.", next: "staff" },
-      { label: "Plus de 30", userText: "Plus de 30.", next: "large" },
-    ],
-  },
-  "not-yet": {
-    id: "not-yet",
-    bot: "Quand le site sera en ligne, vous collez l’adresse et le bot tourne. En attendant, on peut vous prévenir pour la beta.",
-    chips: [
-      { label: "Prévenez-moi", userText: "Prévenez-moi pour la beta.", next: "email" },
-      { label: "Plus tard", userText: "Plus tard.", next: "later" },
-    ],
-  },
-  other: {
-    id: "other",
-    bot: "Talker est un plugin WordPress. Si vous n’êtes pas sur WP, ce n’est pas pour vous — et c’est volontaire.",
-    chips: [{ label: "Compris", userText: "Compris.", next: "later" }],
-  },
-  small: {
-    id: "small",
-    bot: "Talker vise surtout les équipes de 5 à 30, quand plus personne n’a le temps de tenir une ligne. On peut quand même vous inscrire à la beta.",
-    chips: [
-      { label: "Inscrivez-moi", userText: "Inscrivez-moi à la beta.", next: "email" },
-      { label: "Plus tard", userText: "Plus tard.", next: "later" },
-    ],
-  },
-  large: {
-    id: "large",
-    bot: "Au-delà, d’autres outils existent. Talker reste un petit plugin pour une petite équipe.",
-    chips: [{ label: "Compris", userText: "Compris.", next: "later" }],
-  },
-  staff: {
-    id: "staff",
-    bot: "Qui répond aux messages du site, aujourd’hui ?",
-    chips: [
-      { label: "Personne vraiment", userText: "Personne vraiment.", next: "offer" },
-      { label: "Le gérant", userText: "Le gérant, quand il peut.", next: "offer" },
       {
-        label: "Un salarié",
-        userText: "Un salarié, quand il peut.",
-        next: "offer",
+        label: "Quels sont vos horaires ?",
+        userText: "Quels sont vos horaires ?",
+        next: "horaires",
+      },
+      {
+        label: "Poser une question",
+        userText: "J'ai une question.",
+        next: "question",
+      },
+      {
+        label: "Prendre rendez-vous",
+        userText: "Prendre rendez-vous",
+        next: "rdv",
       },
     ],
   },
-  offer: {
-    id: "offer",
-    bot: "Talker pose les questions à votre place, prend le contact, et vous prévient. Personne n’a besoin de tenir le chat. On vous inscrit à la beta ?",
+  horaires: {
+    id: "horaires",
+    bot: "Nous recevons du lundi au vendredi, 9 h – 18 h, et un samedi sur deux le matin. Souhaitez-vous un créneau ?",
     chips: [
-      { label: "Oui", userText: "Oui, inscrivez-moi.", next: "email" },
-      { label: "Plus tard", userText: "Plus tard.", next: "later" },
+      {
+        label: "Prendre rendez-vous",
+        userText: "Prendre rendez-vous",
+        next: "rdv",
+      },
+      {
+        label: "Une autre question",
+        userText: "Une autre question",
+        next: "question",
+      },
+    ],
+  },
+  rdv: {
+    id: "rdv",
+    bot: "Dites-moi un moment qui vous arrange. Sur un vrai site, Talker irait chercher les disponibilités dans l'agenda — ici, c'est une démo.",
+    chips: [
+      { label: "Demain matin", userText: "Demain matin", next: "email" },
+      {
+        label: "En fin de semaine",
+        userText: "En fin de semaine",
+        next: "email",
+      },
+      { label: "Une question", userText: "Une question", next: "question" },
+    ],
+  },
+  question: {
+    id: "question",
+    bot: "Je vous écoute. J'enregistre votre demande et le cabinet vous répond.",
+    chips: [
+      {
+        label: "Un premier rendez-vous",
+        userText: "Un premier rendez-vous",
+        next: "rdv",
+      },
+      {
+        label: "Un rappel téléphone",
+        userText: "Un rappel téléphone",
+        next: "email",
+      },
     ],
   },
   email: {
     id: "email",
-    bot: "Indiquez un email. Sur un vrai site, c’est le visiteur qui le laisse — ici, c’est vous.",
+    bot: "Laissez un email. En vrai, c'est le visiteur qui le laisse — le cabinet le reçoit, pas une file anonyme.",
     askEmail: true,
-  },
-  later: {
-    id: "later",
-    bot: "Très bien. Le bouton « Voir la démo » rouvre ce fil. En bas de page, vous pouvez laisser un email pour la liste d’attente.",
+    placeholder: "email@cabinet.fr",
   },
   done: {
     id: "done",
-    bot: "C’est noté. En vrai, ce message irait au gérant — pas dans une file anonyme.",
+    bot: "C'est transmis. Le cabinet vous écrit à cette adresse.",
+  },
+  later: {
+    id: "later",
+    bot: "Très bien. La bulle rouvre ce fil quand vous voulez.",
   },
 };
