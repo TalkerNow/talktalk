@@ -112,12 +112,7 @@ export function TalkerLauncherBubble() {
         ) : null}
 
         <div className="relative size-[80px]">
-          {typing && !open ? (
-            <>
-              <span aria-hidden className="talker-ripple talker-ripple-rust" />
-              <span aria-hidden className="talker-ripple talker-ripple-ink" />
-            </>
-          ) : null}
+          {!open ? <span aria-hidden className="talker-ripple" /> : null}
 
           <button
             type="button"
