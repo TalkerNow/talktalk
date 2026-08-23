@@ -134,31 +134,31 @@ export function PricingSection() {
                 </span>
               )}
 
-              <div className="mb-8 min-h-[11rem]">
+              <div className="mb-8 grid min-h-[17rem] grid-rows-[auto_minmax(2.5em,auto)_auto_1fr_auto]">
                 <span className="font-mono text-xs text-muted-foreground">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-2 min-h-[2.5em] font-display font-semibold text-3xl leading-tight text-foreground">
                   {plan.title ?? plan.name}
                 </h3>
-                <p className="mt-2 min-h-5 text-sm text-muted-foreground">
+                <p className="mt-2 text-sm text-muted-foreground">
                   {plan.description}
                 </p>
-              </div>
-
-              <div className="mb-8 shrink-0 border-b border-foreground/10 pb-8">
-                {plan.price.monthly !== null ? (
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-display font-semibold text-5xl lg:text-6xl text-foreground">
-                      {isAnnual ? plan.price.annual : plan.price.monthly}€
+                <div aria-hidden="true" className="min-h-0" />
+                <div className="shrink-0 border-b border-foreground/10 pb-8">
+                  {plan.price.monthly !== null ? (
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-display font-semibold text-5xl lg:text-6xl text-foreground">
+                        {isAnnual ? plan.price.annual : plan.price.monthly}€
+                      </span>
+                      <span className="text-muted-foreground">/mois</span>
+                    </div>
+                  ) : (
+                    <span className="font-display font-semibold text-4xl lg:text-5xl text-foreground">
+                      Sur devis
                     </span>
-                    <span className="text-muted-foreground">/mois</span>
-                  </div>
-                ) : (
-                  <span className="font-display font-semibold text-4xl lg:text-5xl text-foreground">
-                    Sur devis
-                  </span>
-                )}
+                  )}
+                </div>
               </div>
 
               <ul className="space-y-4 mb-10 flex-1">
