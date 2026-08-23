@@ -60,7 +60,8 @@ export function CtaSection() {
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <Button
                     size="lg"
-                    className="bg-black hover:bg-black/90 text-white px-8 h-14 text-base rounded-full group"
+                    variant="iridescent"
+                    className="rounded-full px-8 h-14 text-base group"
                   >
                     Créer mon agent gratuitement
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />

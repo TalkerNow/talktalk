@@ -93,6 +93,12 @@
   }
 }
 
+@property --btn-iridescent-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 @layer utilities {
   .font-display {
     font-family: var(--font-display);
@@ -225,5 +231,68 @@
     opacity: 0;
     transform: translateX(-8px);
     animation: lineReveal 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .btn-iridescent {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    background: #000;
+    color: #fff;
+  }
+
+  .btn-iridescent::before,
+  .btn-iridescent::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0;
+    background: conic-gradient(
+      from var(--btn-iridescent-angle),
+      #f472b6,
+      #a78bfa,
+      #60a5fa,
+      #6ee7b7,
+      #f472b6
+    );
+  }
+
+  .btn-iridescent::before {
+    inset: -1px;
+    padding: 1px;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    z-index: 1;
+  }
+
+  .btn-iridescent::after {
+    inset: -4px;
+    z-index: -1;
+    filter: blur(10px);
+  }
+
+  .btn-iridescent:hover::before,
+  .btn-iridescent:focus-visible::before {
+    opacity: 1;
+    animation: btn-iridescent-spin 3s linear infinite;
+  }
+
+  .btn-iridescent:hover::after,
+  .btn-iridescent:focus-visible::after {
+    opacity: 0.28;
+    animation: btn-iridescent-spin 3s linear infinite;
+  }
+
+  @keyframes btn-iridescent-spin {
+    to {
+      --btn-iridescent-angle: 360deg;
+    }
   }
 }

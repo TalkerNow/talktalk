@@ -68,7 +68,8 @@ export function Navigation() {
             </a>
             <Button
               size="sm"
-              className={`bg-black hover:bg-black/90 text-white rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
+              variant="iridescent"
+              className={`rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
             >
               Créer mon agent
             </Button>
@@ -135,7 +136,8 @@ export function Navigation() {
               Connexion
             </Button>
             <Button 
-              className="flex-1 bg-black text-white rounded-full h-14 text-base"
+              variant="iridescent"
+              className="flex-1 rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Créer mon agent

@@ -117,7 +117,8 @@ export function HeroSection() {
         >
           <Button
             size="lg"
-            className="bg-black hover:bg-black/90 text-white px-8 h-14 text-base rounded-full group"
+            variant="iridescent"
+            className="rounded-full px-8 h-14 text-base group"
           >
             Essayer gratuitement
             <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
