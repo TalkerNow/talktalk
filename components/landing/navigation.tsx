@@ -73,7 +73,7 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className={`hidden md:flex items-center overflow-visible ${isScrolled ? "gap-3" : "gap-4"}`}>
-            {!isScrolled ? <LanguageSwitcher /> : null}
+            {!isScrolled ? <LanguageSwitcher variant="nav" /> : null}
             <a href="#" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
               {t.nav.signIn}
             </a>
@@ -139,7 +139,7 @@ export function Navigation() {
               }`}
               style={{ transitionDelay: isMobileMenuOpen ? `${navLinks.length * 75}ms` : "0ms" }}
             >
-              <LanguageSwitcher />
+              <LanguageSwitcher variant="menu" />
             </div>
           </div>
           
