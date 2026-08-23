@@ -20,7 +20,7 @@ const plans = [
   },
   {
     name: "Pro",
-    description: "Pour les TPE et PME qui veulent convertir sérieusement",
+    description: "Pour les TPE et PME qui veulent convertir",
     price: { monthly: 35, annual: 29 },
     features: [
       "1 Talker",
