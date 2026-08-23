@@ -78,7 +78,7 @@ export function CtaSection() {
               </div>
 
               {/* Right animation */}
-              <div className="hidden lg:flex items-center justify-center w-[500px] h-[500px] -mr-16">
+              <div className="hidden h-[500px] w-[500px] items-center justify-center lg:flex -mr-6">
                 <AnimatedSphere />
               </div>
             </div>
