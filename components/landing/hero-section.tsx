@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useTalker } from "@/components/talker/provider";
 import { ArrowRight } from "lucide-react";
 
 const phrases = [
@@ -23,6 +24,7 @@ const stats = [
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
+  const { openTalker } = useTalker();
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setIsVisible(true));
@@ -120,13 +122,14 @@ export function HeroSection() {
             variant="iridescent"
             className="rounded-full px-8 h-14 text-base group"
           >
-            Essayer gratuitement
+            Créer mon agent gratuitement
             <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button
             size="lg"
             variant="outline"
             className="h-14 px-8 text-base rounded-full bg-transparent border-foreground/15 text-foreground hover:bg-foreground/5 shadow-none"
+            onClick={() => openTalker()}
           >
             Voir une démo
           </Button>

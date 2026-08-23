@@ -71,7 +71,7 @@ export function Navigation() {
               variant="iridescent"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
             >
-              Créer mon agent
+              Créer mon agent gratuitement
             </Button>
           </div>
 
@@ -140,7 +140,7 @@ export function Navigation() {
               className="flex-1 rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Créer mon agent
+              Créer mon agent gratuitement
             </Button>
           </div>
         </div>

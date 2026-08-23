@@ -135,11 +135,13 @@ export function HowItWorksSection() {
                 Commencez à récolter vos leads et vos demandes.
               </p>
               <Button
-                asChild
                 variant="iridescent"
-                className="mt-6 rounded-full px-6 h-12"
+                className="mt-6 rounded-full px-6"
+                onClick={() => {
+                  window.location.hash = "pricing";
+                }}
               >
-                <a href="#pricing">Commencer maintenant</a>
+                Créer mon agent gratuitement
               </Button>
             </div>
           </div>

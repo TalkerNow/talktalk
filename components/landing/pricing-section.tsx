@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const plans = [
   {
@@ -14,7 +15,7 @@ const plans = [
       "1 canal (site web)",
       "Support par email",
     ],
-    cta: "Essayer gratuitement",
+    cta: "Créer mon agent gratuitement",
     popular: false,
   },
   {
@@ -29,7 +30,7 @@ const plans = [
       "Collecte d'avis Google",
       "Support prioritaire",
     ],
-    cta: "Créer mon agent",
+    cta: "Créer mon agent gratuitement",
     popular: true,
   },
   {
@@ -44,7 +45,7 @@ const plans = [
       "Marque blanche disponible",
       "Chargé de compte dédié",
     ],
-    cta: "Parler à un expert",
+    cta: "Installer",
     popular: false,
   },
 ];
@@ -151,17 +152,12 @@ export function PricingSection() {
                 ))}
               </ul>
 
-              <button
-                type="button"
-                className={`w-full py-4 flex items-center justify-center gap-2 text-sm font-medium transition-all group ${
-                  plan.popular
-                    ? "bg-black text-white hover:bg-black/90"
-                    : "bg-[#EFECE8] border border-foreground/10 text-foreground hover:border-foreground/30"
-                }`}
+              <Button
+                variant="iridescent"
+                className="w-full rounded-full"
               >
                 {plan.cta}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
+              </Button>
             </div>
           ))}
         </div>
