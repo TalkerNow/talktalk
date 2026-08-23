@@ -49,7 +49,7 @@ export function ContextSection() {
           </p>
           <a
             href="#features"
-            className="btn-iridescent inline-flex items-center gap-2 bg-black text-white px-8 h-14 rounded-full text-sm font-medium tracking-[0.12em] uppercase"
+            className="inline-flex items-center gap-2 bg-black text-white px-8 h-14 rounded-full text-sm font-medium tracking-[0.12em] uppercase"
           >
             Découvrez Talker
             <ArrowRight className="w-4 h-4" />
