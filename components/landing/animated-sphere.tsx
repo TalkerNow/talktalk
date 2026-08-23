@@ -76,7 +76,7 @@ export function AnimatedSphere() {
       // Draw points
       points.forEach((point) => {
         const alpha = 0.2 + (point.z + 1) * 0.4;
-        ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
+        ctx.fillStyle = `rgba(196, 63, 23, ${alpha})`;
         ctx.fillText(point.char, point.x, point.y);
       });
 
