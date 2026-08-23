@@ -111,7 +111,7 @@ export function HeroSection() {
         </p>
 
         <div
-          className={`flex flex-col sm:flex-row items-start gap-3 transition-all duration-700 delay-300 ${
+          className={`flex flex-col sm:flex-row items-start gap-3 overflow-visible transition-all duration-700 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >

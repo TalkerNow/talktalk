@@ -57,7 +57,7 @@ export function CtaSection() {
                   <span className="text-foreground/30">vend à votre place</span>
                 </h2>
 
-                <div className="flex flex-col sm:flex-row items-start gap-4">
+                <div className="flex flex-col sm:flex-row items-start gap-4 overflow-visible">
                   <Button
                     size="lg"
                     variant="iridescent"

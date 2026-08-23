@@ -25,21 +25,21 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed z-50 transition-all duration-500 ${
+      className={`fixed z-50 overflow-visible transition-all duration-500 ${
         isScrolled
           ? "top-4 left-0 right-0"
           : "top-0 left-0 right-0"
       }`}
     >
       <nav 
-        className={`mx-auto transition-all duration-500 ${
+        className={`mx-auto overflow-visible transition-all duration-500 ${
           isScrolled || isMobileMenuOpen
             ? "w-[calc(100%-2rem)] max-w-[960px] bg-[#F7F6F4]/90 backdrop-blur-xl border border-foreground/10 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
             : "bg-transparent max-w-[1400px]"
         }`}
       >
         <div 
-          className={`flex items-center justify-between transition-all duration-500 ${
+          className={`flex items-center justify-between overflow-visible transition-all duration-500 ${
             isScrolled ? "h-12 px-4 sm:px-5" : "h-20 px-6 lg:px-8"
           }`}
         >
@@ -62,7 +62,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop CTA */}
-          <div className={`hidden md:flex items-center ${isScrolled ? "gap-3" : "gap-4"}`}>
+          <div className={`hidden md:flex items-center overflow-visible ${isScrolled ? "gap-3" : "gap-4"}`}>
             <a href="#" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
               Connexion
             </a>
