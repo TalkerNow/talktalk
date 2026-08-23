@@ -264,3 +264,28 @@
 .btn-iridescent:focus-visible::before {
   opacity: 0.8;
 }
+
+.talker-typing-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: talker-dot-bounce 0.55s ease-in-out infinite;
+}
+
+.talker-typing-dot-2 {
+  animation-delay: 0.15s;
+}
+
+.talker-typing-dot-3 {
+  animation-delay: 0.3s;
+}
+
+@keyframes talker-dot-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-7px);
+  }
+}
