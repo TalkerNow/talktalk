@@ -3,9 +3,6 @@
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 
-const INK: [number, number, number] = [0.067, 0.067, 0.067];
-const RUST: [number, number, number] = [0.769, 0.247, 0.09];
-
 export function TalkerGlobe() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -14,7 +11,6 @@ export function TalkerGlobe() {
     if (!canvas) return;
 
     let phi = 0;
-    let frame = 0;
     const size = 500;
 
     const globe = createGlobe(canvas, {
@@ -22,30 +18,24 @@ export function TalkerGlobe() {
       width: size * 2,
       height: size * 2,
       phi: 0,
-      theta: 0.22,
+      theta: 0.25,
       dark: 0,
-      diffuse: 1.15,
-      mapSamples: 18000,
-      mapBrightness: 4.2,
-      baseColor: INK,
-      markerColor: RUST,
-      glowColor: RUST,
-      markers: [
-        { location: [48.86, 2.35], size: 0.035 },
-        { location: [40.71, -74.01], size: 0.03 },
-        { location: [1.35, 103.82], size: 0.028 },
-      ],
+      diffuse: 1.2,
+      mapSamples: 16000,
+      mapBrightness: 6,
+      mapBaseBrightness: 0,
+      baseColor: [0.3, 0.3, 0.3],
+      markerColor: [0.769, 0.247, 0.09],
+      glowColor: [1, 1, 1],
+      opacity: 0.85,
+      markers: [],
+      onRender: (state) => {
+        state.phi = phi;
+        phi += 0.003;
+      },
     });
 
-    const tick = () => {
-      phi += 0.0022;
-      globe.update({ phi });
-      frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-
     return () => {
-      cancelAnimationFrame(frame);
       globe.destroy();
     };
   }, []);
@@ -53,7 +43,7 @@ export function TalkerGlobe() {
   return (
     <canvas
       ref={canvasRef}
-      className="h-[500px] w-[500px]"
+      className="h-[500px] w-[500px] bg-transparent"
       width={1000}
       height={1000}
       aria-hidden
