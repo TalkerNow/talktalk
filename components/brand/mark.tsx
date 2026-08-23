@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-
 type MarkProps = {
   className?: string;
   title?: string;
@@ -54,21 +52,11 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
   );
 }
 
-export function TalkerWordmark({
-  compact = false,
-  className,
-}: {
-  compact?: boolean;
-  className?: string;
-}) {
+export function TalkerWordmark({ compact = false }: { compact?: boolean }) {
   return (
     <span
       aria-label="talker.now"
-      className={cn(
-        "inline-flex items-center gap-2 leading-none",
-        compact ? "text-[18px]" : "text-[17px]",
-        className
-      )}
+      className={`inline-flex items-center gap-2 leading-none ${compact ? "text-[18px]" : "text-[17px]"}`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

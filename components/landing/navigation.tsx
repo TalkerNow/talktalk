@@ -44,10 +44,7 @@ export function Navigation() {
           }`}
         >
           <a href="#" className="flex items-center shrink-0">
-            <TalkerWordmark
-              compact={isScrolled}
-              className={isScrolled ? undefined : "text-[19px]"}
-            />
+            <TalkerWordmark compact={isScrolled} />
           </a>
 
           {/* Desktop Navigation */}
