@@ -48,18 +48,20 @@ export function CtaSection() {
           />
           
           <div className="relative z-10 px-8 lg:px-16 py-10 lg:py-12">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="flex flex-col items-start justify-between gap-12 lg:flex-row lg:items-center">
               {/* Left content */}
               <div className="flex-1">
-                <h2 className="text-4xl lg:text-7xl font-display tracking-tight mb-8 leading-[0.95]">
+                <h2 className="mb-8 text-4xl font-display leading-[0.95] tracking-tight lg:text-7xl">
                   Talker répond.
                   <br />
                   Talker vend.
                   <br />
-                  <span className="text-foreground/30">à votre place.</span>
+                  <span className="block pl-16 text-foreground/30 lg:pl-28">
+                    à votre place.
+                  </span>
                 </h2>
 
-                <div className="flex flex-col sm:flex-row items-start gap-4 overflow-visible">
+                <div className="flex flex-col items-start gap-4 overflow-visible sm:flex-row">
                   <Button
                     size="lg"
                     variant="iridescent"
@@ -70,7 +72,7 @@ export function CtaSection() {
                   </Button>
                 </div>
 
-                <p className="text-sm text-muted-foreground mt-8 font-mono">
+                <p className="mt-8 font-mono text-sm text-muted-foreground">
                   Sans carte bancaire
                 </p>
               </div>
