@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils";
 
+/** Tight crop around the rust bubble + tail (not the padded source artboard). */
+const BUBBLE_VIEWBOX = "-520 -470 1040 1080";
+
 type MarkProps = {
   className?: string;
   title?: string;
@@ -12,7 +15,7 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="-682.69 -622.02 1365.38 1365.38"
+        viewBox={BUBBLE_VIEWBOX}
         width="1em"
         height="1em"
         role="img"
@@ -31,7 +34,7 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="-682.69 -622.02 1365.38 1365.38"
+      viewBox={BUBBLE_VIEWBOX}
       width="1em"
       height="1em"
       role="img"
@@ -73,12 +76,12 @@ export function TalkerWordmark({
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="-682.69 -622.02 1365.38 1365.38"
+        viewBox={BUBBLE_VIEWBOX}
         width="1em"
         height="1em"
         role="img"
         aria-hidden="true"
-        className="h-[1.05em] w-auto shrink-0"
+        className="h-[1.2em] w-auto shrink-0"
       >
         <path
           d="M -93.33 396.27 A 466.65 400.00 0 1 0 -291.66 315.72 L -312.50 554.69 Z"
