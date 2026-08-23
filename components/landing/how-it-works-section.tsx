@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { TalkerWordmark } from "@/components/brand/mark";
 import { Button } from "@/components/ui/button";
 
 const steps = [
@@ -23,10 +24,12 @@ const steps = [
 ];
 
 const conversation = [
-  { who: "Client", text: "Vous intervenez le week-end ?" },
-  { who: "Talker", text: "Oui, majoration de 25% le samedi. Quel est votre besoin ?" },
-  { who: "Client", text: "Fuite d'eau urgente" },
-  { who: "Talker", text: "Je vous mets en contact avec [Nom]. Votre numéro ?" },
+  { from: "user" as const, text: "Vous intervenez sur quel secteur ?" },
+  { from: "bot" as const, text: "Toute la région Île-de-France. Vous cherchez un rendez-vous ?" },
+  { from: "user" as const, text: "Quels sont vos tarifs ?" },
+  { from: "bot" as const, text: "Ça dépend du besoin. Je vous mets en relation avec [Nom], votre numéro ?" },
+  { from: "user" as const, text: "Je veux un devis" },
+  { from: "bot" as const, text: "Parfait, je transmets votre demande. Votre email ?" },
 ];
 
 export function HowItWorksSection() {
@@ -142,46 +145,67 @@ export function HowItWorksSection() {
           </div>
 
           <div className="lg:sticky lg:top-32 self-start">
-            <div className="border border-white/12 overflow-hidden bg-black/40">
-              <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-white/20" />
-                  <div className="w-3 h-3 rounded-full bg-white/20" />
-                  <div className="w-3 h-3 rounded-full bg-white/20" />
+            <div className="flex h-[min(70vh,560px)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border border-foreground/10 bg-paper bg-[#F7F6F4] text-ink text-[#111111] shadow-[0_16px_50px_rgba(0,0,0,0.14)]">
+              <div className="flex items-center justify-between border-b border-line px-4 py-3">
+                <div className="min-w-0">
+                  <TalkerWordmark className="text-[16px]" />
+                  <p className="mt-1.5 text-[11px] leading-none text-muted-2">
+                    L&apos;assistant du cabinet
+                  </p>
                 </div>
-                <span className="text-xs font-mono text-white/40">Talker — widget.talker.now</span>
+                <span className="rounded-full px-2 py-1 text-sm text-muted">
+                  Fermer
+                </span>
               </div>
-
-              <div className="p-8 min-h-[280px] space-y-4">
-                {conversation.map((line, index) => (
-                  <div
-                    key={`${line.who}-${index}`}
-                    className={`flex ${line.who === "Talker" ? "justify-start" : "justify-end"}`}
+              <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+                {conversation.map((message, index) => (
+                  <p
+                    key={`${message.from}-${index}`}
+                    className={
+                      message.from === "bot"
+                        ? "max-w-[92%] rounded-2xl rounded-tl-md bg-[#f1ece5] px-3.5 py-2.5 text-[14px] leading-6 text-ink"
+                        : "ml-auto max-w-[86%] rounded-2xl rounded-tr-md bg-ink bg-[#111111] px-3.5 py-2.5 text-[14px] leading-6 text-paper text-[#F7F6F4]"
+                    }
                   >
-                    <div
-                      className={`max-w-[85%] px-4 py-3 text-sm leading-relaxed ${
-                        line.who === "Talker"
-                          ? "bg-white/10 text-white/85"
-                          : "bg-white text-black"
-                      }`}
-                    >
-                      <div className="font-mono text-[10px] uppercase tracking-wider opacity-60 mb-1">
-                        {line.who}
-                      </div>
-                      {line.text}
-                    </div>
-                  </div>
+                    {message.text}
+                  </p>
                 ))}
               </div>
-
-              <div className="px-6 py-4 border-t border-white/10 flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-                <span className="text-xs font-mono text-white/40">En ligne</span>
+              <div className="border-t border-line bg-white px-3 py-3">
+                <div className="flex items-center gap-2 rounded-full bg-[#F1ECE5] px-4 py-2">
+                  <input
+                    disabled
+                    readOnly
+                    placeholder="Posez votre question..."
+                    className="min-w-0 flex-1 border-0 bg-transparent p-0 text-[14px] text-ink outline-none placeholder:text-[#6B6B73] disabled:opacity-50"
+                  />
+                  <span
+                    className="inline-flex shrink-0 text-[#C43F17] opacity-40"
+                    aria-hidden
+                  >
+                    <PaperPlane />
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function PaperPlane() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      width="20"
+      height="20"
+      aria-hidden
+    >
+      <path d="M3.478 2.405a.75.75 0 0 0-.926.94l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 15.445-7.843.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.405Z" />
+    </svg>
   );
 }
