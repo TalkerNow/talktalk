@@ -178,8 +178,10 @@ export function PricingSection() {
           ))}
         </div>
 
-        <div className="mt-6 border border-foreground/12 bg-background px-6 py-4 text-center text-sm leading-relaxed text-muted-foreground md:text-[15px] md:whitespace-nowrap">
-          Shopify et WooCommerce — 59 € pour un site. À partir de 10 sites : 29 € par site.
+        <div className="mt-6 flex w-full items-center border border-foreground/12 bg-background px-6 py-4">
+          <p className="w-full font-mono text-sm leading-snug text-foreground lg:whitespace-nowrap">
+            Shopify et WooCommerce — 59 € pour un site. À partir de 10 sites : 29 € par site.
+          </p>
         </div>
       </div>
     </section>
