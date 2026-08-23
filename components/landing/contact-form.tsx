@@ -115,7 +115,7 @@ export function ContactForm() {
           type="submit"
           variant="iridescent"
           disabled={pending}
-          className="rounded-full px-8 overflow-visible"
+          className="rounded-full px-8 overflow-hidden"
         >
           Envoyer
         </Button>

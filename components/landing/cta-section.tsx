@@ -65,7 +65,7 @@ export function CtaSection() {
                   <Button
                     size="lg"
                     variant="iridescent"
-                    className="h-14 rounded-full px-8 text-base group overflow-visible"
+                    className="h-14 rounded-full px-8 text-base group overflow-hidden"
                   >
                     Créer mon agent gratuitement
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />

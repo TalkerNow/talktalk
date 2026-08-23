@@ -134,7 +134,7 @@ export function HowItWorksSection() {
             })}
             <Button
               variant="iridescent"
-              className="mt-8 rounded-full px-6 overflow-visible"
+              className="mt-8 rounded-full px-6 overflow-hidden"
               onClick={() => {
                 window.location.hash = "pricing";
               }}

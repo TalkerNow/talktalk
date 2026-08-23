@@ -174,8 +174,8 @@ export function PricingSection() {
                 variant="iridescent"
                 className={
                   plan.name === "Starter"
-                    ? "mt-auto h-auto min-h-9 w-full whitespace-normal rounded-full px-4 py-3 text-center text-[13px] leading-tight overflow-visible"
-                    : "mt-auto w-full rounded-full overflow-visible"
+                    ? "mt-auto h-auto min-h-9 w-full whitespace-normal rounded-full px-4 py-3 text-center text-[13px] leading-tight overflow-hidden"
+                    : "mt-auto w-full rounded-full overflow-hidden"
                 }
               >
                 {plan.cta}
