@@ -69,7 +69,7 @@ export function PricingSection() {
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-4 mb-8">
+        <div className="mb-8 flex items-center justify-center gap-4 lg:mb-10">
           <span
             className={`text-sm transition-colors ${
               !isAnnual ? "text-foreground" : "text-muted-foreground"
@@ -103,7 +103,7 @@ export function PricingSection() {
           )}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="mt-3 grid items-stretch gap-6 md:mt-7 md:grid-cols-3">
           {plans.map((plan, idx) => (
             <div
               key={plan.name}
