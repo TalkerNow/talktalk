@@ -132,20 +132,19 @@ export function HowItWorksSection() {
                 </button>
               );
             })}
-            {activeStep === 2 ? (
-              <Button
-                className="mt-8 rounded-full bg-white px-6 text-[#111] hover:bg-white overflow-visible"
-                onClick={() => {
-                  window.location.hash = "pricing";
-                }}
-              >
-                Créer mon agent gratuitement
-              </Button>
-            ) : null}
+            <Button
+              variant="iridescent"
+              className="mt-8 rounded-full px-6 overflow-visible"
+              onClick={() => {
+                window.location.hash = "pricing";
+              }}
+            >
+              Créer mon agent gratuitement
+            </Button>
           </div>
 
-          <div className="lg:sticky lg:top-32 self-start">
-            <div className="flex h-[min(70vh,560px)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border border-foreground/10 bg-paper bg-[#F7F6F4] text-ink text-[#111111] shadow-[0_16px_50px_rgba(0,0,0,0.14)]">
+          <div className="flex w-full justify-end self-start lg:sticky lg:top-32">
+            <div className="ml-auto flex h-[min(70vh,560px)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border border-foreground/10 bg-paper bg-[#F7F6F4] text-ink text-[#111111] shadow-[0_16px_50px_rgba(0,0,0,0.14)]">
               <div className="flex items-center justify-between border-b border-line px-4 py-3">
                 <div className="min-w-0">
                   <TalkerWordmark className="text-[16px]" />
