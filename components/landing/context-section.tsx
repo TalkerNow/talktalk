@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function ContextSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -47,13 +48,16 @@ export function ContextSection() {
           <p className="text-xl text-muted-foreground leading-relaxed mb-10">
             Un site qui répond, qui engage, qui capte la demande sur place, c&apos;est la seule manière de transformer une visite en contact. Le site statique est un dépliant. Le site avec Talker devient un vendeur.
           </p>
-          <a
-            href="#features"
-            className="inline-flex items-center gap-2 bg-black text-white px-8 h-14 rounded-full text-sm font-medium tracking-[0.12em] uppercase"
+          <Button
+            asChild
+            variant="iridescent"
+            className="rounded-full px-8 h-14 text-sm font-medium tracking-[0.12em] uppercase overflow-visible"
           >
-            Découvrez Talker
-            <ArrowRight className="w-4 h-4" />
-          </a>
+            <a href="#features">
+              Découvrez Talker
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </Button>
         </div>
       </div>
     </section>

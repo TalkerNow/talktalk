@@ -238,10 +238,7 @@
   .btn-iridescent::before {
     content: "";
     position: absolute;
-    left: -8px;
-    right: -8px;
-    bottom: -12px;
-    height: 36px;
+    inset: -8px;
     border-radius: 9999px;
     background: linear-gradient(
       90deg,
