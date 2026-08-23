@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { AnimatedChat } from "./animated-chat";
 
 const phrases = [
-  "répond à vos tarifs",
+  "décrit vos prestations",
+  "donne vos tarifs",
+  "donne vos disponibilités",
   "capte le numéro",
-  "trie vos clients mécontents",
-  "récupère vos avis Google",
-  "ne dort jamais",
+  "capte l'email",
+  "demande des avis google",
 ];
 
 const stats = [
@@ -38,10 +38,6 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[520px] h-[560px] lg:w-[640px] lg:h-[680px] opacity-50 pointer-events-none">
-        <AnimatedChat />
-      </div>
-
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
         {[...Array(8)].map((_, i) => (
           <div
@@ -85,8 +81,8 @@ export function HeroSection() {
           }`}
         >
           <span className="block text-foreground">Le chatbot IA qui</span>
-          <span className="block text-foreground/30">
-            <span className="relative inline-block text-foreground/40">
+          <span className="block text-foreground/40">
+            <span className="relative inline-block">
               <span key={wordIndex} className="inline-flex flex-wrap">
                 {phrases[wordIndex].split("").map((char, i) => (
                   <span
@@ -101,9 +97,9 @@ export function HeroSection() {
                 ))}
               </span>
               <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-foreground/12" />
-            </span>{" "}
-            à votre place
+            </span>
           </span>
+          <span className="block text-foreground/30">à votre place</span>
         </h1>
 
         <p
