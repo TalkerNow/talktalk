@@ -38,7 +38,7 @@ export function ContextSection() {
           <p className="text-xl text-muted-foreground leading-relaxed mb-10">
             Les moteurs de recherche et les IA génératives répondent directement, sans renvoyer vers votre site. Un site vitrine statique perd un trafic qu&apos;il ne reverra jamais.
           </p>
-          <div className="border border-[#C43F17]/20 bg-[#F4DCD4] px-6 py-5 mb-10 text-[#111111]">
+          <div className="mb-10 max-w-3xl border border-[#C43F17]/20 bg-[#F4DCD4] py-5 text-[#111111]">
             <p className="text-xl leading-relaxed text-[#111111]">
               Un site qui répond, qui engage, qui capte la demande sur place, c&apos;est la seule
               manière de transformer une visite en contact.
