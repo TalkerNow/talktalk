@@ -95,7 +95,7 @@ export function HowItWorksSection() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-          <div className="space-y-0">
+          <div className="space-y-0 overflow-visible">
             {steps.map((step, index) => {
               const isActive = activeStep === index;
               return (
