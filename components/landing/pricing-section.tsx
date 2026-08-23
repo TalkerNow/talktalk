@@ -36,8 +36,8 @@ const plans = [
   },
   {
     name: "Agence · 3",
-    title: "Agence et entreprise",
-    description: "3 passes",
+    title: "Agences et entreprises",
+    description: "3 sites",
     price: { monthly: 69, annual: 45 },
     features: [
       "3 Talker",
@@ -49,8 +49,8 @@ const plans = [
   },
   {
     name: "Agence · 10",
-    title: "Agence et entreprise",
-    description: "10 passes",
+    title: "Agences et entreprises",
+    description: "10 sites",
     price: { monthly: 119, annual: 99 },
     features: [
       "10 Talker",
@@ -134,17 +134,19 @@ export function PricingSection() {
                 </span>
               )}
 
-              <div className="mb-8">
+              <div className="mb-8 min-h-[11rem]">
                 <span className="font-mono text-xs text-muted-foreground">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
-                <h3 className="font-display font-semibold text-3xl text-foreground mt-2">
+                <h3 className="mt-2 min-h-[2.5em] font-display font-semibold text-3xl leading-tight text-foreground">
                   {plan.title ?? plan.name}
                 </h3>
-                <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
+                <p className="mt-2 min-h-5 text-sm text-muted-foreground">
+                  {plan.description}
+                </p>
               </div>
 
-              <div className="mb-8 pb-8 border-b border-foreground/10">
+              <div className="mb-8 shrink-0 border-b border-foreground/10 pb-8">
                 {plan.price.monthly !== null ? (
                   <div className="flex items-baseline gap-2">
                     <span className="font-display font-semibold text-5xl lg:text-6xl text-foreground">
@@ -172,8 +174,8 @@ export function PricingSection() {
                 variant="iridescent"
                 className={
                   plan.name === "Starter"
-                    ? "h-auto min-h-9 w-full whitespace-normal rounded-full px-4 py-3 text-center text-[13px] leading-tight overflow-visible"
-                    : "w-full rounded-full overflow-visible"
+                    ? "mt-auto h-auto min-h-9 w-full whitespace-normal rounded-full px-4 py-3 text-center text-[13px] leading-tight overflow-visible"
+                    : "mt-auto w-full rounded-full overflow-visible"
                 }
               >
                 {plan.cta}
