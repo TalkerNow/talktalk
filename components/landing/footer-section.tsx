@@ -51,7 +51,7 @@ export function FooterSection() {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-12 lg:gap-8">
             <div className="col-span-2">
               <a href="#" className="inline-flex items-center gap-2 mb-6">
-                <TalkerWordmark />
+                <TalkerWordmark className="text-[26px]" />
                 <span className="text-xs text-muted-foreground font-mono">TM</span>
               </a>
 
