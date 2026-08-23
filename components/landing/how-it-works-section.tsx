@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 const steps = [
   {
     number: "1",
-    title: "Installez le plugin depuis WordPress.",
-    description: "",
+    title: "Installez le plugin",
+    description: "depuis WordPress",
   },
   {
     number: "2",
@@ -114,13 +114,7 @@ export function HowItWorksSection() {
                       {isActive && (
                         <>
                           {step.description ? (
-                            <p
-                              className={`leading-relaxed ${
-                                index === 2
-                                  ? "text-[15px] text-white/60"
-                                  : "text-base lg:text-lg text-white/70"
-                              }`}
-                            >
+                            <p className="text-[18px] lg:text-[20px] leading-relaxed text-white">
                               {step.description}
                             </p>
                           ) : null}
