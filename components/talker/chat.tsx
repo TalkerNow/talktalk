@@ -11,6 +11,10 @@ type Message = {
   text: string;
 };
 
+function normalize(value: string) {
+  return value.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
 export function TalkerChat({
   onClose,
   variant = "panel",
@@ -23,15 +27,17 @@ export function TalkerChat({
   const [messages, setMessages] = useState<Message[]>([
     { id: "m0", from: "bot", text: demoSteps.start.bot },
   ]);
-  const [email, setEmail] = useState("");
+  const [draft, setDraft] = useState("");
   const [pending, setPending] = useState(false);
   const scroller = useRef<HTMLDivElement>(null);
   const step = demoSteps[stepId];
+  const lastBotIndex = messages.findLastIndex((message) => message.from === "bot");
+  const showChips = Boolean(!pending && step?.chips?.length);
 
   useEffect(() => {
     setStepId("start");
     setMessages([{ id: "m0", from: "bot", text: demoSteps.start.bot }]);
-    setEmail("");
+    setDraft("");
     setPending(false);
 
     if (!intent) return;
@@ -85,12 +91,29 @@ export function TalkerChat({
     }, 1800);
   };
 
-  const submitEmail = (event: React.FormEvent) => {
+  const nextFromText = (text: string) => {
+    const needle = normalize(text);
+    const match = [
+      ...(step?.chips ?? []),
+      ...(demoSteps.start.chips ?? []),
+    ].find(
+      (chip) =>
+        normalize(chip.label) === needle || normalize(chip.userText) === needle,
+    );
+    if (match) return match.next;
+    if (stepId === "email" || step?.askEmail) return "done";
+    if (stepId === "question" || stepId === "rdv") return "email";
+    if (stepId === "done") return "later";
+    return "question";
+  };
+
+  const submitDraft = (event: React.FormEvent) => {
     event.preventDefault();
-    const value = email.trim();
-    if (!value.includes("@")) return;
-    advance("done", value);
-    setEmail("");
+    const value = draft.trim();
+    if (!value || pending) return;
+    if ((step?.askEmail || stepId === "email") && !value.includes("@")) return;
+    setDraft("");
+    advance(nextFromText(value), value);
   };
 
   const chrome = useMemo(
@@ -117,6 +140,8 @@ export function TalkerChat({
     [onClose],
   );
 
+  const askingEmail = Boolean(step?.askEmail);
+
   return (
     <div
       className={
@@ -130,17 +155,32 @@ export function TalkerChat({
         ref={scroller}
         className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
       >
-        {messages.map((message) => (
-          <p
-            key={message.id}
-            className={
-              message.from === "bot"
-                ? "max-w-[92%] rounded-2xl rounded-tl-md bg-[#f1ece5] px-3.5 py-2.5 text-[14px] leading-6 text-ink"
-                : "ml-auto max-w-[86%] rounded-2xl rounded-tr-md bg-ink px-3.5 py-2.5 text-[14px] leading-6 text-paper"
-            }
-          >
-            {message.text}
-          </p>
+        {messages.map((message, index) => (
+          <div key={message.id}>
+            <p
+              className={
+                message.from === "bot"
+                  ? "max-w-[92%] rounded-2xl rounded-tl-md bg-[#f1ece5] px-3.5 py-2.5 text-[14px] leading-6 text-ink"
+                  : "ml-auto max-w-[86%] rounded-2xl rounded-tr-md bg-ink px-3.5 py-2.5 text-[14px] leading-6 text-paper"
+              }
+            >
+              {message.text}
+            </p>
+            {showChips && message.from === "bot" && index === lastBotIndex ? (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {step.chips?.map((chip) => (
+                  <button
+                    key={chip.label}
+                    type="button"
+                    onClick={() => advance(chip.next, chip.userText)}
+                    className="rounded-full border border-line bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink"
+                  >
+                    {chip.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
         ))}
         {pending ? (
           <p className="w-fit rounded-2xl bg-[#f1ece5] px-3.5 py-2.5">
@@ -153,65 +193,56 @@ export function TalkerChat({
           </p>
         ) : null}
       </div>
-      <div className="border-t border-line px-3 py-3">
-        {step?.chips && !pending ? (
-          <div className="mb-3 flex flex-wrap gap-2">
-            {step.chips.map((chip) => (
-              <button
-                key={chip.label}
-                type="button"
-                onClick={() => advance(chip.next, chip.userText)}
-                className="rounded-full border border-line bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink"
-              >
-                {chip.label}
-              </button>
-            ))}
-          </div>
-        ) : null}
-        {step?.askEmail && !pending ? (
-          <form onSubmit={submitEmail} className="mb-3 flex gap-2">
-            <label className="sr-only" htmlFor="talker-demo-email">
-              Email
-            </label>
-            <input
-              id="talker-demo-email"
-              type="email"
-              required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder={step.placeholder ?? "email@cabinet.fr"}
-              className="min-w-0 flex-1 rounded-full border border-line bg-background px-3 py-2 text-[13px] outline-none focus:border-ink"
-            />
-            <button
-              type="submit"
-              className="rounded-full bg-ink px-3 py-2 text-[13px] text-paper"
-            >
-              Envoyer
-            </button>
-          </form>
-        ) : null}
-        <div className="flex items-center justify-between px-1">
-          <div className="flex items-center gap-2 text-muted-2">
-            <span
-              className="inline-flex size-7 items-center justify-center rounded-full border border-line"
-              aria-hidden
-              title="Pièce jointe — plus tard"
-            >
-              <ClipIcon />
-            </span>
-            <span
-              className="inline-flex size-7 items-center justify-center rounded-full border border-line"
-              aria-hidden
-              title="Micro — plus tard"
-            >
-              <MicIcon />
-            </span>
-          </div>
+      <form
+        onSubmit={submitDraft}
+        className="border-t border-line px-3 py-3"
+      >
+        <div className="flex items-center gap-2">
+          <span
+            className="inline-flex size-7 shrink-0 items-center justify-center rounded-full border border-line text-muted-2"
+            aria-hidden
+            title="Pièce jointe — plus tard"
+          >
+            <ClipIcon />
+          </span>
+          <label className="sr-only" htmlFor="talker-compose">
+            {askingEmail ? "Email" : "Message"}
+          </label>
+          <input
+            id="talker-compose"
+            type={askingEmail ? "email" : "text"}
+            required={askingEmail}
+            disabled={pending}
+            value={draft}
+            onChange={(event) => setDraft(event.target.value)}
+            placeholder={
+              askingEmail
+                ? (step.placeholder ?? "email@cabinet.fr")
+                : "Écrivez un message…"
+            }
+            className="min-w-0 flex-1 rounded-full border border-line bg-background px-3 py-2 text-[13px] outline-none focus:border-ink disabled:opacity-50"
+          />
+          <button
+            type="submit"
+            disabled={pending || !draft.trim()}
+            className="rounded-full bg-ink px-3 py-2 text-[13px] text-paper disabled:opacity-40"
+          >
+            Envoyer
+          </button>
+        </div>
+        <div className="mt-2 flex items-center justify-between px-1">
+          <span
+            className="inline-flex size-7 items-center justify-center rounded-full border border-line text-muted-2"
+            aria-hidden
+            title="Micro — plus tard"
+          >
+            <MicIcon />
+          </span>
           <p className="text-[10px] tracking-wide text-muted-2">
             Démo — Talker mène le fil
           </p>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
