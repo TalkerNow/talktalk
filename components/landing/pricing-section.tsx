@@ -108,7 +108,7 @@ export function PricingSection() {
           {plans.map((plan, idx) => (
             <div
               key={plan.name}
-              className={`relative flex flex-col p-8 lg:p-10 ${
+              className={`relative flex flex-col overflow-visible p-8 lg:p-10 ${
                 plan.popular
                   ? "border border-black bg-background"
                   : "border border-foreground/12 bg-background"
@@ -154,7 +154,7 @@ export function PricingSection() {
 
               <Button
                 variant="iridescent"
-                className="w-full rounded-full"
+                className="w-full rounded-full overflow-visible"
               >
                 {plan.cta}
               </Button>

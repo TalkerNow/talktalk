@@ -39,7 +39,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden">
+    <section className="relative flex min-h-screen flex-col justify-between overflow-visible">
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
         {[...Array(8)].map((_, i) => (
           <div
@@ -120,7 +120,7 @@ export function HeroSection() {
           <Button
             size="lg"
             variant="iridescent"
-            className="rounded-full px-8 h-14 text-base group"
+            className="h-14 rounded-full px-8 text-base group overflow-visible"
           >
             Créer mon agent gratuitement
             <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />

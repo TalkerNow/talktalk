@@ -230,7 +230,7 @@
 
 .btn-iridescent {
   position: relative;
-  isolation: isolate;
+  z-index: 1;
   overflow: visible;
   border-radius: 9999px;
   background: #000;
@@ -244,8 +244,8 @@
   right: -12px;
   bottom: -12px;
   left: -12px;
-  width: unset;
-  height: unset;
+  width: auto;
+  height: auto;
   border-radius: 9999px;
   background: linear-gradient(
     90deg,
@@ -254,15 +254,19 @@
     #a78bfa 66%,
     #a3e635 100%
   );
-  filter: blur(16px);
   opacity: 0;
   pointer-events: none;
   z-index: -1;
+  box-shadow:
+    0 0 22px 6px rgba(34, 211, 238, 0.28),
+    0 0 28px 8px rgba(244, 114, 182, 0.22),
+    0 0 28px 8px rgba(167, 139, 250, 0.22),
+    0 0 22px 6px rgba(163, 230, 53, 0.2);
 }
 
 .btn-iridescent:hover::before,
 .btn-iridescent:focus-visible::before {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .talker-typing-dot {

@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
+const fieldClassName =
+  "w-full border border-[#C43F17]/45 bg-[#F7F6F4] px-4 py-3.5 text-[15px] outline-none transition-colors focus:border-[#C43F17]";
+
 export function ContactForm() {
   const [sent, setSent] = useState(false);
   const [pending, setPending] = useState(false);
@@ -10,10 +13,13 @@ export function ContactForm() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
+    const data = new FormData(form);
     const payload = {
-      name: String(new FormData(form).get("name") ?? "").trim(),
-      email: String(new FormData(form).get("email") ?? "").trim(),
-      message: String(new FormData(form).get("message") ?? "").trim(),
+      name: String(data.get("name") ?? "").trim(),
+      company: String(data.get("company") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      phone: String(data.get("phone") ?? "").trim(),
+      message: String(data.get("message") ?? "").trim(),
     };
 
     setPending(true);
@@ -38,7 +44,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="max-w-xl space-y-6">
+    <form onSubmit={onSubmit} className="max-w-xl space-y-6 overflow-visible">
       <div>
         <label htmlFor="name" className="mb-2 block text-sm text-muted-foreground">
           Nom
@@ -49,7 +55,19 @@ export function ContactForm() {
           type="text"
           required
           autoComplete="name"
-          className="w-full border border-foreground/12 bg-background px-4 py-3 text-[15px] outline-none focus:border-foreground/40"
+          className={fieldClassName}
+        />
+      </div>
+      <div>
+        <label htmlFor="company" className="mb-2 block text-sm text-muted-foreground">
+          Société
+        </label>
+        <input
+          id="company"
+          name="company"
+          type="text"
+          autoComplete="organization"
+          className={fieldClassName}
         />
       </div>
       <div>
@@ -62,7 +80,19 @@ export function ContactForm() {
           type="email"
           required
           autoComplete="email"
-          className="w-full border border-foreground/12 bg-background px-4 py-3 text-[15px] outline-none focus:border-foreground/40"
+          className={fieldClassName}
+        />
+      </div>
+      <div>
+        <label htmlFor="phone" className="mb-2 block text-sm text-muted-foreground">
+          Téléphone
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          className={fieldClassName}
         />
       </div>
       <div>
@@ -74,7 +104,7 @@ export function ContactForm() {
           name="message"
           required
           rows={5}
-          className="w-full resize-y border border-foreground/12 bg-background px-4 py-3 text-[15px] outline-none focus:border-foreground/40"
+          className={`${fieldClassName} resize-y`}
         />
       </div>
       <Button

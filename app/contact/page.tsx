@@ -12,7 +12,7 @@ export default function ContactPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-[#F7F6F4] noise-overlay">
       <Navigation />
-      <section className="mx-auto max-w-[1400px] px-6 pb-16 pt-32 lg:px-12 lg:pb-24 lg:pt-40">
+      <section className="mx-auto max-w-[1400px] overflow-visible px-6 pb-16 pt-32 lg:px-12 lg:pb-24 lg:pt-40">
         <h1 className="mb-6 font-display text-4xl font-semibold tracking-tight lg:text-6xl">
           Contact
         </h1>

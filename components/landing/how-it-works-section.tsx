@@ -60,7 +60,7 @@ export function HowItWorksSection() {
     <section
       id="how-it-works"
       ref={sectionRef}
-      className="relative py-12 lg:py-16 bg-[#0A0A0A] text-white overflow-hidden"
+      className="relative overflow-visible bg-[#0A0A0A] py-12 text-white lg:py-16"
     >
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
         <div

@@ -31,7 +31,7 @@ export function CtaSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative py-12 lg:py-16 overflow-hidden">
+    <section ref={sectionRef} className="relative overflow-visible py-12 lg:py-16">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div
           className={`relative border border-foreground transition-all duration-1000 ${
@@ -65,7 +65,7 @@ export function CtaSection() {
                   <Button
                     size="lg"
                     variant="iridescent"
-                    className="rounded-full px-8 h-14 text-base group"
+                    className="h-14 rounded-full px-8 text-base group overflow-visible"
                   >
                     Créer mon agent gratuitement
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
