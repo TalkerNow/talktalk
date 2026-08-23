@@ -6,7 +6,7 @@ import type { Locale } from "@/lib/i18n";
 
 function FlagFR({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 3 2" className={className} aria-hidden>
+    <svg viewBox="0 0 3 2" className={className} aria-hidden preserveAspectRatio="none">
       <rect width="1" height="2" fill="#002395" />
       <rect x="1" width="1" height="2" fill="#FFFFFF" />
       <rect x="2" width="1" height="2" fill="#ED2939" />
@@ -16,12 +16,12 @@ function FlagFR({ className }: { className?: string }) {
 
 function FlagUK({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 60 30" className={className} aria-hidden>
-      <rect width="60" height="30" fill="#012169" />
-      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#FFFFFF" strokeWidth="6" />
-      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="2" />
-      <path d="M30,0 V30 M0,15 H60" stroke="#FFFFFF" strokeWidth="10" />
-      <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
+    <svg viewBox="0 0 3 2" className={className} aria-hidden preserveAspectRatio="none">
+      <rect width="3" height="2" fill="#012169" />
+      <path d="M0,0 L3,2 M3,0 L0,2" stroke="#FFFFFF" strokeWidth="0.36" />
+      <path d="M0,0 L3,2 M3,0 L0,2" stroke="#C8102E" strokeWidth="0.12" />
+      <path d="M1.5,0 V2 M0,1 H3" stroke="#FFFFFF" strokeWidth="0.6" />
+      <path d="M1.5,0 V2 M0,1 H3" stroke="#C8102E" strokeWidth="0.36" />
     </svg>
   );
 }
@@ -67,9 +67,9 @@ export function LanguageSwitcher() {
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
         onFocus={() => setOpen(true)}
-        className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-[2px] border border-foreground/15 bg-background focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
+        className="inline-flex items-center justify-center bg-transparent p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
       >
-        <TriggerFlag className="h-[14px] w-[21px]" />
+        <TriggerFlag className="h-4 w-6 shrink-0" />
       </button>
       {open ? (
         <div
@@ -91,7 +91,7 @@ export function LanguageSwitcher() {
                 locale === value ? "text-foreground" : "text-foreground/70"
               }`}
             >
-              <Flag className="h-[12px] w-[18px] shrink-0" />
+              <Flag className="h-4 w-6 shrink-0" />
               {label}
             </button>
           ))}
