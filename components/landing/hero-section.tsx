@@ -63,7 +63,7 @@ export function HeroSection() {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 lg:px-12 pt-32 pb-16 lg:pt-40 lg:pb-24">
+      <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 lg:px-12 pt-32 pb-10 lg:pt-40 lg:pb-12">
         <div
           className={`mb-8 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -152,7 +152,7 @@ export function HeroSection() {
               {stats.map((stat) => (
                 <div
                   key={`${stat.value}-${stat.label}-${i}`}
-                  className="flex min-w-[300px] flex-col justify-center gap-1 border-r border-foreground/10 px-10 py-8 lg:min-w-[360px] lg:px-14 lg:py-10"
+                  className="flex min-w-[300px] flex-col justify-center gap-1 border-r border-foreground/10 px-10 py-5 lg:min-w-[360px] lg:px-14 lg:py-6"
                 >
                   <span className="text-4xl lg:text-5xl font-display font-semibold tracking-tight">
                     {stat.value}

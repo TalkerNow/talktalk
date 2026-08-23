@@ -31,7 +31,7 @@ export function CtaSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 lg:py-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div
           className={`relative border border-foreground transition-all duration-1000 ${
@@ -47,7 +47,7 @@ export function CtaSection() {
             }}
           />
           
-          <div className="relative z-10 px-8 lg:px-16 py-16 lg:py-24">
+          <div className="relative z-10 px-8 lg:px-16 py-10 lg:py-12">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
               {/* Left content */}
               <div className="flex-1">

@@ -53,9 +53,9 @@ export function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(true);
 
   return (
-    <section id="pricing" className="relative py-32 lg:py-40 border-t border-foreground/10">
+    <section id="pricing" className="relative py-12 lg:py-16 border-t border-foreground/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-10">
           <span className="font-mono text-xs tracking-[0.2em] text-foreground uppercase block mb-6">
             Tarifs
           </span>
@@ -69,7 +69,7 @@ export function PricingSection() {
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-4 mb-16">
+        <div className="flex items-center justify-center gap-4 mb-8">
           <span
             className={`text-sm transition-colors ${
               !isAnnual ? "text-foreground" : "text-muted-foreground"

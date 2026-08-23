@@ -23,7 +23,7 @@ export function ContextSection() {
     <section
       id="cas-usage"
       ref={sectionRef}
-      className="relative py-32 lg:py-40 border-t border-foreground/10"
+      className="relative py-12 lg:py-16 border-t border-foreground/10"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div

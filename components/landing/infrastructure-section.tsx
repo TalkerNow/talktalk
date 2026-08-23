@@ -35,7 +35,7 @@ export function InfrastructureSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-32 lg:py-40 overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 lg:py-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <div
@@ -52,7 +52,7 @@ export function InfrastructureSection() {
               <br />
               <span className="text-foreground/30">vos clients le sont.</span>
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-12">
+            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
               Un prospect qui appelle un dimanche soir et tombe sur un répondeur, c&apos;est un client perdu. Talker répond nuit et jour, capte la demande, et vous transmet dès le lendemain matin.
             </p>
 
@@ -90,7 +90,7 @@ export function InfrastructureSection() {
                 {channels.map((channel, index) => (
                   <div
                     key={channel.name}
-                    className={`px-6 py-5 border-b border-foreground/5 last:border-b-0 flex items-center justify-between transition-all duration-300 ${
+                    className={`px-6 py-3.5 border-b border-foreground/5 last:border-b-0 flex items-center justify-between transition-all duration-300 ${
                       activeChannel === index ? "bg-foreground/[0.02]" : ""
                     }`}
                   >

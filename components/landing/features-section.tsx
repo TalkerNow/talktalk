@@ -175,7 +175,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 py-16 lg:py-28 border-b border-foreground/10">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 py-8 lg:py-10 border-b border-foreground/10">
         {/* Number */}
         <div className="shrink-0">
           <span className="font-mono text-sm text-muted-foreground">{feature.number}</span>
@@ -229,11 +229,11 @@ export function FeaturesSection() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative py-32 lg:py-40"
+      className="relative py-12 lg:py-16"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="mb-16 lg:mb-24">
+        <div className="mb-8 lg:mb-10">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
             <span className="w-8 h-px bg-foreground/30" />
             Fonctionnalités

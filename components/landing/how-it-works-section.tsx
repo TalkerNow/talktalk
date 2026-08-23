@@ -55,7 +55,7 @@ export function HowItWorksSection() {
     <section
       id="how-it-works"
       ref={sectionRef}
-      className="relative py-24 lg:py-32 bg-[#0A0A0A] text-white overflow-hidden"
+      className="relative py-12 lg:py-16 bg-[#0A0A0A] text-white overflow-hidden"
     >
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
         <div
@@ -73,7 +73,7 @@ export function HowItWorksSection() {
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="mb-16 lg:mb-24">
+        <div className="mb-8 lg:mb-10">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
             <span className="w-8 h-px bg-white/30" />
             Comment ça marche
@@ -98,7 +98,7 @@ export function HowItWorksSection() {
                   key={step.number}
                   type="button"
                   onClick={() => setActiveStep(index)}
-                  className={`w-full text-left py-8 border-b border-white/10 transition-all duration-500 ${
+                  className={`w-full text-left py-5 lg:py-6 border-b border-white/10 transition-all duration-500 ${
                     isActive ? "opacity-100" : "opacity-35 hover:opacity-60"
                   }`}
                 >

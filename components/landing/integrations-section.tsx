@@ -27,10 +27,10 @@ export function IntegrationsSection() {
   }, []);
 
   return (
-    <section id="integrations" ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
+    <section id="integrations" ref={sectionRef} className="relative py-12 lg:py-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div
-          className={`text-center max-w-3xl mx-auto mb-16 lg:mb-24 transition-all duration-700 ${
+          className={`text-center max-w-3xl mx-auto mb-8 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -57,7 +57,7 @@ export function IntegrationsSection() {
           {integrations.map((integration) => (
             <div
               key={integration.name}
-              className="bg-background px-6 py-8 hover:bg-foreground/[0.02] transition-all duration-300 group"
+              className="bg-background px-6 py-6 hover:bg-foreground/[0.02] transition-all duration-300 group"
             >
               <div className="text-lg font-medium group-hover:translate-x-1 transition-transform">
                 {integration.name}
