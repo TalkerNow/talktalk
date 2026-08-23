@@ -1,4 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  // Hides the Vercel preview toolbar on preview deployments.
+  "toolbar": {
+    "enabled": false
+  }
 }
