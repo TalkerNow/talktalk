@@ -31,7 +31,7 @@ const plans = [
       "Collecte d'avis Google",
       "Marque blanche",
     ],
-    cta: "Créer mon agent gratuitement",
+    cta: "Installer",
     popular: true,
   },
   {
@@ -170,7 +170,11 @@ export function PricingSection() {
 
               <Button
                 variant="iridescent"
-                className="w-full rounded-full overflow-visible"
+                className={
+                  plan.name === "Starter"
+                    ? "h-auto min-h-9 w-full whitespace-normal rounded-full px-4 py-3 text-center text-[13px] leading-tight overflow-visible"
+                    : "w-full rounded-full overflow-visible"
+                }
               >
                 {plan.cta}
               </Button>
@@ -178,8 +182,8 @@ export function PricingSection() {
           ))}
         </div>
 
-        <div className="mt-6 flex w-full items-center border border-foreground/12 bg-background px-6 py-4">
-          <p className="w-full font-mono text-sm leading-snug text-foreground lg:whitespace-nowrap">
+        <div className="mt-6 flex w-full items-center justify-center border border-foreground/12 bg-background px-6 py-4">
+          <p className="w-full text-center text-sm leading-snug text-muted-foreground lg:whitespace-nowrap">
             Shopify et WooCommerce — 59 € pour un site. À partir de 10 sites : 29 € par site.
           </p>
         </div>
