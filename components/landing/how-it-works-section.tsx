@@ -13,7 +13,7 @@ const steps = [
   {
     number: "2",
     title: "Talker lit votre site",
-    description: "il apprend votre métier, vos horaires, vos prestations.",
+    description: "Il apprend votre métier, vos horaires, vos prestations.",
   },
   {
     number: "3",

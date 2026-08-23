@@ -7,7 +7,7 @@ const features = [
     number: "01",
     title: "Un agent qui connaît votre métier",
     description:
-      "Formé sur votre activité, vos services et vos tarifs, et reprenant la syntaxe rédactionnelle de votre site. Que vous soyez avocat, un musée, une entreprise du bâtiment ou une société de conseil et de service, il répond avec le bon vocabulaire, pas avec des réponses génériques de type IA.",
+      "Formé sur votre activité, vos services et vos tarifs, et reprenant la syntaxe rédactionnelle de votre site. Que vous soyez un avocat, un musée, une entreprise du bâtiment ou une société de conseil et de services, il répond avec le bon vocabulaire, pas avec des réponses génériques de type IA.",
     visual: "ai",
   },
   {

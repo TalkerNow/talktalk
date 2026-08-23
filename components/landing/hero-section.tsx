@@ -11,7 +11,7 @@ const phrases = [
   "donne vos disponibilités",
   "capte le numéro",
   "capte l'email",
-  "demande des avis google",
+  "demande des avis Google",
 ];
 
 const stats = [
