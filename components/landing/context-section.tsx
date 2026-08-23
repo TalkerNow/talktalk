@@ -48,16 +48,18 @@ export function ContextSection() {
           <p className="text-xl text-muted-foreground leading-relaxed mb-10">
             Un site qui répond, qui engage, qui capte la demande sur place, c&apos;est la seule manière de transformer une visite en contact. Le site statique est un dépliant. Le site avec Talker devient un vendeur.
           </p>
-          <Button
-            asChild
-            variant="iridescent"
-            className="rounded-full px-8 h-14 text-sm font-medium tracking-[0.12em] uppercase overflow-visible"
-          >
-            <a href="#features">
+          <div className="relative z-10 w-fit overflow-visible">
+            <Button
+              variant="iridescent"
+              className="rounded-full px-8 h-14 text-sm font-medium tracking-[0.12em] uppercase"
+              onClick={() => {
+                document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               Découvrez Talker
               <ArrowRight className="w-4 h-4" />
-            </a>
-          </Button>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
