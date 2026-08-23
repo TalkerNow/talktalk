@@ -159,11 +159,6 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
             <p className="text-lg text-muted-foreground leading-relaxed">
               {feature.description}
             </p>
-            {"note" in feature && feature.note && (
-              <p className="mt-4 text-sm text-muted-foreground/80">
-                {feature.note}
-              </p>
-            )}
           </div>
           
           {/* Visual */}
