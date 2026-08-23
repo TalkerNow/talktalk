@@ -242,7 +242,7 @@
     right: -8px;
     bottom: -12px;
     height: 36px;
-    border-radius: inherit;
+    border-radius: 9999px;
     background: linear-gradient(
       90deg,
       #22d3ee 0%,

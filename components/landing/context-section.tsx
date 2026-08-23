@@ -23,11 +23,11 @@ export function ContextSection() {
     <section
       id="cas-usage"
       ref={sectionRef}
-      className="relative py-12 lg:py-16 border-t border-foreground/10"
+      className="relative overflow-visible py-12 lg:py-16 border-t border-foreground/10"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div
-          className={`max-w-3xl transition-all duration-700 ${
+          className={`max-w-3xl overflow-visible transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
