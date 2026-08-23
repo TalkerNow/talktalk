@@ -5,26 +5,27 @@ import { useEffect, useRef, useState } from "react";
 const features = [
   {
     number: "01",
-    title: "Instant Deployment",
-    description: "Push to production in seconds. Our edge network ensures your applications load instantly, anywhere in the world.",
+    title: "Installation en 5 minutes",
+    description: "Une extension à installer depuis le store WordPress, rien à configurer côté serveur. Le chatbot apprend votre activité, vos tarifs et vos horaires, et répond à votre place dès la mise en ligne.",
+    note: "Un compte WordPress actif est nécessaire pour l'installation et pour tester la démo.",
     visual: "deploy",
   },
   {
     number: "02",
-    title: "AI-Native Workflows",
-    description: "Build intelligent applications with built-in AI capabilities. From inference to training, everything scales automatically.",
+    title: "Un agent qui connaît votre métier",
+    description: "Formé sur votre activité, vos services et vos tarifs. Plombier, électricien, artisan du bâtiment : il répond avec le bon vocabulaire, pas avec des réponses génériques.",
     visual: "ai",
   },
   {
     number: "03",
-    title: "Real-time Collaboration",
-    description: "Work together seamlessly. Live preview, instant feedback, and version control that actually makes sense.",
+    title: "Capture les coordonnées, pas juste les questions",
+    description: "Numéro de téléphone ou email récupéré avant la fin de la conversation. Prospect chaud transmis direct, client existant redirigé vers le bon service. Rien ne se perd dans un formulaire jamais rempli.",
     visual: "collab",
   },
   {
     number: "04",
-    title: "Enterprise Security",
-    description: "Bank-grade encryption, SOC 2 compliance, and granular access controls. Your data stays yours.",
+    title: "Un support avant votre support",
+    description: "Talker distingue un prospect d'un client en une phrase. Panne, question tarifaire, service additionnel : il qualifie la demande et vous transmet un dossier prêt à traiter. Votre client ne raconte plus son problème deux fois.",
     visual: "security",
   },
 ];
@@ -113,18 +114,11 @@ function AIVisual() {
 function CollabVisual() {
   return (
     <svg viewBox="0 0 200 160" className="w-full h-full" fill="none">
-      <circle cx="58" cy="28" r="10" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M46 50c0-7 5.5-12 12-12s12 5 12 12" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="34" y="58" width="48" height="52" rx="3" stroke="currentColor" strokeWidth="1.5" />
-      <text x="58" y="91" textAnchor="middle" fontSize="22" fontFamily="ui-monospace, monospace" fill="currentColor">A</text>
-
-      <circle cx="142" cy="28" r="10" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M130 50c0-7 5.5-12 12-12s12 5 12 12" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="118" y="58" width="48" height="52" rx="3" stroke="currentColor" strokeWidth="1.5" />
-      <text x="142" y="91" textAnchor="middle" fontSize="22" fontFamily="ui-monospace, monospace" fill="currentColor">B</text>
-
-      <line x1="82" y1="84" x2="118" y2="84" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-      <circle cx="100" cy="136" r="6" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="28" y="38" width="64" height="84" rx="12" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="60" cy="70" r="10" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M48 96c0-8 5.5-14 12-14s12 6 12 14" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="108" y="48" width="68" height="48" rx="4" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M108 56 L142 78 L176 56" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   );
 }
@@ -132,20 +126,12 @@ function CollabVisual() {
 function SecurityVisual() {
   return (
     <svg viewBox="0 0 200 160" className="w-full h-full" fill="none">
-      <path
-        d="M100 22 L152 42 L152 86 Q152 128 100 144 Q48 128 48 86 L48 42 Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <rect x="86" y="78" width="28" height="22" rx="3" fill="currentColor" />
-      <path
-        d="M92 78 V68 Q92 56 100 56 Q108 56 108 68 V78"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      <circle cx="100" cy="87" r="3" fill="#F7F6F4" />
-      <rect x="98.5" y="88" width="3" height="6" fill="#F7F6F4" />
+      <rect x="40" y="36" width="120" height="28" rx="3" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="40" y="74" width="120" height="28" rx="3" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="40" y="112" width="120" height="28" rx="3" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M52 50 H88" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M52 88 H108" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M52 126 H96" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   );
 }
@@ -204,6 +190,11 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
             <p className="text-lg text-muted-foreground leading-relaxed">
               {feature.description}
             </p>
+            {"note" in feature && feature.note && (
+              <p className="mt-4 text-sm text-muted-foreground/80">
+                {feature.note}
+              </p>
+            )}
           </div>
           
           {/* Visual */}
@@ -245,20 +236,20 @@ export function FeaturesSection() {
         <div className="mb-16 lg:mb-24">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
             <span className="w-8 h-px bg-foreground/30" />
-            Capabilities
+            Fonctionnalités
           </span>
           <h2
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Everything you need.
+            Ce qu&apos;il faut.
             <br />
-            <span className="text-muted-foreground">Nothing you don&apos;t.</span>
+            <span className="text-muted-foreground">Rien de plus.</span>
           </h2>
         </div>
 
-        {/* Features List */}
+        {/* Liste */}
         <div>
           {features.map((feature, index) => (
             <FeatureCard key={feature.number} feature={feature} index={index} />

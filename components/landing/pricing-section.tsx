@@ -6,49 +6,45 @@ import { ArrowRight, Check } from "lucide-react";
 const plans = [
   {
     name: "Starter",
-    description: "For individuals and small projects",
+    description: "Pour tester sans engagement",
     price: { monthly: 0, annual: 0 },
     features: [
-      "Up to 3 projects",
-      "1GB storage",
-      "Community support",
-      "Basic analytics",
-      "SSL certificates",
+      "1 Talker",
+      "100 conversations/mois",
+      "1 canal (site web)",
+      "Support par email",
     ],
-    cta: "Start free",
+    cta: "Essayer gratuitement",
     popular: false,
   },
   {
     name: "Pro",
-    description: "For growing teams and businesses",
-    price: { monthly: 29, annual: 24 },
+    description: "Pour un artisan qui veut convertir sérieusement",
+    price: { monthly: 49, annual: 41 },
     features: [
-      "Unlimited projects",
-      "100GB storage",
-      "Priority support",
-      "Advanced analytics",
-      "Custom domains",
-      "Team collaboration",
-      "API access",
+      "3 Talker inclus",
+      "Conversations illimitées",
+      "Tous les canaux (site, WhatsApp, Instagram, Facebook, SMS)",
+      "Capture automatique téléphone/email",
+      "Collecte d'avis Google",
+      "Support prioritaire",
     ],
-    cta: "Start trial",
+    cta: "Créer mon agent",
     popular: true,
   },
   {
-    name: "Enterprise",
-    description: "For large-scale operations",
+    name: "Entreprise",
+    description: "Pour les agences web et réseaux d'artisans multi-établissements",
     price: { monthly: null, annual: null },
     features: [
-      "Everything in Pro",
-      "Unlimited storage",
-      "24/7 dedicated support",
-      "Custom integrations",
-      "SLA guarantee",
-      "On-premise option",
-      "Security audit",
-      "Custom contracts",
+      "10 Talker et plus",
+      "Tout Pro inclus",
+      "Un agent par site ou par établissement",
+      "Tableau de bord multi-comptes",
+      "Marque blanche disponible",
+      "Chargé de compte dédié",
     ],
-    cta: "Contact sales",
+    cta: "Parler à un expert",
     popular: false,
   },
 ];
@@ -61,15 +57,15 @@ export function PricingSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center max-w-3xl mx-auto mb-14">
           <span className="font-mono text-xs tracking-[0.2em] text-foreground uppercase block mb-6">
-            Pricing
+            Tarifs
           </span>
           <h2 className="font-display font-semibold text-5xl md:text-6xl lg:text-7xl tracking-tight text-foreground mb-6 leading-[0.95]">
-            Simple, transparent
+            Un tarif clair.
             <br />
-            <span className="text-stroke">pricing</span>
+            <span className="text-stroke">Pas de surprise.</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Start free and scale as you grow. No hidden fees, no surprises.
+            Testez gratuitement, passez à la vitesse supérieure quand vous êtes prêt. Aucun frais caché.
           </p>
         </div>
 
@@ -79,13 +75,13 @@ export function PricingSection() {
               !isAnnual ? "text-foreground" : "text-muted-foreground"
             }`}
           >
-            Monthly
+            Mensuel
           </span>
           <button
             type="button"
             onClick={() => setIsAnnual(!isAnnual)}
             className="relative w-12 h-6 bg-foreground/12 rounded-full p-0.5 transition-colors"
-            aria-label="Toggle annual billing"
+            aria-label="Basculer facturation annuelle"
           >
             <div
               className={`w-5 h-5 bg-black rounded-full transition-transform duration-300 ${
@@ -98,11 +94,11 @@ export function PricingSection() {
               isAnnual ? "text-foreground" : "text-muted-foreground"
             }`}
           >
-            Annual
+            Annuel
           </span>
           {isAnnual && (
             <span className="px-2 py-0.5 bg-black text-white text-[10px] font-mono uppercase tracking-wider">
-              Save 17%
+              -17%
             </span>
           )}
         </div>
@@ -119,7 +115,7 @@ export function PricingSection() {
             >
               {plan.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-black text-white text-[10px] font-mono uppercase tracking-[0.16em]">
-                  Most Popular
+                  Le plus choisi
                 </span>
               )}
 
@@ -135,12 +131,14 @@ export function PricingSection() {
                 {plan.price.monthly !== null ? (
                   <div className="flex items-baseline gap-2">
                     <span className="font-display font-semibold text-5xl lg:text-6xl text-foreground">
-                      ${isAnnual ? plan.price.annual : plan.price.monthly}
+                      {isAnnual ? plan.price.annual : plan.price.monthly}€
                     </span>
-                    <span className="text-muted-foreground">/month</span>
+                    <span className="text-muted-foreground">/mois</span>
                   </div>
                 ) : (
-                  <span className="font-display font-semibold text-5xl text-foreground">Custom</span>
+                  <span className="font-display font-semibold text-4xl lg:text-5xl text-foreground">
+                    Sur devis
+                  </span>
                 )}
               </div>
 
@@ -167,13 +165,6 @@ export function PricingSection() {
             </div>
           ))}
         </div>
-
-        <p className="mt-12 text-center text-sm text-muted-foreground">
-          All plans include automatic updates, HTTPS, and DDoS protection.{" "}
-          <a href="#" className="underline underline-offset-4 hover:text-foreground transition-colors">
-            Compare all features
-          </a>
-        </p>
       </div>
     </section>
   );

@@ -46,10 +46,10 @@ export default function OpenGraphImage() {
             maxWidth: 880,
           }}
         >
-          La machine à convertir pour WordPress.
+          {"L'agent qui vend à votre place."}
         </div>
         <div style={{ fontSize: 24, color: "#6F6862", maxWidth: 720 }}>
-          Il installe, il colle l’adresse de son site, et le bot fonctionne.
+          Les IA aspirent le trafic de votre site. Talker le récupère.
         </div>
       </div>
     ),

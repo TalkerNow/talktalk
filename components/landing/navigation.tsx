@@ -6,10 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { name: "Features", href: "#features" },
-  { name: "How it works", href: "#how-it-works" },
-  { name: "Developers", href: "#developers" },
-  { name: "Pricing", href: "#pricing" },
+  { name: "Fonctionnalités", href: "#features" },
+  { name: "Comment ça marche", href: "#how-it-works" },
+  { name: "Tarifs", href: "#pricing" },
 ];
 
 export function Navigation() {
@@ -65,13 +64,13 @@ export function Navigation() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
             <a href="#" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
-              Sign in
+              Connexion
             </a>
             <Button
               size="sm"
               className={`bg-black hover:bg-black/90 text-white rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
             >
-              Start creating
+              Créer mon agent
             </Button>
           </div>
 
@@ -133,13 +132,13 @@ export function Navigation() {
               className="flex-1 rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Sign in
+              Connexion
             </Button>
             <Button 
               className="flex-1 bg-black text-white rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Start creating
+              Créer mon agent
             </Button>
           </div>
         </div>

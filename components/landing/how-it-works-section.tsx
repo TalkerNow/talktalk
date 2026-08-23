@@ -5,43 +5,30 @@ import { useEffect, useRef, useState } from "react";
 const steps = [
   {
     number: "I",
-    title: "Connect your tools",
-    description: "Integrate with your existing stack in minutes. We support 200+ data sources out of the box.",
-    code: `import { optimus } from '@optimus/core'
-
-optimus.connect({
-  source: 'your-database',
-  sync: true
-})`,
+    title: "Décrivez votre activité",
+    description: "Un formulaire simple : métier, services, tarifs, horaires. 5 minutes suffisent.",
   },
   {
     number: "II",
-    title: "Build your workflow",
-    description: "Design powerful automations with our visual builder or write code directly.",
-    code: `optimus.workflow('process', {
-  trigger: 'event',
-  actions: [
-    'validate',
-    'transform',
-    'deliver'
-  ]
-})`,
+    title: "Configurez vos réponses",
+    description: "Choisissez ce qu'il capte (téléphone, email, prise de RDV) et ce qu'il ne fait pas. Aucun code à écrire.",
   },
   {
     number: "III",
-    title: "Ship to production",
-    description: "Deploy globally with zero configuration. Your app goes live in under 30 seconds.",
-    code: `optimus.deploy({
-  target: 'production',
-  regions: 'auto'
-})
-
-// Deployed to 12 regions`,
+    title: "Collez le script, c'est en ligne",
+    description: "",
   },
 ];
 
+const conversation = [
+  { who: "Client", text: "Vous intervenez le week-end ?" },
+  { who: "Talker", text: "Oui, majoration de 25% le samedi. Quel est votre besoin ?" },
+  { who: "Client", text: "Fuite d'eau urgente" },
+  { who: "Talker", text: "Je vous mets en contact avec [Nom]. Votre numéro ?" },
+];
+
 export function HowItWorksSection() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -89,16 +76,16 @@ export function HowItWorksSection() {
         <div className="mb-16 lg:mb-24">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
             <span className="w-8 h-px bg-white/30" />
-            Process
+            Comment ça marche
           </span>
           <h2
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Three steps.
+            Trois étapes.
             <br />
-            <span className="text-white/40">Infinite possibilities.</span>
+            <span className="text-white/40">Zéro prise de tête.</span>
           </h2>
         </div>
 
@@ -127,9 +114,11 @@ export function HowItWorksSection() {
                       </h3>
                       {isActive && (
                         <>
-                          <p className="text-white/55 leading-relaxed">
-                            {step.description}
-                          </p>
+                          {step.description ? (
+                            <p className="text-white/55 leading-relaxed">
+                              {step.description}
+                            </p>
+                          ) : null}
                           <div className="mt-4 h-px bg-white/15 overflow-hidden">
                             <div className="h-full bg-white w-0 animate-[progress_5s_linear_forwards]" />
                           </div>
@@ -150,43 +139,34 @@ export function HowItWorksSection() {
                   <div className="w-3 h-3 rounded-full bg-white/20" />
                   <div className="w-3 h-3 rounded-full bg-white/20" />
                 </div>
-                <span className="text-xs font-mono text-white/40">workflow.ts</span>
+                <span className="text-xs font-mono text-white/40">Talker — widget.talker.now</span>
               </div>
 
-              <div className="p-8 font-mono text-sm min-h-[280px]">
-                <pre className="text-white/70">
-                  {steps[activeStep].code.split("\n").map((line, lineIndex) => (
+              <div className="p-8 min-h-[280px] space-y-4">
+                {conversation.map((line, index) => (
+                  <div
+                    key={`${line.who}-${index}`}
+                    className={`flex ${line.who === "Talker" ? "justify-start" : "justify-end"}`}
+                  >
                     <div
-                      key={`${activeStep}-${lineIndex}`}
-                      className="leading-loose code-line-reveal"
-                      style={{
-                        animationDelay: `${lineIndex * 80}ms`,
-                      }}
+                      className={`max-w-[85%] px-4 py-3 text-sm leading-relaxed ${
+                        line.who === "Talker"
+                          ? "bg-white/10 text-white/85"
+                          : "bg-white text-black"
+                      }`}
                     >
-                      <span className="text-white/20 select-none w-8 inline-block">
-                        {lineIndex + 1}
-                      </span>
-                      <span className="inline-flex">
-                        {line.split("").map((char, charIndex) => (
-                          <span
-                            key={`${activeStep}-${lineIndex}-${charIndex}`}
-                            className="code-char-reveal"
-                            style={{
-                              animationDelay: `${lineIndex * 80 + charIndex * 15}ms`,
-                            }}
-                          >
-                            {char === " " ? "\u00A0" : char}
-                          </span>
-                        ))}
-                      </span>
+                      <div className="font-mono text-[10px] uppercase tracking-wider opacity-60 mb-1">
+                        {line.who}
+                      </div>
+                      {line.text}
                     </div>
-                  ))}
-                </pre>
+                  </div>
+                ))}
               </div>
 
               <div className="px-6 py-4 border-t border-white/10 flex items-center gap-3">
                 <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-                <span className="text-xs font-mono text-white/40">Ready</span>
+                <span className="text-xs font-mono text-white/40">En ligne</span>
               </div>
             </div>
           </div>

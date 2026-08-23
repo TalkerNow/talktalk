@@ -5,18 +5,18 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { AnimatedSphere } from "./animated-sphere";
 
-const words = ["create", "build", "scale", "ship"];
+const words = ["vend", "répond", "encaisse", "fidélise"];
 
 const stats = [
-  { value: "98%", label: "faster deployment", company: "STRIPE" },
-  { value: "300%", label: "throughput increase", company: "LINEAR" },
-  { value: "6x", label: "faster to ship", company: "NOTION" },
-  { value: "20 days", label: "saved on builds", company: "NETFLIX" },
+  { value: "+64%", label: "de prospects qui laissent leurs coordonnées", company: "ARTISANPRO" },
+  { value: "-80%", label: "de temps passé à répondre aux mêmes questions", company: "ELECTRICONNECT" },
+  { value: "3x", label: "plus d'avis Google collectés", company: "PLOMBEXPERT" },
+  { value: "24/7", label: "disponibilité, zéro rendez-vous manqué", company: "RENOVATOUT" },
 ];
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [wordIndex, setWordIndex] = useState(1);
+  const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setIsVisible(true));
@@ -67,20 +67,19 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground">
-            <span className="w-8 h-px bg-foreground/30" />
-            The platform for modern teams
+          <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground max-w-2xl">
+            <span className="w-8 h-px bg-foreground/30 shrink-0" />
+            Les IA aspirent le trafic de votre site. Talker le récupère.
           </span>
         </div>
 
         <h1
-          className={`text-[clamp(3.25rem,11vw,9.5rem)] font-display font-bold leading-[0.88] tracking-tight mb-10 transition-all duration-1000 ${
+          className={`text-[clamp(2.4rem,8vw,7.5rem)] font-display font-bold leading-[0.92] tracking-tight mb-10 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="block text-foreground">The platform</span>
+          <span className="block text-foreground">L&apos;agent qui</span>
           <span className="block text-foreground/30">
-            to{" "}
             <span className="relative inline-block text-foreground/40">
               <span key={wordIndex} className="inline-flex">
                 {words[wordIndex].split("").map((char, i) => (
@@ -96,20 +95,17 @@ export function HeroSection() {
                 ))}
               </span>
               <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-foreground/12" />
-            </span>
+            </span>{" "}
+            à votre place
           </span>
         </h1>
 
         <p
-          className={`text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl mb-10 transition-all duration-700 delay-200 ${
+          className={`text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10 transition-all duration-700 delay-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          Your toolkit to stop configuring and start innovating.
-          <br className="hidden sm:block" />
-          Securely build, deploy, and scale the best
-          <br className="hidden sm:block" />
-          experiences.
+          Un chatbot IA qui connaît votre métier, capte le numéro ou l&apos;email de vos prospects, répond aux tarifs sans que vous leviez le petit doigt, trie les demandes de vos clients existants, et récupère vos avis Google. Installé en 10 minutes, sans code.
         </p>
 
         <div
@@ -121,7 +117,7 @@ export function HeroSection() {
             size="lg"
             className="bg-black hover:bg-black/90 text-white px-8 h-14 text-base rounded-full group"
           >
-            Start free trial
+            Essayer gratuitement
             <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button
@@ -129,8 +125,17 @@ export function HeroSection() {
             variant="outline"
             className="h-14 px-8 text-base rounded-full bg-transparent border-foreground/15 text-foreground hover:bg-foreground/5 shadow-none"
           >
-            Watch demo
+            Voir une démo
           </Button>
+        </div>
+
+        <div
+          className={`mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-all duration-700 delay-300 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <span className="w-2 h-2 rounded-full bg-green-500" />
+          Disponible sur WordPress — extension officielle sur le store
         </div>
       </div>
 
@@ -145,7 +150,7 @@ export function HeroSection() {
               {stats.map((stat) => (
                 <div
                   key={`${stat.company}-${i}`}
-                  className="flex min-w-[280px] flex-col justify-center gap-1 border-r border-foreground/10 px-10 py-8 lg:min-w-[320px] lg:px-14 lg:py-10"
+                  className="flex min-w-[300px] flex-col justify-center gap-1 border-r border-foreground/10 px-10 py-8 lg:min-w-[360px] lg:px-14 lg:py-10"
                 >
                   <span className="text-4xl lg:text-5xl font-display font-semibold tracking-tight">
                     {stat.value}

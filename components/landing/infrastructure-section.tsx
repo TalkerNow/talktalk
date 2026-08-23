@@ -2,18 +2,17 @@
 
 import { useEffect, useState, useRef } from "react";
 
-const locations = [
-  { city: "San Francisco", region: "US West", latency: "12ms" },
-  { city: "New York", region: "US East", latency: "18ms" },
-  { city: "London", region: "Europe", latency: "24ms" },
-  { city: "Tokyo", region: "Asia Pacific", latency: "32ms" },
-  { city: "Sydney", region: "Oceania", latency: "45ms" },
-  { city: "Sao Paulo", region: "South America", latency: "38ms" },
+const channels = [
+  { name: "Site web", status: "Actif" },
+  { name: "WhatsApp", status: "Actif" },
+  { name: "Instagram", status: "Actif" },
+  { name: "Facebook", status: "Actif" },
+  { name: "SMS", status: "Actif" },
 ];
 
 export function InfrastructureSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeLocation, setActiveLocation] = useState(0);
+  const [activeChannel, setActiveChannel] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -30,7 +29,7 @@ export function InfrastructureSection() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveLocation((prev) => (prev + 1) % locations.length);
+      setActiveChannel((prev) => (prev + 1) % channels.length);
     }, 2000);
     return () => clearInterval(interval);
   }, []);
@@ -39,7 +38,6 @@ export function InfrastructureSection() {
     <section ref={sectionRef} className="relative py-32 lg:py-40 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Left: Content */}
           <div
             className={`transition-all duration-700 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
@@ -47,72 +45,67 @@ export function InfrastructureSection() {
           >
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
               <span className="w-8 h-px bg-foreground/30" />
-              Infrastructure
+              Disponibilité
             </span>
             <h2 className="text-5xl lg:text-7xl font-display font-semibold tracking-tight mb-8 leading-[0.95]">
-              Global by
+              Disponible quand
               <br />
-              <span className="text-foreground/30">default.</span>
+              <span className="text-foreground/30">vos clients le sont.</span>
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-12">
-              Deploy once, run everywhere. Our edge network spans 17 data centers 
-              across 6 continents, delivering sub-50ms latency to 99% of the world.
+              Un prospect qui appelle un dimanche soir et tombe sur un répondeur, c&apos;est un client perdu. Talker répond nuit et jour, capte la demande, et vous transmet dès le lendemain matin.
             </p>
 
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-8">
               <div>
-                <div className="text-4xl lg:text-5xl font-display font-light mb-2">17</div>
-                <div className="text-sm text-muted-foreground">Data centers</div>
+                <div className="text-4xl lg:text-5xl font-display font-light mb-2">24/7</div>
+                <div className="text-sm text-muted-foreground">Disponibilité</div>
               </div>
               <div>
-                <div className="text-4xl lg:text-5xl font-display font-light mb-2">99.99%</div>
-                <div className="text-sm text-muted-foreground">Uptime SLA</div>
+                <div className="text-4xl lg:text-5xl font-display font-light mb-2">&lt;10 sec</div>
+                <div className="text-sm text-muted-foreground">Temps de réponse moyen</div>
               </div>
               <div>
-                <div className="text-4xl lg:text-5xl font-display font-light mb-2">&lt;50ms</div>
-                <div className="text-sm text-muted-foreground">Global latency</div>
+                <div className="text-4xl lg:text-5xl font-display font-light mb-2">0</div>
+                <div className="text-sm text-muted-foreground">Appel manqué non traité</div>
               </div>
             </div>
           </div>
 
-          {/* Right: Location list */}
           <div
             className={`transition-all duration-700 delay-200 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >
             <div className="border border-foreground/10">
-              {/* Header */}
               <div className="px-6 py-4 border-b border-foreground/10 flex items-center justify-between">
-                <span className="text-sm font-mono text-muted-foreground">Edge Network</span>
+                <span className="text-sm font-mono text-muted-foreground">Disponibilité</span>
                 <span className="flex items-center gap-2 text-xs font-mono text-green-600">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  All operational
+                  Actif
                 </span>
               </div>
 
-              {/* Locations */}
               <div>
-                {locations.map((location, index) => (
+                {channels.map((channel, index) => (
                   <div
-                    key={location.city}
+                    key={channel.name}
                     className={`px-6 py-5 border-b border-foreground/5 last:border-b-0 flex items-center justify-between transition-all duration-300 ${
-                      activeLocation === index ? "bg-foreground/[0.02]" : ""
+                      activeChannel === index ? "bg-foreground/[0.02]" : ""
                     }`}
                   >
                     <div className="flex items-center gap-4">
-                      <span 
+                      <span
                         className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                          activeLocation === index ? "bg-foreground" : "bg-foreground/20"
+                          activeChannel === index ? "bg-foreground" : "bg-foreground/20"
                         }`}
                       />
-                      <div>
-                        <div className="font-medium">{location.city}</div>
-                        <div className="text-sm text-muted-foreground">{location.region}</div>
-                      </div>
+                      <div className="font-medium">{channel.name}</div>
                     </div>
-                    <span className="text-sm tabular-nums">{location.latency}</span>
+                    <span className="flex items-center gap-2 text-sm text-green-600">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                      {channel.status}
+                    </span>
                   </div>
                 ))}
               </div>

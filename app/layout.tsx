@@ -15,9 +15,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Optimus - Platform to Create",
+  title: "Talker — L'agent qui vend à votre place",
   description:
-    "The creative platform for teams who ship. Build, deploy, and scale with unprecedented velocity.",
+    "Les IA aspirent le trafic de votre site. Talker le récupère. Un chatbot IA qui connaît votre métier, capte le numéro ou l'email de vos prospects, et s'installe en 10 minutes, sans code.",
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >

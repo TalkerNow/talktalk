@@ -52,22 +52,17 @@ export function CtaSection() {
               {/* Left content */}
               <div className="flex-1">
                 <h2 className="text-4xl lg:text-7xl font-display tracking-tight mb-8 leading-[0.95]">
-                  Ready to build
+                  L&apos;agent qui
                   <br />
-                  <span className="text-foreground/30">something great?</span>
+                  <span className="text-foreground/30">vend à votre place</span>
                 </h2>
-
-                <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-xl">
-                  Join thousands of teams shipping faster with Optimus. 
-                  Start free, scale infinitely.
-                </p>
 
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <Button
                     size="lg"
                     className="bg-black hover:bg-black/90 text-white px-8 h-14 text-base rounded-full group"
                   >
-                    Start building free
+                    Créer mon agent gratuitement
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
                   <Button
@@ -75,12 +70,12 @@ export function CtaSection() {
                     variant="outline"
                     className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
                   >
-                    Talk to sales
+                    Parler à un expert
                   </Button>
                 </div>
 
                 <p className="text-sm text-muted-foreground mt-8 font-mono">
-                  No credit card required
+                  Sans carte bancaire
                 </p>
               </div>
 

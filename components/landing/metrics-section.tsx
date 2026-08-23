@@ -38,35 +38,35 @@ function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffi
 
   return (
     <div ref={ref} className="text-6xl lg:text-8xl font-display tracking-tight">
-      {prefix}{count.toLocaleString()}{suffix}
+      {prefix}{count.toLocaleString("fr-FR")}{suffix}
     </div>
   );
 }
 
 const metrics = [
-  { 
-    value: 2847392, 
-    suffix: "", 
+  {
+    value: 847,
+    suffix: "",
     prefix: "",
-    label: "API requests today",
+    label: "Conversations traitées ce mois-ci",
   },
-  { 
-    value: 99, 
-    suffix: ".99%", 
+  {
+    value: 92,
+    suffix: "%",
     prefix: "",
-    label: "Uptime this quarter",
+    label: "Taux de réponse avant abandon du prospect",
   },
-  { 
-    value: 23, 
-    suffix: "ms", 
+  {
+    value: 6,
+    suffix: " sec",
     prefix: "",
-    label: "Average response time",
+    label: "Temps de réponse moyen",
   },
-  { 
-    value: 184, 
-    suffix: "", 
+  {
+    value: 312,
+    suffix: "",
     prefix: "",
-    label: "Countries served",
+    label: "Coordonnées collectées ce mois-ci",
   },
 ];
 
@@ -100,16 +100,16 @@ export function MetricsSection() {
           <div>
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
               <span className="w-8 h-px bg-foreground/30" />
-              Live metrics
+              Indicateurs
             </span>
             <h2
               className={`text-4xl lg:text-6xl font-display tracking-tight transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              Performance you
+              Des résultats
               <br />
-              <span className="text-foreground/30">can measure.</span>
+              <span className="text-foreground/30">que vous pouvez compter.</span>
             </h2>
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
@@ -118,7 +118,7 @@ export function MetricsSection() {
               Live
             </span>
             <span className="text-foreground/30">|</span>
-            <span>{time.toLocaleTimeString()}</span>
+            <span>{time.toLocaleTimeString("fr-FR")}</span>
           </div>
         </div>
         
