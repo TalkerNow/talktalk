@@ -294,6 +294,16 @@
   stroke-dashoffset: 48;
 }
 
+.pricing-card-badge {
+  background: #000000;
+  transition: background-color 200ms ease;
+}
+
+.pricing-card:hover .pricing-card-badge,
+.pricing-card:focus-within .pricing-card-badge {
+  background: #c43f17;
+}
+
 .talker-typing-dot {
   transform-box: fill-box;
   transform-origin: center;
