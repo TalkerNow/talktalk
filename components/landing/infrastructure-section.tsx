@@ -145,8 +145,8 @@ export function InfrastructureSection() {
                             <Paperclip className="h-3 w-3 text-foreground/35" strokeWidth={1.75} />
                           </div>
                         </div>
-                        <p className="mt-0.5 truncate text-[11px] font-medium leading-tight text-foreground">
-                          Rapport Talker — Fuite week-end
+                        <p className="mt-0.5 text-[11px] font-medium leading-tight text-foreground">
+                          Objet : compte-rendu conversation Talker
                         </p>
                         <p className="mt-0.5 truncate text-[10px] text-muted-foreground">
                           À vous@votre-site.fr
