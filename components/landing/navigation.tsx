@@ -26,29 +26,29 @@ export function Navigation() {
   return (
     <header
       className={`fixed z-50 transition-all duration-500 ${
-        isScrolled 
-          ? "top-4 left-4 right-4" 
+        isScrolled
+          ? "top-4 left-0 right-0"
           : "top-0 left-0 right-0"
       }`}
     >
       <nav 
         className={`mx-auto transition-all duration-500 ${
           isScrolled || isMobileMenuOpen
-            ? "bg-[#F7F6F4]/90 backdrop-blur-xl border border-foreground/10 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.06)] max-w-[1200px]"
+            ? "w-[calc(100%-2rem)] max-w-[860px] bg-[#F7F6F4]/90 backdrop-blur-xl border border-foreground/10 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
             : "bg-transparent max-w-[1400px]"
         }`}
       >
         <div 
-          className={`flex items-center justify-between transition-all duration-500 px-6 lg:px-8 ${
-            isScrolled ? "h-14" : "h-20"
+          className={`flex items-center justify-between transition-all duration-500 ${
+            isScrolled ? "h-12 px-4 sm:px-5" : "h-20 px-6 lg:px-8"
           }`}
         >
-          <a href="#" className="flex items-center">
+          <a href="#" className="flex items-center shrink-0">
             <TalkerWordmark compact={isScrolled} />
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-12">
+          <div className={`hidden md:flex items-center ${isScrolled ? "gap-6 lg:gap-8" : "gap-12"}`}>
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -62,7 +62,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className={`hidden md:flex items-center ${isScrolled ? "gap-3" : "gap-4"}`}>
             <a href="#" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
               Connexion
             </a>
@@ -78,7 +78,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2"
+            className="md:hidden shrink-0 p-2 -mr-0.5"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
