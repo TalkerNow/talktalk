@@ -6,18 +6,19 @@ import { Button } from "@/components/ui/button";
 const steps = [
   {
     number: "1",
-    title: "Installez le plugin",
-    description: "depuis WordPress",
+    title: "Installez le plugin et choisissez votre template",
+    description: "Renseignez votre email et votre numéro de téléphone pour recevoir les alertes.",
   },
   {
     number: "2",
-    title: "Choisissez votre template.",
-    description: "Renseignez votre email et votre numéro pour recevoir les alertes.",
+    title: "Talker lit votre site",
+    description: "il apprend votre métier, vos horaires, vos prestations.",
   },
   {
     number: "3",
-    title: "Talker lit votre site",
-    description: "il apprend votre métier, vos horaires, vos prestations.",
+    title: "Activez : c'est en ligne et opérationnel",
+    description:
+      "Commencez à récolter vos leads et vos demandes directement par email ou par SMS sur votre téléphone.",
   },
 ];
 
@@ -128,22 +129,16 @@ export function HowItWorksSection() {
                 </button>
               );
             })}
-            <div className="mt-8 bg-white text-[#111111] px-6 py-6">
-              <p className="font-display text-2xl lg:text-3xl font-semibold tracking-tight leading-[1.15]">
-                Activez : c&apos;est en ligne et opérationnel.
-                <br />
-                Commencez à récolter vos leads et vos demandes.
-              </p>
+            {activeStep === 2 ? (
               <Button
-                variant="iridescent"
-                className="mt-6 rounded-full px-6"
+                className="mt-8 rounded-full bg-white px-6 text-[#111] hover:bg-white overflow-visible"
                 onClick={() => {
                   window.location.hash = "pricing";
                 }}
               >
                 Créer mon agent gratuitement
               </Button>
-            </div>
+            ) : null}
           </div>
 
           <div className="lg:sticky lg:top-32 self-start">
