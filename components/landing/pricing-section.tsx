@@ -104,13 +104,13 @@ export function PricingSection() {
           )}
         </div>
 
-        <div className="mt-3 grid items-stretch gap-6 md:mt-7 md:grid-cols-3">
+        <div className="mt-3 grid items-stretch gap-6 md:grid-cols-3">
           {plans.map((plan, idx) => (
             <div
               key={plan.name}
               className={`relative flex flex-col p-8 lg:p-10 ${
                 plan.popular
-                  ? "border border-black bg-background md:-my-4 md:py-12 lg:py-14"
+                  ? "border border-black bg-background"
                   : "border border-foreground/12 bg-background"
               }`}
             >

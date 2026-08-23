@@ -35,20 +35,34 @@ export function ContextSection() {
             <br />
             <span className="text-foreground/30">Ils demandent.</span>
           </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed mb-10">
-            Les moteurs de recherche et les IA génératives répondent directement, sans renvoyer vers votre site. Un site vitrine statique perd un trafic qu&apos;il ne reverra jamais.
-          </p>
-          <div className="mb-10 max-w-3xl border border-[#C43F17]/20 bg-[#F4DCD4] py-5 text-[#111111]">
-            <p className="text-xl leading-relaxed text-[#111111]">
-              Un site qui répond, qui engage, qui capte la demande sur place, c&apos;est la seule
-              manière de transformer une visite en contact.
-            </p>
-            <p className="mt-4 pl-6 text-xl font-medium leading-relaxed text-[#111111] lg:pl-8">
-              le site statique est un dépliant
-            </p>
-            <p className="mt-2 pl-6 text-xl font-medium leading-relaxed text-[#111111] lg:pl-8">
-              votre site avec Talker devient un vendeur, une secrétaire, un partenaire
-            </p>
+          <div className="flex lg:gap-20">
+            <span
+              className="hidden shrink-0 font-mono text-sm lg:block"
+              aria-hidden
+            >
+              <span className="invisible">01</span>
+            </span>
+            <div className="flex-1">
+              <p className="mb-10 text-xl leading-relaxed text-muted-foreground">
+                Les moteurs de recherche et les IA génératives répondent directement, sans renvoyer vers votre site. Un site vitrine statique perd un trafic qu&apos;il ne reverra jamais.
+              </p>
+              <div className="mb-10 border border-[#C43F17]/20 bg-[#F4DCD4] px-6 py-5 text-[#111111]">
+                <p className="text-xl leading-relaxed text-[#111111]">
+                  Un site qui répond, qui engage, qui capte la demande sur place, c&apos;est la seule
+                  manière de transformer une visite en contact.
+                </p>
+                <ul className="mt-4 space-y-2">
+                  <li className="flex items-start gap-3 text-xl font-medium leading-relaxed text-[#111111]">
+                    <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
+                    Le site statique est un dépliant.
+                  </li>
+                  <li className="flex items-start gap-3 text-xl font-medium leading-relaxed text-[#111111]">
+                    <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
+                    Votre site avec Talker devient un vendeur, une secrétaire, un partenaire.
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
