@@ -255,6 +255,26 @@
   transform: scaleX(1);
 }
 
+/* Card chrome must never paint the pill. Only the button's own hover/focus. */
+.pricing-card:hover .btn-iridescent:not(:hover):not(:focus-visible)::before,
+.pricing-card:focus-within .btn-iridescent:not(:hover):not(:focus-visible)::before {
+  transform: scaleX(0);
+}
+
+.pricing-card {
+  cursor: default;
+}
+
+.pricing-card .btn-iridescent {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.pricing-card .btn-iridescent::after {
+  content: none;
+}
+
 .pricing-card-stroke {
   fill: none;
   stroke: #c43f17;

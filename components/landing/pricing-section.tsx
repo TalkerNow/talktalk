@@ -75,7 +75,7 @@ export function PricingSection() {
           {plans.map((plan, idx) => (
             <div
               key={plan.key}
-              className={`pricing-card relative flex flex-col overflow-visible p-8 lg:p-10 ${
+              className={`pricing-card relative flex cursor-default flex-col overflow-visible p-8 lg:p-10 ${
                 plan.popular
                   ? "pricing-card-popular border border-black bg-background"
                   : "border border-foreground/12 bg-background"
@@ -144,12 +144,16 @@ export function PricingSection() {
               )}
 
               <Button
+                type="button"
                 variant="iridescent"
                 className={
                   plan.key === "starter"
-                    ? "mt-auto h-auto min-h-9 w-full whitespace-normal rounded-full px-4 py-3 text-center text-[13px] leading-tight overflow-hidden"
-                    : "mt-auto w-full rounded-full overflow-hidden"
+                    ? "relative z-10 mt-auto h-auto min-h-9 w-full shrink-0 cursor-pointer whitespace-normal rounded-full px-4 py-3 text-center text-[13px] leading-tight overflow-hidden"
+                    : "relative z-10 mt-auto w-full shrink-0 cursor-pointer rounded-full overflow-hidden"
                 }
+                onClick={() => {
+                  window.location.href = "/#pricing";
+                }}
               >
                 {plan.cta}
               </Button>
