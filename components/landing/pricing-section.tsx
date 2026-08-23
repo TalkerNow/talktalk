@@ -20,30 +20,44 @@ const plans = [
   },
   {
     name: "Pro",
-    description: "Pour un artisan qui veut convertir sérieusement",
-    price: { monthly: 49, annual: 41 },
+    description: "Pour les TPE et PME qui veulent convertir sérieusement",
+    price: { monthly: 29, annual: 29 },
     features: [
-      "3 Talker inclus",
+      "1 Talker",
       "Conversations illimitées",
       "Tous les canaux (site, WhatsApp, Instagram, Facebook, SMS)",
-      "Capture automatique téléphone/email",
+      "Capture automatique téléphone / email",
+      "Alertes par SMS (ou tout de suite)",
       "Collecte d'avis Google",
-      "Support prioritaire",
+      "Marque blanche",
     ],
     cta: "Créer mon agent gratuitement",
     popular: true,
   },
   {
-    name: "Entreprise",
-    description: "Pour les agences web et réseaux d'artisans multi-établissements",
-    price: { monthly: null, annual: null },
+    name: "Agence · 3",
+    title: "Agence et entreprise",
+    description: "3 passes",
+    price: { monthly: 45, annual: 45 },
     features: [
-      "10 Talker et plus",
+      "3 Talker",
       "Tout Pro inclus",
-      "Un agent par site ou par établissement",
+      "Marque blanche",
+    ],
+    cta: "Installer",
+    popular: false,
+  },
+  {
+    name: "Agence · 10",
+    title: "Agence et entreprise",
+    description: "10 passes",
+    price: { monthly: 99, annual: 99 },
+    features: [
+      "10 Talker",
+      "Tout Pro inclus",
+      "Un agent par site et par établissement",
       "Tableau de bord multi-comptes",
-      "Marque blanche disponible",
-      "Chargé de compte dédié",
+      "Marque blanche",
     ],
     cta: "Installer",
     popular: false,
@@ -97,14 +111,9 @@ export function PricingSection() {
           >
             Annuel
           </span>
-          {isAnnual && (
-            <span className="px-2 py-0.5 bg-black text-white text-[10px] font-mono uppercase tracking-wider">
-              -17%
-            </span>
-          )}
         </div>
 
-        <div className="mt-3 grid items-stretch gap-6 md:grid-cols-3">
+        <div className="mt-3 grid items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan, idx) => (
             <div
               key={plan.name}
@@ -124,7 +133,9 @@ export function PricingSection() {
                 <span className="font-mono text-xs text-muted-foreground">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
-                <h3 className="font-display font-semibold text-3xl text-foreground mt-2">{plan.name}</h3>
+                <h3 className="font-display font-semibold text-3xl text-foreground mt-2">
+                  {plan.title ?? plan.name}
+                </h3>
                 <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
               </div>
 
