@@ -3,25 +3,13 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTalker } from "@/components/talker/provider";
+import { useLocale } from "@/components/i18n/locale-context";
 import { ArrowRight } from "lucide-react";
 
-const phrases = [
-  "décrit vos prestations",
-  "donne vos tarifs",
-  "donne vos disponibilités",
-  "capte le numéro",
-  "capte l'email",
-  "demande des avis Google",
-];
-
-const stats = [
-  { value: "+50%", label: "de leads sur votre site" },
-  { value: "-80%", label: "de temps passé à répondre aux mêmes questions" },
-  { value: "3x", label: "plus d'avis Google collectés" },
-  { value: "24/7", label: "disponibilité, zéro rendez-vous manqué" },
-];
-
 export function HeroSection() {
+  const { t } = useLocale();
+  const phrases = t.hero.phrases;
+  const stats = t.hero.stats;
   const [isVisible, setIsVisible] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
   const { openTalker } = useTalker();
@@ -32,11 +20,12 @@ export function HeroSection() {
   }, []);
 
   useEffect(() => {
+    setWordIndex(0);
     const interval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % phrases.length);
     }, 2500);
     return () => clearInterval(interval);
-  }, []);
+  }, [phrases]);
 
   return (
     <section className="relative flex min-h-screen flex-col justify-between overflow-visible">
@@ -73,7 +62,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground max-w-2xl">
             <span className="w-8 h-px bg-foreground/30 shrink-0" />
-            Les IA aspirent le trafic de votre site. Talker le récupère.
+            {t.hero.eyebrow}
           </span>
         </div>
 
@@ -82,7 +71,7 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="block text-foreground">Le chatbot IA qui</span>
+          <span className="block text-foreground">{t.hero.titleBefore}</span>
           <span className="block text-foreground/40">
             <span className="relative inline-block">
               <span key={wordIndex} className="inline-flex flex-wrap">
@@ -101,7 +90,7 @@ export function HeroSection() {
               <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-foreground/12" />
             </span>
           </span>
-          <span className="block text-foreground/30">à votre place</span>
+          <span className="block text-foreground/30">{t.hero.titleAfter}</span>
         </h1>
 
         <p
@@ -109,7 +98,7 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          Un chatbot IA qui connaît votre métier, capte le numéro ou l&apos;email de vos prospects, répond aux tarifs sans que vous leviez le petit doigt, trie les demandes de vos clients existants, et récupère vos avis Google. Installé en 10 minutes, sans code.
+          {t.hero.subtitle}
         </p>
 
         <div
@@ -122,7 +111,7 @@ export function HeroSection() {
             variant="iridescent"
             className="h-14 rounded-full px-8 text-base group overflow-hidden"
           >
-            Créer mon agent gratuitement
+            {t.hero.createAgent}
             <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button
@@ -131,7 +120,7 @@ export function HeroSection() {
             className="h-14 px-8 text-base rounded-full bg-transparent border-foreground/15 text-foreground hover:bg-foreground/5 shadow-none"
             onClick={() => openTalker()}
           >
-            Voir une démo
+            {t.hero.seeDemo}
           </Button>
         </div>
 
@@ -141,7 +130,7 @@ export function HeroSection() {
           }`}
         >
           <span className="w-2 h-2 rounded-full bg-green-500" />
-          Disponible sur WordPress — extension officielle sur le store
+          {t.hero.wordpress}
         </div>
       </div>
 

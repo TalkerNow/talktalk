@@ -1,28 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLocale } from "@/components/i18n/locale-context";
+import type { Messages } from "@/lib/i18n";
 
-const features = [
-  {
-    number: "01",
-    title: "Un agent qui connaît votre métier",
-    description:
-      "Formé sur votre activité, vos services et vos tarifs, et reprenant la syntaxe rédactionnelle de votre site. Que vous soyez un avocat, un musée, une entreprise du bâtiment ou une société de conseil et de services, il répond avec le bon vocabulaire, pas avec des réponses génériques de type IA.",
-    visual: "ai",
-  },
-  {
-    number: "02",
-    title: "Capture les coordonnées, pas juste les questions",
-    description: "Numéro de téléphone ou email récupéré avant la fin de la conversation. Prospect chaud transmis direct, client existant redirigé vers le bon service. Rien ne se perd dans un formulaire jamais rempli.",
-    visual: "collab",
-  },
-  {
-    number: "03",
-    title: "Un support avant votre support",
-    description: "Talker distingue un prospect d'un client en une phrase. Panne, question tarifaire, service additionnel : il qualifie la demande et vous transmet un dossier prêt à traiter. Votre client ne raconte plus son problème deux fois.",
-    visual: "security",
-  },
-];
+type FeatureItem = Messages["features"]["items"][number];
 
 function AIVisual() {
   return (
@@ -120,7 +102,7 @@ function AnimatedVisual({ type }: { type: string }) {
   }
 }
 
-function FeatureCard({ feature, index }: { feature: typeof features[0]; index: number }) {
+function FeatureCard({ feature, index }: { feature: FeatureItem; index: number }) {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -174,6 +156,8 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
 }
 
 export function FeaturesSection() {
+  const { t } = useLocale();
+  const features = t.features.items;
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -200,16 +184,16 @@ export function FeaturesSection() {
         <div className="mb-8 lg:mb-10">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
             <span className="w-8 h-px bg-foreground/30" />
-            Fonctionnalités
+            {t.features.eyebrow}
           </span>
           <h2
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Ce qu&apos;il faut.
+            {t.features.title}
             <br />
-            <span className="text-muted-foreground">Rien de plus.</span>
+            <span className="text-muted-foreground">{t.features.titleMuted}</span>
           </h2>
         </div>
 

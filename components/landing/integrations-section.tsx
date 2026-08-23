@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { useLocale } from "@/components/i18n/locale-context";
 
 const integrations = [
   { name: "WordPress" },
@@ -11,6 +12,7 @@ const integrations = [
 ];
 
 export function IntegrationsSection() {
+  const { t } = useLocale();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -36,16 +38,16 @@ export function IntegrationsSection() {
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
             <span className="w-8 h-px bg-foreground/30" />
-            Intégrations
+            {t.integrations.eyebrow}
             <span className="w-8 h-px bg-foreground/30" />
           </span>
           <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-6">
-            Compatible avec WordPress,
+            {t.integrations.title}
             <br />
-            <span className="text-foreground/30">sans rien changer à votre site.</span>
+            <span className="text-foreground/30">{t.integrations.titleMuted}</span>
           </h2>
           <p className="text-xl text-muted-foreground">
-            Une extension à installer depuis le store WordPress. Fonctionne avec la plupart des thèmes et constructeurs de pages (Elementor, Divi, etc.).
+            {t.integrations.body}
           </p>
         </div>
 

@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { AnimatedSphere } from "./animated-sphere";
+import { useLocale } from "@/components/i18n/locale-context";
 
 export function CtaSection() {
+  const { t } = useLocale();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -52,12 +54,12 @@ export function CtaSection() {
               {/* Left content */}
               <div className="flex-1">
                 <h2 className="mb-8 text-4xl font-display leading-[0.95] tracking-tight lg:text-7xl">
-                  Talker répond.
+                  {t.cta.line1}
                   <br />
-                  Talker vend.
+                  {t.cta.line2}
                   <br />
                   <span className="block pl-16 text-foreground/30 lg:pl-28">
-                    à votre place.
+                    {t.cta.line3}
                   </span>
                 </h2>
 
@@ -67,13 +69,13 @@ export function CtaSection() {
                     variant="iridescent"
                     className="h-14 rounded-full px-8 text-base group overflow-hidden"
                   >
-                    Créer mon agent gratuitement
+                    {t.cta.createAgent}
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </div>
 
                 <p className="mt-8 font-mono text-sm text-muted-foreground">
-                  Sans carte bancaire
+                  {t.cta.noCard}
                 </p>
               </div>
 

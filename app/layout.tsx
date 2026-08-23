@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
+import { LocaleProvider } from "@/components/i18n/locale-context";
 import "./globals.css";
 
 const inter = Inter({
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
-        {children}
+        <LocaleProvider>{children}</LocaleProvider>
       </body>
     </html>
   );

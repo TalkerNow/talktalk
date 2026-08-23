@@ -4,14 +4,9 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/i18n/language-switcher";
+import { useLocale } from "@/components/i18n/locale-context";
 import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { name: "Fonctionnalités", href: "#features" },
-  { name: "Comment ça marche", href: "#how-it-works" },
-  { name: "Tarifs", href: "#pricing" },
-  { name: "Contact", href: "/contact" },
-];
 
 function resolveNavHref(href: string, pathname: string) {
   if (!href.startsWith("#")) return href;
@@ -20,8 +15,15 @@ function resolveNavHref(href: string, pathname: string) {
 
 export function Navigation() {
   const pathname = usePathname();
+  const { t } = useLocale();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navLinks = [
+    { name: t.nav.features, href: "#features" },
+    { name: t.nav.howItWorks, href: "#how-it-works" },
+    { name: t.nav.pricing, href: "#pricing" },
+    { name: t.nav.contact, href: "/contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,8 +73,9 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className={`hidden md:flex items-center overflow-visible ${isScrolled ? "gap-3" : "gap-4"}`}>
+            {!isScrolled ? <LanguageSwitcher /> : null}
             <a href="#" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
-              Connexion
+              {t.nav.signIn}
             </a>
             <Button
               size="sm"
@@ -82,22 +85,24 @@ export function Navigation() {
                 window.location.href = "/#pricing";
               }}
             >
-              Créer mon agent gratuitement
+              {t.nav.createAgent}
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden shrink-0 p-2 -mr-0.5"
-            aria-label="Toggle menu"
-          >
+          <div className="flex items-center gap-1 md:hidden">
+            {!isScrolled ? <LanguageSwitcher /> : null}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="shrink-0 p-2 -mr-0.5"
+              aria-label={t.nav.menu}
+            >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
             ) : (
               <Menu className="w-6 h-6" />
             )}
           </button>
+          </div>
         </div>
 
       </nav>
@@ -144,7 +149,7 @@ export function Navigation() {
               className="flex-1 rounded-full h-14 text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Connexion
+              {t.nav.signIn}
             </Button>
             <Button 
               variant="iridescent"
@@ -154,7 +159,7 @@ export function Navigation() {
                 window.location.href = "/#pricing";
               }}
             >
-              Créer mon agent gratuitement
+              {t.nav.createAgent}
             </Button>
           </div>
         </div>

@@ -3,36 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { Button } from "@/components/ui/button";
-
-const steps = [
-  {
-    number: "1",
-    title: "Installez le plugin et choisissez votre template",
-    description: "Renseignez votre email et votre numéro de téléphone pour recevoir les alertes.",
-  },
-  {
-    number: "2",
-    title: "Talker lit votre site",
-    description: "Il apprend votre métier, vos horaires, vos prestations.",
-  },
-  {
-    number: "3",
-    title: "Activez : c'est en ligne et opérationnel",
-    description:
-      "Commencez à récolter vos leads et vos demandes directement par email ou par SMS sur votre téléphone.",
-  },
-];
-
-const conversation = [
-  { from: "user" as const, text: "Vous intervenez sur quel secteur ?" },
-  { from: "bot" as const, text: "Toute la région Île-de-France. Vous cherchez un rendez-vous ?" },
-  { from: "user" as const, text: "Quels sont vos tarifs ?" },
-  { from: "bot" as const, text: "Ça dépend du besoin. Je vous mets en relation avec [Nom], votre numéro ?" },
-  { from: "user" as const, text: "Je veux un devis" },
-  { from: "bot" as const, text: "Parfait, je transmets votre demande. Votre email ?" },
-];
+import { useLocale } from "@/components/i18n/locale-context";
 
 export function HowItWorksSection() {
+  const { t } = useLocale();
+  const steps = t.how.steps;
+  const conversation = t.how.conversation;
   const [activeStep, setActiveStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -54,7 +30,7 @@ export function HowItWorksSection() {
       setActiveStep((prev) => (prev + 1) % steps.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [steps.length]);
 
   return (
     <section
@@ -81,16 +57,16 @@ export function HowItWorksSection() {
         <div className="mb-12 lg:mb-16">
           <span className="inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
             <span className="w-8 h-px bg-white/30" />
-            Comment ça marche
+            {t.how.eyebrow}
           </span>
           <h2
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            3 étapes. 5 minutes.
+            {t.how.title}
             <br />
-            <span className="text-white/40">Votre site passe à l&apos;IA.</span>
+            <span className="text-white/40">{t.how.titleMuted}</span>
           </h2>
         </div>
 
@@ -139,7 +115,7 @@ export function HowItWorksSection() {
                 window.location.hash = "pricing";
               }}
             >
-              Créer mon agent gratuitement
+              {t.how.createAgent}
             </Button>
           </div>
 
@@ -149,11 +125,11 @@ export function HowItWorksSection() {
                 <div className="min-w-0">
                   <TalkerWordmark className="text-[16px]" />
                   <p className="mt-1.5 text-[11px] leading-none text-muted-2">
-                    L&apos;assistant du cabinet
+                    {t.how.assistant}
                   </p>
                 </div>
                 <span className="rounded-full px-2 py-1 text-sm text-muted">
-                  Fermer
+                  {t.how.close}
                 </span>
               </div>
               <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
@@ -175,7 +151,7 @@ export function HowItWorksSection() {
                   <input
                     disabled
                     readOnly
-                    placeholder="Posez votre question..."
+                    placeholder={t.how.placeholder}
                     className="min-w-0 flex-1 border-0 bg-transparent p-0 text-[14px] text-ink outline-none placeholder:text-[#6B6B73] disabled:opacity-50"
                   />
                   <span

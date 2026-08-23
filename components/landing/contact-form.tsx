@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useLocale } from "@/components/i18n/locale-context";
 
 const fieldClassName =
   "w-full border border-[#C43F17]/45 bg-[#F7F6F4] px-4 py-3.5 text-[15px] outline-none transition-colors focus:border-[#C43F17]";
@@ -10,6 +11,7 @@ const labelClassName =
   "mb-2 block font-mono text-xs tracking-[0.16em] text-muted-foreground";
 
 export function ContactForm() {
+  const { t } = useLocale();
   const [sent, setSent] = useState(false);
   const [pending, setPending] = useState(false);
 
@@ -41,7 +43,7 @@ export function ContactForm() {
   if (sent) {
     return (
       <p className="text-2xl font-display leading-tight tracking-tight text-foreground lg:text-3xl">
-        C’est transmis. On vous écrit à cette adresse.
+        {t.contact.success}
       </p>
     );
   }
@@ -50,7 +52,7 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="grid gap-6 overflow-visible lg:grid-cols-2">
       <div>
         <label htmlFor="name" className={labelClassName}>
-          Nom
+          {t.contact.name}
         </label>
         <input
           id="name"
@@ -63,7 +65,7 @@ export function ContactForm() {
       </div>
       <div>
         <label htmlFor="company" className={labelClassName}>
-          Société
+          {t.contact.company}
         </label>
         <input
           id="company"
@@ -75,7 +77,7 @@ export function ContactForm() {
       </div>
       <div>
         <label htmlFor="email" className={labelClassName}>
-          Email
+          {t.contact.email}
         </label>
         <input
           id="email"
@@ -88,7 +90,7 @@ export function ContactForm() {
       </div>
       <div>
         <label htmlFor="phone" className={labelClassName}>
-          Téléphone
+          {t.contact.phone}
         </label>
         <input
           id="phone"
@@ -100,7 +102,7 @@ export function ContactForm() {
       </div>
       <div className="lg:col-span-2">
         <label htmlFor="message" className={labelClassName}>
-          Message
+          {t.contact.message}
         </label>
         <textarea
           id="message"
@@ -117,7 +119,7 @@ export function ContactForm() {
           disabled={pending}
           className="rounded-full px-8 overflow-hidden"
         >
-          Envoyer
+          {t.contact.send}
         </Button>
       </div>
     </form>

@@ -3,18 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { TalkerChat } from "@/components/talker/chat";
 import { useTalker } from "@/components/talker/provider";
+import { useLocale } from "@/components/i18n/locale-context";
 
 const TYPING_MS = 2400;
 const PAUSE_MS = 2000;
 const BUBBLE_PX = 80;
 
-const invites = [
-  { label: "Quels sont vos horaires ?", intent: "horaires" as const },
-  { label: "Poser une question", intent: "question" as const },
-  { label: "Prendre rendez-vous", intent: "rdv" as const },
-];
-
 export function TalkerLauncherBubble() {
+  const { t } = useLocale();
+  const invites = t.bubble.chips;
   const { open, openTalker, closeTalker } = useTalker();
   const [typing, setTyping] = useState(true);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -117,7 +114,7 @@ export function TalkerLauncherBubble() {
           <button
             type="button"
             onClick={() => (open ? closeTalker() : openTalker())}
-            aria-label="Ouvrir Talker"
+            aria-label={t.bubble.open}
             aria-expanded={open}
             className="pointer-events-auto relative z-10 flex size-[80px] cursor-pointer items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
           >

@@ -3,35 +3,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { AnimatedWave } from "./animated-wave";
-
-const footerLinks = {
-  Produit: [
-    { name: "Fonctionnalités", href: "#features" },
-    { name: "Comment ça marche", href: "#how-it-works" },
-    { name: "Tarifs", href: "#pricing" },
-    { name: "Intégrations", href: "#integrations" },
-    { name: "Cas d'usage", href: "#cas-usage" },
-  ],
-  Ressources: [
-    { name: "Centre d'aide", href: "#" },
-    { name: "Guide d'installation", href: "#" },
-    { name: "Modèles de scripts", href: "#" },
-    { name: "Statut du service", href: "#" },
-  ],
-  Entreprise: [
-    { name: "À propos", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Recrutement", href: "#" },
-    { name: "Contact", href: "/contact" },
-    { name: "Devenir partenaire", href: "#" },
-  ],
-  Légal: [
-    { name: "Confidentialité", href: "#" },
-    { name: "CGU/CGV", href: "#" },
-    { name: "Mentions légales", href: "#" },
-    { name: "RGPD", href: "#" },
-  ],
-};
+import { useLocale } from "@/components/i18n/locale-context";
 
 function TwitterMark({ className }: { className?: string }) {
   return (
@@ -64,6 +36,7 @@ const socialLinks = [
 ];
 
 export function FooterSection() {
+  const { t } = useLocale();
   return (
     <footer className="relative border-t border-foreground/10">
       <div className="absolute inset-0 h-64 opacity-20 pointer-events-none overflow-hidden">
@@ -80,7 +53,7 @@ export function FooterSection() {
               </a>
 
               <p className="text-muted-foreground leading-relaxed mb-8 max-w-xs">
-                L&apos;agent conversationnel qui répond, capte et vend à la place de votre standard. Installé en 5 minutes, actif 24h/24.
+                {t.footer.blurb}
               </p>
 
               <div className="flex gap-6">
@@ -98,11 +71,11 @@ export function FooterSection() {
               </div>
             </div>
 
-            {Object.entries(footerLinks).map(([title, links]) => (
-              <div key={title}>
-                <h3 className="text-sm font-medium mb-6">{title}</h3>
+            {t.footer.columns.map((column) => (
+              <div key={column.title}>
+                <h3 className="text-sm font-medium mb-6">{column.title}</h3>
                 <ul className="space-y-4">
-                  {links.map((link) => (
+                  {column.links.map((link) => (
                     <li key={link.name}>
                       <a
                         href={link.href}
@@ -120,13 +93,13 @@ export function FooterSection() {
 
         <div className="py-6 border-t border-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2026 Talker. Tous droits réservés.
+            {t.footer.copyright}
           </p>
 
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500" />
-              Tous les systèmes opérationnels
+              {t.footer.systems}
             </span>
           </div>
         </div>

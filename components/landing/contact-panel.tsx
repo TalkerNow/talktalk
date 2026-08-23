@@ -4,8 +4,10 @@ import { useState } from "react";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { AnimatedWave } from "./animated-wave";
 import { ContactForm } from "./contact-form";
+import { useLocale } from "@/components/i18n/locale-context";
 
 export function ContactPanel() {
+  const { t } = useLocale();
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 40 });
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -39,15 +41,15 @@ export function ContactPanel() {
         <div className="grid items-start gap-12 overflow-visible lg:grid-cols-2 lg:gap-16">
           <div>
             <h1 className="font-display text-4xl leading-[0.95] tracking-tight lg:text-7xl">
-              Contact
+              {t.contact.title}
               <br />
-              <span className="text-foreground/30">On vous répond.</span>
+              <span className="text-foreground/30">{t.contact.titleMuted}</span>
             </h1>
             <p className="mt-10 text-xl leading-relaxed text-foreground">
-              Vous installez. Talker parle. Les demandes arrivent.
+              {t.contact.lead1}
             </p>
             <p className="mt-3 text-xl leading-relaxed text-foreground">
-              Pas un ticket. Une conversation.
+              {t.contact.lead2}
             </p>
             <p className="mt-10 font-mono text-sm text-muted-foreground">
               — hello@talker.now

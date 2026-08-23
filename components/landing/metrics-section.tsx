@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { useLocale } from "@/components/i18n/locale-context";
 
 function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffix?: string; prefix?: string }) {
   const [count, setCount] = useState(0);
@@ -38,39 +39,14 @@ function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffi
 
   return (
     <div ref={ref} className="text-6xl lg:text-8xl font-display tracking-tight">
-      {prefix}{count.toLocaleString("fr-FR")}{suffix}
+      {prefix}{count.toLocaleString(undefined)}{suffix}
     </div>
   );
 }
 
-const metrics = [
-  {
-    value: 847,
-    suffix: "",
-    prefix: "",
-    label: "Conversations traitées ce mois-ci",
-  },
-  {
-    value: 92,
-    suffix: "%",
-    prefix: "",
-    label: "Taux de réponse avant abandon du prospect",
-  },
-  {
-    value: 6,
-    suffix: " sec",
-    prefix: "",
-    label: "Temps de réponse moyen",
-  },
-  {
-    value: 312,
-    suffix: "",
-    prefix: "",
-    label: "Coordonnées collectées ce mois-ci",
-  },
-];
-
 export function MetricsSection() {
+  const { locale, t } = useLocale();
+  const metrics = t.metrics.items;
   const [time, setTime] = useState(new Date());
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -100,25 +76,25 @@ export function MetricsSection() {
           <div>
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
               <span className="w-8 h-px bg-foreground/30" />
-              Indicateurs
+              {t.metrics.eyebrow}
             </span>
             <h2
               className={`text-4xl lg:text-6xl font-display tracking-tight transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              votre tableau de bord,
+              {t.metrics.title}
               <br />
-              <span className="text-foreground/30">en direct</span>
+              <span className="text-foreground/30">{t.metrics.titleMuted}</span>
             </h2>
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Live
+              {t.metrics.live}
             </span>
             <span className="text-foreground/30">|</span>
-            <span>{time.toLocaleTimeString("fr-FR")}</span>
+            <span>{time.toLocaleTimeString(locale === "en" ? "en-GB" : "fr-FR")}</span>
           </div>
         </div>
         
@@ -135,7 +111,7 @@ export function MetricsSection() {
               <AnimatedCounter 
                 end={typeof metric.value === 'number' ? metric.value : 0} 
                 suffix={metric.suffix} 
-                prefix={metric.prefix}
+                prefix=""
               />
               <div className="mt-4 text-lg text-muted-foreground">{metric.label}</div>
             </div>

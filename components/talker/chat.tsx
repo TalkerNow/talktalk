@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { demoSteps } from "@/lib/content/demo";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { useTalker } from "./provider";
+import { useLocale } from "@/components/i18n/locale-context";
+import type { DemoStep } from "@/lib/content/demo";
 
 type Message = {
   id: string;
@@ -22,6 +23,8 @@ export function TalkerChat({
   onClose?: () => void;
   variant?: "panel" | "window";
 }) {
+  const { t } = useLocale();
+  const demoSteps = t.demoSteps as Record<string, DemoStep>;
   const { intent, resetKey } = useTalker();
   const [stepId, setStepId] = useState("start");
   const [messages, setMessages] = useState<Message[]>([
@@ -62,7 +65,7 @@ export function TalkerChat({
     }, 1800);
 
     return () => window.clearTimeout(timer);
-  }, [resetKey, intent]);
+  }, [resetKey, intent, demoSteps]);
 
   useEffect(() => {
     scroller.current?.scrollTo({
@@ -122,7 +125,7 @@ export function TalkerChat({
         <div className="min-w-0">
           <TalkerWordmark className="text-[16px]" />
           <p className="mt-1.5 text-[11px] leading-none text-muted-2">
-            L&apos;assistant du cabinet
+            {t.bubble.assistant}
           </p>
         </div>
         {onClose ? (
@@ -130,14 +133,14 @@ export function TalkerChat({
             type="button"
             onClick={onClose}
             className="rounded-full px-2 py-1 text-sm text-muted transition-colors hover:text-ink"
-            aria-label="Fermer Talker"
+            aria-label={t.bubble.closeTalker}
           >
-            Fermer
+            {t.bubble.close}
           </button>
         ) : null}
       </div>
     ),
-    [onClose],
+    [onClose, t.bubble.assistant, t.bubble.close, t.bubble.closeTalker],
   );
 
   const askingEmail = Boolean(step?.askEmail);
@@ -189,7 +192,7 @@ export function TalkerChat({
               <span className="talker-typing-dot talker-typing-dot-2 size-1.5 rounded-full bg-[#111111]" />
               <span className="talker-typing-dot talker-typing-dot-3 size-1.5 rounded-full bg-[#111111]" />
             </span>
-            <span className="sr-only">Talker écrit</span>
+            <span className="sr-only">{t.bubble.writing}</span>
           </p>
         ) : null}
       </div>
@@ -199,7 +202,7 @@ export function TalkerChat({
       >
         <div className="flex items-center gap-2 rounded-full bg-[#F1ECE5] px-4 py-2">
           <label className="sr-only" htmlFor="talker-compose">
-            {askingEmail ? "Email" : "Message"}
+            {askingEmail ? t.contact.email : t.contact.message}
           </label>
           <input
             id="talker-compose"
@@ -210,14 +213,14 @@ export function TalkerChat({
             onChange={(event) => setDraft(event.target.value)}
             placeholder={
               askingEmail
-                ? (step.placeholder ?? "email@cabinet.fr")
-                : "Posez votre question..."
+                ? (step.placeholder ?? t.demoSteps.email.placeholder)
+                : t.bubble.placeholder
             }
             className="min-w-0 flex-1 border-0 bg-transparent p-0 text-[14px] text-ink outline-none placeholder:text-[#6B6B73] disabled:opacity-50"
           />
           <button
             type="submit"
-            aria-label="Envoyer"
+            aria-label={t.bubble.send}
             disabled={pending || !draft.trim()}
             className="inline-flex shrink-0 text-[#C43F17] disabled:opacity-40"
           >
