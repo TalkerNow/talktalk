@@ -195,16 +195,9 @@ export function TalkerChat({
       </div>
       <form
         onSubmit={submitDraft}
-        className="border-t border-line px-3 py-3"
+        className="border-t border-line bg-white px-3 py-3"
       >
-        <div className="flex items-center gap-2">
-          <span
-            className="inline-flex size-7 shrink-0 items-center justify-center rounded-full border border-line text-muted-2"
-            aria-hidden
-            title="Pièce jointe — plus tard"
-          >
-            <ClipIcon />
-          </span>
+        <div className="flex items-center gap-2 rounded-full bg-[#F1ECE5] px-4 py-2">
           <label className="sr-only" htmlFor="talker-compose">
             {askingEmail ? "Email" : "Message"}
           </label>
@@ -218,66 +211,35 @@ export function TalkerChat({
             placeholder={
               askingEmail
                 ? (step.placeholder ?? "email@cabinet.fr")
-                : "Écrivez un message…"
+                : "Posez votre question..."
             }
-            className="min-w-0 flex-1 rounded-full border border-line bg-background px-3 py-2 text-[13px] outline-none focus:border-ink disabled:opacity-50"
+            className="min-w-0 flex-1 border-0 bg-transparent p-0 text-[14px] text-ink outline-none placeholder:text-[#6B6B73] disabled:opacity-50"
           />
           <button
             type="submit"
+            aria-label="Envoyer"
             disabled={pending || !draft.trim()}
-            className="rounded-full bg-ink px-3 py-2 text-[13px] text-paper disabled:opacity-40"
+            className="inline-flex shrink-0 text-[#C43F17] disabled:opacity-40"
           >
-            Envoyer
+            <PaperPlane />
           </button>
-        </div>
-        <div className="mt-2 flex items-center justify-between px-1">
-          <span
-            className="inline-flex size-7 items-center justify-center rounded-full border border-line text-muted-2"
-            aria-hidden
-            title="Micro — plus tard"
-          >
-            <MicIcon />
-          </span>
-          <p className="text-[10px] tracking-wide text-muted-2">
-            Démo — Talker mène le fil
-          </p>
         </div>
       </form>
     </div>
   );
 }
 
-function ClipIcon() {
+function PaperPlane() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M8 12.5 14.2 6.3a3 3 0 1 1 4.2 4.2l-8.1 8.1a4.2 4.2 0 0 1-6-6l7.4-7.4"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function MicIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect
-        x="9"
-        y="3.5"
-        width="6"
-        height="11"
-        rx="3"
-        stroke="currentColor"
-        strokeWidth="1.7"
-      />
-      <path
-        d="M6 11.5a6 6 0 0 0 12 0M12 17.5V20.5"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      width="20"
+      height="20"
+      aria-hidden
+    >
+      <path d="M3.478 2.405a.75.75 0 0 0-.926.94l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 15.445-7.843.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.405Z" />
     </svg>
   );
 }
