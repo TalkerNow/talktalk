@@ -4,18 +4,18 @@ import { useEffect, useRef, useState } from "react";
 
 const steps = [
   {
-    number: "I",
-    title: "Décrivez votre activité",
-    description: "Un formulaire simple : métier, services, tarifs, horaires. 5 minutes suffisent.",
+    number: "1",
+    title: "Installez le plugin depuis WordPress.",
+    description: "",
   },
   {
-    number: "II",
-    title: "Configurez vos réponses",
-    description: "Choisissez ce qu'il capte (téléphone, email, prise de RDV) et ce qu'il ne fait pas. Aucun code à écrire.",
+    number: "2",
+    title: "Choisissez votre template.",
+    description: "Renseignez votre email et votre numéro pour recevoir les alertes.",
   },
   {
-    number: "III",
-    title: "Collez le script, c'est en ligne",
+    number: "3",
+    title: "Talker lit votre site et apprend votre métier, vos horaires, vos prestations.",
     description: "",
   },
 ];
@@ -83,9 +83,9 @@ export function HowItWorksSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Trois étapes.
+            3 étapes. 5 minutes.
             <br />
-            <span className="text-white/40">Zéro prise de tête.</span>
+            <span className="text-white/40">Votre site passe à l&apos;IA.</span>
           </h2>
         </div>
 
@@ -129,6 +129,10 @@ export function HowItWorksSection() {
                 </button>
               );
             })}
+            <p className="pt-6 text-white/45 leading-relaxed">
+              Activez. C&apos;est en ligne et opérationnel. Commencez à récolter vos leads et vos
+              demandes.
+            </p>
           </div>
 
           <div className="lg:sticky lg:top-32 self-start">
