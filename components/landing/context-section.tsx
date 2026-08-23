@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export function ContextSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -51,18 +49,6 @@ export function ContextSection() {
             <p className="mt-2 pl-6 text-xl font-medium leading-relaxed text-[#111111] lg:pl-8">
               votre site avec Talker devient un vendeur, une secrétaire, un partenaire
             </p>
-          </div>
-          <div className="relative z-10 w-fit overflow-visible">
-            <Button
-              variant="iridescent"
-              className="rounded-full px-8 h-14 text-sm font-medium tracking-[0.12em] uppercase"
-              asChild
-            >
-              <a href="#features">
-                Découvrez Talker
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </Button>
           </div>
         </div>
       </div>
