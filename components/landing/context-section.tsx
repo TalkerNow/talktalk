@@ -41,13 +41,17 @@ export function ContextSection() {
             Les moteurs de recherche et les IA génératives répondent directement, sans renvoyer vers votre site. Un site vitrine statique perd un trafic qu&apos;il ne reverra jamais.
           </p>
           <div className="border border-[#C43F17]/20 bg-[#F4DCD4] px-6 py-5 mb-10 text-[#111111]">
-            <p className="text-base lg:text-lg leading-relaxed text-[#111111]">
-              Attention : ce n&apos;est pas une menace lointaine, c&apos;est déjà en cours. Chaque question posée à un LLM plutôt qu&apos;à un moteur de recherche classique est une visite qui n&apos;arrivera jamais chez vous.
+            <p className="text-xl leading-relaxed text-[#111111]">
+              Un site qui répond, qui engage, qui capte la demande sur place, c&apos;est la seule
+              manière de transformer une visite en contact.
+            </p>
+            <p className="mt-4 pl-6 text-xl font-medium leading-relaxed text-[#111111] lg:pl-8">
+              le site statique est un dépliant
+            </p>
+            <p className="mt-2 pl-6 text-xl font-medium leading-relaxed text-[#111111] lg:pl-8">
+              votre site avec Talker devient un vendeur, une secrétaire, un partenaire
             </p>
           </div>
-          <p className="text-xl text-muted-foreground leading-relaxed mb-10">
-            Un site qui répond, qui engage, qui capte la demande sur place, c&apos;est la seule manière de transformer une visite en contact. Le site statique est un dépliant. Le site avec Talker devient un vendeur.
-          </p>
           <div className="relative z-10 w-fit overflow-visible">
             <Button
               variant="iridescent"
