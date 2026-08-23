@@ -67,7 +67,7 @@ export function TalkerWordmark({
       className={cn(
         "inline-flex items-center gap-2 leading-none",
         "whitespace-nowrap",
-        compact ? "text-[26px]" : "text-[28px]",
+        compact ? "text-[28px]" : "text-[30px]",
         className
       )}
     >
