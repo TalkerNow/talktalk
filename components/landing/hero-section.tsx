@@ -3,15 +3,21 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { AnimatedSphere } from "./animated-sphere";
+import { AnimatedChat } from "./animated-chat";
 
-const words = ["vend", "répond", "encaisse", "fidélise"];
+const phrases = [
+  "répond à vos tarifs",
+  "capte le numéro",
+  "trie vos clients mécontents",
+  "récupère vos avis Google",
+  "ne dort jamais",
+];
 
 const stats = [
-  { value: "+64%", label: "de prospects qui laissent leurs coordonnées", company: "ARTISANPRO" },
-  { value: "-80%", label: "de temps passé à répondre aux mêmes questions", company: "ELECTRICONNECT" },
-  { value: "3x", label: "plus d'avis Google collectés", company: "PLOMBEXPERT" },
-  { value: "24/7", label: "disponibilité, zéro rendez-vous manqué", company: "RENOVATOUT" },
+  { value: "+50%", label: "de leads sur votre site" },
+  { value: "-80%", label: "de temps passé à répondre aux mêmes questions" },
+  { value: "3x", label: "plus d'avis Google collectés" },
+  { value: "24/7", label: "disponibilité, zéro rendez-vous manqué" },
 ];
 
 export function HeroSection() {
@@ -25,15 +31,15 @@ export function HeroSection() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % words.length);
+      setWordIndex((prev) => (prev + 1) % phrases.length);
     }, 2500);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] lg:w-[800px] lg:h-[800px] opacity-40 pointer-events-none">
-        <AnimatedSphere />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[520px] h-[560px] lg:w-[640px] lg:h-[680px] opacity-50 pointer-events-none">
+        <AnimatedChat />
       </div>
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
@@ -74,15 +80,15 @@ export function HeroSection() {
         </div>
 
         <h1
-          className={`text-[clamp(2.4rem,8vw,7.5rem)] font-display font-bold leading-[0.92] tracking-tight mb-10 transition-all duration-1000 ${
+          className={`text-[clamp(2.1rem,6.4vw,6.2rem)] font-display font-bold leading-[0.96] tracking-tight mb-10 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="block text-foreground">L&apos;agent qui</span>
+          <span className="block text-foreground">Le chatbot IA qui</span>
           <span className="block text-foreground/30">
             <span className="relative inline-block text-foreground/40">
-              <span key={wordIndex} className="inline-flex">
-                {words[wordIndex].split("").map((char, i) => (
+              <span key={wordIndex} className="inline-flex flex-wrap">
+                {phrases[wordIndex].split("").map((char, i) => (
                   <span
                     key={`${wordIndex}-${i}`}
                     className="inline-block animate-char-in"
@@ -90,7 +96,7 @@ export function HeroSection() {
                       animationDelay: `${i * 50}ms`,
                     }}
                   >
-                    {char}
+                    {char === " " ? "\u00A0" : char}
                   </span>
                 ))}
               </span>
@@ -149,16 +155,13 @@ export function HeroSection() {
             <div key={i} className="flex shrink-0">
               {stats.map((stat) => (
                 <div
-                  key={`${stat.company}-${i}`}
+                  key={`${stat.value}-${stat.label}-${i}`}
                   className="flex min-w-[300px] flex-col justify-center gap-1 border-r border-foreground/10 px-10 py-8 lg:min-w-[360px] lg:px-14 lg:py-10"
                 >
                   <span className="text-4xl lg:text-5xl font-display font-semibold tracking-tight">
                     {stat.value}
                   </span>
                   <span className="text-sm text-muted-foreground">{stat.label}</span>
-                  <span className="font-mono text-[11px] tracking-wider text-foreground/55">
-                    {stat.company}
-                  </span>
                 </div>
               ))}
             </div>
