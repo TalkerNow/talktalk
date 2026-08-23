@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Paperclip } from "lucide-react";
 import { TalkerMark } from "@/components/brand/mark";
 
 const transcript = [
@@ -127,14 +128,31 @@ export function InfrastructureSection() {
                 </div>
 
                 <div className="min-w-0 overflow-hidden bg-[#F7F6F4]">
-                  <div className="border-b border-foreground/8 px-3 py-2">
-                    <p className="text-[11px] font-medium text-foreground">Talker</p>
-                    <p className="truncate text-[12px] font-semibold leading-tight text-foreground">
-                      Rapport Talker — Fuite week-end
-                    </p>
-                    <p className="mt-0.5 font-mono text-[9px] text-muted-foreground">
-                      À vous · 23 août 2026 à 07:18
-                    </p>
+                  <div className="border-b border-foreground/10 bg-[#F7F6F4] px-3 py-2.5">
+                    <div className="flex items-start gap-2.5">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#111111] text-[11px] font-semibold text-white">
+                        T
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="truncate text-[12px] font-bold leading-tight text-foreground">
+                            Talker
+                          </p>
+                          <div className="flex shrink-0 items-center gap-1.5 pt-0.5">
+                            <span className="whitespace-nowrap text-[9px] text-muted-foreground">
+                              23 août 2026 à 07:18
+                            </span>
+                            <Paperclip className="h-3 w-3 text-foreground/35" strokeWidth={1.75} />
+                          </div>
+                        </div>
+                        <p className="mt-0.5 truncate text-[11px] font-medium leading-tight text-foreground">
+                          Rapport Talker — Fuite week-end
+                        </p>
+                        <p className="mt-0.5 truncate text-[10px] text-muted-foreground">
+                          À vous@votre-site.fr
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="h-full overflow-hidden px-2.5 pb-2.5 pt-2">
