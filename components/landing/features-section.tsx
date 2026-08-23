@@ -5,53 +5,24 @@ import { useEffect, useRef, useState } from "react";
 const features = [
   {
     number: "01",
-    title: "Installation en 5 minutes",
-    description: "Une extension à installer depuis le store WordPress, rien à configurer côté serveur. Le chatbot apprend votre activité, vos tarifs et vos horaires, et répond à votre place dès la mise en ligne.",
-    note: "Un compte WordPress actif est nécessaire pour l'installation et pour tester la démo.",
-    visual: "deploy",
-  },
-  {
-    number: "02",
     title: "Un agent qui connaît votre métier",
-    description: "Formé sur votre activité, vos services et vos tarifs. Plombier, électricien, artisan du bâtiment : il répond avec le bon vocabulaire, pas avec des réponses génériques.",
+    description:
+      "Formé sur votre activité, vos services et vos tarifs, et reprenant la syntaxe rédactionnelle de votre site. Que vous soyez avocat, un musée, une entreprise du bâtiment ou une société de conseil et de service, il répond avec le bon vocabulaire, pas avec des réponses génériques de type IA.",
     visual: "ai",
   },
   {
-    number: "03",
+    number: "02",
     title: "Capture les coordonnées, pas juste les questions",
     description: "Numéro de téléphone ou email récupéré avant la fin de la conversation. Prospect chaud transmis direct, client existant redirigé vers le bon service. Rien ne se perd dans un formulaire jamais rempli.",
     visual: "collab",
   },
   {
-    number: "04",
+    number: "03",
     title: "Un support avant votre support",
     description: "Talker distingue un prospect d'un client en une phrase. Panne, question tarifaire, service additionnel : il qualifie la demande et vous transmet un dossier prêt à traiter. Votre client ne raconte plus son problème deux fois.",
     visual: "security",
   },
 ];
-
-function DeployVisual() {
-  return (
-    <svg viewBox="0 0 200 160" className="w-full h-full" fill="none">
-      <rect x="44" y="28" width="112" height="104" rx="4" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="44" y="28" width="112" height="18" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="54" cy="37" r="2" fill="currentColor" opacity="0.35" />
-      <circle cx="62" cy="37" r="2" fill="currentColor" opacity="0.35" />
-      <circle cx="70" cy="37" r="2" fill="currentColor" opacity="0.35" />
-      {[0, 1, 2, 3].map((i) => (
-        <line
-          key={i}
-          x1="58"
-          y1={64 + i * 16}
-          x2={i % 2 === 0 ? 142 : 118}
-          y2={64 + i * 16}
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-      ))}
-    </svg>
-  );
-}
 
 function AIVisual() {
   return (
@@ -138,8 +109,6 @@ function SecurityVisual() {
 
 function AnimatedVisual({ type }: { type: string }) {
   switch (type) {
-    case "deploy":
-      return <DeployVisual />;
     case "ai":
       return <AIVisual />;
     case "collab":
@@ -147,7 +116,7 @@ function AnimatedVisual({ type }: { type: string }) {
     case "security":
       return <SecurityVisual />;
     default:
-      return <DeployVisual />;
+      return <AIVisual />;
   }
 }
 
