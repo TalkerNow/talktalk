@@ -52,12 +52,12 @@ export function ContextSection() {
             <Button
               variant="iridescent"
               className="rounded-full px-8 h-14 text-sm font-medium tracking-[0.12em] uppercase"
-              onClick={() => {
-                document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
-              }}
+              asChild
             >
-              Découvrez Talker
-              <ArrowRight className="w-4 h-4" />
+              <a href="#features">
+                Découvrez Talker
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </Button>
           </div>
         </div>
