@@ -406,3 +406,30 @@
     transform: translateY(-7px);
   }
 }
+
+.talker-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 0 0 0 rgba(196, 63, 23, 0.7);
+  transition: opacity 280ms ease;
+}
+
+.talker-ripple.is-on {
+  opacity: 1;
+  animation: talker-ripple 2s ease infinite;
+}
+
+@keyframes talker-ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(196, 63, 23, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(196, 63, 23, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(196, 63, 23, 0);
+  }
+}

@@ -6,14 +6,49 @@ import { useTalker } from "@/components/talker/provider";
 import { useLocale } from "@/components/i18n/locale-context";
 
 const BUBBLE_PX = 80;
+const ATTRACT_REST_MS = 7000;
+const ATTRACT_ON_MS = 4000;
 
 export function TalkerLauncherBubble() {
   const { t } = useLocale();
   const invites = t.bubble.chips;
   const { open, openTalker, closeTalker } = useTalker();
   const [chipsPinned, setChipsPinned] = useState(false);
+  const [attract, setAttract] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const clusterRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (open) {
+      setAttract(false);
+      return;
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setAttract(false);
+      return;
+    }
+
+    let cancelled = false;
+    let restTimer = 0;
+    let onTimer = 0;
+
+    const pulse = () => {
+      if (cancelled) return;
+      setAttract(true);
+      onTimer = window.setTimeout(() => {
+        if (cancelled) return;
+        setAttract(false);
+        restTimer = window.setTimeout(pulse, ATTRACT_REST_MS);
+      }, ATTRACT_ON_MS);
+    };
+
+    restTimer = window.setTimeout(pulse, 2400);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(restTimer);
+      window.clearTimeout(onTimer);
+    };
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -114,6 +149,10 @@ export function TalkerLauncherBubble() {
           aria-expanded={open || chipsPinned}
           className="pointer-events-auto relative z-10 flex size-[80px] cursor-pointer items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
         >
+          <span
+            aria-hidden
+            className={`talker-ripple ${attract ? "is-on" : ""}`}
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="-682.69 -622.02 1365.38 1365.38"
@@ -153,6 +192,14 @@ export function TalkerLauncherBubble() {
               className="talker-typing-dot talker-typing-dot-3"
             />
           </svg>
+          <span
+            aria-hidden
+            className={`absolute top-0.5 right-0.5 z-20 flex size-5 items-center justify-center rounded-full bg-[#E11D48] text-[11px] font-semibold leading-none text-white transition-opacity duration-300 ${
+              attract ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            1
+          </span>
         </button>
       </div>
     </>
