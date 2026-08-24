@@ -243,9 +243,10 @@ export const fr = {
     ],
   },
   cta: {
-    line1: "Talker répond.",
-    line2: "Talker vend.",
-    line3: "à votre place.",
+    line1: "Talker parle.",
+    line2: "Talker répond.",
+    line3: "Talker vend.",
+    line4: "à votre place.",
     createAgent: "Créer mon agent gratuitement",
     noCard: "Sans carte bancaire",
   },

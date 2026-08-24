@@ -239,9 +239,10 @@ export const en = {
     ],
   },
   cta: {
-    line1: "Talker answers.",
-    line2: "Talker sells.",
-    line3: "so you don't have to.",
+    line1: "Talker talks.",
+    line2: "Talker answers.",
+    line3: "Talker sells.",
+    line4: "so you don't have to.",
     createAgent: "Start for free",
     noCard: "No credit card required",
   },

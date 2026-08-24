@@ -58,8 +58,10 @@ export function CtaSection() {
                   <br />
                   {t.cta.line2}
                   <br />
+                  {t.cta.line3}
+                  <br />
                   <span className="block pl-16 text-foreground/30 lg:pl-28">
-                    {t.cta.line3}
+                    {t.cta.line4}
                   </span>
                 </h2>
 
