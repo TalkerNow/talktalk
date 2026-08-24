@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { motion } from "motion/react";
 import { IdleTalkerBubble } from "@/components/landing/idle-talker-bubble";
-import { VarianteLabel } from "@/components/landing/variante-label";
-import { useLocale } from "@/components/i18n/locale-context";
 
 const PEOPLE = [
   "/orbit/camille.svg",
@@ -30,9 +28,9 @@ function PersonNode({
   return (
     <div
       ref={nodeRef}
-      className="z-10 size-12 overflow-hidden rounded-full bg-[#EDECEA] shadow-[0_4px_14px_rgba(17,17,17,0.10)] ring-2 ring-white"
+      className="z-10 size-8 overflow-hidden rounded-full bg-[#EDECEA] shadow-[0_3px_10px_rgba(17,17,17,0.10)] ring-2 ring-white"
     >
-      <img src={src} alt="" width={48} height={48} className="size-full object-cover" />
+      <img src={src} alt="" width={32} height={32} className="size-full object-cover" />
     </div>
   );
 }
@@ -87,7 +85,7 @@ function RoundTripPulse({
     setPathLength(pathRef.current.getTotalLength());
   }, [pathD]);
 
-  const pulse = Math.min(56, Math.max(28, pathLength * 0.16));
+  const pulse = Math.min(40, Math.max(20, pathLength * 0.18));
 
   return (
     <svg
@@ -101,14 +99,14 @@ function RoundTripPulse({
         ref={pathRef}
         d={pathD}
         stroke={pathColor}
-        strokeWidth={1.5}
+        strokeWidth={1.25}
         strokeLinecap="round"
       />
       {pathLength > 0 ? (
         <motion.path
           d={pathD}
           stroke={pulseColor}
-          strokeWidth={2.25}
+          strokeWidth={1.85}
           strokeLinecap="round"
           strokeDasharray={`${pulse} ${pathLength}`}
           initial={{ strokeDashoffset: pathLength }}
@@ -127,8 +125,7 @@ function RoundTripPulse({
   );
 }
 
-export function InfraBeamVariant() {
-  const { t } = useLocale();
+export function TalkerBeam() {
   const containerRef = useRef<HTMLDivElement>(null);
   const centerRef = useRef<HTMLDivElement>(null);
   const p1 = useRef<HTMLDivElement>(null);
@@ -139,55 +136,50 @@ export function InfraBeamVariant() {
   const p6 = useRef<HTMLDivElement>(null);
 
   const emitters = [
-    { ref: p1, curvature: -60, color: "#C43F17", track: "rgba(196,63,23,0.28)" },
-    { ref: p2, curvature: -60, color: "#111111", track: "rgba(17,17,17,0.22)" },
+    { ref: p1, curvature: -28, color: "#C43F17", track: "rgba(196,63,23,0.28)" },
+    { ref: p2, curvature: -28, color: "#111111", track: "rgba(17,17,17,0.22)" },
     { ref: p3, curvature: 0, color: "#C43F17", track: "rgba(196,63,23,0.28)" },
     { ref: p4, curvature: 0, color: "#111111", track: "rgba(17,17,17,0.22)" },
-    { ref: p5, curvature: 60, color: "#C43F17", track: "rgba(196,63,23,0.28)" },
-    { ref: p6, curvature: 60, color: "#111111", track: "rgba(17,17,17,0.22)" },
+    { ref: p5, curvature: 28, color: "#C43F17", track: "rgba(196,63,23,0.28)" },
+    { ref: p6, curvature: 28, color: "#111111", track: "rgba(17,17,17,0.22)" },
   ] as const;
 
   return (
-    <section className="relative overflow-hidden border-t border-foreground/8 py-8 lg:py-10">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-        <VarianteLabel />
-        <p className="mt-3 mb-6 max-w-xl text-sm text-muted-foreground">{t.compare.beamLead}</p>
-        <div
-          ref={containerRef}
-          className="relative mx-auto flex h-[280px] w-full max-w-2xl items-center justify-center overflow-visible p-4 sm:h-[320px]"
-        >
-          <div className="flex size-full max-h-[240px] max-w-xl flex-col justify-between">
-            <div className="flex flex-row items-center justify-between">
-              <PersonNode src={PEOPLE[0]} nodeRef={p1} />
-              <PersonNode src={PEOPLE[1]} nodeRef={p2} />
-            </div>
-            <div className="flex flex-row items-center justify-between">
-              <PersonNode src={PEOPLE[2]} nodeRef={p3} />
-              <div ref={centerRef} className="z-10 flex size-20 items-center justify-center">
-                <IdleTalkerBubble className="size-[72px]" />
-              </div>
-              <PersonNode src={PEOPLE[3]} nodeRef={p4} />
-            </div>
-            <div className="flex flex-row items-center justify-between">
-              <PersonNode src={PEOPLE[4]} nodeRef={p5} />
-              <PersonNode src={PEOPLE[5]} nodeRef={p6} />
-            </div>
+    <div
+      ref={containerRef}
+      className="relative mx-auto flex h-[168px] w-full max-w-md items-center justify-center overflow-visible sm:h-[180px]"
+      aria-hidden
+    >
+      <div className="flex size-full max-h-[148px] max-w-sm flex-col justify-between py-1">
+        <div className="flex flex-row items-center justify-between px-6">
+          <PersonNode src={PEOPLE[0]} nodeRef={p1} />
+          <PersonNode src={PEOPLE[1]} nodeRef={p2} />
+        </div>
+        <div className="flex flex-row items-center justify-between">
+          <PersonNode src={PEOPLE[2]} nodeRef={p3} />
+          <div ref={centerRef} className="z-10 flex size-14 items-center justify-center">
+            <IdleTalkerBubble className="size-[52px]" />
           </div>
-
-          {emitters.map((emitter, index) => (
-            <RoundTripPulse
-              key={PEOPLE[index]}
-              containerRef={containerRef}
-              fromRef={emitter.ref}
-              toRef={centerRef}
-              curvature={emitter.curvature}
-              delay={index * SLOT}
-              pathColor={emitter.track}
-              pulseColor={emitter.color}
-            />
-          ))}
+          <PersonNode src={PEOPLE[3]} nodeRef={p4} />
+        </div>
+        <div className="flex flex-row items-center justify-between px-6">
+          <PersonNode src={PEOPLE[4]} nodeRef={p5} />
+          <PersonNode src={PEOPLE[5]} nodeRef={p6} />
         </div>
       </div>
-    </section>
+
+      {emitters.map((emitter, index) => (
+        <RoundTripPulse
+          key={PEOPLE[index]}
+          containerRef={containerRef}
+          fromRef={emitter.ref}
+          toRef={centerRef}
+          curvature={emitter.curvature}
+          delay={index * SLOT}
+          pathColor={emitter.track}
+          pulseColor={emitter.color}
+        />
+      ))}
+    </div>
   );
 }

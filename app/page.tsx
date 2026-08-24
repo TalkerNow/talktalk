@@ -9,7 +9,6 @@ import { IntegrationsSection } from "@/components/landing/integrations-section";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { FooterSection } from "@/components/landing/footer-section";
-import { InfraBeamVariant } from "@/components/landing/infra-beam-variant";
 import { TalkerLauncherBubble } from "@/components/landing/talker-launcher-bubble";
 import { TalkerProvider } from "@/components/talker/provider";
 
@@ -28,7 +27,6 @@ export default function Home() {
         <PricingSection />
         <CtaSection />
         <FooterSection />
-        <InfraBeamVariant />
       </main>
       <TalkerLauncherBubble />
     </TalkerProvider>
