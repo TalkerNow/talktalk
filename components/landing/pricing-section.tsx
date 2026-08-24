@@ -27,17 +27,9 @@ export function PricingSection() {
     <section id="pricing" className="relative py-12 lg:py-16 border-t border-foreground/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-10">
-          <span className="font-mono text-xs tracking-[0.2em] text-foreground uppercase block mb-6">
-            {t.pricing.eyebrow}
-          </span>
-          <h2 className="font-display font-semibold text-5xl md:text-6xl lg:text-7xl tracking-tight text-foreground mb-6 leading-[0.95]">
+          <h2 className="font-display font-semibold text-5xl md:text-6xl lg:text-7xl tracking-tight text-foreground leading-[0.95]">
             {t.pricing.title}
-            <br />
-            <span className="text-stroke">{t.pricing.titleMuted}</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            {t.pricing.lead}
-          </p>
         </div>
 
         <div className="mb-8 flex items-center justify-center gap-4 lg:mb-10">

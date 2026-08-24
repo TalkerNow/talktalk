@@ -186,10 +186,7 @@ export const fr = {
     body: "Un zip Talker.now à téléverser dans WP-Admin. Fonctionne avec la plupart des thèmes et constructeurs de pages (Elementor, Divi, etc.).",
   },
   pricing: {
-    eyebrow: "Tarifs",
-    title: "Un tarif clair.",
-    titleMuted: "Pas de surprise.",
-    lead: "Testez gratuitement, passez à la vitesse supérieure quand vous êtes prêt. Aucun frais caché.",
+    title: "Nos tarifs.",
     monthly: "Mensuel",
     annual: "Annuel",
     toggle: "Basculer facturation annuelle",

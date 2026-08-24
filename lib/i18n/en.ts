@@ -182,10 +182,7 @@ export const en = {
     body: "A Talker.now zip you upload in WP-Admin. Works with most themes and builders, including Elementor and Divi.",
   },
   pricing: {
-    eyebrow: "Pricing",
-    title: "Simple pricing.",
-    titleMuted: "No surprises.",
-    lead: "Start free, upgrade when you're ready. No hidden fees.",
+    title: "Our pricing.",
     monthly: "Monthly",
     annual: "Yearly",
     toggle: "Toggle yearly billing",
