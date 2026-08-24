@@ -15,6 +15,8 @@ const PEOPLE = [
   "/orbit/marc.svg",
 ] as const;
 
+const DURATION = 6;
+
 function PersonNode({
   src,
   nodeRef,
@@ -32,6 +34,44 @@ function PersonNode({
   );
 }
 
+function BeamRoundTrip({
+  containerRef,
+  fromRef,
+  toRef,
+  curvature = 0,
+  delay = 0,
+  pathColor,
+  gradientStartColor,
+  gradientStopColor,
+}: {
+  containerRef: RefObject<HTMLElement | null>;
+  fromRef: RefObject<HTMLElement | null>;
+  toRef: RefObject<HTMLElement | null>;
+  curvature?: number;
+  delay?: number;
+  pathColor: string;
+  gradientStartColor: string;
+  gradientStopColor: string;
+}) {
+  const shared = {
+    containerRef,
+    fromRef,
+    toRef,
+    curvature,
+    duration: DURATION,
+    pathColor,
+    gradientStartColor,
+    gradientStopColor,
+  };
+
+  return (
+    <>
+      <AnimatedBeam {...shared} delay={delay} />
+      <AnimatedBeam {...shared} delay={delay + DURATION / 2} reverse />
+    </>
+  );
+}
+
 export function InfraBeamVariant() {
   const { t } = useLocale();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -44,15 +84,15 @@ export function InfraBeamVariant() {
   const p6 = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="relative overflow-hidden border-t border-foreground/8 py-10 lg:py-14">
+    <section className="relative overflow-hidden border-t border-foreground/8 py-8 lg:py-10">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
         <VarianteLabel />
-        <p className="mt-3 mb-8 max-w-xl text-lg text-muted-foreground">{t.compare.beamLead}</p>
+        <p className="mt-3 mb-6 max-w-xl text-sm text-muted-foreground">{t.compare.beamLead}</p>
         <div
           ref={containerRef}
-          className="relative mx-auto flex h-[340px] w-full max-w-3xl items-center justify-center overflow-visible p-6 sm:h-[380px]"
+          className="relative mx-auto flex h-[280px] w-full max-w-2xl items-center justify-center overflow-visible p-4 sm:h-[320px]"
         >
-          <div className="flex size-full max-h-[260px] max-w-xl flex-col justify-between">
+          <div className="flex size-full max-h-[240px] max-w-xl flex-col justify-between">
             <div className="flex flex-row items-center justify-between">
               <PersonNode src={PEOPLE[0]} nodeRef={p1} />
               <PersonNode src={PEOPLE[1]} nodeRef={p2} />
@@ -70,68 +110,60 @@ export function InfraBeamVariant() {
             </div>
           </div>
 
-          <AnimatedBeam
+          <BeamRoundTrip
             containerRef={containerRef}
             fromRef={p1}
             toRef={centerRef}
             curvature={-60}
-            duration={6}
+            delay={0}
             pathColor="rgba(196,63,23,0.22)"
             gradientStartColor="#C43F17"
             gradientStopColor="#111111"
           />
-          <AnimatedBeam
+          <BeamRoundTrip
             containerRef={containerRef}
             fromRef={p2}
             toRef={centerRef}
             curvature={-60}
-            duration={6}
-            delay={0.3}
-            reverse
+            delay={0.25}
             pathColor="rgba(196,63,23,0.22)"
             gradientStartColor="#C43F17"
             gradientStopColor="#111111"
           />
-          <AnimatedBeam
+          <BeamRoundTrip
             containerRef={containerRef}
             fromRef={p3}
             toRef={centerRef}
-            duration={6}
-            delay={0.15}
+            delay={0.1}
             pathColor="rgba(17,17,17,0.18)"
             gradientStartColor="#111111"
             gradientStopColor="#C43F17"
           />
-          <AnimatedBeam
+          <BeamRoundTrip
             containerRef={containerRef}
             fromRef={p4}
             toRef={centerRef}
-            duration={6}
-            delay={0.45}
-            reverse
+            delay={0.35}
             pathColor="rgba(17,17,17,0.18)"
             gradientStartColor="#111111"
             gradientStopColor="#C43F17"
           />
-          <AnimatedBeam
+          <BeamRoundTrip
             containerRef={containerRef}
             fromRef={p5}
             toRef={centerRef}
             curvature={60}
-            duration={6}
             delay={0.2}
             pathColor="rgba(196,63,23,0.22)"
             gradientStartColor="#C43F17"
             gradientStopColor="#111111"
           />
-          <AnimatedBeam
+          <BeamRoundTrip
             containerRef={containerRef}
             fromRef={p6}
             toRef={centerRef}
             curvature={60}
-            duration={6}
-            delay={0.5}
-            reverse
+            delay={0.45}
             pathColor="rgba(196,63,23,0.22)"
             gradientStartColor="#C43F17"
             gradientStopColor="#111111"
