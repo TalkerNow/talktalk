@@ -1,4 +1,4 @@
-import { TalkerMark } from "@/components/brand/mark";
+import { IdleTalkerBubble } from "@/components/landing/idle-talker-bubble";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 
 const OUTER = [
@@ -31,12 +31,10 @@ function VisitorPastille({ src }: { src: string }) {
 
 export function VisitorOrbit() {
   return (
-    <div className="flex justify-center lg:justify-end" aria-hidden>
+    <div className="flex justify-center" aria-hidden>
       <div className="origin-center scale-[0.72] sm:scale-[0.88] lg:scale-100">
-        <div className="relative flex h-[460px] w-[460px] items-center justify-center">
-          <div className="relative z-10 flex size-[92px] items-center justify-center rounded-full bg-[#F7F6F4]">
-            <TalkerMark className="size-[72px]" />
-          </div>
+        <div className="relative flex h-[460px] w-[460px] items-center justify-center overflow-visible">
+          <IdleTalkerBubble className="relative z-10 size-[88px] drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]" />
           <OrbitingCircles
             className="motion-reduce:animate-none"
             duration={48}

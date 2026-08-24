@@ -44,6 +44,15 @@ export const fr = {
     leaflet: "Le site statique est un dépliant.",
     partner: "Votre site avec Talker devient un vendeur, une secrétaire, un partenaire.",
   },
+  compare: {
+    variante: "variante",
+    orbitLead: "Les visiteurs gravitent. Talker reste au centre.",
+    auroraBefore: "Ils ",
+    auroraWord: "demandent",
+    auroraAfter: ".",
+    shineLead: "Les mêmes offres, autre cadre.",
+    beamLead: "Les visiteurs arrivent. Talker relie. Le matin, c’est dans votre boîte.",
+  },
   features: {
     eyebrow: "Fonctionnalités",
     title: "Ce qu'il faut.",

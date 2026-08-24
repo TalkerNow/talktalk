@@ -45,6 +45,15 @@ export const en = {
     leaflet: "A static site is a brochure.",
     partner: "With Talker, your site becomes a salesperson, a receptionist, a partner.",
   },
+  compare: {
+    variante: "variant",
+    orbitLead: "Visitors orbit. Talker stays at the center.",
+    auroraBefore: "They ",
+    auroraWord: "ask",
+    auroraAfter: ".",
+    shineLead: "The same offers, another frame.",
+    beamLead: "Visitors arrive. Talker connects. In the morning, it’s in your inbox.",
+  },
   features: {
     eyebrow: "What it does",
     title: "What you need.",

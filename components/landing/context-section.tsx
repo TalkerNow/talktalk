@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/components/i18n/locale-context";
-import { VisitorOrbit } from "@/components/landing/visitor-orbit";
 
 export function ContextSection() {
   const { t } = useLocale();
@@ -29,46 +28,43 @@ export function ContextSection() {
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div
-          className={`grid items-center gap-10 overflow-visible lg:grid-cols-2 lg:gap-16 transition-all duration-700 ${
+          className={`max-w-3xl overflow-visible transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <div className="overflow-visible">
-            <h2 className="text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight mb-8 leading-[0.95]">
-              {t.context.title}
-              <br />
-              <span className="text-foreground/30">{t.context.titleMuted}</span>
-            </h2>
-            <div className="flex lg:gap-20">
-              <span
-                className="hidden shrink-0 font-mono text-sm lg:block"
-                aria-hidden
-              >
-                <span className="invisible">01</span>
-              </span>
-              <div className="flex-1">
-                <p className="mb-10 text-xl leading-relaxed text-muted-foreground">
-                  {t.context.body}
+          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight mb-8 leading-[0.95]">
+            {t.context.title}
+            <br />
+            <span className="text-foreground/30">{t.context.titleMuted}</span>
+          </h2>
+          <div className="flex lg:gap-20">
+            <span
+              className="hidden shrink-0 font-mono text-sm lg:block"
+              aria-hidden
+            >
+              <span className="invisible">01</span>
+            </span>
+            <div className="flex-1">
+              <p className="mb-10 text-xl leading-relaxed text-muted-foreground">
+                {t.context.body}
+              </p>
+              <div className="mb-10 border border-[#C43F17]/20 bg-[#F4DCD4] px-6 py-5 text-[#111111]">
+                <p className="text-xl leading-relaxed text-[#111111]">
+                  {t.context.salmon}
                 </p>
-                <div className="mb-10 border border-[#C43F17]/20 bg-[#F4DCD4] px-6 py-5 text-[#111111]">
-                  <p className="text-xl leading-relaxed text-[#111111]">
-                    {t.context.salmon}
-                  </p>
-                  <ul className="mt-4 space-y-2">
-                    <li className="flex items-start gap-3 text-xl font-medium leading-relaxed text-[#111111]">
-                      <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
-                      {t.context.leaflet}
-                    </li>
-                    <li className="flex items-start gap-3 text-xl font-medium leading-relaxed text-[#111111]">
-                      <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
-                      {t.context.partner}
-                    </li>
-                  </ul>
-                </div>
+                <ul className="mt-4 space-y-2">
+                  <li className="flex items-start gap-3 text-xl font-medium leading-relaxed text-[#111111]">
+                    <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
+                    {t.context.leaflet}
+                  </li>
+                  <li className="flex items-start gap-3 text-xl font-medium leading-relaxed text-[#111111]">
+                    <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
+                    {t.context.partner}
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-          <VisitorOrbit />
         </div>
       </div>
     </section>
