@@ -32,47 +32,39 @@ export function ContextSection() {
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div
-          className={`grid items-center gap-10 overflow-visible lg:grid-cols-2 lg:gap-16 transition-all duration-700 ${
+          className={`grid items-start gap-8 overflow-visible lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.9fr)] lg:gap-8 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <div className="overflow-visible">
-            <h2 className="text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight mb-8 leading-[0.95]">
+          <div className="min-w-0 overflow-visible">
+            <h2 className="text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight mb-4 leading-[0.95] lg:mb-5">
               {t.context.title}
               <br />
               <AuroraText colors={AURORA}>{t.context.titleMuted}</AuroraText>
             </h2>
-            <div className="flex lg:gap-20">
-              <span
-                className="hidden shrink-0 font-mono text-sm lg:block"
-                aria-hidden
-              >
-                <span className="invisible">01</span>
-              </span>
-              <div className="flex-1">
-                <p className="mb-10 text-xl leading-relaxed text-muted-foreground">
-                  {t.context.body}
-                </p>
-                <div className="mb-10 border border-[#C43F17]/20 bg-[#F4DCD4] px-6 py-5 text-[#111111]">
-                  <p className="text-xl leading-relaxed text-[#111111]">
-                    {t.context.salmon}
-                  </p>
-                  <ul className="mt-4 space-y-2">
-                    <li className="flex items-start gap-3 text-xl font-medium leading-relaxed text-[#111111]">
-                      <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
-                      {t.context.leaflet}
-                    </li>
-                    <li className="flex items-start gap-3 text-xl font-medium leading-relaxed text-[#111111]">
-                      <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
-                      {t.context.partner}
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <p className="mb-5 max-w-none text-lg leading-snug text-muted-foreground">
+              {t.context.body}
+            </p>
+            <div className="border border-[#C43F17]/20 bg-[#F4DCD4] px-6 py-4 text-[#111111]">
+              <p className="text-lg leading-snug text-[#111111]">
+                {t.context.salmon}
+              </p>
+              <ul className="mt-3 space-y-1.5">
+                <li className="flex items-start gap-3 text-lg font-medium leading-snug text-[#111111]">
+                  <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
+                  {t.context.leaflet}
+                </li>
+                <li className="flex items-start gap-3 text-lg font-medium leading-snug text-[#111111]">
+                  <span className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]" aria-hidden />
+                  {t.context.partner}
+                </li>
+              </ul>
             </div>
           </div>
 
-          <VisitorOrbit />
+          <div className="justify-self-center overflow-visible lg:translate-x-[38px]">
+            <VisitorOrbit />
+          </div>
         </div>
       </div>
     </section>
