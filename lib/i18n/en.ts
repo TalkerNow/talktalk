@@ -8,7 +8,7 @@ export const en = {
     howItWorks: "How it works",
     pricing: "Pricing",
     contact: "Contact",
-    signIn: "Sign in",
+    download: "Download",
     createAgent: "Start for free",
     menu: "Menu",
   },

@@ -7,7 +7,7 @@ export const fr = {
     howItWorks: "Comment ça marche",
     pricing: "Tarifs",
     contact: "Contact",
-    signIn: "Connexion",
+    download: "Télécharger",
     createAgent: "Créer mon agent gratuitement",
     menu: "Menu",
   },

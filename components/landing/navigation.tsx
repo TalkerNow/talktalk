@@ -74,8 +74,8 @@ export function Navigation() {
           {/* Desktop CTA */}
           <div className={`hidden md:flex items-center overflow-visible ${isScrolled ? "gap-3" : "gap-4"}`}>
             {!isScrolled ? <LanguageSwitcher variant="nav" /> : null}
-            <a href="#" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
-              {t.nav.signIn}
+            <a href="/installer" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
+              {t.nav.download}
             </a>
             <Button
               asChild
@@ -150,11 +150,13 @@ export function Navigation() {
           style={{ transitionDelay: isMobileMenuOpen ? "300ms" : "0ms" }}
           >
             <Button 
+              asChild
               variant="outline" 
               className="flex-1 rounded-full h-14 text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
             >
-              {t.nav.signIn}
+              <a href="/installer" onClick={() => setIsMobileMenuOpen(false)}>
+                {t.nav.download}
+              </a>
             </Button>
             <Button 
               asChild
