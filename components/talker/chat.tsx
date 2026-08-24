@@ -228,6 +228,9 @@ export function TalkerChat({
           </button>
         </div>
       </form>
+      <p className="shrink-0 border-t border-foreground/8 bg-[#F7F6F4] px-3 py-2 text-center font-mono text-[10px] tracking-wide text-[#6B6B73]">
+        {t.bubble.poweredBy}
+      </p>
     </div>
   );
 }

@@ -317,6 +317,7 @@ export const fr = {
     placeholder: "Posez votre question...",
     send: "Envoyer",
     writing: "Talker écrit",
+    poweredBy: "Propulsé par talker.now",
     chips: [
       { label: "Quels sont vos horaires ?", intent: "horaires" as const },
       { label: "Poser une question", intent: "question" as const },

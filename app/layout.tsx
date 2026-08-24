@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import { LocaleProvider } from "@/components/i18n/locale-context";
+import { TalkerProvider } from "@/components/talker/provider";
+import { TalkerLauncherBubble } from "@/components/landing/talker-launcher-bubble";
 import "./globals.css";
 
 const inter = Inter({
@@ -31,7 +33,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
-        <LocaleProvider>{children}</LocaleProvider>
+        <LocaleProvider>
+          <TalkerProvider>
+            {children}
+            <TalkerLauncherBubble />
+          </TalkerProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

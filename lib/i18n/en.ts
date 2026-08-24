@@ -313,6 +313,7 @@ export const en = {
     placeholder: "Type a message...",
     send: "Send",
     writing: "Talker is typing",
+    poweredBy: "Powered by talker.now",
     chips: [
       { label: "What are your hours?", intent: "horaires" as const },
       { label: "Ask a question", intent: "question" as const },

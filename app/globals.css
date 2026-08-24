@@ -363,23 +363,50 @@
   }
 }
 
-.talker-ripple {
+.talker-capsule-halo {
   position: absolute;
-  inset: 0;
+  inset: -10px;
   border-radius: 9999px;
   pointer-events: none;
-  box-shadow: 0 0 0 0 rgba(196, 63, 23, 0.7);
-  animation: talker-ripple 2s ease infinite;
+  background: radial-gradient(
+    circle,
+    rgba(196, 63, 23, 0.28) 0%,
+    rgba(196, 63, 23, 0.08) 55%,
+    transparent 72%
+  );
+  filter: blur(6px);
 }
 
-@keyframes talker-ripple {
-  0% {
-    box-shadow: 0 0 0 0 rgba(196, 63, 23, 0.7);
+.talker-capsule-pill-clip {
+  display: inline-flex;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  animation: talker-capsule-pill 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes talker-capsule-pill {
+  0%,
+  6% {
+    max-width: 0;
+    opacity: 0;
   }
-  70% {
-    box-shadow: 0 0 0 10px rgba(196, 63, 23, 0);
+  16%,
+  68% {
+    max-width: 7.5rem;
+    opacity: 1;
   }
+  78%,
   100% {
-    box-shadow: 0 0 0 10px rgba(196, 63, 23, 0);
+    max-width: 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .talker-capsule-pill-clip {
+    animation: none;
+    max-width: 7.5rem;
+    opacity: 1;
   }
 }
