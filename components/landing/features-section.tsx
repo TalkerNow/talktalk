@@ -67,11 +67,16 @@ function AIVisual() {
 function CollabVisual() {
   return (
     <svg viewBox="0 0 200 160" className="w-full h-full" fill="none">
-      <rect x="28" y="38" width="64" height="84" rx="12" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="60" cy="70" r="10" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M48 96c0-8 5.5-14 12-14s12 6 12 14" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="108" y="48" width="68" height="48" rx="4" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M108 56 L142 78 L176 56" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="52" y="18" width="96" height="124" rx="8" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="100" cy="44" r="9" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M87 66c1.5-8 7.5-12 13-12s11.5 4 13 12" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="64" y="80" width="8" height="13" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M66 82.5h4" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M80 86.5h44" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="64" y="101" width="14" height="10" rx="1.2" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M64 103l7 5 7-5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M84 106h40" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M64 126h36" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   );
 }
