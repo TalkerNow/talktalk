@@ -8,19 +8,43 @@ import { useLocale } from "@/components/i18n/locale-context";
 const BUBBLE_PX = 80;
 const ATTRACT_REST_MS = 7000;
 const ATTRACT_ON_MS = 4000;
+const CHIP_LEAVE_MS = 220;
 
 export function TalkerLauncherBubble() {
   const { t } = useLocale();
   const invites = t.bubble.chips;
   const { open, openTalker, closeTalker } = useTalker();
   const [chipsPinned, setChipsPinned] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [attract, setAttract] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const clusterRef = useRef<HTMLDivElement>(null);
+  const hideTimer = useRef(0);
+
+  const clearHideTimer = () => {
+    window.clearTimeout(hideTimer.current);
+    hideTimer.current = 0;
+  };
+
+  const onChipRegionEnter = () => {
+    clearHideTimer();
+    setHovered(true);
+  };
+
+  const onChipRegionLeave = () => {
+    clearHideTimer();
+    hideTimer.current = window.setTimeout(() => {
+      setHovered(false);
+    }, CHIP_LEAVE_MS);
+  };
+
+  useEffect(() => () => clearHideTimer(), []);
 
   useEffect(() => {
     if (open) {
       setAttract(false);
+      setHovered(false);
+      clearHideTimer();
       return;
     }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -82,7 +106,7 @@ export function TalkerLauncherBubble() {
     return () => document.removeEventListener("pointerdown", onPointerDown);
   }, [open, chipsPinned, closeTalker]);
 
-  const chipsVisible = !open && chipsPinned;
+  const chipsShown = !open && (hovered || chipsPinned || attract);
 
   return (
     <>
@@ -104,7 +128,7 @@ export function TalkerLauncherBubble() {
 
       <div
         ref={clusterRef}
-        className="group/talker pointer-events-none fixed z-40"
+        className="pointer-events-none fixed z-40"
         style={{
           right: "max(1.5rem, env(safe-area-inset-right))",
           bottom: "max(1.5rem, env(safe-area-inset-bottom))",
@@ -112,20 +136,25 @@ export function TalkerLauncherBubble() {
       >
         {!open ? (
           <div
-            className={`absolute right-0 bottom-full z-30 mb-3 flex w-max flex-col items-end gap-1.5 transition-opacity duration-200 ${
-              chipsVisible
+            onPointerEnter={onChipRegionEnter}
+            onPointerLeave={onChipRegionLeave}
+            aria-hidden={!chipsShown}
+            className={`absolute right-0 bottom-full z-30 flex w-max flex-col items-end gap-1.5 pb-3 transition-opacity duration-200 ${
+              chipsShown
                 ? "pointer-events-auto opacity-100"
                 : "pointer-events-none opacity-0"
-            } md:group-hover/talker:pointer-events-auto md:group-hover/talker:opacity-100`}
+            }`}
           >
             {invites.map((invite) => (
               <button
                 key={invite.label}
                 type="button"
+                tabIndex={chipsShown ? 0 : -1}
                 onClick={(event) => {
                   event.preventDefault();
                   event.stopPropagation();
                   setChipsPinned(false);
+                  setHovered(false);
                   openTalker(invite.intent);
                 }}
                 className="rounded-full border border-line bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink"
@@ -138,6 +167,8 @@ export function TalkerLauncherBubble() {
 
         <button
           type="button"
+          onPointerEnter={onChipRegionEnter}
+          onPointerLeave={onChipRegionLeave}
           onClick={() => {
             if (open) {
               closeTalker();
@@ -146,7 +177,7 @@ export function TalkerLauncherBubble() {
             setChipsPinned((pinned) => !pinned);
           }}
           aria-label={t.bubble.open}
-          aria-expanded={open || chipsPinned}
+          aria-expanded={open || chipsShown}
           className="pointer-events-auto relative z-10 flex size-[80px] cursor-pointer items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
         >
           <span
