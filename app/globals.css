@@ -377,36 +377,75 @@
   filter: blur(6px);
 }
 
-.talker-capsule-pill-clip {
-  display: inline-flex;
+.talker-capsule-tail-scale {
+  transform-origin: 0 0;
+  transform: scale(1);
+  animation: talker-capsule-tail 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.talker-capsule-pill-track {
+  display: block;
   overflow: hidden;
-  max-width: 0;
+  width: 0;
   opacity: 0;
-  animation: talker-capsule-pill 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation: talker-capsule-pill 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.talker-capsule-pill {
+  display: inline-flex;
+}
+
+.talker-capsule.is-open .talker-capsule-tail-scale {
+  animation: none;
+  transform: scale(0);
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.talker-capsule.is-open .talker-capsule-pill-track {
+  animation: none;
+  width: 5.75rem;
+  opacity: 1;
+  transition:
+    width 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease;
+}
+
+@keyframes talker-capsule-tail {
+  0%,
+  14% {
+    transform: scale(1);
+  }
+  26%,
+  58% {
+    transform: scale(0);
+  }
+  70%,
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes talker-capsule-pill {
   0%,
-  6% {
-    max-width: 0;
+  14% {
+    width: 0;
     opacity: 0;
   }
-  16%,
-  68% {
-    max-width: 7.5rem;
+  26%,
+  58% {
+    width: 5.75rem;
     opacity: 1;
   }
-  78%,
+  70%,
   100% {
-    max-width: 0;
+    width: 0;
     opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .talker-capsule-pill-clip {
+  .talker-capsule-tail-scale,
+  .talker-capsule-pill-track {
     animation: none;
-    max-width: 7.5rem;
-    opacity: 1;
   }
 }
