@@ -5,7 +5,6 @@ import {
   ScrollVelocityContainer,
   ScrollVelocityRow,
 } from "@/components/ui/scroll-based-velocity";
-import { TalkerBeam } from "@/components/landing/infra-beam-variant";
 import { useLocale } from "@/components/i18n/locale-context";
 
 export function CtaSection() {
@@ -27,32 +26,26 @@ export function CtaSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-visible py-12 lg:py-16">
+    <section ref={sectionRef} className="relative overflow-hidden py-12 lg:py-16">
       <div
-        className={`transition-all duration-1000 ${
+        className={`relative transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        <div className="relative overflow-hidden">
-          <ScrollVelocityContainer className="font-display text-4xl font-semibold tracking-tight text-[#111111] md:text-6xl">
-            <ScrollVelocityRow baseVelocity={3} direction={1} className="py-2">
-              {band}
-            </ScrollVelocityRow>
-            <ScrollVelocityRow
-              baseVelocity={3}
-              direction={-1}
-              className="py-2 text-[#C43F17]"
-            >
-              {band}
-            </ScrollVelocityRow>
-          </ScrollVelocityContainer>
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-[#F7F6F4]" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/5 bg-gradient-to-l from-[#F7F6F4]" />
-        </div>
-
-        <div className="mx-auto mt-8 max-w-[1400px] px-6 lg:mt-10 lg:px-12">
-          <TalkerBeam />
-        </div>
+        <ScrollVelocityContainer className="font-display text-4xl font-semibold tracking-tight text-[#111111] md:text-6xl">
+          <ScrollVelocityRow baseVelocity={3} direction={1} className="py-2">
+            {band}
+          </ScrollVelocityRow>
+          <ScrollVelocityRow
+            baseVelocity={3}
+            direction={-1}
+            className="py-2 text-[#C43F17]"
+          >
+            {band}
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-[#F7F6F4]" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/5 bg-gradient-to-l from-[#F7F6F4]" />
       </div>
     </section>
   );
