@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,24 @@ import { Menu, X } from "lucide-react";
 function resolveNavHref(href: string, pathname: string) {
   if (!href.startsWith("#")) return href;
   return pathname === "/" ? href : `/${href}`;
+}
+
+function NavTextLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      className="relative group inline-flex items-center text-sm leading-none text-foreground/70 hover:text-foreground transition-colors duration-300"
+    >
+      {children}
+      <span className="absolute -bottom-1 left-0 h-px w-0 bg-[#C43F17] transition-all duration-300 group-hover:w-full" />
+    </a>
+  );
 }
 
 export function Navigation() {
@@ -60,23 +78,16 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className={`hidden md:flex items-center ${isScrolled ? "gap-6 lg:gap-8" : "gap-12"}`}>
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={resolveNavHref(link.href, pathname)}
-                className="text-sm text-foreground/70 hover:text-foreground transition-colors duration-300 relative group"
-              >
+              <NavTextLink key={link.name} href={resolveNavHref(link.href, pathname)}>
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#C43F17] transition-all duration-300 group-hover:w-full" />
-              </a>
+              </NavTextLink>
             ))}
           </div>
 
           {/* Desktop CTA */}
           <div className={`hidden md:flex items-center overflow-visible ${isScrolled ? "gap-3" : "gap-4"}`}>
             {!isScrolled ? <LanguageSwitcher variant="nav" /> : null}
-            <a href="/installer" className={`text-foreground/70 hover:text-foreground transition-all duration-500 ${isScrolled ? "text-xs" : "text-sm"}`}>
-              {t.nav.download}
-            </a>
+            <NavTextLink href="/installer">{t.nav.download}</NavTextLink>
             <Button
               asChild
               size="sm"
