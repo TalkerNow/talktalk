@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, type RefObject } from "react";
-import { AnimatedBeam } from "@/components/ui/animated-beam";
+import { useEffect, useRef, useState, type RefObject } from "react";
+import { motion } from "motion/react";
 import { IdleTalkerBubble } from "@/components/landing/idle-talker-bubble";
 import { VarianteLabel } from "@/components/landing/variante-label";
 import { useLocale } from "@/components/i18n/locale-context";
@@ -15,7 +15,10 @@ const PEOPLE = [
   "/orbit/marc.svg",
 ] as const;
 
-const DURATION = 6;
+const TRIP_MS = 3.2;
+const GAP_MS = 0.45;
+const SLOT = TRIP_MS + GAP_MS;
+const PEOPLE_COUNT = PEOPLE.length;
 
 function PersonNode({
   src,
@@ -34,15 +37,14 @@ function PersonNode({
   );
 }
 
-function BeamRoundTrip({
+function RoundTripPulse({
   containerRef,
   fromRef,
   toRef,
   curvature = 0,
   delay = 0,
   pathColor,
-  gradientStartColor,
-  gradientStopColor,
+  pulseColor,
 }: {
   containerRef: RefObject<HTMLElement | null>;
   fromRef: RefObject<HTMLElement | null>;
@@ -50,25 +52,78 @@ function BeamRoundTrip({
   curvature?: number;
   delay?: number;
   pathColor: string;
-  gradientStartColor: string;
-  gradientStopColor: string;
+  pulseColor: string;
 }) {
-  const shared = {
-    containerRef,
-    fromRef,
-    toRef,
-    curvature,
-    duration: DURATION,
-    pathColor,
-    gradientStartColor,
-    gradientStopColor,
-  };
+  const pathRef = useRef<SVGPathElement>(null);
+  const [pathD, setPathD] = useState("");
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [pathLength, setPathLength] = useState(0);
+
+  useEffect(() => {
+    const updatePath = () => {
+      if (!containerRef.current || !fromRef.current || !toRef.current) return;
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const from = fromRef.current.getBoundingClientRect();
+      const to = toRef.current.getBoundingClientRect();
+      setSize({ width: containerRect.width, height: containerRect.height });
+      const startX = from.left - containerRect.left + from.width / 2;
+      const startY = from.top - containerRect.top + from.height / 2;
+      const endX = to.left - containerRect.left + to.width / 2;
+      const endY = to.top - containerRect.top + to.height / 2;
+      const controlY = startY - curvature;
+      setPathD(
+        `M ${startX},${startY} Q ${(startX + endX) / 2},${controlY} ${endX},${endY}`
+      );
+    };
+
+    const resizeObserver = new ResizeObserver(updatePath);
+    if (containerRef.current) resizeObserver.observe(containerRef.current);
+    updatePath();
+    return () => resizeObserver.disconnect();
+  }, [containerRef, fromRef, toRef, curvature]);
+
+  useEffect(() => {
+    if (!pathRef.current || !pathD) return;
+    setPathLength(pathRef.current.getTotalLength());
+  }, [pathD]);
+
+  const pulse = Math.min(56, Math.max(28, pathLength * 0.16));
 
   return (
-    <>
-      <AnimatedBeam {...shared} delay={delay} />
-      <AnimatedBeam {...shared} delay={delay + DURATION / 2} reverse />
-    </>
+    <svg
+      fill="none"
+      width={size.width}
+      height={size.height}
+      className="pointer-events-none absolute top-0 left-0 transform-gpu"
+      viewBox={`0 0 ${size.width} ${size.height}`}
+    >
+      <path
+        ref={pathRef}
+        d={pathD}
+        stroke={pathColor}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+      {pathLength > 0 ? (
+        <motion.path
+          d={pathD}
+          stroke={pulseColor}
+          strokeWidth={2.25}
+          strokeLinecap="round"
+          strokeDasharray={`${pulse} ${pathLength}`}
+          initial={{ strokeDashoffset: pathLength }}
+          animate={{ strokeDashoffset: [pathLength, 0, pathLength] }}
+          transition={{
+            duration: TRIP_MS,
+            times: [0, 0.5, 1],
+            ease: ["easeOut", "easeIn"],
+            delay,
+            repeat: Infinity,
+            repeatDelay: SLOT * (PEOPLE_COUNT - 1),
+          }}
+        />
+      ) : null}
+    </svg>
   );
 }
 
@@ -82,6 +137,15 @@ export function InfraBeamVariant() {
   const p4 = useRef<HTMLDivElement>(null);
   const p5 = useRef<HTMLDivElement>(null);
   const p6 = useRef<HTMLDivElement>(null);
+
+  const emitters = [
+    { ref: p1, curvature: -60, color: "#C43F17", track: "rgba(196,63,23,0.28)" },
+    { ref: p2, curvature: -60, color: "#111111", track: "rgba(17,17,17,0.22)" },
+    { ref: p3, curvature: 0, color: "#C43F17", track: "rgba(196,63,23,0.28)" },
+    { ref: p4, curvature: 0, color: "#111111", track: "rgba(17,17,17,0.22)" },
+    { ref: p5, curvature: 60, color: "#C43F17", track: "rgba(196,63,23,0.28)" },
+    { ref: p6, curvature: 60, color: "#111111", track: "rgba(17,17,17,0.22)" },
+  ] as const;
 
   return (
     <section className="relative overflow-hidden border-t border-foreground/8 py-8 lg:py-10">
@@ -110,64 +174,18 @@ export function InfraBeamVariant() {
             </div>
           </div>
 
-          <BeamRoundTrip
-            containerRef={containerRef}
-            fromRef={p1}
-            toRef={centerRef}
-            curvature={-60}
-            delay={0}
-            pathColor="rgba(196,63,23,0.22)"
-            gradientStartColor="#C43F17"
-            gradientStopColor="#111111"
-          />
-          <BeamRoundTrip
-            containerRef={containerRef}
-            fromRef={p2}
-            toRef={centerRef}
-            curvature={-60}
-            delay={0.25}
-            pathColor="rgba(196,63,23,0.22)"
-            gradientStartColor="#C43F17"
-            gradientStopColor="#111111"
-          />
-          <BeamRoundTrip
-            containerRef={containerRef}
-            fromRef={p3}
-            toRef={centerRef}
-            delay={0.1}
-            pathColor="rgba(17,17,17,0.18)"
-            gradientStartColor="#111111"
-            gradientStopColor="#C43F17"
-          />
-          <BeamRoundTrip
-            containerRef={containerRef}
-            fromRef={p4}
-            toRef={centerRef}
-            delay={0.35}
-            pathColor="rgba(17,17,17,0.18)"
-            gradientStartColor="#111111"
-            gradientStopColor="#C43F17"
-          />
-          <BeamRoundTrip
-            containerRef={containerRef}
-            fromRef={p5}
-            toRef={centerRef}
-            curvature={60}
-            delay={0.2}
-            pathColor="rgba(196,63,23,0.22)"
-            gradientStartColor="#C43F17"
-            gradientStopColor="#111111"
-          />
-          <BeamRoundTrip
-            containerRef={containerRef}
-            fromRef={p6}
-            toRef={centerRef}
-            curvature={60}
-            delay={0.45}
-            pathColor="rgba(196,63,23,0.22)"
-            gradientStartColor="#C43F17"
-            gradientStopColor="#111111"
-          />
+          {emitters.map((emitter, index) => (
+            <RoundTripPulse
+              key={PEOPLE[index]}
+              containerRef={containerRef}
+              fromRef={emitter.ref}
+              toRef={centerRef}
+              curvature={emitter.curvature}
+              delay={index * SLOT}
+              pathColor={emitter.track}
+              pulseColor={emitter.color}
+            />
+          ))}
         </div>
       </div>
     </section>

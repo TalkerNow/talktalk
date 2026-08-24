@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AuroraText } from "@/components/ui/aurora-text";
 import { useLocale } from "@/components/i18n/locale-context";
-import { AnimatedSphere } from "./animated-sphere";
+import { VisitorOrbit } from "@/components/landing/visitor-orbit";
 
 const AURORA = ["#C43F17", "#111111", "#C43F17"];
 
@@ -72,9 +72,7 @@ export function ContextSection() {
             </div>
           </div>
 
-          <div className="mx-auto h-[320px] w-full max-w-[500px] sm:h-[400px] lg:h-[500px] lg:max-w-none">
-            <AnimatedSphere />
-          </div>
+          <VisitorOrbit />
         </div>
       </div>
     </section>
