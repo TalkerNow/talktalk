@@ -28,7 +28,7 @@ export const en = {
       "An AI chatbot trained on your business. It captures phone numbers and emails, answers pricing on its own, routes existing customers, and collects Google reviews. Live on WordPress in 10 minutes. No code.",
     createAgent: "Start for free",
     seeDemo: "View demo",
-    wordpress: "Official WordPress plugin — install it from the plugin directory",
+    wordpress: "Talker.now zip — upload it in WP-Admin",
     stats: [
       { value: "+50%", label: "more leads from your site" },
       { value: "−80%", label: "time on repetitive questions" },
@@ -170,7 +170,7 @@ export const en = {
     eyebrow: "Integrations",
     title: "Works with WordPress,",
     titleMuted: "without touching your theme.",
-    body: "Official plugin from the WordPress directory. Works with most themes and builders, including Elementor and Divi.",
+    body: "A Talker.now zip you upload in WP-Admin. Works with most themes and builders, including Elementor and Divi.",
   },
   pricing: {
     eyebrow: "Pricing",
@@ -245,6 +245,22 @@ export const en = {
     line4: "so you don't have to.",
     createAgent: "Start for free",
     noCard: "No credit card required",
+  },
+  installer: {
+    title: "Download Talker",
+    subtitle:
+      "A WordPress zip, no credit card. 100 conversations, then you activate it in WP-Admin.",
+    download: "Download the zip",
+    placeholderNote: "Placeholder — real zip ships Monday 15 Sep.",
+    stepsEyebrow: "In WP-Admin",
+    steps: [
+      "WordPress → Plugins → Add New",
+      "Upload Plugin",
+      "Choose the Talker zip",
+      "Install, then Activate. A Talker screen opens (the owner’s email).",
+    ],
+    reassurance:
+      "No card. Not on WordPress.org. Works with the usual themes and builders (Elementor, Divi, etc.).",
   },
   footer: {
     blurb:

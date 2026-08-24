@@ -109,13 +109,11 @@ export function HowItWorksSection() {
               );
             })}
             <Button
+              asChild
               variant="iridescent"
               className="mt-8 rounded-full px-6 overflow-hidden"
-              onClick={() => {
-                window.location.hash = "pricing";
-              }}
             >
-              {t.how.createAgent}
+              <a href="/installer">{t.how.createAgent}</a>
             </Button>
           </div>
 

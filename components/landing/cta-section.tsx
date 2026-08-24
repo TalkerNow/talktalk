@@ -67,12 +67,15 @@ export function CtaSection() {
 
                 <div className="flex flex-col items-start gap-4 overflow-visible sm:flex-row">
                   <Button
+                    asChild
                     size="lg"
                     variant="iridescent"
                     className="h-14 rounded-full px-8 text-base group overflow-hidden"
                   >
-                    {t.cta.createAgent}
-                    <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    <a href="/installer">
+                      {t.cta.createAgent}
+                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    </a>
                   </Button>
                 </div>
 

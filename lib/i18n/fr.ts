@@ -27,7 +27,7 @@ export const fr = {
       "Un chatbot IA qui connaît votre métier, capte le numéro ou l'email de vos prospects, répond aux tarifs sans que vous leviez le petit doigt, trie les demandes de vos clients existants, et récupère vos avis Google. Installé en 10 minutes, sans code.",
     createAgent: "Créer mon agent gratuitement",
     seeDemo: "Voir une démo",
-    wordpress: "Disponible sur WordPress — extension officielle sur le store",
+    wordpress: "Zip Talker.now — à téléverser dans WP-Admin",
     stats: [
       { value: "+50%", label: "de leads sur votre site" },
       { value: "-80%", label: "de temps passé à répondre aux mêmes questions" },
@@ -174,7 +174,7 @@ export const fr = {
     eyebrow: "Intégrations",
     title: "Compatible avec WordPress,",
     titleMuted: "sans rien changer à votre site.",
-    body: "Une extension à installer depuis le store WordPress. Fonctionne avec la plupart des thèmes et constructeurs de pages (Elementor, Divi, etc.).",
+    body: "Un zip Talker.now à téléverser dans WP-Admin. Fonctionne avec la plupart des thèmes et constructeurs de pages (Elementor, Divi, etc.).",
   },
   pricing: {
     eyebrow: "Tarifs",
@@ -249,6 +249,22 @@ export const fr = {
     line4: "à votre place.",
     createAgent: "Créer mon agent gratuitement",
     noCard: "Sans carte bancaire",
+  },
+  installer: {
+    title: "Télécharger Talker",
+    subtitle:
+      "Un zip WordPress, sans carte bancaire. 100 conversations, puis vous activez dans WP-Admin.",
+    download: "Télécharger le zip",
+    placeholderNote: "Placeholder — brique lundi 15/9. Le zip réel suivra.",
+    stepsEyebrow: "Dans WP-Admin",
+    steps: [
+      "WordPress → Extensions → Ajouter",
+      "Téléverser une extension",
+      "Choisir le zip Talker",
+      "Installer puis Activer. Un écran Talker s’ouvre (email du gérant).",
+    ],
+    reassurance:
+      "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",
   },
   footer: {
     blurb:

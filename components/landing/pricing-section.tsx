@@ -144,18 +144,15 @@ export function PricingSection() {
               )}
 
               <Button
-                type="button"
+                asChild
                 variant="iridescent"
                 className={
                   plan.key === "starter"
                     ? "relative z-10 mt-auto h-auto min-h-9 w-full shrink-0 cursor-pointer whitespace-normal rounded-full px-4 py-3 text-center text-[13px] leading-tight overflow-hidden"
                     : "relative z-10 mt-auto w-full shrink-0 cursor-pointer rounded-full overflow-hidden"
                 }
-                onClick={() => {
-                  window.location.href = "/#pricing";
-                }}
               >
-                {plan.cta}
+                <a href="/installer">{plan.cta}</a>
               </Button>
             </div>
           ))}

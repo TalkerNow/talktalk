@@ -107,12 +107,15 @@ export function HeroSection() {
           }`}
         >
           <Button
+            asChild
             size="lg"
             variant="iridescent"
             className="h-14 rounded-full px-8 text-base group overflow-hidden"
           >
-            {t.hero.createAgent}
-            <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+            <a href="/installer">
+              {t.hero.createAgent}
+              <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+            </a>
           </Button>
           <Button
             size="lg"

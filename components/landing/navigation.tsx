@@ -78,14 +78,12 @@ export function Navigation() {
               {t.nav.signIn}
             </a>
             <Button
+              asChild
               size="sm"
               variant="iridescent"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
-              onClick={() => {
-                window.location.href = "/#pricing";
-              }}
             >
-              {t.nav.createAgent}
+              <a href="/installer">{t.nav.createAgent}</a>
             </Button>
           </div>
 
@@ -159,14 +157,13 @@ export function Navigation() {
               {t.nav.signIn}
             </Button>
             <Button 
+              asChild
               variant="iridescent"
               className="flex-1 rounded-full h-14 text-base"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                window.location.href = "/#pricing";
-              }}
             >
-              {t.nav.createAgent}
+              <a href="/installer" onClick={() => setIsMobileMenuOpen(false)}>
+                {t.nav.createAgent}
+              </a>
             </Button>
           </div>
         </div>
