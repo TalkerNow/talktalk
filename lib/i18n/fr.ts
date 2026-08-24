@@ -258,10 +258,10 @@ export const fr = {
     placeholderNote: "Placeholder — brique lundi 15/9. Le zip réel suivra.",
     stepsEyebrow: "Dans WP-Admin",
     steps: [
-      "WordPress → Extensions → Ajouter",
+      "À gauche dans WordPress : Extensions, puis Ajouter.",
       "Téléverser une extension",
       "Choisir le zip Talker",
-      "Installer puis Activer. Un écran Talker s’ouvre (email du gérant).",
+      "Installer / Activer. Un écran Talker s’ouvre (email du gérant).",
     ],
     reassurance:
       "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",

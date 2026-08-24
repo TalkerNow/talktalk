@@ -254,10 +254,10 @@ export const en = {
     placeholderNote: "Placeholder — real zip ships Monday 15 Sep.",
     stepsEyebrow: "In WP-Admin",
     steps: [
-      "WordPress → Plugins → Add New",
+      "On the left in WordPress: Plugins, then Add New.",
       "Upload Plugin",
       "Choose the Talker zip",
-      "Install, then Activate. A Talker screen opens (the owner’s email).",
+      "Install / Activate. A Talker screen opens (the owner’s email).",
     ],
     reassurance:
       "No card. Not on WordPress.org. Works with the usual themes and builders (Elementor, Divi, etc.).",
