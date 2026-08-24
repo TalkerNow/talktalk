@@ -23,7 +23,7 @@ function NavTextLink({
   return (
     <a
       href={href}
-      className="relative group inline-flex items-center text-sm leading-none text-foreground/70 hover:text-foreground transition-colors duration-300"
+      className="relative group text-sm text-foreground/70 transition-colors duration-300 hover:text-foreground"
     >
       {children}
       <span className="absolute -bottom-1 left-0 h-px w-0 bg-[#C43F17] transition-all duration-300 group-hover:w-full" />
