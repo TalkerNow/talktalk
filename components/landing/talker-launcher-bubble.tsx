@@ -1,50 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { TalkerChat } from "@/components/talker/chat";
 import { useTalker } from "@/components/talker/provider";
 import { useLocale } from "@/components/i18n/locale-context";
 
-const TYPING_MS = 2400;
-const PAUSE_MS = 2000;
 const BUBBLE_PX = 80;
 
 export function TalkerLauncherBubble() {
   const { t } = useLocale();
   const invites = t.bubble.chips;
   const { open, openTalker, closeTalker } = useTalker();
-  const [typing, setTyping] = useState(true);
   const panelRef = useRef<HTMLDivElement>(null);
   const clusterRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (open) {
-      setTyping(false);
-      return;
-    }
-
-    let pauseTimer = 0;
-    let typeTimer = 0;
-    setTyping(true);
-
-    const cycle = () => {
-      setTyping(true);
-      typeTimer = window.setTimeout(() => {
-        setTyping(false);
-        pauseTimer = window.setTimeout(cycle, PAUSE_MS);
-      }, TYPING_MS);
-    };
-
-    typeTimer = window.setTimeout(() => {
-      setTyping(false);
-      pauseTimer = window.setTimeout(cycle, PAUSE_MS);
-    }, TYPING_MS);
-
-    return () => {
-      window.clearTimeout(typeTimer);
-      window.clearTimeout(pauseTimer);
-    };
-  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -140,21 +108,21 @@ export function TalkerLauncherBubble() {
                 cy="0"
                 r="60"
                 fill="#111111"
-                className={typing ? "talker-typing-dot talker-typing-dot-1" : undefined}
+                className={!open ? "talker-typing-dot talker-typing-dot-1" : undefined}
               />
               <circle
                 cx="0"
                 cy="0"
                 r="60"
                 fill="#111111"
-                className={typing ? "talker-typing-dot talker-typing-dot-2" : undefined}
+                className={!open ? "talker-typing-dot talker-typing-dot-2" : undefined}
               />
               <circle
                 cx="163"
                 cy="0"
                 r="60"
                 fill="#111111"
-                className={typing ? "talker-typing-dot talker-typing-dot-3" : undefined}
+                className={!open ? "talker-typing-dot talker-typing-dot-3" : undefined}
               />
             </svg>
             {!open ? (
