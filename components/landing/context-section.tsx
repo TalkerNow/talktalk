@@ -32,7 +32,7 @@ export function ContextSection() {
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div
-          className={`grid items-start gap-8 overflow-visible lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.9fr)] lg:gap-8 transition-all duration-700 ${
+          className={`grid items-start gap-8 overflow-visible lg:grid-cols-2 lg:gap-10 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
@@ -42,10 +42,10 @@ export function ContextSection() {
               <br />
               <AuroraText colors={AURORA}>{t.context.titleMuted}</AuroraText>
             </h2>
-            <p className="mb-5 max-w-none text-lg leading-snug text-muted-foreground">
+            <p className="mb-5 max-w-xl text-lg leading-snug text-muted-foreground">
               {t.context.body}
             </p>
-            <div className="border border-[#C43F17]/20 bg-[#F4DCD4] px-6 py-4 text-[#111111]">
+            <div className="max-w-xl border border-[#C43F17]/20 bg-[#F4DCD4] px-6 py-4 text-[#111111]">
               <p className="text-lg leading-snug text-[#111111]">
                 {t.context.salmon}
               </p>
@@ -62,7 +62,7 @@ export function ContextSection() {
             </div>
           </div>
 
-          <div className="justify-self-center overflow-visible lg:translate-x-[38px]">
+          <div className="justify-self-center overflow-visible lg:translate-x-6">
             <VisitorOrbit />
           </div>
         </div>
