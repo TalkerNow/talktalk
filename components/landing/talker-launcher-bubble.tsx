@@ -118,8 +118,8 @@ export function TalkerLauncherBubble() {
           aria-label="Talker"
           className="fixed z-[60] w-[min(calc(100vw-2rem),380px)] h-[min(70vh,560px)] overflow-hidden rounded-2xl border border-foreground/10 bg-[#F7F6F4] shadow-[0_16px_50px_rgba(0,0,0,0.14)]"
           style={{
-            right: "max(1.5rem, env(safe-area-inset-right))",
-            bottom: "calc(7.5rem + env(safe-area-inset-bottom))",
+            right: "calc(max(1.5rem, env(safe-area-inset-right)) + 20px)",
+            bottom: "calc(7.5rem + 20px + env(safe-area-inset-bottom))",
           }}
         >
           <TalkerChat onClose={closeTalker} />
@@ -130,8 +130,8 @@ export function TalkerLauncherBubble() {
         ref={clusterRef}
         className="pointer-events-none fixed z-40"
         style={{
-          right: "max(1.5rem, env(safe-area-inset-right))",
-          bottom: "max(1.5rem, env(safe-area-inset-bottom))",
+          right: "calc(max(1.5rem, env(safe-area-inset-right)) + 20px)",
+          bottom: "calc(max(1.5rem, env(safe-area-inset-bottom)) + 20px)",
         }}
       >
         {!open ? (
