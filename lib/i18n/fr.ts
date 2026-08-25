@@ -261,13 +261,13 @@ export const fr = {
     subtitle:
       "Un zip WordPress, sans carte bancaire. 100 conversations, puis vous activez dans WP-Admin.",
     download: "Télécharger le zip",
-    placeholderNote: "Placeholder — brique lundi 15/9. Le zip réel suivra.",
+    placeholderNote: "talker-now.zip — sans carte, sans WordPress.org.",
     stepsEyebrow: "Dans WP-Admin",
     steps: [
       "À gauche dans WordPress : Extensions, puis Ajouter.",
       "Téléverser une extension",
-      "Choisir le zip Talker",
-      "Installer / Activer. Un écran Talker s’ouvre (email du gérant).",
+      "Choisir le zip Talker (talker-now.zip)",
+      "Installer, puis Activer. Le widget apparaît. URL n8n : Réglages → Talker (vide tant que le serveur n’est pas prêt).",
     ],
     reassurance:
       "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",

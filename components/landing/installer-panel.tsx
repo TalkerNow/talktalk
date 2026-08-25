@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/components/i18n/locale-context";
 
-const ZIP_HREF = "/talker-plugin-placeholder.zip";
+const ZIP_HREF = "/talker-now.zip";
 
 export function InstallerPanel() {
   const { t } = useLocale();
@@ -27,7 +27,7 @@ export function InstallerPanel() {
           variant="iridescent"
           className="h-14 rounded-full px-8 text-base overflow-hidden"
         >
-          <a href={ZIP_HREF} download="talker-plugin-placeholder.zip">
+          <a href={ZIP_HREF} download="talker-now.zip">
             {t.installer.download}
           </a>
         </Button>

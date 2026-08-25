@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:plugin": "bash scripts/build-plugin-zip.sh",
+    "build": "npm run build:plugin && next build",
     "start": "next start",
     "lint": "eslint"
   },
