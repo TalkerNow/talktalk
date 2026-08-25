@@ -337,7 +337,7 @@ export const en = {
     writing: "Talker is typing",
     poweredBy: "Powered by talker.now",
     chips: [
-      { label: "What are your hours?", intent: "horaires" as const },
+      { label: "Talker Now", intent: "talker" as const },
       { label: "Ask a question", intent: "question" as const },
       { label: "Book a visit", intent: "rdv" as const },
     ],

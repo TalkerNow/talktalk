@@ -341,7 +341,7 @@ export const fr = {
     writing: "Talker écrit",
     poweredBy: "Propulsé par talker.now",
     chips: [
-      { label: "Quels sont vos horaires ?", intent: "horaires" as const },
+      { label: "Talker Now", intent: "talker" as const },
       { label: "Poser une question", intent: "question" as const },
       { label: "Prendre rendez-vous", intent: "rdv" as const },
     ],

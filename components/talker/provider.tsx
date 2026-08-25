@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 
-export type TalkerIntent = "horaires" | "question" | "rdv";
+export type TalkerIntent = "talker" | "horaires" | "question" | "rdv";
 
 type TalkerContextValue = {
   open: boolean;
