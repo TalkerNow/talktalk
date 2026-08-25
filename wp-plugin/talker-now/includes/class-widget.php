@@ -1,6 +1,7 @@
 <?php
 /**
- * Front: visitor bubble only. WP-Admin: manager bubble (not a settings form).
+ * Public widget: visitors always. Logged-in administrators may take the
+ * gérant stub (cookie). No login in the bubble. No WP-Admin questionnaire.
  * The n8n webhook URL is never exposed to the browser.
  *
  * @package TalkerNow
@@ -13,28 +14,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Talker_Now_Widget {
 
 	public static function init() {
-		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_public' ) );
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_admin' ) );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue' ) );
 	}
 
-	public static function enqueue_public() {
-		self::enqueue( 'public' );
-	}
-
-	public static function enqueue_admin() {
-		if ( ! talker_now_is_manager() ) {
+	public static function enqueue() {
+		if ( is_admin() ) {
 			return;
 		}
-		self::enqueue( 'admin' );
-	}
 
-	/**
-	 * @param string $surface public|admin
-	 */
-	private static function enqueue( $surface ) {
 		$settings = talker_now_get_settings();
 		$plan     = ( 'paid' === $settings['plan'] ) ? 'paid' : 'free';
-		$admin    = ( 'admin' === $surface );
+		$manager  = talker_now_is_manager();
 
 		wp_enqueue_style(
 			'talker-now-widget',
@@ -73,8 +63,8 @@ class Talker_Now_Widget {
 				'restUrl'   => esc_url_raw( rest_url( 'talker/v1/message' ) ),
 				'nonce'     => wp_create_nonce( 'wp_rest' ),
 				'plan'      => $plan,
-				'surface'   => $admin ? 'admin' : 'public',
-				'manager'   => $admin,
+				'surface'   => 'public',
+				'manager'   => $manager,
 				'siteName'  => wp_strip_all_tags( get_bloginfo( 'name' ) ),
 				'greeting'  => $settings['greeting'],
 				'poweredBy' => ( 'free' === $plan ),

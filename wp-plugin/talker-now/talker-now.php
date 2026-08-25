@@ -3,7 +3,7 @@
  * Plugin Name: Talker
  * Plugin URI: https://talker.now
  * Description: L’agent qui répond sur votre site WordPress. Zip, sans carte, sans WordPress.org.
- * Version: 0.1.3
+ * Version: 0.1.5
  * Author: Talker
  * Author URI: https://talker.now
  * Text Domain: talker-now
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TALKER_NOW_VERSION', '0.1.3' );
+define( 'TALKER_NOW_VERSION', '0.1.5' );
 define( 'TALKER_NOW_FILE', __FILE__ );
 define( 'TALKER_NOW_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TALKER_NOW_URL', plugin_dir_url( __FILE__ ) );
@@ -75,7 +75,7 @@ function talker_now_admin_email() {
 }
 
 /**
- * WP-Admin bubble is the gérant surface. Public site is visitor-only.
+ * Logged-in administrator on this WordPress (cookie). No password in the bubble.
  *
  * @return bool
  */
