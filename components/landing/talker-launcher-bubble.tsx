@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { TalkerChat } from "@/components/talker/chat";
 import { useTalker } from "@/components/talker/provider";
+import { ShineBorder } from "@/components/ui/shine-border";
 import { useLocale } from "@/components/i18n/locale-context";
 
 const BUBBLE_PX = 80;
@@ -145,23 +146,37 @@ export function TalkerLauncherBubble() {
                 : "pointer-events-none opacity-0"
             }`}
           >
-            {invites.map((invite) => (
-              <button
-                key={invite.label}
-                type="button"
-                tabIndex={chipsShown ? 0 : -1}
-                onClick={(event) => {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  setChipsPinned(false);
-                  setHovered(false);
-                  openTalker(invite.intent);
-                }}
-                className="rounded-full border border-line bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink"
-              >
-                {invite.label}
-              </button>
-            ))}
+            {invites.map((invite) => {
+              const shine = invite.intent === "talker";
+              return (
+                <button
+                  key={invite.label}
+                  type="button"
+                  tabIndex={chipsShown ? 0 : -1}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    setChipsPinned(false);
+                    setHovered(false);
+                    openTalker(invite.intent);
+                  }}
+                  className={`relative rounded-full border bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink ${
+                    shine
+                      ? "overflow-hidden border-foreground/12"
+                      : "border-line"
+                  }`}
+                >
+                  {shine ? (
+                    <ShineBorder
+                      borderWidth={1}
+                      duration={16}
+                      shineColor={["#C43F17", "#111111"]}
+                    />
+                  ) : null}
+                  <span className="relative z-10">{invite.label}</span>
+                </button>
+              );
+            })}
           </div>
         ) : null}
 
