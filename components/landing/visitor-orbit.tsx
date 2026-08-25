@@ -31,33 +31,38 @@ function VisitorPastille({ src }: { src: string }) {
 
 export function VisitorOrbit() {
   return (
-    <div className="flex justify-center" aria-hidden>
-      <div className="origin-center scale-[0.72] sm:scale-[0.88] lg:scale-100">
-        <div className="relative flex h-[460px] w-[460px] items-center justify-center overflow-visible">
-          <IdleTalkerBubble className="relative z-10 size-[88px] drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]" />
-          <OrbitingCircles
-            className="motion-reduce:animate-none"
-            duration={48}
-            iconSize={48}
-            path
-            radius={190}
-          >
-            {OUTER.map((src) => (
-              <VisitorPastille key={src} src={src} />
-            ))}
-          </OrbitingCircles>
-          <OrbitingCircles
-            className="motion-reduce:animate-none"
-            duration={40}
-            iconSize={40}
-            path
-            radius={112}
-            reverse
-          >
-            {INNER.map((src) => (
-              <VisitorPastille key={src} src={src} />
-            ))}
-          </OrbitingCircles>
+    <div
+      className="@container mx-auto w-full max-w-[460px]"
+      aria-hidden
+    >
+      <div className="relative aspect-square w-full">
+        <div className="absolute top-1/2 left-1/2 size-[460px] origin-center [transform:translate(-50%,-50%)_scale(calc(100cqi/460))]">
+          <div className="relative flex size-full items-center justify-center">
+            <IdleTalkerBubble className="relative z-10 size-[88px] drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]" />
+            <OrbitingCircles
+              className="motion-reduce:animate-none"
+              duration={48}
+              iconSize={48}
+              path
+              radius={190}
+            >
+              {OUTER.map((src) => (
+                <VisitorPastille key={src} src={src} />
+              ))}
+            </OrbitingCircles>
+            <OrbitingCircles
+              className="motion-reduce:animate-none"
+              duration={40}
+              iconSize={40}
+              path
+              radius={112}
+              reverse
+            >
+              {INNER.map((src) => (
+                <VisitorPastille key={src} src={src} />
+              ))}
+            </OrbitingCircles>
+          </div>
         </div>
       </div>
     </div>
