@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { IdleTalkerBubble } from "@/components/landing/idle-talker-bubble";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 
@@ -16,6 +19,8 @@ const INNER = [
   "/orbit/lea.svg",
 ] as const;
 
+const CANVAS = 460;
+
 function VisitorPastille({ src }: { src: string }) {
   return (
     <img
@@ -30,13 +35,31 @@ function VisitorPastille({ src }: { src: string }) {
 }
 
 export function VisitorOrbit() {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame) return;
+
+    const update = () => {
+      const width = frame.getBoundingClientRect().width;
+      setScale(width > 0 ? Math.min(1, width / CANVAS) : 1);
+    };
+
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(frame);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div
-      className="@container mx-auto w-full max-w-[460px]"
-      aria-hidden
-    >
-      <div className="relative aspect-square w-full">
-        <div className="absolute top-1/2 left-1/2 size-[460px] origin-center [transform:translate(-50%,-50%)_scale(calc(100cqi/460))]">
+    <div ref={frameRef} className="mx-auto w-full min-w-0 max-w-[min(460px,100%)]" aria-hidden>
+      <div className="relative aspect-square w-full min-w-0 overflow-hidden">
+        <div
+          className="absolute top-1/2 left-1/2 size-[460px] origin-center"
+          style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
+        >
           <div className="relative flex size-full items-center justify-center">
             <IdleTalkerBubble className="relative z-10 size-[88px] drop-shadow-[0_8px_20px_rgba(0,0,0,0.08)]" />
             <OrbitingCircles
