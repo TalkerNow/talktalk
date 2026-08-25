@@ -295,7 +295,8 @@
       session: sessionId(),
       message: message,
       intent: intent || "message",
-      actor: cfg.manager ? "manager" : "visitor",
+      surface: cfg.surface === "admin" ? "admin" : "public",
+      actor: cfg.manager && cfg.surface === "admin" ? "manager" : "visitor",
       contact: contactPayload(),
     };
     var fallback = i18n.offline || "Merci. Nous vous recontacterons.";
@@ -407,7 +408,7 @@
 
   scheduleAttract(ATTRACT_FIRST_MS);
 
-  if (cfg.manager && cfg.restUrl) {
+  if (cfg.manager && cfg.surface === "admin" && cfg.restUrl) {
     try {
       if (!window.sessionStorage.getItem("talkerNowSiteRead")) {
         window.sessionStorage.setItem("talkerNowSiteRead", "1");
@@ -422,6 +423,7 @@
             session: sessionId(),
             message: "",
             intent: "site_read",
+            surface: "admin",
             actor: "manager",
             contact: {},
           }),
