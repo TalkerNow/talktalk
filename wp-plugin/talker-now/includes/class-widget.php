@@ -62,6 +62,7 @@ class Talker_Now_Widget {
 				'restUrl'   => esc_url_raw( rest_url( 'talker/v1/message' ) ),
 				'nonce'     => wp_create_nonce( 'wp_rest' ),
 				'plan'      => $plan,
+				'manager'   => talker_now_is_manager(),
 				'siteName'  => wp_strip_all_tags( get_bloginfo( 'name' ) ),
 				'greeting'  => $settings['greeting'],
 				'poweredBy' => ( 'free' === $plan ),

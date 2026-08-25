@@ -3,7 +3,7 @@
  * Plugin Name: Talker
  * Plugin URI: https://talker.now
  * Description: L’agent qui répond sur votre site WordPress. Zip, sans carte, sans WordPress.org.
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author: Talker
  * Author URI: https://talker.now
  * Text Domain: talker-now
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TALKER_NOW_VERSION', '0.1.1' );
+define( 'TALKER_NOW_VERSION', '0.1.2' );
 define( 'TALKER_NOW_FILE', __FILE__ );
 define( 'TALKER_NOW_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TALKER_NOW_URL', plugin_dir_url( __FILE__ ) );
@@ -72,6 +72,30 @@ function talker_now_home_url() {
  */
 function talker_now_admin_email() {
 	return sanitize_email( (string) get_option( 'admin_email', '' ) );
+}
+
+/**
+ * Logged-in administrator on this WordPress. Cookie is the gate; no login in the bubble.
+ *
+ * @return bool
+ */
+function talker_now_is_manager() {
+	return is_user_logged_in() && current_user_can( 'manage_options' );
+}
+
+/**
+ * Site-read stub for later crawl-conditioned manager questions.
+ * This WordPress only. Not a WP-Admin QCM. Visitors never receive this path.
+ *
+ * @return array<string, string>
+ */
+function talker_now_site_read() {
+	return array(
+		'url'         => talker_now_home_url(),
+		'name'        => wp_strip_all_tags( (string) get_bloginfo( 'name' ) ),
+		'description' => wp_strip_all_tags( (string) get_bloginfo( 'description' ) ),
+		'instruction' => 'Read this site only (home_url, same WordPress). Condition later manager questions on that crawl. Not a generic questionnaire. Visitors never take this path.',
+	);
 }
 
 function talker_now_boot() {

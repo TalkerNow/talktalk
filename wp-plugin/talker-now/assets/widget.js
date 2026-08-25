@@ -295,6 +295,7 @@
       session: sessionId(),
       message: message,
       intent: intent || "message",
+      actor: cfg.manager ? "manager" : "visitor",
       contact: contactPayload(),
     };
     var fallback = i18n.offline || "Merci. Nous vous recontacterons.";
@@ -405,4 +406,27 @@
   });
 
   scheduleAttract(ATTRACT_FIRST_MS);
+
+  if (cfg.manager && cfg.restUrl) {
+    try {
+      if (!window.sessionStorage.getItem("talkerNowSiteRead")) {
+        window.sessionStorage.setItem("talkerNowSiteRead", "1");
+        fetch(cfg.restUrl, {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+            "X-WP-Nonce": cfg.nonce || "",
+          },
+          body: JSON.stringify({
+            session: sessionId(),
+            message: "",
+            intent: "site_read",
+            actor: "manager",
+            contact: {},
+          }),
+        }).catch(function () {});
+      }
+    } catch (e) {}
+  }
 })();

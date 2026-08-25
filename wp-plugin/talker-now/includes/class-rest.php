@@ -44,6 +44,9 @@ class Talker_Now_REST {
 			'phone' => isset( $contact['phone'] ) ? sanitize_text_field( (string) $contact['phone'] ) : '',
 		);
 
+		$claimed = isset( $body['actor'] ) ? sanitize_key( (string) $body['actor'] ) : 'visitor';
+		$actor   = ( 'manager' === $claimed && talker_now_is_manager() ) ? 'manager' : 'visitor';
+
 		$settings = talker_now_get_settings();
 		$site     = talker_now_home_url();
 		$payload  = array(
@@ -53,15 +56,20 @@ class Talker_Now_REST {
 			'session'     => $session,
 			'message'     => $message,
 			'intent'      => $intent,
+			'actor'       => $actor,
 			'contact'     => $contact_clean,
 			'sent_at'     => gmdate( 'c' ),
 		);
+		if ( 'manager' === $actor ) {
+			$payload['site_read'] = talker_now_site_read();
+		}
 
 		$webhook = $settings['webhook_url'];
 		if ( '' === $webhook ) {
+			$reply = ( 'manager' === $actor ) ? '' : self::stub_reply( $contact_clean, $message );
 			return new WP_REST_Response(
 				array(
-					'reply' => self::stub_reply( $contact_clean, $message ),
+					'reply' => $reply,
 				),
 				200
 			);
