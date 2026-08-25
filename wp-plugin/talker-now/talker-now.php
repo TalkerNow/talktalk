@@ -84,18 +84,20 @@ function talker_now_is_manager() {
 }
 
 /**
- * Site-read stub for later crawl-conditioned manager questions in WP-Admin.
- * This WordPress only. Not a settings form. Visitors on the public site never receive this path.
+ * Site-read stub: this plugin knows to read this WordPress (`home_url`) only.
+ * Later crawl conditions gérant questions. Not a generic QCM. No visitor path.
+ * Full fetch/QCM waits for Talker-side. Filter is the hook.
  *
  * @return array<string, string>
  */
 function talker_now_site_read() {
-	return array(
+	$data = array(
 		'url'         => talker_now_home_url(),
 		'name'        => wp_strip_all_tags( (string) get_bloginfo( 'name' ) ),
 		'description' => wp_strip_all_tags( (string) get_bloginfo( 'description' ) ),
-		'instruction' => 'Read this site only (home_url, same WordPress). Condition later manager questions on that crawl. Not a generic questionnaire. Visitors never take this path.',
+		'instruction' => 'Auto-scroll and read this site only (WordPress home_url, same origin). Condition later gérant questions on that crawl. Not a generic questionnaire. Visitors never take this path.',
 	);
+	return apply_filters( 'talker_now_site_read', $data );
 }
 
 function talker_now_boot() {
