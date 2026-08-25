@@ -267,7 +267,7 @@ export const fr = {
       "À gauche dans WordPress : Extensions, puis Ajouter.",
       "Téléverser une extension",
       "Choisir le zip Talker (talker-now.zip)",
-      "Installer, puis Activer. Le widget apparaît. URL n8n : Réglages → Talker (vide tant que le serveur n’est pas prêt).",
+      "Activer. La bulle apparaît sur le site.",
     ],
     reassurance:
       "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",

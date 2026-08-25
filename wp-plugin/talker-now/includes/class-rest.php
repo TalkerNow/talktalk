@@ -45,14 +45,16 @@ class Talker_Now_REST {
 		);
 
 		$settings = talker_now_get_settings();
+		$site     = talker_now_home_url();
 		$payload  = array(
-			'site'      => home_url( '/' ),
-			'site_id'   => wp_hash( home_url( '/' ) ),
-			'session'   => $session,
-			'message'   => $message,
-			'intent'    => $intent,
-			'contact'   => $contact_clean,
-			'sent_at'   => gmdate( 'c' ),
+			'site'        => $site,
+			'site_id'     => wp_hash( $site ),
+			'admin_email' => talker_now_admin_email(),
+			'session'     => $session,
+			'message'     => $message,
+			'intent'      => $intent,
+			'contact'     => $contact_clean,
+			'sent_at'     => gmdate( 'c' ),
 		);
 
 		$webhook = $settings['webhook_url'];

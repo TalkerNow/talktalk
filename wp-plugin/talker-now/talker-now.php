@@ -3,7 +3,7 @@
  * Plugin Name: Talker
  * Plugin URI: https://talker.now
  * Description: L’agent qui répond sur votre site WordPress. Zip, sans carte, sans WordPress.org.
- * Version: 0.1.0
+ * Version: 0.1.1
  * Author: Talker
  * Author URI: https://talker.now
  * Text Domain: talker-now
@@ -15,18 +15,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TALKER_NOW_VERSION', '0.1.0' );
+define( 'TALKER_NOW_VERSION', '0.1.1' );
 define( 'TALKER_NOW_FILE', __FILE__ );
 define( 'TALKER_NOW_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TALKER_NOW_URL', plugin_dir_url( __FILE__ ) );
 define( 'TALKER_NOW_OPTION', 'talker_now_settings' );
 
-require_once TALKER_NOW_DIR . 'includes/class-settings.php';
 require_once TALKER_NOW_DIR . 'includes/class-rest.php';
 require_once TALKER_NOW_DIR . 'includes/class-widget.php';
 
 /**
- * Default settings. 100 conversations is the product line; this pass does not enforce quota.
+ * Defaults. Widget is on at activate. No admin form.
+ * Plan stays free until a licence writes otherwise. Webhook is Talker-side later.
  *
  * @return array<string, string>
  */
@@ -49,11 +49,32 @@ function talker_now_get_settings() {
 	if ( ! is_array( $stored ) ) {
 		$stored = array();
 	}
-	return array_merge( talker_now_defaults(), $stored );
+	$settings = array_merge( talker_now_defaults(), $stored );
+	if ( 'paid' !== $settings['plan'] ) {
+		$settings['plan'] = 'free';
+	}
+	return $settings;
+}
+
+/**
+ * Site URL = this WordPress. Never asked in a form.
+ *
+ * @return string
+ */
+function talker_now_home_url() {
+	return home_url( '/' );
+}
+
+/**
+ * Contact email = WordPress admin_email. Never asked in a form.
+ *
+ * @return string
+ */
+function talker_now_admin_email() {
+	return sanitize_email( (string) get_option( 'admin_email', '' ) );
 }
 
 function talker_now_boot() {
-	Talker_Now_Settings::init();
 	Talker_Now_REST::init();
 	Talker_Now_Widget::init();
 }

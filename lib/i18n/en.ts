@@ -263,7 +263,7 @@ export const en = {
       "On the left in WordPress: Plugins, then Add New.",
       "Upload Plugin",
       "Choose the Talker zip (talker-now.zip)",
-      "Install, then Activate. The widget appears. n8n URL: Settings → Talker (leave empty until the server is ready).",
+      "Activate. The bubble appears on the site.",
     ],
     reassurance:
       "No card. Not on WordPress.org. Works with the usual themes and builders (Elementor, Divi, etc.).",
