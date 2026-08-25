@@ -45,7 +45,8 @@ class Talker_Now_REST {
 		);
 
 		$claimed = isset( $body['actor'] ) ? sanitize_key( (string) $body['actor'] ) : 'visitor';
-		$actor   = ( 'manager' === $claimed && talker_now_is_manager() ) ? 'manager' : 'visitor';
+		$surface = isset( $body['surface'] ) ? sanitize_key( (string) $body['surface'] ) : 'public';
+		$actor   = ( 'manager' === $claimed && 'admin' === $surface && talker_now_is_manager() ) ? 'manager' : 'visitor';
 
 		$settings = talker_now_get_settings();
 		$site     = talker_now_home_url();
