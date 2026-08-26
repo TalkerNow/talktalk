@@ -193,6 +193,9 @@ $widget = file_get_contents( dirname( __DIR__ ) . '/wp-plugin/talker-now/include
 $boot   = file_get_contents( dirname( __DIR__ ) . '/wp-plugin/talker-now/talker-now.php' );
 tn_assert( false !== strpos( $widget, 'Bonjour, vous me voyez ? je suis là, cliquez-moi.' ), "admin chip unchanged" );
 tn_assert( false !== strpos( $css, 'min-width: 13.5rem' ) && false !== strpos( $js, 'createElement("br")' ), "hello chip wraps on 2–3 lines, not one word per line" );
+tn_assert( false !== strpos( $js, 'playAdminAttract' ) && false !== strpos( $js, 'ADMIN_HALO_MS' ) && false !== strpos( $js, 'ADMIN_BADGE_MS' ), "admin launcher staggers bubble then halo then badge" );
+tn_assert( false !== strpos( $js, 'halo.classList.toggle("is-on", on)' ) && false !== strpos( $js, 'badge.classList.toggle("is-on", on)' ), "public attract still turns halo and badge on together" );
+tn_assert( false !== strpos( $css, 'talker-now-ripple' ) && false !== strpos( $css, 'talker-now-badge-in' ), "admin keeps the moving wave and a catch-the-eye 1" );
 tn_assert( false !== strpos( $boot, 'Poser une question' ) && false !== strpos( $boot, 'Prendre rendez-vous' ), "public chips still in defaults" );
 
 $one = '<html><head><title>Cabinet dentaire Dupont à Lyon</title><meta name="description" content="Dentiste à Lyon. Doctolib. Lun-Ven 8h30-18h."></head><body><h1>Cabinet dentaire Dupont</h1><p>Soins, implants. 69003 Lyon.</p><footer>Dr Marie Dupont — dentiste à Lyon</footer></body></html>';

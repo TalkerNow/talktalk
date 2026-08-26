@@ -143,6 +143,22 @@
   pointer-events: auto;
 }
 
+.talker-now-root.is-admin .talker-now-launcher-wrap:not(.is-shown) {
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  pointer-events: none;
+}
+
+.talker-now-root.is-admin .talker-now-launcher-wrap.is-shown {
+  opacity: 1;
+  transform: none;
+  transition: opacity 380ms ease, transform 380ms ease;
+}
+
+.talker-now-root.is-admin .talker-now-badge.is-on {
+  animation: talker-now-badge-in 0.38s ease;
+}
+
 .talker-now-halo {
   position: absolute;
   inset: 0;
@@ -167,6 +183,21 @@
   }
   100% {
     box-shadow: 0 0 0 10px rgba(196, 63, 23, 0);
+  }
+}
+
+@keyframes talker-now-badge-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -525,7 +556,10 @@
   .talker-now-halo.is-on,
   .talker-now-chip.is-shine::before,
   .talker-now-typing i,
-  .talker-now-scan-wheel {
+  .talker-now-scan-wheel,
+  .talker-now-root.is-admin .talker-now-badge.is-on,
+  .talker-now-root.is-admin .talker-now-launcher-wrap.is-shown {
     animation: none;
+    transition: none;
   }
 }

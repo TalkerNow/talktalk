@@ -11,6 +11,9 @@
   var ATTRACT_ON_MS = 4000;
   var ATTRACT_REST_MS = 7000;
   var LEAVE_DELAY_MS = 220;
+  var ADMIN_BUBBLE_MS = 420;
+  var ADMIN_HALO_MS = 720;
+  var ADMIN_BADGE_MS = 720;
   var SESSION_KEY = "talkerNowSession";
 
   var reduced =
@@ -54,6 +57,9 @@
   var i18n = cfg.i18n || {};
   var isManager = Boolean(cfg.manager && cfg.surface === "admin");
   var root = el("div", "talker-now-root");
+  if (isManager) {
+    root.classList.add("is-admin");
+  }
   var stage = el("div", "talker-now-stage");
   var invites = el("div", "talker-now-invites");
   var launcherWrap = el("div", "talker-now-launcher-wrap");
@@ -203,6 +209,8 @@
   var leaveTimer = null;
   var attractTimer = null;
   var attractOffTimer = null;
+  var attractHaloTimer = null;
+  var attractBadgeTimer = null;
   var busy = false;
   var greeted = false;
 
@@ -223,7 +231,18 @@
   }
 
   function setAttract(on) {
-    attractOn = on;
+    if (!on) {
+      attractOn = false;
+      halo.classList.remove("is-on");
+      badge.classList.remove("is-on");
+      syncChrome();
+      return;
+    }
+    if (isManager) {
+      playAdminAttract();
+      return;
+    }
+    attractOn = true;
     halo.classList.toggle("is-on", on);
     badge.classList.toggle("is-on", on);
     syncChrome();
@@ -232,6 +251,49 @@
   function clearAttractTimers() {
     clearTimeout(attractTimer);
     clearTimeout(attractOffTimer);
+    clearTimeout(attractHaloTimer);
+    clearTimeout(attractBadgeTimer);
+  }
+
+  function holdThenRest() {
+    attractOffTimer = setTimeout(function () {
+      if (panelOpen) {
+        return;
+      }
+      setAttract(false);
+      scheduleAttract(ATTRACT_REST_MS);
+    }, ATTRACT_ON_MS);
+  }
+
+  function playAdminAttract() {
+    attractOn = true;
+    syncChrome();
+    if (reduced) {
+      launcherWrap.classList.add("is-shown");
+      halo.classList.add("is-on");
+      badge.classList.add("is-on");
+      holdThenRest();
+      return;
+    }
+    var bubbleReady = launcherWrap.classList.contains("is-shown");
+    if (!bubbleReady) {
+      launcherWrap.classList.add("is-shown");
+    }
+    halo.classList.remove("is-on");
+    badge.classList.remove("is-on");
+    attractHaloTimer = setTimeout(function () {
+      if (panelOpen) {
+        return;
+      }
+      halo.classList.add("is-on");
+      attractBadgeTimer = setTimeout(function () {
+        if (panelOpen) {
+          return;
+        }
+        badge.classList.add("is-on");
+        holdThenRest();
+      }, ADMIN_BADGE_MS);
+    }, bubbleReady ? 280 : ADMIN_HALO_MS);
   }
 
   function scheduleAttract(delay) {
@@ -244,10 +306,9 @@
         return;
       }
       setAttract(true);
-      attractOffTimer = setTimeout(function () {
-        setAttract(false);
-        scheduleAttract(ATTRACT_REST_MS);
-      }, ATTRACT_ON_MS);
+      if (!isManager) {
+        holdThenRest();
+      }
     }, delay);
   }
 
@@ -570,7 +631,19 @@
     }
   });
 
-  scheduleAttract(ATTRACT_FIRST_MS);
+  if (isManager) {
+    if (reduced) {
+      launcherWrap.classList.add("is-shown");
+      attractOn = true;
+      halo.classList.add("is-on");
+      badge.classList.add("is-on");
+      syncChrome();
+    } else {
+      scheduleAttract(ADMIN_BUBBLE_MS);
+    }
+  } else {
+    scheduleAttract(ATTRACT_FIRST_MS);
+  }
 
   if (cfg.manager && cfg.surface === "admin" && cfg.restUrl) {
     try {
