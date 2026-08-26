@@ -8,11 +8,11 @@
   window.talkerNowBooted = true;
 
   var LEAVE_DELAY_MS = 220;
-  var BUBBLE_MS = 420;
-  var BUBBLE_HOLD_MS = 720;
+  var A_HOLD_MS = 1100;
   var WAVE_MS = 1500;
-  var CALM_MS = 220;
-  var CHIP_STAGGER_MS = 240;
+  var POST_WAVE_MS = 400;
+  var BADGE_ALONE_MS = 1600;
+  var CHIP_STAGGER_MS = 1000;
   var SESSION_KEY = "talkerNowSession";
 
   var reduced =
@@ -55,13 +55,13 @@
 
   var i18n = cfg.i18n || {};
   var isManager = Boolean(cfg.manager && cfg.surface === "admin");
-  var root = el("div", "talker-now-root");
+  var root = el("div", "talker-now-root is-beat-a");
   if (isManager) {
     root.classList.add("is-admin");
   }
   var stage = el("div", "talker-now-stage");
   var invites = el("div", "talker-now-invites");
-  var launcherWrap = el("div", "talker-now-launcher-wrap");
+  var launcherWrap = el("div", "talker-now-launcher-wrap is-shown is-calm");
   var halo = el("div", "talker-now-halo");
   halo.appendChild(el("span", "talker-now-ring"));
   halo.appendChild(el("span", "talker-now-ring"));
@@ -221,11 +221,24 @@
     return !panelOpen && chipsRevealed && (unreadOn || hover);
   }
 
+  function anyChipIn() {
+    return chipNodes.some(function (chip) {
+      return chip.classList.contains("is-in");
+    });
+  }
+
   function syncChrome() {
     var show = chipsWanted();
-    invites.classList.toggle("is-open", show);
-    ad.classList.toggle("is-on", show && !isManager);
+    invites.classList.toggle("is-open", show && anyChipIn());
+    ad.classList.toggle("is-on", show && !isManager && anyChipIn());
     launcher.setAttribute("aria-expanded", panelOpen || show ? "true" : "false");
+  }
+
+  function setBeat(name) {
+    root.classList.remove("is-beat-a", "is-beat-b", "is-beat-c", "is-beat-d");
+    if (name) {
+      root.classList.add("is-beat-" + name);
+    }
   }
 
   function stopHalo() {
@@ -242,6 +255,15 @@
     launcherWrap.classList.toggle("is-calm", on);
   }
 
+  function hideAllChips() {
+    chipsRevealed = false;
+    chipNodes.forEach(function (chip) {
+      chip.classList.remove("is-in");
+    });
+    invites.classList.remove("is-open");
+    ad.classList.remove("is-on");
+  }
+
   function clearAttractTimers() {
     clearTimeout(attractTimer);
     clearTimeout(attractHaloTimer);
@@ -254,24 +276,38 @@
     stopHalo();
     stopUnread();
     setCalm(false);
-    chipsRevealed = false;
-    chipNodes.forEach(function (chip) {
-      chip.classList.remove("is-in");
-    });
-    invites.classList.remove("is-open");
-    ad.classList.remove("is-on");
+    setBeat("");
+    hideAllChips();
+    syncChrome();
+  }
+
+  function showCalmBubble() {
+    stopHalo();
+    stopUnread();
+    setCalm(true);
+    launcherWrap.classList.add("is-shown");
+    hideAllChips();
+    setBeat("a");
+    syncChrome();
+  }
+
+  function showUnreadMark() {
+    setCalm(true);
+    stopHalo();
+    unreadOn = true;
+    badge.classList.add("is-on");
+    launcherWrap.classList.add("is-unread");
+    setBeat("c");
+    hideAllChips();
     syncChrome();
   }
 
   function revealChips() {
     chipsRevealed = true;
-    invites.classList.add("is-open");
-    if (!isManager) {
-      ad.classList.add("is-on");
-    }
+    setBeat("d");
     var i = 0;
     function nextChip() {
-      if (panelOpen) {
+      if (panelOpen || !unreadOn) {
         return;
       }
       if (i >= chipNodes.length) {
@@ -279,15 +315,12 @@
         return;
       }
       chipNodes[i].classList.add("is-in");
+      invites.classList.add("is-open");
+      if (!isManager && i === 0) {
+        ad.classList.add("is-on");
+      }
       i += 1;
       attractChipTimer = setTimeout(nextChip, CHIP_STAGGER_MS);
-    }
-    if (reduced) {
-      chipNodes.forEach(function (chip) {
-        chip.classList.add("is-in");
-      });
-      syncChrome();
-      return;
     }
     nextChip();
   }
@@ -297,64 +330,52 @@
       return;
     }
     clearAttractTimers();
-    stopHalo();
-    stopUnread();
-    setCalm(true);
-    launcherWrap.classList.add("is-shown");
-    chipsRevealed = false;
-    chipNodes.forEach(function (chip) {
-      chip.classList.remove("is-in");
-    });
-    invites.classList.remove("is-open");
-    ad.classList.remove("is-on");
-    syncChrome();
+    showCalmBubble();
+
+    function afterBadgeAlone() {
+      if (panelOpen || !unreadOn) {
+        return;
+      }
+      revealChips();
+    }
+
+    function afterWave() {
+      if (panelOpen) {
+        return;
+      }
+      stopHalo();
+      setBeat("a");
+      attractTimer = setTimeout(function () {
+        if (panelOpen) {
+          return;
+        }
+        showUnreadMark();
+        attractChipTimer = setTimeout(afterBadgeAlone, BADGE_ALONE_MS);
+      }, POST_WAVE_MS);
+    }
 
     if (reduced) {
-      unreadOn = true;
-      badge.classList.add("is-on");
-      launcherWrap.classList.add("is-unread");
-      revealChips();
+      attractTimer = setTimeout(function () {
+        if (panelOpen) {
+          return;
+        }
+        showUnreadMark();
+        attractChipTimer = setTimeout(afterBadgeAlone, BADGE_ALONE_MS);
+      }, A_HOLD_MS);
       return;
     }
 
-    // Beat 1: bubble only. Beat 2: 2–3 rings, then gone. Beat 3: red 1 on a calm bubble. Then chips.
     attractHaloTimer = setTimeout(function () {
       if (panelOpen) {
         return;
       }
       stopUnread();
+      hideAllChips();
       setCalm(true);
+      setBeat("b");
       halo.classList.add("is-pulse");
-      attractBadgeTimer = setTimeout(function () {
-        if (panelOpen) {
-          return;
-        }
-        stopHalo();
-        attractTimer = setTimeout(function () {
-          if (panelOpen) {
-            return;
-          }
-          setCalm(true);
-          unreadOn = true;
-          badge.classList.add("is-on");
-          launcherWrap.classList.add("is-unread");
-          attractChipTimer = setTimeout(function () {
-            if (panelOpen || !unreadOn) {
-              return;
-            }
-            revealChips();
-          }, CALM_MS);
-        }, CALM_MS);
-      }, WAVE_MS);
-    }, BUBBLE_HOLD_MS);
-  }
-
-  function scheduleAttract(delay) {
-    if (panelOpen) {
-      return;
-    }
-    clearAttractTimers();
-    attractTimer = setTimeout(playAttractSequence, delay);
+      attractBadgeTimer = setTimeout(afterWave, WAVE_MS);
+    }, A_HOLD_MS);
   }
 
   function openPanel() {
@@ -674,7 +695,7 @@
     }
   });
 
-  scheduleAttract(BUBBLE_MS);
+  playAttractSequence();
 
   if (cfg.manager && cfg.surface === "admin" && cfg.restUrl) {
     try {

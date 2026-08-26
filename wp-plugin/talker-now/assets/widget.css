@@ -162,16 +162,8 @@
   width: 80px;
   height: 80px;
   overflow: visible;
-  opacity: 0;
-  transform: translateY(10px) scale(0.92);
-  pointer-events: none;
-}
-
-.talker-now-launcher-wrap.is-shown {
   opacity: 1;
-  transform: none;
   pointer-events: auto;
-  transition: opacity 380ms ease, transform 380ms ease;
 }
 
 .talker-now-halo {
@@ -186,52 +178,62 @@
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  border: 2px solid rgba(196, 63, 23, 0.55);
+  border: 2px solid rgba(196, 63, 23, 0.7);
   opacity: 0;
   transform: scale(1);
   pointer-events: none;
 }
 
-.talker-now-halo.is-pulse .talker-now-ring {
-  animation: talker-now-ring-out 1s ease-out 1 forwards;
+.talker-now-root.is-beat-b .talker-now-halo.is-pulse .talker-now-ring {
+  animation: talker-now-ring-out 1.1s ease-out 1 forwards;
 }
 
-.talker-now-halo.is-pulse .talker-now-ring:nth-child(1) {
+.talker-now-root.is-beat-b .talker-now-halo.is-pulse .talker-now-ring:nth-child(1) {
   animation-delay: 0s;
 }
 
-.talker-now-halo.is-pulse .talker-now-ring:nth-child(2) {
-  animation-delay: 0.25s;
+.talker-now-root.is-beat-b .talker-now-halo.is-pulse .talker-now-ring:nth-child(2) {
+  animation-delay: 0.2s;
 }
 
-.talker-now-halo.is-pulse .talker-now-ring:nth-child(3) {
-  animation-delay: 0.5s;
+.talker-now-root.is-beat-b .talker-now-halo.is-pulse .talker-now-ring:nth-child(3) {
+  animation-delay: 0.4s;
 }
 
-.talker-now-halo:not(.is-pulse) .talker-now-ring {
-  animation: none;
-  opacity: 0;
+.talker-now-root:not(.is-beat-b) .talker-now-ring {
+  animation: none !important;
+  opacity: 0 !important;
 }
 
 @keyframes talker-now-ring-out {
   0% {
     transform: scale(1);
-    opacity: 0.5;
+    opacity: 0.65;
   }
   100% {
-    transform: scale(1.85);
+    transform: scale(1.9);
     opacity: 0;
   }
 }
 
-/* Never show the 1 while rings are still running. */
-.talker-now-halo.is-pulse ~ .talker-now-badge {
+/* A: bubble only. B: rings, no 1, no chips. C: red 1 alone. D: chips one by one. */
+.talker-now-root.is-beat-a .talker-now-badge,
+.talker-now-root.is-beat-b .talker-now-badge,
+.talker-now-root.is-beat-a .talker-now-invites,
+.talker-now-root.is-beat-b .talker-now-invites,
+.talker-now-root.is-beat-c .talker-now-invites,
+.talker-now-root.is-beat-a .talker-now-ad,
+.talker-now-root.is-beat-b .talker-now-ad,
+.talker-now-root.is-beat-c .talker-now-ad {
   opacity: 0 !important;
-  animation: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
 }
 
-.talker-now-root:has(.talker-now-halo.is-pulse) .talker-now-invites,
-.talker-now-root:has(.talker-now-halo.is-pulse) .talker-now-ad {
+.talker-now-root.is-beat-a .talker-now-chip,
+.talker-now-root.is-beat-b .talker-now-chip,
+.talker-now-root.is-beat-c .talker-now-chip {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
@@ -610,13 +612,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .talker-now-dot,
-  .talker-now-halo.is-pulse .talker-now-ring,
+  .talker-now-root.is-beat-b .talker-now-halo.is-pulse .talker-now-ring,
   .talker-now-chip.is-in,
   .talker-now-chip.is-shine::before,
   .talker-now-typing i,
   .talker-now-scan-wheel,
-  .talker-now-badge.is-on,
-  .talker-now-launcher-wrap.is-shown {
+  .talker-now-badge.is-on {
     animation: none;
     transition: none;
   }
