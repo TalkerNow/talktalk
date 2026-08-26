@@ -385,6 +385,50 @@
   animation-delay: 0.3s;
 }
 
+.talker-now-msg.is-scan {
+  max-width: 100%;
+}
+
+.talker-now-scan {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.talker-now-scan-wheel {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  border: 2px solid rgba(17, 17, 17, 0.14);
+  border-top-color: var(--talker-rust);
+  border-radius: 50%;
+  animation: talker-now-spin 0.75s linear infinite;
+}
+
+.talker-now-scan-machine {
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  color: var(--talker-ink);
+}
+
+.talker-now-scan-pc {
+  width: 28px;
+  height: 24px;
+  display: block;
+}
+
+.talker-now-scan-copy {
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+@keyframes talker-now-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .talker-now-contact {
   padding: 0 12px 8px;
 }
@@ -477,7 +521,8 @@
   .talker-now-dot,
   .talker-now-halo.is-on,
   .talker-now-chip.is-shine::before,
-  .talker-now-typing i {
+  .talker-now-typing i,
+  .talker-now-scan-wheel {
     animation: none;
   }
 }

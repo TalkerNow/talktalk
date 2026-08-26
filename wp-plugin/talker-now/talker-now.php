@@ -3,7 +3,7 @@
  * Plugin Name: Talker
  * Plugin URI: https://talker.now
  * Description: L’agent qui répond sur votre site WordPress. Zip, sans carte, sans WordPress.org.
- * Version: 0.1.7
+ * Version: 0.1.8
  * Author: Talker
  * Author URI: https://talker.now
  * Text Domain: talker-now
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TALKER_NOW_VERSION', '0.1.7' );
+define( 'TALKER_NOW_VERSION', '0.1.8' );
 define( 'TALKER_NOW_FILE', __FILE__ );
 define( 'TALKER_NOW_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TALKER_NOW_URL', plugin_dir_url( __FILE__ ) );
@@ -85,9 +85,8 @@ function talker_now_is_manager() {
 }
 
 /**
- * Site-read stub: this plugin knows to read this WordPress (`home_url`) only.
- * Later crawl conditions gérant questions. Not a generic QCM. No visitor path.
- * Full fetch/QCM waits for Talker-side. Filter is the hook.
+ * Site-read: this plugin reads this WordPress (`home_url`) only, extracts facts,
+ * and classifies one of five intensity families. Not a generic QCM. No visitor path.
  *
  * @return array<string, string>
  */

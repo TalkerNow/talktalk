@@ -99,9 +99,11 @@ class Talker_Now_Widget {
 					'name'          => __( 'Nom', 'talker-now' ),
 					'email'         => __( 'E-mail', 'talker-now' ),
 					'phone'         => __( 'Téléphone', 'talker-now' ),
-					'offline'       => __( 'Merci. Nous vous recontacterons.', 'talker-now' ),
-					'scanning'      => __( 'Je parcours votre site maintenant : je défile et je lis l’accueil. Un instant, je reviens avec des questions sur votre métier.', 'talker-now' ),
-					'poweredBy'     => __( 'Propulsé par talker.now', 'talker-now' ),
+					'offline'        => __( 'Merci. Nous vous recontacterons.', 'talker-now' ),
+					'scanning'       => __( 'Je parcours votre site.', 'talker-now' ),
+					'scanningShort'  => __( 'Je parcours votre site…', 'talker-now' ),
+					'scanned'        => __( 'J’ai parcouru votre site, on peut commencer le QCM.', 'talker-now' ),
+					'poweredBy'      => __( 'Propulsé par talker.now', 'talker-now' ),
 				),
 			)
 		);

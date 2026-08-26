@@ -128,7 +128,8 @@ class Talker_Now_REST {
 	}
 
 	/**
-	 * Gérant path: crawl hello then métier QCM. Never the visitor contact stub.
+	 * Gérant path: scan visual while crawling, then a fact-based QCM.
+	 * Never the visitor contact stub.
 	 *
 	 * @param string $intent
 	 * @param string $message
@@ -137,76 +138,30 @@ class Talker_Now_REST {
 	 */
 	private static function manager_message( $intent, $message, $session ) {
 		unset( $session );
-		$crawl = Talker_Now_Crawl::get();
 
 		if ( 'site_read' === $intent ) {
-			if ( 'done' !== $crawl['status'] ) {
+			$crawl = Talker_Now_Crawl::get();
+			if ( ! in_array( $crawl['status'], array( 'done', 'failed' ), true ) ) {
 				Talker_Now_Crawl::run();
 			}
 			$crawl = Talker_Now_Crawl::get();
+			$done  = in_array( $crawl['status'], array( 'done', 'failed' ), true );
 			return new WP_REST_Response(
 				array(
-					'reply' => '',
-					'crawl' => $crawl['status'],
+					'reply'  => '',
+					'visual' => $done ? 'ready' : 'scan',
+					'crawl'  => $crawl['status'] ? $crawl['status'] : 'running',
+					'qcm'    => 'idle',
 				),
 				200
 			);
 		}
 
-		if ( 'asked' === $crawl['qcm_step'] && '' !== trim( $message ) && 'hello' !== $intent ) {
-			$crawl['qcm_answer'] = $message;
-			$crawl['qcm_step']   = 'answered';
-			Talker_Now_Crawl::save( $crawl );
-			return new WP_REST_Response(
-				array(
-					'reply' => 'C’est noté. Je m’en servirai pour parler comme vous sur le site.',
-					'crawl' => 'done',
-					'qcm'   => 'answered',
-				),
-				200
-			);
+		if ( '' !== trim( $message ) && 'hello' !== $intent ) {
+			return new WP_REST_Response( Talker_Now_Crawl::answer( $message ), 200 );
 		}
 
-		return new WP_REST_Response( self::hello_payload( Talker_Now_Crawl::get() ), 200 );
-	}
-
-	/**
-	 * @param array<string, mixed> $crawl
-	 * @return array<string, string>
-	 */
-	private static function hello_payload( $crawl ) {
-		if ( 'done' !== $crawl['status'] ) {
-			Talker_Now_Crawl::run();
-			$crawl = Talker_Now_Crawl::get();
-			if ( 'done' !== $crawl['status'] ) {
-				return array(
-					'reply' => 'Je parcours votre site maintenant : je défile et je lis l’accueil. Un instant, je reviens avec des questions sur votre métier.',
-					'crawl' => $crawl['status'] ? $crawl['status'] : 'running',
-					'qcm'   => 'idle',
-				);
-			}
-		}
-
-		$question = Talker_Now_Crawl::first_question( $crawl );
-		$crawl['qcm_question'] = $question;
-		if ( 'answered' !== $crawl['qcm_step'] ) {
-			$crawl['qcm_step'] = 'asked';
-		}
-		Talker_Now_Crawl::save( $crawl );
-
-		if ( 'answered' === $crawl['qcm_step'] ) {
-			return array(
-				'reply' => 'J’ai déjà parcouru votre site. Nous pouvons continuer : qu’est-ce que vos visiteurs demandent le plus ?',
-				'crawl' => 'done',
-				'qcm'   => 'answered',
-			);
-		}
-
-		return array(
-			'reply' => 'J’ai parcouru votre site. ' . $question,
-			'crawl' => 'done',
-			'qcm'   => 'asked',
-		);
+		return new WP_REST_Response( Talker_Now_Crawl::hello(), 200 );
 	}
 
 	/**

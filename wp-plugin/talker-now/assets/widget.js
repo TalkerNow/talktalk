@@ -286,19 +286,96 @@
     return msg;
   }
 
+  var scanNode = null;
+  function addScan() {
+    if (scanNode && scanNode.parentNode) {
+      return scanNode;
+    }
+    var msg = el("div", "talker-now-msg is-bot is-scan");
+    msg.setAttribute("role", "status");
+    msg.setAttribute(
+      "aria-label",
+      i18n.scanning || "Je parcours votre site."
+    );
+    var box = el("div", "talker-now-scan");
+    var wheel = el("span", "talker-now-scan-wheel");
+    wheel.setAttribute("aria-hidden", "true");
+    var machine = el("span", "talker-now-scan-machine");
+    machine.setAttribute("aria-hidden", "true");
+    machine.innerHTML =
+      '<svg class="talker-now-scan-pc" viewBox="0 0 32 28" focusable="false">' +
+      '<rect x="2" y="1" width="28" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>' +
+      '<rect x="11" y="21" width="10" height="2" fill="currentColor"/>' +
+      '<path d="M8 26h16" stroke="currentColor" stroke-width="2" fill="none"/>' +
+      '<rect x="7" y="6" width="4" height="4" fill="currentColor" opacity="0.35"/>' +
+      '<rect x="14" y="6" width="4" height="4" fill="currentColor" opacity="0.55"/>' +
+      '<rect x="21" y="6" width="4" height="4" fill="currentColor" opacity="0.8"/>' +
+      "</svg>";
+    box.appendChild(wheel);
+    box.appendChild(machine);
+    box.appendChild(
+      el("span", "talker-now-scan-copy", {
+        text: i18n.scanningShort || "Je parcours votre site…",
+      })
+    );
+    msg.appendChild(box);
+    thread.appendChild(msg);
+    thread.scrollTop = thread.scrollHeight;
+    scanNode = msg;
+    return msg;
+  }
+
+  function removeScan() {
+    if (scanNode && scanNode.parentNode) {
+      scanNode.parentNode.removeChild(scanNode);
+    }
+    scanNode = null;
+  }
+
+  function crawlKnownDone() {
+    try {
+      return window.sessionStorage.getItem("talkerNowCrawl") === "done";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function rememberCrawl(status) {
+    try {
+      if (status === "done" || status === "failed") {
+        window.sessionStorage.setItem("talkerNowCrawl", "done");
+      } else if (status) {
+        window.sessionStorage.setItem("talkerNowCrawl", String(status));
+      }
+    } catch (e) {}
+  }
+
+  function showManagerPayload(data) {
+    var intro = (data && data.intro) || "";
+    var question = (data && data.question) || "";
+    var reply = (data && (data.reply || data.message || data.text)) || "";
+    if (intro) {
+      addBot(intro);
+    }
+    if (question && question !== intro) {
+      addBot(question);
+    } else if (!intro && reply) {
+      addBot(reply);
+    }
+  }
+
   var managerHelloBusy = false;
   function startManagerHello() {
     if (!cfg.restUrl || managerHelloBusy) {
-      if (!cfg.restUrl) {
-        addBot(
-          i18n.scanning ||
-            "Je parcours votre site maintenant : je défile et je lis l’accueil. Un instant, je reviens avec des questions sur votre métier."
-        );
+      if (!cfg.restUrl && !crawlKnownDone()) {
+        addScan();
       }
       return;
     }
     managerHelloBusy = true;
-    var typing = addTyping();
+    if (!crawlKnownDone()) {
+      addScan();
+    }
     fetch(cfg.restUrl, {
       method: "POST",
       credentials: "same-origin",
@@ -321,26 +398,27 @@
         });
       })
       .then(function (data) {
-        if (typing && typing.parentNode) {
-          typing.parentNode.removeChild(typing);
-        }
         managerHelloBusy = false;
-        var reply = (data && (data.reply || data.message || data.text)) || "";
-        if (reply) {
-          addBot(reply);
+        rememberCrawl(data && data.crawl);
+        if (data && data.visual === "scan") {
+          addScan();
+          window.setTimeout(startManagerHello, 1200);
+          return;
         }
-        if (data && data.crawl && data.crawl !== "done" && data.qcm !== "asked") {
-          window.setTimeout(startManagerHello, 1600);
-        }
+        removeScan();
+        showManagerPayload(data);
       })
       .catch(function () {
-        if (typing && typing.parentNode) {
-          typing.parentNode.removeChild(typing);
-        }
         managerHelloBusy = false;
+        if (!crawlKnownDone()) {
+          addScan();
+          window.setTimeout(startManagerHello, 1600);
+          return;
+        }
+        removeScan();
         addBot(
-          i18n.scanning ||
-            "Je parcours votre site maintenant : je défile et je lis l’accueil. Un instant, je reviens avec des questions sur votre métier."
+          i18n.scanned ||
+            "J’ai parcouru votre site, on peut commencer le QCM."
         );
       });
   }
@@ -371,8 +449,7 @@
       contact: contactPayload(),
     };
     var fallback = isManager
-      ? i18n.scanning ||
-        "Je parcours votre site maintenant : je défile et je lis l’accueil. Un instant, je reviens avec des questions sur votre métier."
+      ? "C’est noté."
       : i18n.offline || "Merci. Nous vous recontacterons.";
 
     function done(reply) {
@@ -405,7 +482,8 @@
       })
       .then(function (data) {
         var reply =
-          (data && (data.reply || data.message || data.text)) || fallback;
+          (data && (data.reply || data.question || data.message || data.text)) ||
+          fallback;
         done(reply);
       })
       .catch(function () {
@@ -501,7 +579,16 @@
             actor: "manager",
             contact: {},
           }),
-        }).catch(function () {});
+        })
+          .then(function (res) {
+            return res.json().catch(function () {
+              return {};
+            });
+          })
+          .then(function (data) {
+            rememberCrawl(data && data.crawl);
+          })
+          .catch(function () {});
       }
     } catch (e) {}
   }
