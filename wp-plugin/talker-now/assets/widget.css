@@ -70,6 +70,27 @@
   max-width: min(72vw, 280px);
   overflow: hidden;
   text-overflow: ellipsis;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+.talker-now-chip.is-in {
+  visibility: visible;
+  pointer-events: auto;
+  animation: talker-now-chip-in 0.28s ease forwards;
+}
+
+@keyframes talker-now-chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .talker-now-chip.is-hello {
@@ -140,23 +161,17 @@
   position: relative;
   width: 80px;
   height: 80px;
-  pointer-events: auto;
-}
-
-.talker-now-root.is-admin .talker-now-launcher-wrap:not(.is-shown) {
+  overflow: visible;
   opacity: 0;
-  transform: translateY(10px) scale(0.9);
+  transform: translateY(10px) scale(0.92);
   pointer-events: none;
 }
 
-.talker-now-root.is-admin .talker-now-launcher-wrap.is-shown {
+.talker-now-launcher-wrap.is-shown {
   opacity: 1;
   transform: none;
+  pointer-events: auto;
   transition: opacity 380ms ease, transform 380ms ease;
-}
-
-.talker-now-root.is-admin .talker-now-badge.is-on {
-  animation: talker-now-badge-in 0.38s ease;
 }
 
 .talker-now-halo {
@@ -164,26 +179,62 @@
   inset: 0;
   border-radius: 9999px;
   pointer-events: none;
+  overflow: visible;
+}
+
+.talker-now-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid rgba(196, 63, 23, 0.55);
   opacity: 0;
-  box-shadow: 0 0 0 0 rgba(196, 63, 23, 0.7);
-  transition: opacity 280ms ease;
+  transform: scale(1);
+  pointer-events: none;
 }
 
-.talker-now-halo.is-on {
-  opacity: 1;
-  animation: talker-now-ripple 2s ease infinite;
+.talker-now-halo.is-pulse .talker-now-ring {
+  animation: talker-now-ring-out 1s ease-out 1 forwards;
 }
 
-@keyframes talker-now-ripple {
+.talker-now-halo.is-pulse .talker-now-ring:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.talker-now-halo.is-pulse .talker-now-ring:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.talker-now-halo.is-pulse .talker-now-ring:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.talker-now-halo:not(.is-pulse) .talker-now-ring {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes talker-now-ring-out {
   0% {
-    box-shadow: 0 0 0 0 rgba(196, 63, 23, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(196, 63, 23, 0);
+    transform: scale(1);
+    opacity: 0.5;
   }
   100% {
-    box-shadow: 0 0 0 10px rgba(196, 63, 23, 0);
+    transform: scale(1.85);
+    opacity: 0;
   }
+}
+
+/* Never show the 1 while rings are still running. */
+.talker-now-halo.is-pulse ~ .talker-now-badge {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+.talker-now-root:has(.talker-now-halo.is-pulse) .talker-now-invites,
+.talker-now-root:has(.talker-now-halo.is-pulse) .talker-now-ad {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 @keyframes talker-now-badge-in {
@@ -222,6 +273,7 @@
 
 .talker-now-badge.is-on {
   opacity: 1;
+  animation: talker-now-badge-in 0.38s ease;
 }
 
 .talker-now-launcher {
@@ -268,6 +320,11 @@
 
 .talker-now-dot:nth-of-type(3) {
   animation-delay: 0.3s;
+}
+
+.talker-now-launcher-wrap.is-calm .talker-now-dot,
+.talker-now-launcher-wrap.is-unread .talker-now-dot {
+  animation: none;
 }
 
 @keyframes talker-now-bounce {
@@ -553,13 +610,20 @@
 
 @media (prefers-reduced-motion: reduce) {
   .talker-now-dot,
-  .talker-now-halo.is-on,
+  .talker-now-halo.is-pulse .talker-now-ring,
+  .talker-now-chip.is-in,
   .talker-now-chip.is-shine::before,
   .talker-now-typing i,
   .talker-now-scan-wheel,
-  .talker-now-root.is-admin .talker-now-badge.is-on,
-  .talker-now-root.is-admin .talker-now-launcher-wrap.is-shown {
+  .talker-now-badge.is-on,
+  .talker-now-launcher-wrap.is-shown {
     animation: none;
     transition: none;
+  }
+
+  .talker-now-chip.is-in {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
   }
 }

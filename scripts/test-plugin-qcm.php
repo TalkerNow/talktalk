@@ -193,9 +193,27 @@ $widget = file_get_contents( dirname( __DIR__ ) . '/wp-plugin/talker-now/include
 $boot   = file_get_contents( dirname( __DIR__ ) . '/wp-plugin/talker-now/talker-now.php' );
 tn_assert( false !== strpos( $widget, 'Bonjour, vous me voyez ? je suis là, cliquez-moi.' ), "admin chip unchanged" );
 tn_assert( false !== strpos( $css, 'min-width: 13.5rem' ) && false !== strpos( $js, 'createElement("br")' ), "hello chip wraps on 2–3 lines, not one word per line" );
-tn_assert( false !== strpos( $js, 'playAdminAttract' ) && false !== strpos( $js, 'ADMIN_HALO_MS' ) && false !== strpos( $js, 'ADMIN_BADGE_MS' ), "admin launcher staggers bubble then halo then badge" );
-tn_assert( false !== strpos( $js, 'halo.classList.toggle("is-on", on)' ) && false !== strpos( $js, 'badge.classList.toggle("is-on", on)' ), "public attract still turns halo and badge on together" );
-tn_assert( false !== strpos( $css, 'talker-now-ripple' ) && false !== strpos( $css, 'talker-now-badge-in' ), "admin keeps the moving wave and a catch-the-eye 1" );
+tn_assert( false !== strpos( $js, 'function playAttractSequence' ) && false !== strpos( $js, 'var WAVE_MS = 1500' ) && false !== strpos( $js, 'var BUBBLE_HOLD_MS' ), "both surfaces share one 3-beat attract" );
+tn_assert( false === strpos( $js, 'playAdminAttract' ) && false === strpos( $js, 'ADMIN_HALO_MS' ) && false === strpos( $js, 'ADMIN_BADGE_MS' ), "old admin-only stagger is gone" );
+tn_assert( false === strpos( $js, 'halo.classList.toggle("is-on"' ) && false === strpos( $js, 'attractOn' ), "halo is never flipped on with the badge" );
+$seq = '';
+if ( preg_match( '/function playAttractSequence\(\) \{([\s\S]*?)\n  function /', $js, $m ) ) {
+	$seq = $m[1];
+}
+tn_assert( '' !== $seq, "attract sequence function is parseable" );
+$pulse_at = strpos( $seq, 'halo.classList.add("is-pulse")' );
+$after    = false === $pulse_at ? '' : substr( $seq, $pulse_at );
+$stop_at  = strpos( $after, 'stopHalo()' );
+$badge_at = strpos( $after, 'badge.classList.add("is-on")' );
+$chips_at = strpos( $after, 'revealChips()' );
+tn_assert( false !== $pulse_at && false !== $stop_at, "rings start, then stop, before the 1" );
+tn_assert( false !== $badge_at && $badge_at > $stop_at, "red 1 only after the rings are gone" );
+tn_assert( false !== $chips_at && $chips_at > $badge_at, "chips only after the red 1" );
+tn_assert( false !== strpos( $js, 'chipsRevealed' ) && false !== strpos( $js, 'chip.classList.add("is-in")' ), "chips stay hidden until staggered in" );
+tn_assert( false === strpos( $css, 'talker-now-ripple' ) && false !== strpos( $css, 'talker-now-ring-out' ) && false !== strpos( $css, 'ease-out 1 forwards' ), "wave is 2–3 finite rings, not an infinite ripple" );
+tn_assert( false !== strpos( $css, '.talker-now-chip.is-in' ) && false !== strpos( $css, '.talker-now-halo.is-pulse ~ .talker-now-badge' ), "CSS forbids a pale chip at t0 and a 1 during the wave" );
+tn_assert( false !== strpos( $css, '.talker-now-launcher-wrap.is-calm .talker-now-dot' ), "unread 1 sits on a calm bubble" );
+tn_assert( false !== strpos( $css, 'talker-now-badge-in' ), "the 1 still pops once the wave is gone" );
 tn_assert( false !== strpos( $boot, 'Poser une question' ) && false !== strpos( $boot, 'Prendre rendez-vous' ), "public chips still in defaults" );
 
 $one = '<html><head><title>Cabinet dentaire Dupont à Lyon</title><meta name="description" content="Dentiste à Lyon. Doctolib. Lun-Ven 8h30-18h."></head><body><h1>Cabinet dentaire Dupont</h1><p>Soins, implants. 69003 Lyon.</p><footer>Dr Marie Dupont — dentiste à Lyon</footer></body></html>';

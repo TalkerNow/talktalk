@@ -7,13 +7,12 @@
   }
   window.talkerNowBooted = true;
 
-  var ATTRACT_FIRST_MS = 2400;
-  var ATTRACT_ON_MS = 4000;
-  var ATTRACT_REST_MS = 7000;
   var LEAVE_DELAY_MS = 220;
-  var ADMIN_BUBBLE_MS = 420;
-  var ADMIN_HALO_MS = 720;
-  var ADMIN_BADGE_MS = 720;
+  var BUBBLE_MS = 420;
+  var BUBBLE_HOLD_MS = 720;
+  var WAVE_MS = 1500;
+  var CALM_MS = 220;
+  var CHIP_STAGGER_MS = 240;
   var SESSION_KEY = "talkerNowSession";
 
   var reduced =
@@ -64,6 +63,9 @@
   var invites = el("div", "talker-now-invites");
   var launcherWrap = el("div", "talker-now-launcher-wrap");
   var halo = el("div", "talker-now-halo");
+  halo.appendChild(el("span", "talker-now-ring"));
+  halo.appendChild(el("span", "talker-now-ring"));
+  halo.appendChild(el("span", "talker-now-ring"));
   var badge = el("span", "talker-now-badge", { text: "1" });
   var launcher = el("button", "talker-now-launcher", {
     type: "button",
@@ -165,6 +167,7 @@
   root.appendChild(stage);
   document.body.appendChild(root);
 
+  var chipNodes = [];
   (cfg.invites || []).forEach(function (invite) {
     if (!invite || !invite.label) {
       return;
@@ -192,7 +195,6 @@
     chip.addEventListener("click", function (event) {
       event.preventDefault();
       event.stopPropagation();
-      pinned = false;
       hover = false;
       openPanel();
       if (!isManager) {
@@ -200,123 +202,170 @@
       }
     });
     invites.appendChild(chip);
+    chipNodes.push(chip);
   });
 
   var hover = false;
-  var pinned = false;
   var panelOpen = false;
-  var attractOn = false;
+  var chipsRevealed = false;
+  var unreadOn = false;
   var leaveTimer = null;
   var attractTimer = null;
-  var attractOffTimer = null;
   var attractHaloTimer = null;
   var attractBadgeTimer = null;
+  var attractChipTimer = null;
   var busy = false;
   var greeted = false;
 
   function chipsWanted() {
-    return !panelOpen && (hover || pinned || attractOn);
+    return !panelOpen && chipsRevealed && (unreadOn || hover);
   }
 
   function syncChrome() {
     var show = chipsWanted();
     invites.classList.toggle("is-open", show);
-    ad.classList.toggle("is-on", show);
+    ad.classList.toggle("is-on", show && !isManager);
     launcher.setAttribute("aria-expanded", panelOpen || show ? "true" : "false");
   }
 
-  function pinInvites() {
-    pinned = true;
-    syncChrome();
+  function stopHalo() {
+    halo.classList.remove("is-pulse");
   }
 
-  function setAttract(on) {
-    if (!on) {
-      attractOn = false;
-      halo.classList.remove("is-on");
-      badge.classList.remove("is-on");
-      syncChrome();
-      return;
-    }
-    if (isManager) {
-      playAdminAttract();
-      return;
-    }
-    attractOn = true;
-    halo.classList.toggle("is-on", on);
-    badge.classList.toggle("is-on", on);
-    syncChrome();
+  function stopUnread() {
+    unreadOn = false;
+    badge.classList.remove("is-on");
+    launcherWrap.classList.remove("is-unread");
+  }
+
+  function setCalm(on) {
+    launcherWrap.classList.toggle("is-calm", on);
   }
 
   function clearAttractTimers() {
     clearTimeout(attractTimer);
-    clearTimeout(attractOffTimer);
     clearTimeout(attractHaloTimer);
     clearTimeout(attractBadgeTimer);
+    clearTimeout(attractChipTimer);
   }
 
-  function holdThenRest() {
-    attractOffTimer = setTimeout(function () {
+  function abortAttract() {
+    clearAttractTimers();
+    stopHalo();
+    stopUnread();
+    setCalm(false);
+    chipsRevealed = false;
+    chipNodes.forEach(function (chip) {
+      chip.classList.remove("is-in");
+    });
+    invites.classList.remove("is-open");
+    ad.classList.remove("is-on");
+    syncChrome();
+  }
+
+  function revealChips() {
+    chipsRevealed = true;
+    invites.classList.add("is-open");
+    if (!isManager) {
+      ad.classList.add("is-on");
+    }
+    var i = 0;
+    function nextChip() {
       if (panelOpen) {
         return;
       }
-      setAttract(false);
-      scheduleAttract(ATTRACT_REST_MS);
-    }, ATTRACT_ON_MS);
-  }
-
-  function playAdminAttract() {
-    attractOn = true;
-    syncChrome();
+      if (i >= chipNodes.length) {
+        syncChrome();
+        return;
+      }
+      chipNodes[i].classList.add("is-in");
+      i += 1;
+      attractChipTimer = setTimeout(nextChip, CHIP_STAGGER_MS);
+    }
     if (reduced) {
-      launcherWrap.classList.add("is-shown");
-      halo.classList.add("is-on");
-      badge.classList.add("is-on");
-      holdThenRest();
+      chipNodes.forEach(function (chip) {
+        chip.classList.add("is-in");
+      });
+      syncChrome();
       return;
     }
-    var bubbleReady = launcherWrap.classList.contains("is-shown");
-    if (!bubbleReady) {
-      launcherWrap.classList.add("is-shown");
+    nextChip();
+  }
+
+  function playAttractSequence() {
+    if (panelOpen) {
+      return;
     }
-    halo.classList.remove("is-on");
-    badge.classList.remove("is-on");
+    clearAttractTimers();
+    stopHalo();
+    stopUnread();
+    setCalm(true);
+    launcherWrap.classList.add("is-shown");
+    chipsRevealed = false;
+    chipNodes.forEach(function (chip) {
+      chip.classList.remove("is-in");
+    });
+    invites.classList.remove("is-open");
+    ad.classList.remove("is-on");
+    syncChrome();
+
+    if (reduced) {
+      unreadOn = true;
+      badge.classList.add("is-on");
+      launcherWrap.classList.add("is-unread");
+      revealChips();
+      return;
+    }
+
+    // Beat 1: bubble only. Beat 2: 2–3 rings, then gone. Beat 3: red 1 on a calm bubble. Then chips.
     attractHaloTimer = setTimeout(function () {
       if (panelOpen) {
         return;
       }
-      halo.classList.add("is-on");
+      stopUnread();
+      setCalm(true);
+      halo.classList.add("is-pulse");
       attractBadgeTimer = setTimeout(function () {
         if (panelOpen) {
           return;
         }
-        badge.classList.add("is-on");
-        holdThenRest();
-      }, ADMIN_BADGE_MS);
-    }, bubbleReady ? 280 : ADMIN_HALO_MS);
+        stopHalo();
+        attractTimer = setTimeout(function () {
+          if (panelOpen) {
+            return;
+          }
+          setCalm(true);
+          unreadOn = true;
+          badge.classList.add("is-on");
+          launcherWrap.classList.add("is-unread");
+          attractChipTimer = setTimeout(function () {
+            if (panelOpen || !unreadOn) {
+              return;
+            }
+            revealChips();
+          }, CALM_MS);
+        }, CALM_MS);
+      }, WAVE_MS);
+    }, BUBBLE_HOLD_MS);
   }
 
   function scheduleAttract(delay) {
-    if (reduced || panelOpen) {
+    if (panelOpen) {
       return;
     }
     clearAttractTimers();
-    attractTimer = setTimeout(function () {
-      if (panelOpen) {
-        return;
-      }
-      setAttract(true);
-      if (!isManager) {
-        holdThenRest();
-      }
-    }, delay);
+    attractTimer = setTimeout(playAttractSequence, delay);
   }
 
   function openPanel() {
     panelOpen = true;
     panel.classList.add("is-open");
-    setAttract(false);
-    clearAttractTimers();
+    abortAttract();
+    launcherWrap.classList.add("is-shown");
+    chipsRevealed = true;
+    chipNodes.forEach(function (chip) {
+      chip.classList.add("is-in");
+    });
     syncChrome();
     if (!greeted) {
       greeted = true;
@@ -332,7 +381,7 @@
   function closePanel() {
     panelOpen = false;
     panel.classList.remove("is-open");
-    scheduleAttract(ATTRACT_REST_MS);
+    launcherWrap.classList.add("is-shown");
     syncChrome();
   }
 
@@ -586,8 +635,7 @@
       closePanel();
       return;
     }
-    pinned = !pinned;
-    syncChrome();
+    openPanel();
   });
 
   closeBtn.addEventListener("click", closePanel);
@@ -617,11 +665,6 @@
     }
     if (panelOpen) {
       closePanel();
-      return;
-    }
-    if (pinned) {
-      pinned = false;
-      syncChrome();
     }
   });
 
@@ -631,19 +674,7 @@
     }
   });
 
-  if (isManager) {
-    if (reduced) {
-      launcherWrap.classList.add("is-shown");
-      attractOn = true;
-      halo.classList.add("is-on");
-      badge.classList.add("is-on");
-      syncChrome();
-    } else {
-      scheduleAttract(ADMIN_BUBBLE_MS);
-    }
-  } else {
-    scheduleAttract(ATTRACT_FIRST_MS);
-  }
+  scheduleAttract(BUBBLE_MS);
 
   if (cfg.manager && cfg.surface === "admin" && cfg.restUrl) {
     try {
