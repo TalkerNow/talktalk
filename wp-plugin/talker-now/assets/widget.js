@@ -164,12 +164,24 @@
       return;
     }
     var chip = el("button", "talker-now-chip", { type: "button" });
-    chip.appendChild(el("span", "", { text: invite.label }));
-    if (invite.id === "talker") {
-      chip.classList.add("is-shine");
-    }
     if (invite.id === "hello") {
       chip.classList.add("is-hello");
+      var helloSpan = el("span");
+      var raw = String(invite.label);
+      var cut = raw.indexOf("?");
+      if (cut !== -1 && cut < raw.length - 1) {
+        helloSpan.appendChild(document.createTextNode(raw.slice(0, cut + 1).trim()));
+        helloSpan.appendChild(document.createElement("br"));
+        helloSpan.appendChild(document.createTextNode(raw.slice(cut + 1).trim()));
+      } else {
+        helloSpan.textContent = raw;
+      }
+      chip.appendChild(helloSpan);
+    } else {
+      chip.appendChild(el("span", "", { text: invite.label }));
+    }
+    if (invite.id === "talker") {
+      chip.classList.add("is-shine");
     }
     chip.addEventListener("click", function (event) {
       event.preventDefault();

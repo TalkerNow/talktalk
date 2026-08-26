@@ -39,6 +39,9 @@ class Talker_Now_Crawl {
 			'questions'         => array(),
 			'answers'           => array(),
 			'family_confirmed'  => false,
+			'voice'             => 'self',
+			'gerant_name'       => '',
+			'gerant_email'      => '',
 			'qcm_step'          => 'idle',
 			'qcm_question'      => '',
 			'qcm_answer'        => '',
@@ -49,6 +52,9 @@ class Talker_Now_Crawl {
 			$crawl['facts'] = array();
 		}
 		$crawl['facts'] = array_merge( self::empty_facts(), $crawl['facts'] );
+		if ( ! is_array( $crawl['facts']['people'] ) ) {
+			$crawl['facts']['people'] = array();
+		}
 		if ( ! is_array( $crawl['questions'] ) ) {
 			$crawl['questions'] = array();
 		}
@@ -64,7 +70,7 @@ class Talker_Now_Crawl {
 	public static function save( $data ) {
 		$data['updated_at'] = gmdate( 'c' );
 		if ( isset( $data['phase'] ) ) {
-			if ( in_array( $data['phase'], array( 'confirm', 'reclass', 'frame', 'questions' ), true ) ) {
+			if ( in_array( $data['phase'], array( 'confirm', 'reclass', 'frame', 'proxy', 'questions' ), true ) ) {
 				$data['qcm_step'] = 'asked';
 			} elseif ( 'done' === $data['phase'] ) {
 				$data['qcm_step'] = 'answered';
@@ -199,6 +205,9 @@ class Talker_Now_Crawl {
 			case 'reclass':
 				$crawl = self::on_reclass( $crawl, $message );
 				break;
+			case 'proxy':
+				$crawl = self::on_proxy( $crawl, $message );
+				break;
 			case 'frame':
 				$crawl = self::on_frame( $crawl, $message );
 				break;
@@ -235,49 +244,65 @@ class Talker_Now_Crawl {
 	 * @return string
 	 */
 	public static function first_question( $crawl ) {
+		$facts = isset( $crawl['facts'] ) && is_array( $crawl['facts'] ) ? $crawl['facts'] : self::empty_facts();
 		if ( ! empty( $crawl['thin'] ) || '' === (string) $crawl['family'] ) {
-			$framing = self::framing_questions();
+			$framing = self::framing_questions( $facts );
 			return $framing[0];
 		}
-		$facts = isset( $crawl['facts'] ) && is_array( $crawl['facts'] ) ? $crawl['facts'] : self::empty_facts();
 		return self::confirm_question( (string) $crawl['family'], $facts );
 	}
 
 	/**
-	 * @param string $family
+	 * Identity first — crawled names, never the WP account.
+	 *
+	 * @param string               $family
 	 * @param array<string, mixed> $facts
 	 * @return string
 	 */
 	public static function confirm_question( $family, $facts ) {
-		$city     = trim( (string) $facts['city'] );
-		$where    = '' !== $city ? ' à ' . $city : '';
-		$activity = self::activity_label( $facts );
-		$services = self::service_list( $facts );
+		$people  = self::people_list( $facts );
+		$city    = trim( (string) $facts['city'] );
+		$where   = '' !== $city ? ' à ' . $city : '';
+		$societe = self::societe_label( $facts );
+		$metier  = self::metier_short( $family, $facts );
+		$escape  = ' Si vous posez le plugin pour eux, dites « j’installe pour quelqu’un d’autre ».';
 
-		switch ( $family ) {
-			case 'medical':
-				$label = self::medical_label( $facts );
-				return 'Vous êtes bien ' . $label . $where . ' ?';
-			case 'trade':
-				$label = self::trade_label( $facts );
-				return 'Vous êtes bien ' . $label . $where . ' ?';
-			case 'realtor':
-				$extra = '' !== $services ? ' — ' . $services : '';
-				return 'Vous tenez bien une agence immobilière' . $where . $extra . ' ?';
-			case 'hours':
-				$place = '' !== $activity ? $activity : 'un lieu ouvert au public';
-				$hours = trim( (string) $facts['hours'] );
-				$tail  = '' !== $hours ? ' J’ai lu : ' . $hours . '.' : '';
-				return 'Vous accueillez bien le public — ' . $place . $where . ' ?' . $tail;
-			case 'spin':
-				$what = '' !== $activity ? $activity : 'du conseil ou de l’accompagnement';
-				return 'Vous faites bien ' . $what . $where . ' — un accompagnement plutôt qu’un commerce de passage ?';
-			default:
-				if ( '' !== $activity ) {
-					return 'Vous êtes bien « ' . $activity . ' »' . $where . ' ?';
-				}
-				return 'Vous êtes bien installé' . $where . ' ?';
+		if ( 1 === count( $people ) ) {
+			$who = $people[0];
+			$job = '' !== $metier ? ', ' . $metier : '';
+			return 'Vous êtes bien ' . $who . $job . $where . ' ?' . $escape;
 		}
+		if ( count( $people ) >= 2 ) {
+			$shown = array_slice( $people, 0, 3 );
+			$last  = array_pop( $shown );
+			$list  = implode( ', ', $shown );
+			if ( '' !== $list ) {
+				$list .= ' et ' . $last;
+			} else {
+				$list = $last;
+			}
+			return 'Je vois ' . $list . ' — c’est bien vous, ou quelqu’un d’autre ?' . $escape;
+		}
+
+		$org = '' !== $societe ? $societe : ( '' !== $metier ? $metier : 'cette activité' );
+		return 'Vous parlez pour ' . $org . $where . ', ou vous posez le plugin pour eux ?';
+	}
+
+	/**
+	 * @param array<string, mixed> $facts
+	 * @return array<int, string>
+	 */
+	public static function framing_questions( $facts = array() ) {
+		$facts   = array_merge( self::empty_facts(), is_array( $facts ) ? $facts : array() );
+		$societe = self::societe_label( $facts );
+		$city    = trim( (string) $facts['city'] );
+		$where   = '' !== $city ? ' à ' . $city : '';
+		$org     = '' !== $societe ? $societe : 'cette activité';
+		return array(
+			'Le site dit trop peu. Vous parlez pour ' . $org . $where . ', ou vous posez le plugin pour quelqu’un d’autre ? Si vous installez pour quelqu’un d’autre, dites « j’installe pour quelqu’un d’autre ».',
+			'Pourquoi les gens appellent ou écrivent, en premier ?',
+			'Qu’est-ce que le bot ne doit jamais dire ou promettre — à leur place, pas à la vôtre si vous n’êtes pas le gérant ?',
+		);
 	}
 
 	/**
@@ -311,8 +336,24 @@ class Talker_Now_Crawl {
 				$pool = self::questions_spin( $facts );
 				break;
 			default:
-				$pool = self::framing_questions();
+				$pool = self::framing_questions( $facts );
 				break;
+		}
+
+		$pool = array_values(
+			array_filter(
+				$pool,
+				static function ( $q ) {
+					return is_string( $q ) && '' !== trim( $q );
+				}
+			)
+		);
+		if ( 'proxy' === (string) $facts['voice'] ) {
+			$rewritten = array();
+			foreach ( $pool as $q ) {
+				$rewritten[] = self::in_proxy_voice( $q, $facts );
+			}
+			$pool = $rewritten;
 		}
 
 		$pool = array_values(
@@ -331,18 +372,7 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * @return array<int, string>
-	 */
-	public static function framing_questions() {
-		return array(
-			'Le site dit trop peu : qui êtes-vous, concrètement — métier et ville ?',
-			'Pourquoi les gens vous appellent ou vous écrivent, en premier ?',
-			'Qu’est-ce que le bot ne doit jamais dire ou promettre à votre place ?',
-		);
-	}
-
-	/**
-	 * @return array<string, string>
+	 * @return array<string, mixed>
 	 */
 	public static function empty_facts() {
 		return array(
@@ -356,6 +386,11 @@ class Talker_Now_Crawl {
 			'h1'        => '',
 			'haystack'  => '',
 			'spoken'    => '',
+			'people'    => array(),
+			'societe'   => '',
+			'voice'     => 'self',
+			'gerant_name'  => '',
+			'gerant_email' => '',
 		);
 	}
 
@@ -366,7 +401,7 @@ class Talker_Now_Crawl {
 	private static function begin_qcm( $crawl ) {
 		if ( ! empty( $crawl['thin'] ) || '' === (string) $crawl['family'] ) {
 			$crawl['phase']            = 'frame';
-			$crawl['questions']        = self::framing_questions();
+			$crawl['questions']        = self::framing_questions( isset( $crawl['facts'] ) ? $crawl['facts'] : array() );
 			$crawl['q_index']          = 0;
 			$crawl['family_confirmed'] = false;
 			$crawl['qcm_question']     = $crawl['questions'][0];
@@ -416,8 +451,17 @@ class Talker_Now_Crawl {
 		if ( 'reclass' === $phase && '' === $question ) {
 			$question = self::reclass_question();
 		}
+		if ( 'proxy' === $phase && '' === $question ) {
+			$question = self::proxy_question( $crawl );
+		}
 		if ( 'done' === $phase && '' === $question ) {
-			$question = 'C’est noté. Je m’en servirai pour parler comme vous sur le site.';
+			if ( 'proxy' === (string) $crawl['voice'] ) {
+				$who      = trim( (string) $crawl['gerant_name'] );
+				$who      = '' !== $who ? $who : 'le gérant';
+				$question = 'C’est noté. Je parlerai comme ' . $who . ', pas avec votre voix.';
+			} else {
+				$question = 'C’est noté. Je m’en servirai pour parler comme vous sur le site.';
+			}
 		}
 
 		$reply = $question;
@@ -445,6 +489,10 @@ class Talker_Now_Crawl {
 		);
 		$crawl['qcm_answer'] = $message;
 
+		if ( self::is_technician( $message ) ) {
+			return self::begin_proxy( $crawl, $message );
+		}
+
 		$stance = self::stance( $message );
 		$hint   = self::classify_family( self::plain( $message ) );
 
@@ -458,7 +506,7 @@ class Talker_Now_Crawl {
 		}
 
 		$crawl['family_confirmed'] = true;
-		$crawl['questions']        = self::questions_for( (string) $crawl['family'], $crawl['facts'], $message );
+		$crawl['questions']        = self::questions_for( (string) $crawl['family'], self::voice_facts( $crawl ), $message );
 		$crawl['q_index']          = 0;
 		$crawl['phase']            = 'questions';
 		$crawl['qcm_question']     = isset( $crawl['questions'][0] ) ? $crawl['questions'][0] : '';
@@ -471,6 +519,13 @@ class Talker_Now_Crawl {
 	 * @return array<string, mixed>
 	 */
 	private static function on_reclass( $crawl, $message ) {
+		if ( self::is_technician( $message ) ) {
+			$crawl['answers'][] = array(
+				'phase' => 'reclass',
+				'text'  => $message,
+			);
+			return self::begin_proxy( $crawl, $message );
+		}
 		$crawl['answers'][] = array(
 			'phase' => 'reclass',
 			'text'  => $message,
@@ -483,7 +538,7 @@ class Talker_Now_Crawl {
 			$crawl['thin']         = true;
 			$crawl['family']       = '';
 			$crawl['phase']        = 'frame';
-			$crawl['questions']    = self::framing_questions();
+			$crawl['questions']    = self::framing_questions( isset( $crawl['facts'] ) ? $crawl['facts'] : array() );
 			$crawl['q_index']      = 0;
 			$crawl['qcm_question'] = $crawl['questions'][0];
 			return $crawl;
@@ -497,6 +552,14 @@ class Talker_Now_Crawl {
 	 * @return array<string, mixed>
 	 */
 	private static function on_frame( $crawl, $message ) {
+		if ( 0 === (int) $crawl['q_index'] && self::is_technician( $message ) ) {
+			$crawl['answers'][] = array(
+				'phase' => 'frame',
+				'index' => 0,
+				'text'  => $message,
+			);
+			return self::begin_proxy( $crawl, $message );
+		}
 		$crawl['answers'][] = array(
 			'phase' => 'frame',
 			'index' => (int) $crawl['q_index'],
@@ -524,7 +587,7 @@ class Talker_Now_Crawl {
 			$hint = 'trade';
 		}
 
-		$facts           = $crawl['facts'];
+		$facts           = self::voice_facts( $crawl );
 		$facts['spoken'] = self::clip( $spoken, 400 );
 		$city            = self::find_city( strtolower( $spoken ) . ' ' . $spoken );
 		if ( '' !== $city && '' === (string) $facts['city'] ) {
@@ -578,7 +641,7 @@ class Talker_Now_Crawl {
 		$crawl['signal']           = $family;
 		$crawl['thin']             = false;
 		$crawl['family_confirmed'] = true;
-		$crawl['questions']        = self::questions_for( $family, $crawl['facts'], $message );
+		$crawl['questions']        = self::questions_for( $family, self::voice_facts( $crawl ), $message );
 		$crawl['q_index']          = 0;
 		$crawl['phase']            = 'questions';
 		$crawl['qcm_question']     = isset( $crawl['questions'][0] ) ? $crawl['questions'][0] : '';
@@ -586,10 +649,298 @@ class Talker_Now_Crawl {
 	}
 
 	/**
+	 * Technician path: identify the real gérant, never write in the installer voice.
+	 *
+	 * @param array<string, mixed> $crawl
+	 * @param string               $message
+	 * @return array<string, mixed>
+	 */
+	private static function begin_proxy( $crawl, $message ) {
+		unset( $message );
+		$crawl['voice']             = 'proxy';
+		$crawl['facts']['voice']    = 'proxy';
+		$crawl['proxy_from']        = (string) $crawl['phase'];
+		$crawl['phase']             = 'proxy';
+		$crawl['qcm_question']      = self::proxy_question( $crawl );
+		return $crawl;
+	}
+
+	/**
+	 * @param array<string, mixed> $crawl
+	 * @param string               $message
+	 * @return array<string, mixed>
+	 */
+	private static function on_proxy( $crawl, $message ) {
+		$parsed                     = self::parse_gerant( $message );
+		$crawl['gerant_name']       = $parsed['name'];
+		$crawl['gerant_email']      = $parsed['email'];
+		$crawl['facts']['gerant_name']  = $parsed['name'];
+		$crawl['facts']['gerant_email'] = $parsed['email'];
+		$crawl['facts']['voice']        = 'proxy';
+		$crawl['voice']                 = 'proxy';
+		$crawl['answers'][]             = array(
+			'phase' => 'proxy',
+			'text'  => $message,
+		);
+
+		$from = isset( $crawl['proxy_from'] ) ? (string) $crawl['proxy_from'] : 'confirm';
+		if ( 'frame' === $from || ! empty( $crawl['thin'] ) || '' === (string) $crawl['family'] ) {
+			$qs                    = self::framing_questions( $crawl['facts'] );
+			$crawl['questions']    = array(
+				$qs[0],
+				self::in_proxy_voice( $qs[1], $crawl['facts'] ),
+				self::in_proxy_voice( $qs[2], $crawl['facts'] ),
+			);
+			$crawl['phase']        = 'frame';
+			$crawl['q_index']      = 1;
+			$crawl['qcm_question'] = $crawl['questions'][1];
+			return $crawl;
+		}
+
+		$crawl['family_confirmed'] = true;
+		$crawl['questions']        = self::questions_for( (string) $crawl['family'], self::voice_facts( $crawl ), $message );
+		$crawl['q_index']          = 0;
+		$crawl['phase']            = 'questions';
+		$crawl['qcm_question']     = isset( $crawl['questions'][0] ) ? $crawl['questions'][0] : '';
+		return $crawl;
+	}
+
+	/**
+	 * @param array<string, mixed> $crawl
+	 * @return string
+	 */
+	private static function proxy_question( $crawl ) {
+		unset( $crawl );
+		return 'Qui est le vrai gérant — nom et e-mail ? Je ne dois pas écrire le prompt du client avec votre voix.';
+	}
+
+	/**
 	 * @return string
 	 */
 	private static function reclass_question() {
 		return 'D’accord, je me trompe. Vous êtes plutôt : un lieu avec des horaires (musée, visites), un artisan local (plombier, dépannage…), une agence immobilière, un cabinet médical, ou un accompagnement / conseil ?';
+	}
+
+	/**
+	 * @param string $text
+	 * @return bool
+	 */
+	public static function is_technician( $text ) {
+		$n = self::norm( $text );
+		$n = str_replace( array( "'", "’" ), ' ', $n );
+		$n = trim( (string) preg_replace( '/\s+/', ' ', $n ) );
+		if ( '' === $n ) {
+			return false;
+		}
+		$needles = array(
+			'j installe pour',
+			'jinstalle pour',
+			'installe pour quelqu',
+			'pose le plugin',
+			'poser le plugin',
+			'vous posez le plugin',
+			'pour quelqu un d autre',
+			'pour quelquun d autre',
+			'prestataire',
+			'webmaster',
+			'agence web',
+			'technicien',
+			'pas le gerant',
+			'pas le dirigeant',
+			'pour le client',
+			'je pose pour',
+		);
+		foreach ( $needles as $needle ) {
+			if ( false !== strpos( $n, $needle ) ) {
+				return true;
+			}
+		}
+		if ( preg_match( '/\b(pour eux|pas moi)\b/', $n ) && ! preg_match( '/\bje (parle|suis|tiens|fais)\b/', $n ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @param string $text
+	 * @return array{name:string,email:string}
+	 */
+	public static function parse_gerant( $text ) {
+		$email = '';
+		if ( preg_match( '/[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}/i', $text, $m ) ) {
+			$email = strtolower( $m[0] );
+		}
+		$name = trim( (string) preg_replace( '/' . preg_quote( $email, '/' ) . '/', '', $text ) );
+		$name = self::plain( $name );
+		$name = preg_replace( '/^(le\s+)?g[ée]rant\s+(est\s+)?/iu', '', (string) $name );
+		$name = trim( (string) $name, " \t,;:-" );
+		if ( strlen( $name ) > 80 ) {
+			$name = self::clip( $name, 80 );
+		}
+		return array(
+			'name'  => $name,
+			'email' => $email,
+		);
+	}
+
+	/**
+	 * @param array<string, mixed> $crawl
+	 * @return array<string, mixed>
+	 */
+	private static function voice_facts( $crawl ) {
+		$facts = isset( $crawl['facts'] ) && is_array( $crawl['facts'] ) ? $crawl['facts'] : self::empty_facts();
+		$facts = array_merge( self::empty_facts(), $facts );
+		$facts['voice']        = isset( $crawl['voice'] ) ? (string) $crawl['voice'] : (string) $facts['voice'];
+		$facts['gerant_name']  = isset( $crawl['gerant_name'] ) ? (string) $crawl['gerant_name'] : (string) $facts['gerant_name'];
+		$facts['gerant_email'] = isset( $crawl['gerant_email'] ) ? (string) $crawl['gerant_email'] : (string) $facts['gerant_email'];
+		return $facts;
+	}
+
+	/**
+	 * Rewrite a client QCM line so it is not in the technician's mouth.
+	 *
+	 * @param string               $question
+	 * @param array<string, mixed> $facts
+	 * @return string
+	 */
+	public static function in_proxy_voice( $question, $facts ) {
+		$who = trim( (string) $facts['gerant_name'] );
+		if ( '' === $who ) {
+			$who = self::societe_label( $facts );
+		}
+		if ( '' === $who ) {
+			$who = 'leur activité';
+		}
+		$q = (string) $question;
+		$q = preg_replace( '/\b[Vv]ous êtes\b/u', $who . ' est', $q );
+		$q = preg_replace( '/\b[Vv]ous tenez\b/u', $who . ' tient', $q );
+		$q = preg_replace( '/\b[Vv]ous faites\b/u', $who . ' fait', $q );
+		$q = preg_replace( '/\b[Vv]ous vous déplacez\b/u', 'On se déplace', $q );
+		$q = preg_replace( '/\b[Vv]ous travaillez\b/u', 'On travaille', $q );
+		$q = preg_replace( '/\b[Vv]ous opérez\b/u', 'On opère', $q );
+		$q = preg_replace( '/\bà votre place\b/u', 'à leur place', $q );
+		$q = preg_replace( '/\bqui vous écrit\b/u', 'qui leur écrit', $q );
+		$q = preg_replace( '/\b[Vv]ous\b/u', 'on', $q );
+		$q = preg_replace( '/\bvotre\b/u', 'leur', $q );
+		$q = preg_replace( '/\bvos\b/u', 'leurs', $q );
+		return $q;
+	}
+
+	/**
+	 * Crawled people only. WP display name may reorder, never invent.
+	 *
+	 * @param array<string, mixed> $facts
+	 * @return array<int, string>
+	 */
+	public static function people_list( $facts ) {
+		$people = array();
+		if ( isset( $facts['people'] ) && is_array( $facts['people'] ) ) {
+			foreach ( $facts['people'] as $name ) {
+				$name = trim( (string) $name );
+				if ( '' !== $name ) {
+					$people[] = $name;
+				}
+			}
+		}
+		return array_slice( self::rank_people_by_hint( $people ), 0, 3 );
+	}
+
+	/**
+	 * @param array<int, string> $people
+	 * @return array<int, string>
+	 */
+	public static function rank_people_by_hint( $people ) {
+		$hint = self::wp_identity_hint();
+		$hn   = self::norm( $hint['name'] );
+		if ( '' === $hn || empty( $people ) ) {
+			return array_values( $people );
+		}
+		$matched = null;
+		$rest    = array();
+		foreach ( $people as $name ) {
+			if ( null === $matched && self::norm( $name ) === $hn ) {
+				$matched = $name;
+			} else {
+				$rest[] = $name;
+			}
+		}
+		if ( null !== $matched ) {
+			array_unshift( $rest, $matched );
+			return $rest;
+		}
+		return array_values( $people );
+	}
+
+	/**
+	 * Weak hint only. Never treat as the gérant identity.
+	 *
+	 * @return array{name:string,email:string}
+	 */
+	public static function wp_identity_hint() {
+		$hint = array(
+			'name'  => '',
+			'email' => '',
+		);
+		if ( ! function_exists( 'is_user_logged_in' ) || ! is_user_logged_in() ) {
+			return $hint;
+		}
+		if ( ! function_exists( 'wp_get_current_user' ) ) {
+			return $hint;
+		}
+		$user = wp_get_current_user();
+		if ( is_object( $user ) ) {
+			$hint['name']  = isset( $user->display_name ) ? trim( (string) $user->display_name ) : '';
+			$hint['email'] = isset( $user->user_email ) ? trim( (string) $user->user_email ) : '';
+		}
+		return $hint;
+	}
+
+	/**
+	 * @param array<string, mixed> $facts
+	 * @return string
+	 */
+	public static function societe_label( $facts ) {
+		foreach ( array( 'societe', 'h1', 'title', 'activity' ) as $key ) {
+			$v = trim( (string) $facts[ $key ] );
+			if ( '' !== $v ) {
+				return self::clip( $v, 80 );
+			}
+		}
+		return '';
+	}
+
+	/**
+	 * @param string               $family
+	 * @param array<string, mixed> $facts
+	 * @return string
+	 */
+	public static function metier_short( $family, $facts ) {
+		switch ( $family ) {
+			case 'medical':
+				$label = self::medical_label( $facts );
+				$map   = array(
+					'un cabinet dentaire'          => 'dentiste',
+					'un cabinet d’ostéopathie'     => 'ostéopathe',
+					'un cabinet de kinésithérapie' => 'kinésithérapeute',
+					'un cabinet médical'           => 'médecin',
+					'un cabinet vétérinaire'       => 'vétérinaire',
+					'un cabinet de psychologie'    => 'psychologue',
+					'un cabinet de santé'          => 'praticien',
+				);
+				return isset( $map[ $label ] ) ? $map[ $label ] : $label;
+			case 'trade':
+				return self::trade_label( $facts );
+			case 'realtor':
+				return 'agent immobilier';
+			case 'hours':
+				$act = self::activity_label( $facts );
+				return '' !== $act ? $act : 'un lieu ouvert au public';
+			case 'spin':
+				$act = self::activity_label( $facts );
+				return '' !== $act ? $act : 'conseil';
+			default:
+				return self::activity_label( $facts );
+		}
 	}
 
 	/**
@@ -796,6 +1147,8 @@ class Talker_Now_Crawl {
 		$facts['booking']     = self::find_booking( $haystack );
 		$facts['contact']     = self::find_contact( $excerpt . ' ' . $description );
 		$facts['services']    = self::find_services( $parsed, $haystack );
+		$facts['societe']     = self::clip( $h1 ? $h1 : $title, 80 );
+		$facts['people']      = self::find_people( $parsed );
 		return $facts;
 	}
 
@@ -834,7 +1187,7 @@ class Talker_Now_Crawl {
 				'headers'     => array(
 					'Accept' => 'text/html',
 				),
-				'user-agent'  => 'TalkerSiteRead/0.1.8; ' . talker_now_home_url(),
+				'user-agent'  => 'TalkerSiteRead/0.1.9; ' . talker_now_home_url(),
 			)
 		);
 		if ( is_wp_error( $response ) ) {
@@ -859,7 +1212,7 @@ class Talker_Now_Crawl {
 		}
 		$home_parts = wp_parse_url( $home );
 		$host       = isset( $home_parts['host'] ) ? strtolower( (string) $home_parts['host'] ) : '';
-		$keys       = array( 'horaire', 'contact', 'service', 'prestation', 'rdv', 'rendez', 'tarif', 'equipe', 'about', 'propos', 'cabinet', 'soin', 'bien', 'visite' );
+		$keys       = array( 'horaire', 'contact', 'service', 'prestation', 'rdv', 'rendez', 'tarif', 'equipe', 'about', 'propos', 'cabinet', 'soin', 'bien', 'visite', 'team', 'staff', 'fondateur' );
 		$scored     = array();
 		foreach ( $matches[1] as $href ) {
 			$abs = self::absolutize( $href, $home );
@@ -883,6 +1236,9 @@ class Talker_Now_Crawl {
 			foreach ( $keys as $key ) {
 				if ( false !== strpos( $path, $key ) ) {
 					$score++;
+					if ( in_array( $key, array( 'equipe', 'about', 'propos', 'team', 'staff' ), true ) ) {
+						$score += 2;
+					}
 				}
 			}
 			if ( $score > 0 ) {
@@ -890,7 +1246,7 @@ class Talker_Now_Crawl {
 			}
 		}
 		arsort( $scored );
-		return array_slice( array_keys( $scored ), 0, 3 );
+		return array_slice( array_keys( $scored ), 0, 4 );
 	}
 
 	/**
@@ -932,6 +1288,7 @@ class Talker_Now_Crawl {
 		$h1          = '';
 		$excerpts    = array();
 		$headings    = array();
+		$footers     = array();
 		foreach ( $blobs as $html ) {
 			$p = self::parse( $html );
 			if ( '' === $title && '' !== $p['title'] ) {
@@ -949,16 +1306,21 @@ class Talker_Now_Crawl {
 			if ( '' !== $p['headings'] ) {
 				$headings[] = $p['headings'];
 			}
+			if ( ! empty( $p['footer'] ) ) {
+				$footers[] = $p['footer'];
+			}
 		}
 		$excerpt  = self::clip( implode( ' ', $excerpts ), 4000 );
 		$heading  = self::clip( implode( ' · ', $headings ), 800 );
-		$haystack = strtolower( $title . ' ' . $description . ' ' . $h1 . ' ' . $heading . ' ' . $excerpt );
+		$footer   = self::clip( implode( ' ', $footers ), 800 );
+		$haystack = strtolower( $title . ' ' . $description . ' ' . $h1 . ' ' . $heading . ' ' . $excerpt . ' ' . $footer );
 		return array(
 			'title'       => $title,
 			'description' => $description,
 			'h1'          => $h1,
 			'excerpt'     => $excerpt,
 			'headings'    => $heading,
+			'footer'      => $footer,
 			'haystack'    => $haystack,
 		);
 	}
@@ -1000,7 +1362,12 @@ class Talker_Now_Crawl {
 			$excerpt = substr( $excerpt, 0, 2500 );
 		}
 
-		$haystack = strtolower( $title . ' ' . $description . ' ' . $h1 . ' ' . implode( ' ', $headings ) . ' ' . $excerpt );
+		$footer = '';
+		if ( preg_match( '/<footer\b[^>]*>(.*?)<\/footer>/is', $html, $match ) ) {
+			$footer = self::plain( $match[1] );
+		}
+
+		$haystack = strtolower( $title . ' ' . $description . ' ' . $h1 . ' ' . implode( ' ', $headings ) . ' ' . $excerpt . ' ' . $footer );
 
 		return array(
 			'title'       => $title,
@@ -1008,6 +1375,7 @@ class Talker_Now_Crawl {
 			'h1'          => $h1,
 			'headings'    => implode( ' · ', array_slice( $headings, 0, 12 ) ),
 			'excerpt'     => $excerpt,
+			'footer'      => $footer,
 			'haystack'    => $haystack,
 		);
 	}
@@ -1248,6 +1616,85 @@ class Talker_Now_Crawl {
 			return $activity;
 		}
 		return 'un artisan du bâtiment';
+	}
+
+	/**
+	 * Names from À propos / équipe / footer. Never WP display_name or admin_email.
+	 *
+	 * @param array<string, string> $parsed
+	 * @return array<int, string>
+	 */
+	public static function find_people( $parsed ) {
+		$chunks = array(
+			isset( $parsed['footer'] ) ? (string) $parsed['footer'] : '',
+			isset( $parsed['headings'] ) ? (string) $parsed['headings'] : '',
+			isset( $parsed['excerpt'] ) ? (string) $parsed['excerpt'] : '',
+			isset( $parsed['description'] ) ? (string) $parsed['description'] : '',
+		);
+		$text = implode( ' · ', $chunks );
+		$found = array();
+
+		if ( preg_match_all( '/(?:Dr|Dre|Dr\.|Docteur|Pr|Pr\.|Me|Ma[îi]tre)\s+([A-ZÉÈÊÀÂÎÏÔÛÙÇ][a-zàâäéèêëïîôùûüç\'’-]+(?:\s+[A-ZÉÈÊÀÂÎÏÔÛÙÇ][a-zàâäéèêëïîôùûüç\'’-]+)+)/u', $text, $m ) ) {
+			foreach ( $m[1] as $name ) {
+				$found[] = self::plain( $name );
+			}
+		}
+
+		if ( preg_match_all( '/\b([A-ZÉÈÊÀÂÎÏÔÛÙÇ][a-zàâäéèêëïîôùûüç\'’-]{2,20})\s+([A-ZÉÈÊÀÂÎÏÔÛÙÇ][a-zàâäéèêëïîôùûüç\'’-]{2,20})\b/u', $text, $m, PREG_SET_ORDER ) ) {
+			foreach ( $m as $row ) {
+				$first = $row[1];
+				$last  = $row[2];
+				if ( self::looks_like_person( $first, $last ) ) {
+					$found[] = $first . ' ' . $last;
+				}
+			}
+		}
+
+		$unique = array();
+		$seen   = array();
+		foreach ( $found as $name ) {
+			$key = self::norm( $name );
+			if ( '' === $key || isset( $seen[ $key ] ) ) {
+				continue;
+			}
+			$seen[ $key ] = true;
+			$unique[]     = $name;
+			if ( count( $unique ) >= 3 ) {
+				break;
+			}
+		}
+		return $unique;
+	}
+
+	/**
+	 * @param string $first
+	 * @param string $last
+	 * @return bool
+	 */
+	private static function looks_like_person( $first, $last ) {
+		$skip_first = array(
+			'cabinet', 'agence', 'musee', 'horaires', 'contact', 'mentions',
+			'accueil', 'notre', 'equipe', 'bienvenue', 'plomberie', 'dentaire',
+			'doctolib', 'france', 'visite', 'location', 'vente', 'estimation',
+			'implants', 'detartrage', 'debouchage', 'depannage', 'exposition',
+			'collection', 'accompagnement', 'strategie', 'dirigeants', 'wordpress',
+			'talker', 'prendre', 'lundi', 'mardi', 'samedi', 'dimanche', 'avenue',
+			'rue', 'place', 'centre', 'immobilier', 'immobiliere', 'tissus',
+			'orthodontie', 'urgence', 'appartement', 'maison',
+		);
+		$skip_last = array(
+			'dentaire', 'immobilier', 'immobiliere', 'plomberie', 'wordpress',
+			'doctolib', 'horaires', 'tissus', 'ouverture', 'rendez',
+		);
+		$nf = self::norm( $first );
+		$nl = self::norm( $last );
+		if ( in_array( $nf, $skip_first, true ) || in_array( $nl, $skip_last, true ) ) {
+			return false;
+		}
+		if ( $nf === $nl ) {
+			return false;
+		}
+		return true;
 	}
 
 	/**

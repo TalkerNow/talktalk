@@ -77,7 +77,10 @@
   text-align: right;
   line-height: 1.35;
   border-radius: 16px;
-  max-width: min(78vw, 340px);
+  flex: 0 0 auto;
+  width: 15.5rem;
+  min-width: 13.5rem;
+  max-width: min(78vw, 16rem);
   overflow: visible;
   text-overflow: unset;
 }

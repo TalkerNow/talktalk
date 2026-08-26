@@ -53,6 +53,16 @@ class WP_Error_Stub {
 	}
 }
 
+function is_user_logged_in() {
+	return true;
+}
+function wp_get_current_user() {
+	$user = new stdClass();
+	$user->display_name = 'Tech Webmaster';
+	$user->user_email   = 'tech@example.com';
+	return $user;
+}
+
 require dirname( __DIR__ ) . '/wp-plugin/talker-now/includes/class-crawl.php';
 
 $failed = 0;
@@ -87,9 +97,10 @@ foreach ( $fixtures as $name => $html ) {
 	$families[ $name ] = $family;
 	if ( 'thin' === $name ) {
 		tn_assert( $thin && '' === $family, "thin crawl is unclassified" );
-		$framing = Talker_Now_Crawl::framing_questions();
+		$framing = Talker_Now_Crawl::framing_questions( $facts );
 		tn_assert( 3 === count( $framing ), "thin path has three framing questions" );
-		tn_assert( false !== strpos( $framing[0], 'qui êtes-vous' ) || false !== stripos( $framing[0], 'métier' ), "framing asks who they are" );
+		tn_assert( false !== strpos( $framing[0], 'parlez pour' ) || false !== strpos( $framing[0], 'plugin' ), "thin first question separates dirigeant vs prestataire" );
+		tn_assert( false !== strpos( $framing[0], 'j’installe pour quelqu’un d’autre' ) || false !== strpos( $framing[0], "j'installe pour quelqu'un d'autre" ), "thin first question offers technician escape" );
 		tn_assert( false !== strpos( $framing[1], 'appellent' ) || false !== strpos( $framing[1], 'écrivent' ), "framing asks why people call" );
 		tn_assert( false !== strpos( $framing[2], 'jamais' ), "framing asks what never to say" );
 		continue;
@@ -144,7 +155,9 @@ tn_assert( 'ready' === $hello['visual'], "done crawl: no scan visual" );
 tn_assert( false !== strpos( $hello['intro'], 'parcouru' ) && false !== strpos( $hello['intro'], 'QCM' ), "done crawl intro starts QCM" );
 tn_assert( false !== strpos( $hello['question'], '?' ), "first question is the confirm" );
 tn_assert( 'confirm' === $hello['qcm'], "phase is confirm" );
-tn_assert( false !== strpos( strtolower( $hello['question'] ), 'cabinet' ) || false !== strpos( strtolower( $hello['question'] ), 'dentaire' ), "confirm grounded in crawl" );
+tn_assert( false !== strpos( $hello['question'], 'parlez pour' ) || false !== strpos( strtolower( $hello['question'] ), 'cabinet' ), "no-name identity uses société from crawl" );
+tn_assert( false === strpos( $hello['question'], 'Tech Webmaster' ), "WP display name is never the identity" );
+tn_assert( false === strpos( $hello['question'], 'tech@example.com' ), "WP email is never the identity" );
 
 $switched = Talker_Now_Crawl::answer( 'Non, je suis plombier à Lyon' );
 tn_assert( 'questions' === $switched['qcm'], "no + métier switches in one turn" );
@@ -179,7 +192,49 @@ tn_assert( false === strpos( $js, 'Bonjour, vous me voyez' ), "chip label stays 
 $widget = file_get_contents( dirname( __DIR__ ) . '/wp-plugin/talker-now/includes/class-widget.php' );
 $boot   = file_get_contents( dirname( __DIR__ ) . '/wp-plugin/talker-now/talker-now.php' );
 tn_assert( false !== strpos( $widget, 'Bonjour, vous me voyez ? je suis là, cliquez-moi.' ), "admin chip unchanged" );
+tn_assert( false !== strpos( $css, 'min-width: 13.5rem' ) && false !== strpos( $js, 'createElement("br")' ), "hello chip wraps on 2–3 lines, not one word per line" );
 tn_assert( false !== strpos( $boot, 'Poser une question' ) && false !== strpos( $boot, 'Prendre rendez-vous' ), "public chips still in defaults" );
+
+$one = '<html><head><title>Cabinet dentaire Dupont à Lyon</title><meta name="description" content="Dentiste à Lyon. Doctolib. Lun-Ven 8h30-18h."></head><body><h1>Cabinet dentaire Dupont</h1><p>Soins, implants. 69003 Lyon.</p><footer>Dr Marie Dupont — dentiste à Lyon</footer></body></html>';
+$one_facts = Talker_Now_Crawl::extract_facts( Talker_Now_Crawl::parse( $one ) );
+tn_assert( in_array( 'Marie Dupont', $one_facts['people'], true ), "one person crawled from footer" );
+$one_q = Talker_Now_Crawl::confirm_question( 'medical', $one_facts );
+tn_assert( 0 === strpos( $one_q, 'Vous êtes bien Marie Dupont' ), "one-name identity question" );
+tn_assert( false !== strpos( $one_q, 'Lyon' ) && false !== strpos( $one_q, 'j’installe pour quelqu’un d’autre' ), "one-name question has city and technician escape" );
+tn_assert( false === strpos( $one_q, 'Tech Webmaster' ), "crawled name wins over WP account" );
+
+$team = '<html><head><title>Cabinet dentaire à Lyon</title></head><body><h1>Cabinet dentaire</h1><h2>L’équipe</h2><h3>Marie Dupont</h3><h3>Jean Martin</h3><h3>Claire Bernard</h3><p>Dentiste à Lyon. Doctolib.</p></body></html>';
+$team_facts = Talker_Now_Crawl::extract_facts( Talker_Now_Crawl::parse( $team ) );
+$team_q = Talker_Now_Crawl::confirm_question( 'medical', $team_facts );
+tn_assert( 0 === strpos( $team_q, 'Je vois ' ) && false !== strpos( $team_q, 'Marie Dupont' ) && false !== strpos( $team_q, 'Jean Martin' ), "two-or-three names listed from crawl" );
+tn_assert( false !== strpos( $team_q, 'c’est bien vous, ou quelqu’un d’autre' ), "multi-name asks which person" );
+
+$none_q = Talker_Now_Crawl::confirm_question( 'medical', Talker_Now_Crawl::extract_facts( Talker_Now_Crawl::parse( $fixtures['medical'] ) ) );
+tn_assert( 0 === strpos( $none_q, 'Vous parlez pour' ) && false !== strpos( $none_q, 'posez le plugin' ), "no names: dirigeant vs prestataire" );
+
+tn_assert( Talker_Now_Crawl::is_technician( 'j’installe pour quelqu’un d’autre' ), "technician escape is detected" );
+tn_assert( ! Talker_Now_Crawl::is_technician( 'Non, je suis plombier' ), "métier correction is not technician" );
+
+$GLOBALS['tn_options'] = array();
+Talker_Now_Crawl::save(
+	array(
+		'status' => 'done',
+		'family' => 'medical',
+		'facts'  => $one_facts,
+		'thin'   => false,
+		'phase'  => 'idle',
+		'title'  => $one_facts['title'],
+	)
+);
+Talker_Now_Crawl::hello();
+$proxy = Talker_Now_Crawl::answer( 'j’installe pour quelqu’un d’autre' );
+tn_assert( 'proxy' === $proxy['qcm'], "technician path asks for the real gérant" );
+tn_assert( false !== strpos( $proxy['question'], 'gérant' ) && false !== strpos( $proxy['question'], 'e-mail' ), "proxy asks name + email" );
+$after = Talker_Now_Crawl::answer( 'Paul Moreau paul@cabinet.example' );
+tn_assert( 'questions' === $after['qcm'], "after gérant identity, fact QCM continues" );
+tn_assert( false === strpos( strtolower( $after['question'] ), 'tech webmaster' ), "client prompt is not in the technician voice" );
+$stored = Talker_Now_Crawl::get();
+tn_assert( 'proxy' === $stored['voice'] && false !== strpos( $stored['gerant_name'], 'Paul Moreau' ), "gérant stored, technician is not the voice" );
 
 echo $failed ? "\n$failed failed\n" : "\nall passed\n";
 exit( $failed ? 1 : 0 );
