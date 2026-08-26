@@ -72,6 +72,16 @@
   text-overflow: ellipsis;
 }
 
+.talker-now-chip.is-hello {
+  white-space: normal;
+  text-align: right;
+  line-height: 1.35;
+  border-radius: 16px;
+  max-width: min(78vw, 340px);
+  overflow: visible;
+  text-overflow: unset;
+}
+
 .talker-now-chip:hover,
 .talker-now-chip:focus-visible {
   border-color: #111;

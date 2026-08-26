@@ -65,6 +65,14 @@ class Talker_Now_Widget {
 				'label' => $settings['invite_3'],
 			),
 		);
+		if ( $admin ) {
+			$invites = array(
+				array(
+					'id'    => 'hello',
+					'label' => 'Bonjour, vous me voyez ? je suis là, cliquez-moi.',
+				),
+			);
+		}
 
 		wp_localize_script(
 			'talker-now-widget',
@@ -76,8 +84,9 @@ class Talker_Now_Widget {
 				'surface'   => $admin ? 'admin' : 'public',
 				'manager'   => $admin,
 				'siteName'  => wp_strip_all_tags( get_bloginfo( 'name' ) ),
-				'greeting'  => $settings['greeting'],
-				'poweredBy' => ( 'free' === $plan ),
+				'greeting'  => $admin ? '' : $settings['greeting'],
+				'poweredBy' => ( ! $admin && 'free' === $plan ),
+				'showContact' => ! $admin,
 				'invites'   => $invites,
 				'i18n'      => array(
 					'title'         => wp_strip_all_tags( get_bloginfo( 'name' ) ),
@@ -91,6 +100,7 @@ class Talker_Now_Widget {
 					'email'         => __( 'E-mail', 'talker-now' ),
 					'phone'         => __( 'Téléphone', 'talker-now' ),
 					'offline'       => __( 'Merci. Nous vous recontacterons.', 'talker-now' ),
+					'scanning'      => __( 'Je parcours votre site maintenant : je défile et je lis l’accueil. Un instant, je reviens avec des questions sur votre métier.', 'talker-now' ),
 					'poweredBy'     => __( 'Propulsé par talker.now', 'talker-now' ),
 				),
 			)

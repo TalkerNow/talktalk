@@ -3,7 +3,7 @@
  * Plugin Name: Talker
  * Plugin URI: https://talker.now
  * Description: L’agent qui répond sur votre site WordPress. Zip, sans carte, sans WordPress.org.
- * Version: 0.1.6
+ * Version: 0.1.7
  * Author: Talker
  * Author URI: https://talker.now
  * Text Domain: talker-now
@@ -15,12 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TALKER_NOW_VERSION', '0.1.6' );
+define( 'TALKER_NOW_VERSION', '0.1.7' );
 define( 'TALKER_NOW_FILE', __FILE__ );
 define( 'TALKER_NOW_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TALKER_NOW_URL', plugin_dir_url( __FILE__ ) );
 define( 'TALKER_NOW_OPTION', 'talker_now_settings' );
 
+require_once TALKER_NOW_DIR . 'includes/class-crawl.php';
 require_once TALKER_NOW_DIR . 'includes/class-rest.php';
 require_once TALKER_NOW_DIR . 'includes/class-widget.php';
 

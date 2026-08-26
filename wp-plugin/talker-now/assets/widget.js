@@ -52,6 +52,7 @@
   }
 
   var i18n = cfg.i18n || {};
+  var isManager = Boolean(cfg.manager && cfg.surface === "admin");
   var root = el("div", "talker-now-root");
   var stage = el("div", "talker-now-stage");
   var invites = el("div", "talker-now-invites");
@@ -135,7 +136,9 @@
 
   panel.appendChild(head);
   panel.appendChild(thread);
-  panel.appendChild(contact);
+  if (cfg.showContact) {
+    panel.appendChild(contact);
+  }
   panel.appendChild(composer);
   if (cfg.poweredBy) {
     panel.appendChild(
@@ -165,13 +168,18 @@
     if (invite.id === "talker") {
       chip.classList.add("is-shine");
     }
+    if (invite.id === "hello") {
+      chip.classList.add("is-hello");
+    }
     chip.addEventListener("click", function (event) {
       event.preventDefault();
       event.stopPropagation();
       pinned = false;
       hover = false;
       openPanel();
-      sendMessage(invite.label, invite.id || "invite");
+      if (!isManager) {
+        sendMessage(invite.label, invite.id || "invite");
+      }
     });
     invites.appendChild(chip);
   });
@@ -237,9 +245,13 @@
     setAttract(false);
     clearAttractTimers();
     syncChrome();
-    if (!greeted && cfg.greeting) {
-      addBot(cfg.greeting);
+    if (!greeted) {
       greeted = true;
+      if (isManager) {
+        startManagerHello();
+      } else if (cfg.greeting) {
+        addBot(cfg.greeting);
+      }
     }
     textarea.focus();
   }
@@ -274,6 +286,65 @@
     return msg;
   }
 
+  var managerHelloBusy = false;
+  function startManagerHello() {
+    if (!cfg.restUrl || managerHelloBusy) {
+      if (!cfg.restUrl) {
+        addBot(
+          i18n.scanning ||
+            "Je parcours votre site maintenant : je défile et je lis l’accueil. Un instant, je reviens avec des questions sur votre métier."
+        );
+      }
+      return;
+    }
+    managerHelloBusy = true;
+    var typing = addTyping();
+    fetch(cfg.restUrl, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        "X-WP-Nonce": cfg.nonce || "",
+      },
+      body: JSON.stringify({
+        session: sessionId(),
+        message: "",
+        intent: "hello",
+        surface: "admin",
+        actor: "manager",
+        contact: {},
+      }),
+    })
+      .then(function (res) {
+        return res.json().catch(function () {
+          return {};
+        });
+      })
+      .then(function (data) {
+        if (typing && typing.parentNode) {
+          typing.parentNode.removeChild(typing);
+        }
+        managerHelloBusy = false;
+        var reply = (data && (data.reply || data.message || data.text)) || "";
+        if (reply) {
+          addBot(reply);
+        }
+        if (data && data.crawl && data.crawl !== "done" && data.qcm !== "asked") {
+          window.setTimeout(startManagerHello, 1600);
+        }
+      })
+      .catch(function () {
+        if (typing && typing.parentNode) {
+          typing.parentNode.removeChild(typing);
+        }
+        managerHelloBusy = false;
+        addBot(
+          i18n.scanning ||
+            "Je parcours votre site maintenant : je défile et je lis l’accueil. Un instant, je reviens avec des questions sur votre métier."
+        );
+      });
+  }
+
   function contactPayload() {
     return {
       name: (nameInput.value || "").trim(),
@@ -299,7 +370,10 @@
       actor: cfg.manager && cfg.surface === "admin" ? "manager" : "visitor",
       contact: contactPayload(),
     };
-    var fallback = i18n.offline || "Merci. Nous vous recontacterons.";
+    var fallback = isManager
+      ? i18n.scanning ||
+        "Je parcours votre site maintenant : je défile et je lis l’accueil. Un instant, je reviens avec des questions sur votre métier."
+      : i18n.offline || "Merci. Nous vous recontacterons.";
 
     function done(reply) {
       if (typing && typing.parentNode) {
