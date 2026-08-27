@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { TalkerWordmark } from "@/components/brand/mark";
 import type { Messages } from "@/lib/i18n/fr";
 import { cn } from "@/lib/utils";
+import { DemoAssistantHeader, DemoPoweredBy } from "./demo-assistant-header";
 
 type Copy = Messages["installer"]["vignette"];
 
@@ -15,7 +15,7 @@ export function ChatPanel({
   headerExtra?: ReactNode;
 }) {
   const bubble = compact
-    ? "px-2.5 py-2 text-[11px] leading-4 md:text-[13px] md:leading-5"
+    ? "px-2.5 py-1.5 text-[11px] leading-snug md:text-[13px] md:leading-snug"
     : "px-3.5 py-2.5 text-[14px] leading-6";
   const chip = compact
     ? "px-2.5 py-1 text-[10px] md:text-[12px]"
@@ -23,22 +23,16 @@ export function ChatPanel({
 
   return (
     <div className="flex h-full min-h-0 flex-col bg-[#F7F6F4]">
-      <div className="flex items-center justify-between border-b border-black/8 px-3 py-2.5 md:px-4 md:py-3">
-        <div className="min-w-0">
-          <TalkerWordmark
-            className={compact ? "text-[13px] md:text-[15px]" : "text-[16px]"}
-          />
-          <p className="mt-1 text-[9px] leading-none text-[#6B6B73] md:mt-1.5 md:text-[11px]">
-            {copy.assistant}
-          </p>
-        </div>
-        {headerExtra}
-      </div>
+      <DemoAssistantHeader
+        name={copy.assistantName}
+        role={copy.assistantRole}
+        compact={compact}
+        trailing={headerExtra}
+      />
       <div
         className={cn(
-          "min-h-0 flex-1 space-y-2 px-3 py-3",
-          compact ? "overflow-hidden" : "overflow-y-auto",
-          !compact && "space-y-3 px-4 py-4",
+          "min-h-0 flex-1 px-3 py-3",
+          compact ? "space-y-1.5 overflow-hidden" : "space-y-3 overflow-y-auto px-4 py-4",
         )}
       >
         <p
@@ -97,7 +91,7 @@ export function ChatPanel({
           {copy.botReply}
         </p>
       </div>
-      <div className="border-t border-black/8 bg-white px-2.5 py-2 md:px-3 md:py-3">
+      <div className="border-t border-black/8 bg-white px-2.5 py-2 md:px-3 md:py-2.5">
         <div
           className={cn(
             "rounded-full bg-[#F1ECE5] text-[#6B6B73]",
@@ -109,6 +103,7 @@ export function ChatPanel({
           {copy.compose}
         </div>
       </div>
+      <DemoPoweredBy label={copy.poweredBy} compact={compact} />
     </div>
   );
 }

@@ -87,9 +87,11 @@ export const en = {
     title: "3 steps. 5 minutes.",
     titleMuted: "Your site, live with AI.",
     createAgent: "Start for free",
-    assistant: "Your assistant",
+    assistantName: "Marie",
+    assistantRole: "Le Bistrot du Parc",
     close: "Close",
     placeholder: "Type a message...",
+    poweredBy: "Powered by talker.now",
     steps: [
       {
         number: "1",
@@ -113,7 +115,7 @@ export const en = {
       { from: "user" as const, text: "What are your rates?" },
       {
         from: "bot" as const,
-        text: "Depends on the job. I'll connect you with [Name] — what's your number?",
+        text: "Depends on the job. I'll connect you with Marie — what's your number?",
       },
       { from: "user" as const, text: "I want a quote" },
       { from: "bot" as const, text: "Perfect, I'll pass that on. What's your email?" },
@@ -269,8 +271,10 @@ export const en = {
       "No card. Not on WordPress.org. Works with the usual themes and builders (Elementor, Divi, etc.).",
     vignette: {
       ariaLabel:
-        "Demo: a Talker conversation, downloading talker-now.zip, then installing it in WP-Admin.",
-      assistant: "Talker",
+        "Demo: a conversation, downloading talker-now.zip, then installing it in WP-Admin.",
+      assistantName: "Marie",
+      assistantRole: "Le Bistrot du Parc",
+      poweredBy: "Powered by talker.now",
       greeting: "Hi. A question about talker.now?",
       chipTalker: "Talker Now",
       chipQuestion: "Ask a question",

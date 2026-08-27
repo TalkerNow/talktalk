@@ -3,9 +3,9 @@
 import { Fragment, useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { TalkerWordmark } from "@/components/brand/mark";
 import { useLocale } from "@/components/i18n/locale-context";
 import { cn } from "@/lib/utils";
+import { DemoAssistantHeader, DemoPoweredBy } from "./demo-assistant-header";
 
 gsap.registerPlugin(useGSAP);
 
@@ -118,15 +118,11 @@ export function TalkerChatLoop({
       aria-label={t.how.title}
       className={cn("flex min-h-0 flex-col", className)}
     >
-      <div className="flex items-center justify-between border-b border-black/8 px-4 py-3">
-        <div className="min-w-0">
-          <TalkerWordmark className="text-[16px]" />
-          <p className="mt-1.5 text-[11px] leading-none text-[#6B6B73]">
-            {t.how.assistant}
-          </p>
-        </div>
-        {headerExtra}
-      </div>
+      <DemoAssistantHeader
+        name={t.how.assistantName}
+        role={t.how.assistantRole}
+        trailing={headerExtra}
+      />
 
       <div className="min-h-0 flex-1 space-y-1 overflow-y-auto px-4 py-3">
         {conversation.map((message, index) => (
@@ -165,6 +161,7 @@ export function TalkerChatLoop({
           {t.how.placeholder}
         </div>
       </div>
+      <DemoPoweredBy label={t.how.poweredBy} />
     </div>
   );
 }

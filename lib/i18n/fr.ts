@@ -86,9 +86,11 @@ export const fr = {
     title: "3 étapes. 5 minutes.",
     titleMuted: "Votre site passe à l'IA.",
     createAgent: "Créer mon agent gratuitement",
-    assistant: "L'assistant du cabinet",
+    assistantName: "Marie",
+    assistantRole: "Le Bistrot du Parc",
     close: "Fermer",
     placeholder: "Posez votre question...",
+    poweredBy: "Propulsé par talker.now",
     steps: [
       {
         number: "1",
@@ -117,7 +119,7 @@ export const fr = {
       { from: "user" as const, text: "Quels sont vos tarifs ?" },
       {
         from: "bot" as const,
-        text: "Ça dépend du besoin. Je vous mets en relation avec [Nom], votre numéro ?",
+        text: "Ça dépend du besoin. Je vous mets en relation avec Marie, votre numéro ?",
       },
       { from: "user" as const, text: "Je veux un devis" },
       { from: "bot" as const, text: "Parfait, je transmets votre demande. Votre email ?" },
@@ -273,8 +275,10 @@ export const fr = {
       "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",
     vignette: {
       ariaLabel:
-        "Démo : une conversation Talker, le téléchargement de talker-now.zip, puis l’installation dans WP-Admin.",
-      assistant: "Talker",
+        "Démo : une conversation, le téléchargement de talker-now.zip, puis l’installation dans WP-Admin.",
+      assistantName: "Marie",
+      assistantRole: "Le Bistrot du Parc",
+      poweredBy: "Propulsé par talker.now",
       greeting: "Bonjour. Une question sur talker.now ?",
       chipTalker: "Talker Now",
       chipQuestion: "Poser une question",
