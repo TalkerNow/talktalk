@@ -1,12 +1,11 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { Fragment, useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { TalkerWordmark } from "@/components/brand/mark";
 import { useLocale } from "@/components/i18n/locale-context";
 import { cn } from "@/lib/utils";
-import { ChatPanel } from "./chat-panel";
-import { addChatDialogue, resetChatDialogue } from "./chat-dialogue";
 
 gsap.registerPlugin(useGSAP);
 
@@ -18,7 +17,7 @@ export function TalkerChatLoop({
   className?: string;
 }) {
   const { t, locale } = useLocale();
-  const copy = t.installer.vignette;
+  const conversation = t.how.conversation;
   const rootRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -34,27 +33,55 @@ export function TalkerChatLoop({
         },
         (context) => {
           const { reduceMotion } = context.conditions ?? {};
-          const q = (sel: string) => root.querySelector(sel);
-          const els = {
-            chips: q('[data-v="chat-chips"]'),
-            chipTalker: q('[data-v="chip-talker"]'),
-            user: q('[data-v="chat-user"]'),
-            typing: q('[data-v="chat-typing"]'),
-            reply: q('[data-v="chat-reply"]'),
+          const msgs = Array.from(root.querySelectorAll<HTMLElement>("[data-v='msg']"));
+          const typings = Array.from(
+            root.querySelectorAll<HTMLElement>("[data-v='typing']"),
+          );
+
+          const reset = () => {
+            gsap.set(msgs, { autoAlpha: 0, y: 6 });
+            gsap.set(typings, { autoAlpha: 0, y: 4, display: "none" });
           };
 
-          resetChatDialogue(els);
-          if (reduceMotion) return;
+          reset();
+
+          if (reduceMotion) {
+            gsap.set(msgs, { autoAlpha: 1, y: 0 });
+            return;
+          }
 
           const tl = gsap.timeline({
             repeat: -1,
-            repeatDelay: 1.4,
+            repeatDelay: 1.2,
             defaults: { ease: "power2.out" },
           });
-          tl.call(() => resetChatDialogue(els), undefined, 0);
-          const done = addChatDialogue(tl, els);
-          tl.to([els.user, els.reply], { autoAlpha: 0, duration: 0.4 }, done);
-          tl.to(els.chips, { autoAlpha: 1, duration: 0.3 }, done + 0.15);
+          tl.call(reset, undefined, 0);
+
+          let t = 0.35;
+          conversation.forEach((message, index) => {
+            const msgEl = msgs[index];
+            if (!msgEl) return;
+
+            if (message.from === "bot") {
+              const typingEl = root.querySelector<HTMLElement>(
+                `[data-v="typing"][data-i="${index}"]`,
+              );
+              if (typingEl) {
+                tl.set(typingEl, { display: "block" }, t);
+                tl.to(typingEl, { autoAlpha: 1, y: 0, duration: 0.22 }, t);
+                t += 0.85;
+                tl.to(typingEl, { autoAlpha: 0, duration: 0.15 }, t);
+                tl.set(typingEl, { display: "none" }, t + 0.15);
+                t += 0.08;
+              }
+            }
+
+            tl.to(msgEl, { autoAlpha: 1, y: 0, duration: 0.28 }, t);
+            t += message.from === "user" ? 1.15 : 2.1;
+          });
+
+          t += 1.6;
+          tl.to(msgs, { autoAlpha: 0, duration: 0.35 }, t);
 
           const onVis = () => {
             if (document.hidden) tl.pause();
@@ -88,10 +115,56 @@ export function TalkerChatLoop({
     <div
       ref={rootRef}
       role="img"
-      aria-label={copy.ariaLabel}
+      aria-label={t.how.title}
       className={cn("flex min-h-0 flex-col", className)}
     >
-      <ChatPanel copy={copy} headerExtra={headerExtra} />
+      <div className="flex items-center justify-between border-b border-black/8 px-4 py-3">
+        <div className="min-w-0">
+          <TalkerWordmark className="text-[16px]" />
+          <p className="mt-1.5 text-[11px] leading-none text-[#6B6B73]">
+            {t.how.assistant}
+          </p>
+        </div>
+        {headerExtra}
+      </div>
+
+      <div className="min-h-0 flex-1 space-y-1 overflow-y-auto px-4 py-3">
+        {conversation.map((message, index) => (
+          <Fragment key={`${message.from}-${index}`}>
+            {message.from === "bot" ? (
+              <p
+                data-v="typing"
+                data-i={index}
+                className="hidden w-fit rounded-2xl bg-[#f1ece5] px-3 py-1.5 opacity-0"
+              >
+                <span className="inline-flex items-center gap-1">
+                  <span className="talker-typing-dot talker-typing-dot-1 size-1.5 rounded-full bg-[#111111]" />
+                  <span className="talker-typing-dot talker-typing-dot-2 size-1.5 rounded-full bg-[#111111]" />
+                  <span className="talker-typing-dot talker-typing-dot-3 size-1.5 rounded-full bg-[#111111]" />
+                </span>
+              </p>
+            ) : null}
+            <p
+              data-v="msg"
+              data-i={index}
+              className={cn(
+                "px-3 py-1.5 text-[14px] leading-snug opacity-0",
+                message.from === "bot"
+                  ? "max-w-[92%] rounded-2xl rounded-tl-md bg-[#f1ece5] text-[#111111]"
+                  : "ml-auto max-w-[86%] rounded-2xl rounded-tr-md bg-[#111111] text-[#F7F6F4]",
+              )}
+            >
+              {message.text}
+            </p>
+          </Fragment>
+        ))}
+      </div>
+
+      <div className="border-t border-black/8 bg-white px-3 py-3">
+        <div className="rounded-full bg-[#F1ECE5] px-4 py-2 text-[14px] text-[#6B6B73]">
+          {t.how.placeholder}
+        </div>
+      </div>
     </div>
   );
 }
