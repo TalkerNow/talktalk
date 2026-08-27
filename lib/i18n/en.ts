@@ -1,0 +1,403 @@
+import type { DemoStep } from "@/lib/content/demo";
+import type { Messages } from "./fr";
+
+export const en = {
+  langLabel: "Language",
+  nav: {
+    features: "Features",
+    howItWorks: "How it works",
+    pricing: "Pricing",
+    contact: "Contact",
+    download: "Download",
+    createAgent: "Start for free",
+    menu: "Menu",
+  },
+  hero: {
+    eyebrow: "Search and AI answer first. Talker brings the visit back.",
+    titleBefore: "The AI chatbot that",
+    titleAfter: "so you don't have to",
+    phrases: [
+      "lists your services",
+      "quotes your prices",
+      "shows your availability",
+      "captures phone numbers",
+      "captures emails",
+      "asks for Google reviews",
+    ],
+    subtitle:
+      "An AI chatbot trained on your business. It captures phone numbers and emails, answers pricing on its own, routes existing customers, and collects Google reviews. Live on WordPress in 10 minutes. No code.",
+    createAgent: "Start for free",
+    seeDemo: "View demo",
+    wordpress: "Talker.now zip — upload it in WP-Admin",
+    stats: [
+      { value: "+50%", label: "more leads from your site" },
+      { value: "−80%", label: "time on repetitive questions" },
+      { value: "3x", label: "more Google reviews" },
+      { value: "24/7", label: "coverage, no missed bookings" },
+    ],
+  },
+  context: {
+    title: "Your visitors stopped clicking.",
+    titleMuted: "They ask.",
+    body: "Search and generative AI answer without sending people to your site. A static brochure site loses traffic it never sees again.",
+    salmon:
+      "A site that answers, engages, and captures demand on the spot is how a visit becomes a lead.",
+    leaflet: "A static site is a brochure.",
+    partner: "With Talker, your site becomes a salesperson, a receptionist, a partner.",
+  },
+  compare: {
+    variante: "variant",
+    orbitLead: "Visitors orbit. Talker stays at the center.",
+    auroraBefore: "They ",
+    auroraWord: "ask",
+    auroraAfter: ".",
+    shineLead: "The same offers, another frame.",
+    beamLead: "Visitors arrive. Talker connects. In the morning, it’s in your inbox.",
+  },
+  features: {
+    eyebrow: "What it does",
+    title: "What you need.",
+    titleMuted: "Nothing extra.",
+    items: [
+      {
+        number: "01",
+        title: "An agent that knows your business",
+        description:
+          "Trained on your services and prices, in your site's voice. Law firm, museum, contractor, consultancy: it answers with your vocabulary, not generic AI filler.",
+        visual: "ai",
+      },
+      {
+        number: "02",
+        title: "It captures contact details, not just questions",
+        description:
+          "Phone or email before the chat ends. New leads go straight to you. Existing customers go to the right team. Nothing dies in a form nobody fills out.",
+        visual: "collab",
+      },
+      {
+        number: "03",
+        title: "Support before your support team",
+        description:
+          "Talker tells a prospect from a customer in one message. Outage, pricing question, extra service: it qualifies the request and hands you a ready brief. Your customer doesn't repeat themselves.",
+        visual: "security",
+      },
+    ],
+  },
+  how: {
+    eyebrow: "How it works",
+    title: "3 steps. 5 minutes.",
+    titleMuted: "Your site, live with AI.",
+    createAgent: "Start for free",
+    assistant: "Your assistant",
+    close: "Close",
+    placeholder: "Type a message...",
+    steps: [
+      {
+        number: "1",
+        title: "Install the plugin and pick a template",
+        description: "Add your email and phone so alerts reach you.",
+      },
+      {
+        number: "2",
+        title: "Talker reads your site",
+        description: "It learns your business, hours, and services.",
+      },
+      {
+        number: "3",
+        title: "Go live",
+        description: "Start collecting leads and requests by email or SMS.",
+      },
+    ],
+    conversation: [
+      { from: "user" as const, text: "Which area do you cover?" },
+      { from: "bot" as const, text: "Greater Paris. Want to book a visit?" },
+      { from: "user" as const, text: "What are your rates?" },
+      {
+        from: "bot" as const,
+        text: "Depends on the job. I'll connect you with [Name] — what's your number?",
+      },
+      { from: "user" as const, text: "I want a quote" },
+      { from: "bot" as const, text: "Perfect, I'll pass that on. What's your email?" },
+    ],
+  },
+  infra: {
+    eyebrow: "Every morning",
+    title: "Your visitors'",
+    titleLine2: "conversations",
+    titleMuted: "in your inbox every morning",
+    p1: "What are visitors saying? What are they asking?",
+    p2: "Shape your offer from real visitor questions.",
+    p3: "Stay close to demand as it shifts.",
+    inboxTitle: "Inbox",
+    favorites: "Favorites",
+    inbox: "Inbox",
+    folders: ["Inbox", "Sent", "Drafts"],
+    selectedFrom: "Talker",
+    selectedSubject: "Talker report — Weekend leak",
+    selectedTime: "07:18",
+    objet: "Subject: Talker conversation report",
+    to: "To you@your-site.com",
+    date: "23 Aug 2026 at 07:18",
+    reportTitle: "Talker report",
+    reportMeta: "23 Aug 2026 · 07:18 — 07:19",
+    transcriptBadge: "Conversation transcript",
+    conversation: "Conversation",
+    client: "Customer",
+    yesterday: "Yesterday",
+    transcript: [
+      { who: "client" as const, time: "07:18", text: "Do you work weekends?" },
+      {
+        who: "talker" as const,
+        time: "07:18",
+        text: "Yes, 25% extra on Saturday. What do you need?",
+      },
+      { who: "client" as const, time: "07:19", text: "Urgent water leak." },
+      {
+        who: "talker" as const,
+        time: "07:19",
+        text: "I'll connect you. What's your number?",
+      },
+    ],
+    dummies: [
+      { from: "Calendar", subject: "Reminder: 10am", time: "06:44" },
+      { from: "Documents", subject: "August invoice", time: "Yesterday" },
+      { from: "Notification", subject: "Read receipt", time: "Yesterday" },
+    ],
+  },
+  metrics: {
+    eyebrow: "Analytics",
+    title: "your dashboard,",
+    titleMuted: "Live",
+    live: "Live",
+    items: [
+      { value: 847, suffix: "", label: "Conversations this month" },
+      { value: 92, suffix: "%", label: "Replied before they bounce" },
+      { value: 6, suffix: " sec", label: "Average response time" },
+      { value: 312, suffix: "", label: "Leads captured this month" },
+    ],
+  },
+  integrations: {
+    eyebrow: "Integrations",
+    title: "Works with WordPress,",
+    titleMuted: "without touching your theme.",
+    body: "A Talker.now zip you upload in WP-Admin. Works with most themes and builders, including Elementor and Divi.",
+  },
+  pricing: {
+    title: "Our pricing.",
+    monthly: "Monthly",
+    annual: "Yearly",
+    toggle: "Toggle yearly billing",
+    perMonth: "/mo",
+    popular: "Most popular",
+    shopify:
+      "Shopify and WooCommerce — €59 for one store. 10+ stores: €29 per store.",
+    plans: [
+      {
+        key: "starter",
+        name: "Starter",
+        title: "Starter",
+        description: "Try it free",
+        cta: "Start for free",
+        features: [
+          "1 Talker",
+          "100 conversations/month",
+          "1 channel (website)",
+          "Email support",
+        ],
+      },
+      {
+        key: "pro",
+        name: "Pro",
+        title: "Pro",
+        description: "For small businesses ready to convert more visitors",
+        cta: "Get started",
+        features: [
+          "1 Talker",
+          "Unlimited conversations",
+          "All channels (website, WhatsApp, Instagram, Facebook, SMS)",
+          "Automatic phone and email capture",
+          "SMS alerts (or instantly)",
+          "Google review collection",
+          "White-label",
+        ],
+      },
+      {
+        key: "agency3",
+        name: "Agency · 3",
+        title: "Agencies & multi-site",
+        description: "3 sites",
+        cta: "Get started",
+        features: ["3 Talker", "Everything in Pro", "White-label"],
+      },
+      {
+        key: "agency10",
+        name: "Agency · 10",
+        title: "Agencies & multi-site",
+        description: "10 sites",
+        cta: "Get started",
+        features: [
+          "10 Talker",
+          "Everything in Pro",
+          "One agent per site and location",
+          "Multi-account dashboard",
+          "White-label",
+        ],
+      },
+    ],
+  },
+  cta: {
+    line1: "Talker talks.",
+    line2: "Talker answers.",
+    line3: "Talker sells.",
+    line4: "so you don't have to.",
+    createAgent: "Start for free",
+    noCard: "No credit card required",
+  },
+  installer: {
+    title: "Download Talker",
+    subtitle:
+      "A WordPress zip, no credit card. 100 conversations, then you activate it in WP-Admin.",
+    download: "Download the zip",
+    placeholderNote: "talker-now.zip — no card, not on WordPress.org.",
+    stepsEyebrow: "In WP-Admin",
+    steps: [
+      "On the left in WordPress: Plugins, then Add New.",
+      "Upload Plugin",
+      "Choose the Talker zip (talker-now.zip)",
+      "Activate. The bubble appears on the site.",
+    ],
+    reassurance:
+      "No card. Not on WordPress.org. Works with the usual themes and builders (Elementor, Divi, etc.).",
+  },
+  footer: {
+    blurb:
+      "The AI agent that answers, captures leads, and sells when your front desk can't. Live in minutes, on 24/7.",
+    copyright: "© 2026 Talker. All rights reserved.",
+    systems: "All systems operational",
+    columns: [
+      {
+        title: "Product",
+        links: [
+          { name: "Features", href: "#features" },
+          { name: "How it works", href: "#how-it-works" },
+          { name: "Pricing", href: "#pricing" },
+          { name: "Integrations", href: "#integrations" },
+          { name: "Use cases", href: "#cas-usage" },
+        ],
+      },
+      {
+        title: "Resources",
+        links: [
+          { name: "Help center", href: "#" },
+          { name: "Setup guide", href: "#" },
+          { name: "Script templates", href: "#" },
+          { name: "Status", href: "#" },
+        ],
+      },
+      {
+        title: "Company",
+        links: [
+          { name: "About", href: "#" },
+          { name: "Blog", href: "#" },
+          { name: "Careers", href: "#" },
+          { name: "Contact", href: "/contact" },
+          { name: "Partner program", href: "#" },
+        ],
+      },
+      {
+        title: "Legal",
+        links: [
+          { name: "Privacy", href: "#" },
+          { name: "Terms", href: "#" },
+          { name: "Legal", href: "#" },
+          { name: "GDPR", href: "#" },
+        ],
+      },
+    ],
+  },
+  contact: {
+    title: "Contact",
+    titleMuted: "We'll get back to you.",
+    lead1: "You install. Talker talks. The leads come in.",
+    lead2: "Not a ticket. A conversation.",
+    name: "Name",
+    company: "Company",
+    email: "Email",
+    phone: "Phone",
+    message: "Message",
+    send: "Send",
+    success: "Sent. We'll email that address.",
+  },
+  bubble: {
+    open: "Open Talker",
+    close: "Close",
+    closeTalker: "Close Talker",
+    assistant: "Your assistant",
+    placeholder: "Type a message...",
+    send: "Send",
+    writing: "Talker is typing",
+    poweredBy: "Powered by talker.now",
+    chips: [
+      { label: "Talker Now", intent: "talker" as const },
+      { label: "Ask a question", intent: "question" as const },
+      { label: "Book a visit", intent: "rdv" as const },
+    ],
+  },
+  notFound: {
+    title: "This page doesn't exist.",
+    back: "Back to talker.now",
+  },
+  demoSteps: {
+    start: {
+      id: "start",
+      bot: "Hi. I can share hours, book a visit, or pass a question to the team.",
+      chips: [
+        {
+          label: "What are your hours?",
+          userText: "What are your hours?",
+          next: "horaires",
+        },
+        { label: "Ask a question", userText: "I have a question.", next: "question" },
+        { label: "Book a visit", userText: "Book a visit", next: "rdv" },
+      ],
+    },
+    horaires: {
+      id: "horaires",
+      bot: "We're open Monday to Friday, 9 am – 6 pm, and every other Saturday morning. Want to book a visit?",
+      chips: [
+        { label: "Book a visit", userText: "Book a visit", next: "rdv" },
+        { label: "Another question", userText: "Another question", next: "question" },
+      ],
+    },
+    rdv: {
+      id: "rdv",
+      bot: "Tell me a time that works. On a live site, Talker would check the calendar — this is a demo.",
+      chips: [
+        { label: "Tomorrow morning", userText: "Tomorrow morning", next: "email" },
+        { label: "Later this week", userText: "Later this week", next: "email" },
+        { label: "A question", userText: "A question", next: "question" },
+      ],
+    },
+    question: {
+      id: "question",
+      bot: "Go ahead. I'll log it and the team will get back to you.",
+      chips: [
+        { label: "Book a first visit", userText: "Book a first visit", next: "rdv" },
+        { label: "Ask for a callback", userText: "Ask for a callback", next: "email" },
+      ],
+    },
+    email: {
+      id: "email",
+      bot: "Leave an email. On a live site the visitor types it — the team gets it, not an anonymous queue.",
+      askEmail: true,
+      placeholder: "you@your-site.com",
+    },
+    done: {
+      id: "done",
+      bot: "Sent. We'll email that address.",
+    },
+    later: {
+      id: "later",
+      bot: "Sounds good. Open the bubble anytime to pick this up.",
+    },
+  } satisfies Record<string, DemoStep>,
+} satisfies Messages;
