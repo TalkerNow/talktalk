@@ -52,30 +52,52 @@ export function BrowserScene({ copy }: { copy: Copy }) {
           <div data-v="page-live" className="absolute inset-0 opacity-0">
             <MiniLiveSite copy={copy} />
           </div>
-        </div>
 
-        <div
-          data-v="shelf"
-          className="absolute inset-x-2 bottom-2 z-10 flex items-center gap-2 rounded-lg border border-black/8 bg-white px-2 py-1.5 opacity-0 shadow-[0_8px_24px_rgba(17,17,17,0.12)] md:inset-x-3 md:px-3"
-        >
-          <ZipGlyph />
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-[10px] font-medium text-[#111111] md:text-[12px]">
-              {copy.downloadFile}
-            </p>
-            <div className="mt-1 h-1 overflow-hidden rounded-full bg-[#EDEBE3]">
-              <div
-                data-v="progress"
-                className="h-full origin-left rounded-full bg-[#1B5FA8]"
-              />
+          <div
+            data-v="dl-dialog"
+            className="absolute inset-0 z-20 flex items-start justify-center px-3 pt-[14%] opacity-0 md:px-6 md:pt-[16%]"
+          >
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="relative w-[min(100%,260px)] rounded-xl border border-black/8 bg-white/95 p-3 shadow-[0_18px_50px_rgba(17,17,17,0.22)] backdrop-blur-md md:w-[280px] md:p-4">
+              <div className="flex gap-2.5">
+                <ZipGlyph />
+                <div className="min-w-0">
+                  <p className="text-[11px] font-semibold leading-snug text-[#111111] md:text-[13px]">
+                    {copy.downloadPrompt}
+                  </p>
+                  <p className="mt-1 text-[9px] text-[#6B6B73] md:text-[11px]">
+                    {copy.downloadFolder}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3.5 flex justify-end gap-2">
+                <span className="inline-flex min-w-[52px] items-center justify-center rounded-md bg-[#E8E8ED] px-3 py-1 text-[10px] text-[#111111] md:min-w-[58px] md:text-[12px]">
+                  {copy.downloadNo}
+                </span>
+                <span
+                  data-v="dl-yes"
+                  className="inline-flex min-w-[52px] origin-center items-center justify-center rounded-md bg-[#0A84FF] px-3 py-1 text-[10px] font-medium text-white md:min-w-[58px] md:text-[12px]"
+                >
+                  {copy.downloadYes}
+                </span>
+              </div>
             </div>
           </div>
-          <span
-            data-v="download-done"
-            className="text-[9px] text-[#1F7A4D] opacity-0 md:text-[11px]"
+
+          <div
+            data-v="dl-confirm"
+            className="absolute top-2 right-2 z-20 flex w-[min(72%,200px)] items-center gap-2 rounded-lg border border-black/8 bg-white/95 px-2 py-1.5 opacity-0 shadow-[0_10px_28px_rgba(17,17,17,0.16)] backdrop-blur-md md:right-3 md:top-3 md:w-[220px] md:px-3"
           >
-            {copy.downloadDone}
-          </span>
+            <ZipGlyph />
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-[10px] font-medium text-[#111111] md:text-[12px]">
+                {copy.downloadFile}
+              </p>
+              <p className="truncate text-[9px] text-[#1F7A4D] md:text-[10px]">
+                {copy.downloadSaved}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </DesktopWindow>
