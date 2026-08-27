@@ -11,6 +11,7 @@ import {
   FlyingZip,
   WpAdminScene,
 } from "./scenes";
+import { addChatDialogue, resetChatDialogue } from "./chat-dialogue";
 
 gsap.registerPlugin(useGSAP);
 
@@ -94,10 +95,17 @@ export function InstallerVignette() {
               zIndex: 8,
             });
             gsap.set(wp, { autoAlpha: 0, scale: 0.9, filter: "blur(8px)" });
-            gsap.set([cursor, zip, user, typing, reply, shelf, installed], {
+            gsap.set([cursor, zip, shelf, installed], {
               autoAlpha: 0,
             });
-            gsap.set([chips, pageTalker], { autoAlpha: 1 });
+            resetChatDialogue({
+              chips,
+              chipTalker: q('[data-v="chip-talker"]'),
+              user,
+              typing,
+              reply,
+            });
+            gsap.set(pageTalker, { autoAlpha: 1 });
             gsap.set(pageLive, { autoAlpha: 0 });
             gsap.set([dropFile, install, notice], { autoAlpha: 0 });
             gsap.set(hand, { autoAlpha: 0 });
@@ -157,8 +165,13 @@ export function InstallerVignette() {
             gsap.set(arrow, { autoAlpha: 1 });
             gsap.set(hand, { autoAlpha: 0 });
             gsap.set(zip, { autoAlpha: 0, x: 0, y: 0, scale: 1 });
-            gsap.set(chips, { autoAlpha: 1, scale: 1 });
-            gsap.set([user, typing, reply], { autoAlpha: 0, y: 10 });
+            resetChatDialogue({
+              chips,
+              chipTalker: q('[data-v="chip-talker"]'),
+              user,
+              typing,
+              reply,
+            });
             gsap.set(shelf, { autoAlpha: 0, y: 16 });
             gsap.set(progress, { scaleX: 0, transformOrigin: "0% 50%" });
             gsap.set(done, { autoAlpha: 0 });
@@ -180,18 +193,18 @@ export function InstallerVignette() {
           reset();
           tl.call(reset, undefined, 0);
 
-          tl.to(cursor, { autoAlpha: 1, duration: 0.35 }, 0.35);
-          tl.to(cursor, { ...chipAt, duration: 0.7, ease: "power3.out" }, 0.5);
-          tl.to(cursor, { scale: 0.84, duration: 0.08 }, 1.25);
-          tl.to(q('[data-v="chip-talker"]'), { scale: 0.96, duration: 0.08 }, 1.25);
-          tl.to(cursor, { scale: 1, duration: 0.12 }, 1.35);
-          tl.to(q('[data-v="chip-talker"]'), { scale: 1, duration: 0.12 }, 1.35);
-
-          tl.to(chips, { autoAlpha: 0, duration: 0.2 }, 1.45);
-          tl.to(user, { autoAlpha: 1, y: 0, duration: 0.28 }, 1.5);
-          tl.to(typing, { autoAlpha: 1, y: 0, duration: 0.22 }, 1.85);
-          tl.to(typing, { autoAlpha: 0, duration: 0.15 }, 2.85);
-          tl.to(reply, { autoAlpha: 1, y: 0, duration: 0.35 }, 2.95);
+          const chatDone = addChatDialogue(
+            tl,
+            {
+              chips,
+              chipTalker: q('[data-v="chip-talker"]'),
+              user,
+              typing,
+              reply,
+            },
+            { cursor: { el: cursor, chipAt } },
+          );
+          tl.addLabel("download", chatDone);
 
           tl.to(
             chat,
@@ -203,7 +216,7 @@ export function InstallerVignette() {
               filter: "blur(4px)",
               zIndex: 6,
             }),
-            4.1,
+            "download",
           );
           tl.to(
             browser,
@@ -215,7 +228,7 @@ export function InstallerVignette() {
               filter: "blur(0px)",
               zIndex: 24,
             }),
-            4.1,
+            "download",
           );
           tl.to(
             wp,
@@ -226,16 +239,16 @@ export function InstallerVignette() {
               filter: "blur(6px)",
               zIndex: 5,
             }),
-            4.1,
+            "download",
           );
 
-          tl.to(cursor, { ...ctaAt, duration: 0.7, ease: "power3.out" }, 4.7);
-          tl.to(cursor, { scale: 0.84, duration: 0.08 }, 5.4);
-          tl.to(q('[data-v="site-cta"]'), { scale: 0.96, duration: 0.08 }, 5.4);
-          tl.to(cursor, { scale: 1, duration: 0.12 }, 5.5);
-          tl.to(q('[data-v="site-cta"]'), { scale: 1, duration: 0.12 }, 5.5);
+          tl.to(cursor, { ...ctaAt, duration: 0.7, ease: "power3.out" }, "download+=0.6");
+          tl.to(cursor, { scale: 0.84, duration: 0.08 }, "download+=1.3");
+          tl.to(q('[data-v="site-cta"]'), { scale: 0.96, duration: 0.08 }, "download+=1.3");
+          tl.to(cursor, { scale: 1, duration: 0.12 }, "download+=1.4");
+          tl.to(q('[data-v="site-cta"]'), { scale: 1, duration: 0.12 }, "download+=1.4");
 
-          tl.to(shelf, { autoAlpha: 1, y: 0, duration: 0.35 }, 5.6);
+          tl.to(shelf, { autoAlpha: 1, y: 0, duration: 0.35 }, "download+=1.5");
           tl.fromTo(
             progress,
             { scaleX: 0 },
@@ -245,9 +258,9 @@ export function InstallerVignette() {
               ease: "power1.inOut",
               transformOrigin: "0% 50%",
             },
-            5.7,
+            "download+=1.6",
           );
-          tl.to(done, { autoAlpha: 1, duration: 0.2 }, 6.5);
+          tl.to(done, { autoAlpha: 1, duration: 0.2 }, "download+=2.4");
 
           tl.to(
             wp,
@@ -259,7 +272,7 @@ export function InstallerVignette() {
               filter: "blur(0px)",
               zIndex: 26,
             }),
-            7.05,
+            "download+=2.95",
           );
           tl.to(
             browser,
@@ -271,7 +284,7 @@ export function InstallerVignette() {
               filter: "blur(3.5px)",
               zIndex: 10,
             }),
-            7.05,
+            "download+=2.95",
           );
           tl.to(
             chat,
@@ -282,19 +295,19 @@ export function InstallerVignette() {
               filter: "blur(6px)",
               zIndex: 4,
             }),
-            7.05,
+            "download+=2.95",
           );
 
-          tl.to(cursor, { ...shelfAt, duration: 0.55 }, 7.7);
+          tl.to(cursor, { ...shelfAt, duration: 0.55 }, "download+=3.6");
           tl.set(
             zip,
             { x: shelfAt.x - 18, y: shelfAt.y - 10, autoAlpha: 1, scale: 1 },
-            8.15,
+            "download+=4.05",
           );
-          tl.to(arrow, { autoAlpha: 0, duration: 0.12 }, 8.15);
-          tl.to(hand, { autoAlpha: 1, duration: 0.12 }, 8.15);
+          tl.to(arrow, { autoAlpha: 0, duration: 0.12 }, "download+=4.05");
+          tl.to(hand, { autoAlpha: 1, duration: 0.12 }, "download+=4.05");
 
-          tl.to(cursor, { ...dropAt, duration: 1.05, ease: "power2.inOut" }, 8.3);
+          tl.to(cursor, { ...dropAt, duration: 1.05, ease: "power2.inOut" }, "download+=4.2");
           tl.to(
             zip,
             {
@@ -303,31 +316,31 @@ export function InstallerVignette() {
               duration: 1.05,
               ease: "power2.inOut",
             },
-            8.3,
+            "download+=4.2",
           );
           tl.to(
             dropzone,
             { borderColor: "#C43F17", backgroundColor: "#FAEDE7", duration: 0.2 },
-            9.2,
+            "download+=5.1",
           );
-          tl.to(zip, { autoAlpha: 0, scale: 0.8, duration: 0.2 }, 9.35);
-          tl.to(hand, { autoAlpha: 0, duration: 0.12 }, 9.35);
-          tl.to(arrow, { autoAlpha: 1, duration: 0.12 }, 9.35);
-          tl.to(dropHint, { autoAlpha: 0, duration: 0.15 }, 9.4);
-          tl.to([dropFile, install], { autoAlpha: 1, duration: 0.25 }, 9.45);
+          tl.to(zip, { autoAlpha: 0, scale: 0.8, duration: 0.2 }, "download+=5.25");
+          tl.to(hand, { autoAlpha: 0, duration: 0.12 }, "download+=5.25");
+          tl.to(arrow, { autoAlpha: 1, duration: 0.12 }, "download+=5.25");
+          tl.to(dropHint, { autoAlpha: 0, duration: 0.15 }, "download+=5.3");
+          tl.to([dropFile, install], { autoAlpha: 1, duration: 0.25 }, "download+=5.35");
 
-          tl.to(cursor, { ...installAt, duration: 0.45 }, 9.9);
-          tl.to(cursor, { scale: 0.84, duration: 0.08 }, 10.35);
-          tl.to(cursor, { scale: 1, duration: 0.12 }, 10.45);
+          tl.to(cursor, { ...installAt, duration: 0.45 }, "download+=5.8");
+          tl.to(cursor, { scale: 0.84, duration: 0.08 }, "download+=6.25");
+          tl.to(cursor, { scale: 1, duration: 0.12 }, "download+=6.35");
 
-          tl.to(upload, { autoAlpha: 0, duration: 0.25 }, 10.6);
-          tl.to(installed, { autoAlpha: 1, duration: 0.25 }, 10.6);
-          tl.to(row, { autoAlpha: 1, y: 0, duration: 0.3 }, 10.7);
+          tl.to(upload, { autoAlpha: 0, duration: 0.25 }, "download+=6.5");
+          tl.to(installed, { autoAlpha: 1, duration: 0.25 }, "download+=6.5");
+          tl.to(row, { autoAlpha: 1, y: 0, duration: 0.3 }, "download+=6.6");
 
-          tl.to(cursor, { ...activateAt, duration: 0.45 }, 11.15);
-          tl.to(cursor, { scale: 0.84, duration: 0.08 }, 11.6);
-          tl.to(cursor, { scale: 1, duration: 0.12 }, 11.7);
-          tl.to(notice, { autoAlpha: 1, y: 0, duration: 0.3 }, 11.85);
+          tl.to(cursor, { ...activateAt, duration: 0.45 }, "download+=7.05");
+          tl.to(cursor, { scale: 0.84, duration: 0.08 }, "download+=7.5");
+          tl.to(cursor, { scale: 1, duration: 0.12 }, "download+=7.6");
+          tl.to(notice, { autoAlpha: 1, y: 0, duration: 0.3 }, "download+=7.75");
 
           tl.to(
             browser,
@@ -339,7 +352,7 @@ export function InstallerVignette() {
               filter: "blur(0px)",
               zIndex: 28,
             }),
-            12.35,
+            "download+=8.25",
           );
           tl.to(
             wp,
@@ -350,23 +363,24 @@ export function InstallerVignette() {
               filter: "blur(5px)",
               zIndex: 8,
             }),
-            12.35,
+            "download+=8.25",
           );
+          tl.to(shelf, { autoAlpha: 0, duration: 0.3 }, "download+=8.25");
           tl.call(() => {
             if (address) address.textContent = copy.liveHost;
-          }, undefined, 12.4);
-          tl.to(pageTalker, { autoAlpha: 0, duration: 0.35 }, 12.45);
-          tl.to(pageLive, { autoAlpha: 1, duration: 0.35 }, 12.45);
+          }, undefined, "download+=8.3");
+          tl.to(pageTalker, { autoAlpha: 0, duration: 0.35 }, "download+=8.35");
+          tl.to(pageLive, { autoAlpha: 1, duration: 0.35 }, "download+=8.35");
           tl.to(
             liveBubble,
             { autoAlpha: 1, scale: 1, duration: 0.55, ease: "back.out(1.6)" },
-            12.75,
+            "download+=8.65",
           );
 
           tl.to(
             [chat, browser, wp, cursor],
             { autoAlpha: 0, duration: 0.45, ease: "power2.inOut" },
-            14.6,
+            "download+=11.2",
           );
 
           const onVis = () => {

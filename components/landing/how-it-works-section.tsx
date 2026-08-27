@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { TalkerWordmark } from "@/components/brand/mark";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/components/i18n/locale-context";
+import { TalkerChatLoop } from "@/components/landing/installer-vignette/talker-chat-loop";
 
 export function HowItWorksSection() {
   const { t } = useLocale();
   const steps = t.how.steps;
-  const conversation = t.how.conversation;
   const [activeStep, setActiveStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -118,67 +117,17 @@ export function HowItWorksSection() {
           </div>
 
           <div className="flex w-full justify-end self-start lg:sticky lg:top-32">
-            <div className="ml-auto flex h-[min(70vh,560px)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border border-foreground/10 bg-paper bg-[#F7F6F4] text-ink text-[#111111] shadow-[0_16px_50px_rgba(0,0,0,0.14)]">
-              <div className="flex items-center justify-between border-b border-line px-4 py-3">
-                <div className="min-w-0">
-                  <TalkerWordmark className="text-[16px]" />
-                  <p className="mt-1.5 text-[11px] leading-none text-muted-2">
-                    {t.how.assistant}
-                  </p>
-                </div>
-                <span className="rounded-full px-2 py-1 text-sm text-muted">
+            <TalkerChatLoop
+              className="ml-auto flex h-[min(70vh,560px)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border border-foreground/10 bg-[#F7F6F4] text-[#111111] shadow-[0_16px_50px_rgba(0,0,0,0.14)]"
+              headerExtra={
+                <span className="rounded-full px-2 py-1 text-sm text-[#6B6B73]">
                   {t.how.close}
                 </span>
-              </div>
-              <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
-                {conversation.map((message, index) => (
-                  <p
-                    key={`${message.from}-${index}`}
-                    className={
-                      message.from === "bot"
-                        ? "max-w-[92%] rounded-2xl rounded-tl-md bg-[#f1ece5] px-3.5 py-2.5 text-[14px] leading-6 text-ink"
-                        : "ml-auto max-w-[86%] rounded-2xl rounded-tr-md bg-ink bg-[#111111] px-3.5 py-2.5 text-[14px] leading-6 text-paper text-[#F7F6F4]"
-                    }
-                  >
-                    {message.text}
-                  </p>
-                ))}
-              </div>
-              <div className="border-t border-line bg-white px-3 py-3">
-                <div className="flex items-center gap-2 rounded-full bg-[#F1ECE5] px-4 py-2">
-                  <input
-                    disabled
-                    readOnly
-                    placeholder={t.how.placeholder}
-                    className="min-w-0 flex-1 border-0 bg-transparent p-0 text-[14px] text-ink outline-none placeholder:text-[#6B6B73] disabled:opacity-50"
-                  />
-                  <span
-                    className="inline-flex shrink-0 text-[#C43F17] opacity-40"
-                    aria-hidden
-                  >
-                    <PaperPlane />
-                  </span>
-                </div>
-              </div>
-            </div>
+              }
+            />
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function PaperPlane() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      width="20"
-      height="20"
-      aria-hidden
-    >
-      <path d="M3.478 2.405a.75.75 0 0 0-.926.94l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 15.445-7.843.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.405Z" />
-    </svg>
   );
 }

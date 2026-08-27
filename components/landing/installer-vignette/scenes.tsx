@@ -1,6 +1,7 @@
 import { TalkerMark, TalkerWordmark } from "@/components/brand/mark";
 import type { Messages } from "@/lib/i18n/fr";
 import { cn } from "@/lib/utils";
+import { ChatPanel } from "./chat-panel";
 import { DesktopWindow } from "./desktop-window";
 
 type Copy = Messages["installer"]["vignette"];
@@ -12,59 +13,7 @@ export function ChatScene({ copy }: { copy: Copy }) {
       className="left-0 top-[6%] z-30 w-[min(100%,320px)] md:w-[min(42%,340px)]"
       innerClassName="h-[240px] md:h-[400px] lg:h-[460px]"
     >
-      <div className="flex h-full flex-col bg-[#F7F6F4]">
-        <div className="flex items-center justify-between border-b border-black/8 px-3 py-2.5">
-          <div className="min-w-0">
-            <TalkerWordmark className="text-[13px] md:text-[15px]" />
-            <p className="mt-1 text-[9px] leading-none text-[#6B6B73] md:text-[11px]">
-              {copy.assistant}
-            </p>
-          </div>
-        </div>
-        <div className="flex-1 space-y-2 overflow-hidden px-3 py-3">
-          <p className="max-w-[92%] rounded-2xl rounded-tl-md bg-[#f1ece5] px-2.5 py-2 text-[11px] leading-4 text-[#111111] md:text-[13px] md:leading-5">
-            {copy.greeting}
-          </p>
-          <div data-v="chat-chips" className="flex flex-wrap gap-1.5">
-            <span
-              data-v="chip-talker"
-              className="rounded-full border border-[#C43F17]/40 bg-white px-2.5 py-1 text-[10px] text-[#111111] md:text-[12px]"
-            >
-              {copy.chipTalker}
-            </span>
-            <span className="rounded-full border border-black/10 bg-white px-2.5 py-1 text-[10px] text-[#111111] md:text-[12px]">
-              {copy.chipQuestion}
-            </span>
-          </div>
-          <p
-            data-v="chat-user"
-            className="ml-auto max-w-[80%] rounded-2xl rounded-tr-md bg-[#111111] px-2.5 py-2 text-[11px] leading-4 text-[#F7F6F4] opacity-0 md:text-[13px] md:leading-5"
-          >
-            {copy.userMessage}
-          </p>
-          <p
-            data-v="chat-typing"
-            className="w-fit rounded-2xl bg-[#f1ece5] px-2.5 py-2 opacity-0"
-          >
-            <span className="inline-flex items-center gap-1">
-              <span className="talker-typing-dot talker-typing-dot-1 size-1 rounded-full bg-[#111111]" />
-              <span className="talker-typing-dot talker-typing-dot-2 size-1 rounded-full bg-[#111111]" />
-              <span className="talker-typing-dot talker-typing-dot-3 size-1 rounded-full bg-[#111111]" />
-            </span>
-          </p>
-          <p
-            data-v="chat-reply"
-            className="max-w-[92%] rounded-2xl rounded-tl-md bg-[#f1ece5] px-2.5 py-2 text-[11px] leading-4 text-[#111111] opacity-0 md:text-[13px] md:leading-5"
-          >
-            {copy.botReply}
-          </p>
-        </div>
-        <div className="border-t border-black/8 bg-white px-2.5 py-2">
-          <div className="rounded-full bg-[#F1ECE5] px-3 py-1.5 text-[10px] text-[#6B6B73] md:text-[12px]">
-            {copy.compose}
-          </div>
-        </div>
-      </div>
+      <ChatPanel copy={copy} compact />
     </DesktopWindow>
   );
 }
@@ -309,7 +258,7 @@ function MiniTalkerSite({ copy }: { copy: Copy }) {
       >
         {copy.siteCta}
       </span>
-      <div className="absolute right-3 bottom-10 flex flex-col items-end gap-1.5 md:right-4 md:bottom-12">
+      <div className="absolute right-3 bottom-16 flex flex-col items-end gap-1.5 md:right-4 md:bottom-20">
         <div data-v="site-chips" className="flex flex-col items-end gap-1">
           <span className="rounded-full border border-[#C43F17]/35 bg-white px-2 py-0.5 text-[9px] md:text-[11px]">
             {copy.chipTalker}
@@ -345,7 +294,7 @@ function MiniLiveSite({ copy }: { copy: Copy }) {
       </div>
       <div
         data-v="live-bubble"
-        className="absolute right-3 bottom-3 opacity-0 md:right-4 md:bottom-4"
+        className="absolute right-3 bottom-16 opacity-0 md:right-4 md:bottom-20"
       >
         <div className="relative">
           <span className="talker-ripple is-on" />
