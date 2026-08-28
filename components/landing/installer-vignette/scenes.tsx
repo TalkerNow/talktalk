@@ -298,28 +298,28 @@ function MiniTalkerSite({ copy }: { copy: Copy }) {
 function MiniLiveSite({ copy }: { copy: Copy }) {
   return (
     <div className="relative h-full overflow-hidden bg-[#FAFAF8]">
-      <header className="border-b border-black/8 bg-white px-3 py-2 md:px-5 md:py-2.5">
-        <div className="flex items-baseline gap-1.5 md:gap-2">
-          <span className="truncate text-[11px] font-semibold tracking-tight text-[#111111] md:text-[14px]">
-            {copy.liveTitle}
-          </span>
-          <span className="text-[9px] text-[#B0B0B5] md:text-[11px]">/</span>
-          <span className="truncate text-[9px] text-[#6B6B73] md:text-[11px]">
-            {copy.liveHome}
-          </span>
-        </div>
-        <nav className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 md:mt-2 md:gap-x-3">
+      <header className="flex items-center justify-between gap-2 border-b border-black/8 bg-white px-3 py-2 md:gap-4 md:px-5 md:py-2.5">
+        <span className="min-w-0 shrink truncate text-[11px] font-semibold tracking-tight text-[#111111] md:text-[14px]">
+          {copy.liveTitle}
+        </span>
+        <nav className="flex min-w-0 flex-wrap items-center justify-end gap-x-1.5 md:gap-x-2.5">
           {copy.liveNav.map((item, index) => (
-            <span
-              key={item}
-              className={cn(
-                "text-[8px] md:text-[11px]",
-                index === 0
-                  ? "font-medium text-[#111111] underline decoration-[#C43F17] decoration-2 underline-offset-2"
-                  : "text-[#6B6B73]",
-              )}
-            >
-              {item}
+            <span key={item} className="inline-flex items-center gap-x-1.5 md:gap-x-2.5">
+              {index > 0 ? (
+                <span className="text-[8px] text-[#C8C8CC] md:text-[10px]" aria-hidden>
+                  ·
+                </span>
+              ) : null}
+              <span
+                className={cn(
+                  "whitespace-nowrap text-[8px] md:text-[11px]",
+                  index === 0
+                    ? "font-medium text-[#111111] underline decoration-[#C43F17] decoration-2 underline-offset-2"
+                    : "text-[#6B6B73]",
+                )}
+              >
+                {item}
+              </span>
             </span>
           ))}
         </nav>

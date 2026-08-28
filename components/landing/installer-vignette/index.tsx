@@ -117,7 +117,7 @@ export function InstallerVignette() {
             return;
           }
 
-          const chipAt = point(root, '[data-v="chip-talker"]', 0.6, 0.55);
+          const chatAt = point(root, '[data-v="chat"]', 0.72, 0.55);
           const ctaAt = point(root, '[data-v="site-cta"]', 0.65, 0.5);
           const yesAt = point(root, '[data-v="dl-yes"]', 0.55, 0.55);
           const confirmAt = point(root, '[data-v="dl-confirm"]', 0.22, 0.5);
@@ -156,8 +156,8 @@ export function InstallerVignette() {
               zIndex: 4,
             });
             gsap.set(cursor, {
-              x: chipAt.x - 40,
-              y: chipAt.y + 80,
+              x: chatAt.x - 24,
+              y: chatAt.y + 40,
               scale: 1,
               autoAlpha: 0,
               rotation: 0,
@@ -203,7 +203,7 @@ export function InstallerVignette() {
               typing,
               reply,
             },
-            { cursor: { el: cursor, chipAt } },
+            { cursor: { el: cursor, chipAt: chatAt } },
           );
           tl.addLabel("download", chatDone);
 

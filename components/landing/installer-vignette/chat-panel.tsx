@@ -17,9 +17,6 @@ export function ChatPanel({
   const bubble = compact
     ? "px-2.5 py-1.5 text-[11px] leading-snug md:text-[13px] md:leading-snug"
     : "px-3.5 py-2.5 text-[14px] leading-6";
-  const chip = compact
-    ? "px-2.5 py-1 text-[10px] md:text-[12px]"
-    : "px-3 py-1.5 text-[13px]";
 
   return (
     <div className="flex h-full min-h-0 flex-col bg-[#F7F6F4]">
@@ -43,29 +40,15 @@ export function ChatPanel({
         >
           {copy.greeting}
         </p>
-        <div data-v="chat-chips" className="flex flex-wrap gap-1.5">
-          <span
-            data-v="chip-talker"
-            className={cn(
-              "rounded-full border border-[#C43F17]/40 bg-white text-[#111111]",
-              chip,
-            )}
-          >
-            {copy.chipTalker}
-          </span>
-          <span
-            className={cn(
-              "rounded-full border border-black/10 bg-white text-[#111111]",
-              chip,
-            )}
-          >
-            {copy.chipQuestion}
-          </span>
+        {/* Hidden hooks kept for the GSAP timeline (no invite chips in this demo). */}
+        <div data-v="chat-chips" className="hidden" aria-hidden>
+          <span data-v="chip-talker">{copy.chipTalker}</span>
+          <span>{copy.chipQuestion}</span>
         </div>
         <p
           data-v="chat-user"
           className={cn(
-            "ml-auto max-w-[80%] rounded-2xl rounded-tr-md bg-[#111111] text-[#F7F6F4] opacity-0",
+            "ml-auto max-w-[88%] rounded-2xl rounded-tr-md bg-[#111111] text-[#F7F6F4] opacity-0",
             bubble,
           )}
         >
