@@ -336,7 +336,7 @@ export const fr = {
       {
         title: "Produit",
         links: [
-          { name: "Fonctionnalités", href: "#features" },
+          { name: "Fonctionnalités", href: "/produit" },
           { name: "Comment ça marche", href: "#how-it-works" },
           { name: "Tarifs", href: "#pricing" },
           { name: "Intégrations", href: "#integrations" },
