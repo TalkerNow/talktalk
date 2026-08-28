@@ -87,7 +87,7 @@ export const fr = {
     titleMuted: "Votre site passe à l'IA.",
     createAgent: "Créer mon agent gratuitement",
     assistantName: "Marie",
-    assistantRole: "Le Bistrot du Parc",
+    assistantRole: "Mon entreprise",
     close: "Fermer",
     placeholder: "Posez votre question...",
     poweredBy: "Propulsé par talker.now",
@@ -194,6 +194,9 @@ export const fr = {
     toggle: "Basculer facturation annuelle",
     perMonth: "/mois",
     popular: "Le plus choisi",
+    sites3: "3 sites",
+    sites10: "10 sites",
+    agencySitesToggle: "Choisir le nombre de sites",
     shopify:
       "Shopify et WooCommerce — 59 € pour un site. À partir de 10 sites : 29 € par site.",
     plans: [
@@ -229,7 +232,7 @@ export const fr = {
       {
         key: "agency3",
         name: "Agence · 3",
-        title: "Agences et entreprises",
+        title: "Agences & Entreprises",
         description: "3 sites",
         cta: "Installer",
         features: ["3 Talker", "Tout Pro inclus", "Marque blanche"],
@@ -237,7 +240,7 @@ export const fr = {
       {
         key: "agency10",
         name: "Agence · 10",
-        title: "Agences et entreprises",
+        title: "Agences & Entreprises",
         description: "10 sites",
         cta: "Installer",
         features: [
@@ -277,7 +280,7 @@ export const fr = {
       ariaLabel:
         "Démo : une conversation, le téléchargement de talker-now.zip, puis l’installation dans WP-Admin.",
       assistantName: "Marie",
-      assistantRole: "Le Bistrot du Parc",
+      assistantRole: "Mon entreprise",
       poweredBy: "Propulsé par talker.now",
       greeting: "Bonjour, une question sur Talker Now ?",
       chipTalker: "Talker Now",
@@ -296,17 +299,17 @@ export const fr = {
       downloadYes: "Oui",
       downloadNo: "Non",
       downloadSaved: "Enregistré dans Téléchargements",
-      liveHost: "bistrot-du-parc.fr",
-      liveTab: "Le Bistrot du Parc",
-      liveTitle: "Le Bistrot du Parc",
+      liveHost: "mon-entreprise.fr",
+      liveTab: "Mon entreprise",
+      liveTitle: "Mon entreprise",
       liveHome: "Accueil",
-      liveNav: ["Accueil", "Tarifs", "Prestation", "Contact"],
-      liveEyebrow: "Restaurant · Paris",
-      liveHeading: "Bienvenue au Bistrot du Parc",
+      liveNav: ["Accueil", "Tarifs", "Interventions", "Contact"],
+      liveEyebrow: "Interventions · Île-de-France",
+      liveHeading: "Bienvenue chez Mon entreprise",
       liveBody:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident — réservez avec Marie.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident — contactez Marie pour une intervention.",
       liveFooter:
-        "12 place du Parc, 75006 Paris · Ouvert tous les soirs · 01 42 00 00 00",
+        "Île-de-France · Interventions sur site · 01 42 00 00 00",
       wpScreen: "Extensions",
       wpAdd: "Ajouter",
       wpTitle: "Ajouter des extensions",

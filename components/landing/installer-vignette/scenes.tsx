@@ -307,7 +307,7 @@ function MiniLiveSite({ copy }: { copy: Copy }) {
             aria-hidden
             className="grid size-4 shrink-0 place-items-center rounded-full bg-[#2C2A26] text-[8px] font-semibold text-[#FFFDF8] md:size-5 md:text-[10px]"
           >
-            B
+            {copy.liveTitle.trim().charAt(0).toUpperCase() || "M"}
           </span>
           <span className="truncate text-[10px] font-semibold tracking-tight text-[#2C2A26] md:text-[13px]">
             {copy.liveTitle}
