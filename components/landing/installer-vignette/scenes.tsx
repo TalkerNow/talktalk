@@ -297,23 +297,45 @@ function MiniTalkerSite({ copy }: { copy: Copy }) {
 
 function MiniLiveSite({ copy }: { copy: Copy }) {
   return (
-    <div className="relative h-full bg-white">
-      <div className="flex items-center justify-between border-b border-black/8 px-4 py-2">
-        <span className="text-[11px] font-semibold text-[#111111] md:text-[14px]">
-          {copy.liveTitle}
-        </span>
-        <span className="text-[9px] text-[#6B6B73] md:text-[11px]">
-          {copy.liveHost}
-        </span>
-      </div>
-      <div className="space-y-2 px-4 pt-4 md:pt-6">
-        <div className="h-2.5 w-2/3 rounded-full bg-[#EDEBE3]" />
-        <div className="h-2 w-full rounded-full bg-[#F1ECE5]" />
-        <div className="h-2 w-5/6 rounded-full bg-[#F1ECE5]" />
-        <p className="pt-2 text-[10px] text-[#6B6B73] md:text-[12px]">
-          {copy.liveBody}
-        </p>
-      </div>
+    <div className="relative h-full overflow-hidden bg-[#FAFAF8]">
+      <header className="border-b border-black/8 bg-white px-3 py-2 md:px-5 md:py-2.5">
+        <div className="flex items-baseline gap-1.5 md:gap-2">
+          <span className="truncate text-[11px] font-semibold tracking-tight text-[#111111] md:text-[14px]">
+            {copy.liveTitle}
+          </span>
+          <span className="text-[9px] text-[#B0B0B5] md:text-[11px]">/</span>
+          <span className="truncate text-[9px] text-[#6B6B73] md:text-[11px]">
+            {copy.liveHome}
+          </span>
+        </div>
+        <nav className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 md:mt-2 md:gap-x-3">
+          {copy.liveNav.map((item, index) => (
+            <span
+              key={item}
+              className={cn(
+                "text-[8px] md:text-[11px]",
+                index === 0
+                  ? "font-medium text-[#111111] underline decoration-[#C43F17] decoration-2 underline-offset-2"
+                  : "text-[#6B6B73]",
+              )}
+            >
+              {item}
+            </span>
+          ))}
+        </nav>
+      </header>
+
+      <article className="px-3 pt-3 md:px-5 md:pt-5">
+        <div className="max-w-[22rem] md:max-w-[28rem]">
+          <h1 className="font-display text-[13px] leading-snug font-semibold tracking-tight text-[#111111] md:text-[20px]">
+            {copy.liveHeading}
+          </h1>
+          <p className="mt-2 text-[9px] leading-relaxed text-[#3c4043] md:mt-3 md:text-[12px] md:leading-[1.55]">
+            {copy.liveBody}
+          </p>
+        </div>
+      </article>
+
       <div
         data-v="live-bubble"
         className="absolute right-3 bottom-16 opacity-0 md:right-4 md:bottom-20"
