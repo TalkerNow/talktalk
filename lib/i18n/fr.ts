@@ -81,6 +81,17 @@ export const fr = {
       },
     ],
   },
+  produit: {
+    title: "Talker s’installe en zip sur WordPress. Vos visiteurs ont une réponse.",
+    subtitle:
+      "Pour les TPE qui ont déjà un site. Pas de live chat. Pas de paramétrage pour démarrer.",
+    bullets: [
+      "Zip activer — la bulle est là",
+      "Talker lit le site puis pose les questions métier",
+      "Conversations dans la boîte mail",
+      "100 conversations pour essayer",
+    ],
+  },
   how: {
     eyebrow: "Comment ça marche",
     title: "3 étapes. 5 minutes.",

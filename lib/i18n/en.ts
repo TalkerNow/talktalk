@@ -82,6 +82,17 @@ export const en = {
       },
     ],
   },
+  produit: {
+    title: "Talker installs as a WordPress zip. Your visitors get an answer.",
+    subtitle:
+      "For small businesses that already have a site. No live chat. No setup to start.",
+    bullets: [
+      "Zip, activate — the bubble is there",
+      "Talker reads the site, then asks the business questions",
+      "Conversations in your inbox",
+      "100 conversations to try",
+    ],
+  },
   how: {
     eyebrow: "How it works",
     title: "3 steps. 5 minutes.",
