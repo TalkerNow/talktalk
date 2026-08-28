@@ -298,24 +298,18 @@ function MiniTalkerSite({ copy }: { copy: Copy }) {
 function MiniLiveSite({ copy }: { copy: Copy }) {
   return (
     <div className="relative h-full overflow-hidden bg-[#FAFAF8]">
-      <header className="flex items-center justify-between gap-2 border-b border-black/8 bg-white px-3 py-2 md:gap-4 md:px-5 md:py-2.5">
-        <span className="min-w-0 shrink truncate text-[11px] font-semibold tracking-tight text-[#111111] md:text-[14px]">
+      <header className="flex flex-nowrap items-center justify-between gap-2 border-b border-black/8 bg-white px-3 py-2 md:gap-3 md:px-5 md:py-2.5">
+        <span className="min-w-0 shrink truncate text-[10px] font-semibold tracking-tight text-[#111111] md:text-[13px]">
           {copy.liveTitle}
         </span>
-        <nav className="flex min-w-0 flex-wrap items-center justify-end gap-x-1.5 md:gap-x-2.5">
+        <nav className="flex shrink-0 flex-nowrap items-center whitespace-nowrap text-[8px] leading-none text-[#6B6B73] md:text-[11px]">
           {copy.liveNav.map((item, index) => (
-            <span key={item} className="inline-flex items-center gap-x-1.5 md:gap-x-2.5">
-              {index > 0 ? (
-                <span className="text-[8px] text-[#C8C8CC] md:text-[10px]" aria-hidden>
-                  ·
-                </span>
-              ) : null}
+            <span key={item} className="inline-flex flex-nowrap items-center">
+              {index > 0 ? <span className="px-1 text-[#C8C8CC] md:px-1.5">·</span> : null}
               <span
                 className={cn(
-                  "whitespace-nowrap text-[8px] md:text-[11px]",
-                  index === 0
-                    ? "font-medium text-[#111111] underline decoration-[#C43F17] decoration-2 underline-offset-2"
-                    : "text-[#6B6B73]",
+                  index === 0 &&
+                    "font-medium text-[#111111] underline decoration-[#C43F17] decoration-2 underline-offset-2",
                 )}
               >
                 {item}
