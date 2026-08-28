@@ -26,13 +26,16 @@ export function BrowserScene({ copy }: { copy: Copy }) {
       innerClassName="h-[250px] md:h-[410px] lg:h-[470px]"
       header={
         <div className="flex min-w-0 flex-1 items-center gap-1 pr-2">
-          <span className="truncate rounded-t-md bg-white px-2 py-0.5 text-[8px] text-[#111111] shadow-sm md:text-[11px]">
+          <span
+            data-v="browser-tab"
+            className="truncate rounded-t-md bg-white px-2 py-0.5 text-[8px] text-[#111111] shadow-sm md:text-[11px]"
+          >
             {copy.tab}
           </span>
         </div>
       }
     >
-      <div className="relative flex h-full flex-col bg-[#F7F6F4]">
+      <div className="relative flex h-full flex-col bg-white">
         <div className="flex items-center gap-2 border-b border-black/8 bg-[#F1F3F4] px-2 py-1.5">
           <span className="hidden text-[#6B6B73] sm:inline">
             <ChromeNavIcons />
@@ -297,19 +300,29 @@ function MiniTalkerSite({ copy }: { copy: Copy }) {
 
 function MiniLiveSite({ copy }: { copy: Copy }) {
   return (
-    <div className="relative h-full overflow-hidden bg-[#FAFAF8]">
-      <header className="flex flex-nowrap items-center justify-between gap-2 border-b border-black/8 bg-white px-3 py-2 md:gap-3 md:px-5 md:py-2.5">
-        <span className="min-w-0 shrink truncate text-[10px] font-semibold tracking-tight text-[#111111] md:text-[13px]">
-          {copy.liveTitle}
-        </span>
-        <nav className="flex shrink-0 flex-nowrap items-center whitespace-nowrap text-[8px] leading-none text-[#6B6B73] md:text-[11px]">
+    <div className="relative flex h-full flex-col overflow-hidden bg-[#FFFDF8]">
+      <header className="flex h-8 shrink-0 flex-nowrap items-center justify-between gap-2 border-b border-[#E8E4DC] bg-white px-3 md:h-11 md:gap-3 md:px-5">
+        <div className="flex min-w-0 items-center gap-1.5 md:gap-2">
+          <span
+            aria-hidden
+            className="grid size-4 shrink-0 place-items-center rounded-full bg-[#2C2A26] text-[8px] font-semibold text-[#FFFDF8] md:size-5 md:text-[10px]"
+          >
+            B
+          </span>
+          <span className="truncate text-[10px] font-semibold tracking-tight text-[#2C2A26] md:text-[13px]">
+            {copy.liveTitle}
+          </span>
+        </div>
+        <nav className="flex shrink-0 flex-nowrap items-center whitespace-nowrap text-[8px] leading-none text-[#6B655C] md:text-[11px]">
           {copy.liveNav.map((item, index) => (
             <span key={item} className="inline-flex flex-nowrap items-center">
-              {index > 0 ? <span className="px-1 text-[#C8C8CC] md:px-1.5">·</span> : null}
+              {index > 0 ? (
+                <span className="px-1 text-[#D2CDC4] md:px-1.5">·</span>
+              ) : null}
               <span
                 className={cn(
                   index === 0 &&
-                    "font-medium text-[#111111] underline decoration-[#C43F17] decoration-2 underline-offset-2",
+                    "font-medium text-[#2C2A26] underline decoration-[#8B7355] decoration-2 underline-offset-[3px]",
                 )}
               >
                 {item}
@@ -319,16 +332,25 @@ function MiniLiveSite({ copy }: { copy: Copy }) {
         </nav>
       </header>
 
-      <article className="px-3 pt-3 md:px-5 md:pt-5">
-        <div className="max-w-[22rem] md:max-w-[28rem]">
-          <h1 className="font-display text-[13px] leading-snug font-semibold tracking-tight text-[#111111] md:text-[20px]">
+      <main className="min-h-0 flex-1 overflow-hidden px-4 pt-4 md:px-8 md:pt-7">
+        <div className="max-w-[65ch]">
+          <p className="text-[8px] tracking-[0.14em] text-[#8B7355] uppercase md:text-[10px]">
+            {copy.liveEyebrow}
+          </p>
+          <h1 className="mt-1.5 font-display text-[15px] leading-[1.15] font-semibold tracking-tight text-[#2C2A26] md:mt-2 md:text-[26px]">
             {copy.liveHeading}
           </h1>
-          <p className="mt-2 text-[9px] leading-relaxed text-[#3c4043] md:mt-3 md:text-[12px] md:leading-[1.55]">
+          <p className="mt-2.5 max-w-[65ch] text-[9px] leading-[1.55] text-[#4A463F] md:mt-4 md:text-[13px] md:leading-[1.6]">
             {copy.liveBody}
           </p>
         </div>
-      </article>
+      </main>
+
+      <footer className="shrink-0 border-t border-[#E8E4DC] bg-white px-3 py-1.5 md:px-5 md:py-2.5">
+        <p className="truncate text-[7px] text-[#8A847A] md:text-[10px]">
+          {copy.liveFooter}
+        </p>
+      </footer>
 
       <div
         data-v="live-bubble"

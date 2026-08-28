@@ -76,6 +76,7 @@ export function InstallerVignette() {
           const pageLive = q('[data-v="page-live"]');
           const liveBubble = q('[data-v="live-bubble"]');
           const address = q('[data-v="address"]');
+          const browserTab = q('[data-v="browser-tab"]');
 
           const still = () => {
             gsap.set(chat, {
@@ -189,6 +190,7 @@ export function InstallerVignette() {
               backgroundColor: "#ffffff",
             });
             if (address) address.textContent = copy.address;
+            if (browserTab) browserTab.textContent = copy.tab;
           };
 
           reset();
@@ -369,6 +371,7 @@ export function InstallerVignette() {
           );
           tl.call(() => {
             if (address) address.textContent = copy.liveHost;
+            if (browserTab) browserTab.textContent = copy.liveTab;
           }, undefined, "download+=9.0");
           tl.to(pageTalker, { autoAlpha: 0, duration: 0.35 }, "download+=9.05");
           tl.to(pageLive, { autoAlpha: 1, duration: 0.35 }, "download+=9.05");
@@ -410,7 +413,11 @@ export function InstallerVignette() {
 
       return () => mm.revert();
     },
-    { scope: rootRef, dependencies: [locale, copy.address, copy.liveHost], revertOnUpdate: true },
+    {
+      scope: rootRef,
+      dependencies: [locale, copy.address, copy.liveHost, copy.liveTab, copy.tab],
+      revertOnUpdate: true,
+    },
   );
 
   return (

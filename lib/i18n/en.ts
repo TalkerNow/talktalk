@@ -293,12 +293,16 @@ export const en = {
       downloadNo: "No",
       downloadSaved: "Saved to Downloads",
       liveHost: "bistrot-du-parc.fr",
+      liveTab: "Le Bistrot du Parc",
       liveTitle: "Le Bistrot du Parc",
       liveHome: "Accueil",
       liveNav: ["Accueil", "Tarifs", "Prestation", "Contact"],
-      liveHeading: "A table by the park, open every evening",
+      liveEyebrow: "Restaurant · Paris",
+      liveHeading: "Bienvenue au Bistrot du Parc",
       liveBody:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Curabitur blandit tempus porttitor — book with Marie.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident — book with Marie.",
+      liveFooter:
+        "12 place du Parc, 75006 Paris · Open every evening · 01 42 00 00 00",
       wpScreen: "Plugins",
       wpAdd: "Add New",
       wpTitle: "Add Plugins",
