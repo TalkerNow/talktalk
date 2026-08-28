@@ -92,6 +92,43 @@ export const fr = {
       "100 conversations pour essayer",
     ],
   },
+  faq: {
+    title: "FAQs",
+    items: [
+      {
+        q: "C’est quoi Talker ?",
+        a: "Talker est un plugin WordPress. Il pose les questions à vos visiteurs et vous envoie les conversations. Vous l’installez en zip. Pas de compte à créer pour voir la bulle.",
+      },
+      {
+        q: "Pour qui c’est fait ?",
+        a: "Pour une TPE qui a déjà un site WordPress et qui n’a pas de personne derrière un live chat. Pas pour une équipe qui veut un logiciel de support, ni pour un site sans WordPress.",
+      },
+      {
+        q: "Comment on l’installe ?",
+        a: "Vous téléchargez le zip, vous l’ajoutez dans WordPress, vous activez. La bulle est là. Aucun formulaire à remplir à l’install. L’e-mail de contact, c’est celui de WordPress.",
+      },
+      {
+        q: "C’est un live chat ?",
+        a: "Non. Personne ne répond en direct. Talker pose les questions, récupère le besoin et les coordonnées. Vous lisez les conversations après.",
+      },
+      {
+        q: "C’est gratuit au départ ?",
+        a: "Oui. 100 conversations par installation, sans carte. Ensuite le site s’arrête d’en prendre, jusqu’à ce que vous passiez en Pro.",
+      },
+      {
+        q: "Combien ça coûte ensuite ?",
+        a: "Trois offres telles qu’affichées: Starter 0 € (100 conv) · Pro 29 €/mois annuel (35 € au mois) · Agences & Entreprises 45 €/mois annuel pour 3 sites, 99 €/mois annuel pour 10 sites. Shopify/Woo 59 € un site, 29 €/site à partir de 10.",
+      },
+      {
+        q: "Comment je reçois les conversations ?",
+        a: "Par e-mail, toutes les 4 heures, conversations brutes empilées. S’il n’y en a eu aucune, pas de mail. Ce n’est pas un résumé rédigé.",
+      },
+      {
+        q: "Talker lit-il mes fichiers ou une base documentaire ?",
+        a: "Non. Pas d’upload, pas de base à brancher. Talker lit les pages publiques du site, puis pose les questions métier au gérant dans WordPress. Les visiteurs voient seulement la bulle publique.",
+      },
+    ],
+  },
   how: {
     eyebrow: "Comment ça marche",
     title: "3 étapes. 5 minutes.",
@@ -357,6 +394,7 @@ export const fr = {
       {
         title: "Ressources",
         links: [
+          { name: "FAQs", href: "/faq" },
           { name: "Centre d'aide", href: "#" },
           { name: "Guide d'installation", href: "#" },
           { name: "Modèles de scripts", href: "#" },
