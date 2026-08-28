@@ -188,6 +188,9 @@ export const en = {
     toggle: "Toggle yearly billing",
     perMonth: "/mo",
     popular: "Most popular",
+    sites3: "3 sites",
+    sites10: "10 sites",
+    agencySitesToggle: "Choose number of sites",
     shopify:
       "Shopify and WooCommerce — €59 for one store. 10+ stores: €29 per store.",
     plans: [
