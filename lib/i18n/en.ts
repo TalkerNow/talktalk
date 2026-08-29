@@ -83,7 +83,8 @@ export const en = {
     ],
   },
   produit: {
-    title: "Talker installs as a WordPress zip. Your visitors get an answer.",
+    title: "Talker installs as a WordPress zip.",
+    titleMuted: "Your visitors get an answer.",
     subtitle:
       "For small businesses that already have a site. No live chat. No setup to start.",
     bullets: [

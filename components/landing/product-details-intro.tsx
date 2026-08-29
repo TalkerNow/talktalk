@@ -1,6 +1,9 @@
 "use client";
 
+import { AuroraText } from "@/components/ui/aurora-text";
 import { useLocale } from "@/components/i18n/locale-context";
+
+const AURORA = ["#C43F17", "#111111", "#C43F17"];
 
 export function ProductDetailsIntro() {
   const { t } = useLocale();
@@ -14,21 +17,28 @@ export function ProductDetailsIntro() {
         </span>
         <h1 className="max-w-4xl text-4xl font-display font-semibold tracking-tight leading-[1.08] lg:text-6xl xl:text-7xl lg:leading-[0.98]">
           {t.produit.title}
+          <br />
+          <AuroraText className="max-w-full" colors={AURORA}>
+            {t.produit.titleMuted}
+          </AuroraText>
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground lg:text-xl">
           {t.produit.subtitle}
         </p>
-        <ul className="mt-10 max-w-2xl space-y-3">
-          {t.produit.bullets.map((item) => (
-            <li key={item} className="flex items-start gap-3 text-base leading-relaxed lg:text-lg">
-              <span
-                className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#C43F17]"
-                aria-hidden
-              />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-8 flex flex-col lg:flex-row gap-8 lg:gap-20">
+          <div className="hidden lg:block shrink-0" aria-hidden>
+            <span className="font-mono text-sm">01</span>
+          </div>
+          <div className="flex-1 grid lg:grid-cols-2 gap-8">
+            <ul className="space-y-3">
+              {t.produit.bullets.map((item) => (
+                <li key={item} className="text-lg text-muted-foreground leading-relaxed">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );
