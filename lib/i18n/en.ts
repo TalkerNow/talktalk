@@ -55,7 +55,7 @@ export const en = {
     beamLead: "Visitors arrive. Talker connects. In the morning, it’s in your inbox.",
   },
   features: {
-    eyebrow: "What it does",
+    eyebrow: "Features",
     title: "What you need.",
     titleMuted: "Nothing extra.",
     items: [
@@ -171,7 +171,7 @@ export const en = {
     ],
   },
   infra: {
-    eyebrow: "Every morning",
+    eyebrow: "Conversations",
     title: "Your visitors'",
     titleLine2: "conversations",
     titleMuted: "in your inbox every morning",
@@ -227,12 +227,13 @@ export const en = {
     ],
   },
   integrations: {
-    eyebrow: "Integrations",
+    eyebrow: "WordPress",
     title: "Works with WordPress,",
     titleMuted: "without touching your theme.",
     body: "A Talker.now zip you upload in WP-Admin. Works with most themes and builders, including Elementor and Divi.",
   },
   pricing: {
+    eyebrow: "Pricing",
     title: "Our pricing.",
     monthly: "Monthly",
     annual: "Yearly",

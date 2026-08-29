@@ -2,6 +2,7 @@
 
 import { AuroraText } from "@/components/ui/aurora-text";
 import { useLocale } from "@/components/i18n/locale-context";
+import { SectionEyebrow } from "@/components/landing/section-eyebrow";
 
 const AURORA = ["#C43F17", "#111111", "#C43F17"];
 
@@ -11,10 +12,7 @@ export function ProductDetailsIntro() {
   return (
     <section className="relative overflow-visible pb-8 pt-32 lg:pb-10 lg:pt-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-        <span className="mb-6 inline-flex items-center gap-3 text-sm font-mono text-muted-foreground">
-          <span className="h-px w-8 shrink-0 bg-foreground/30" />
-          {t.nav.features}
-        </span>
+        <SectionEyebrow>{t.nav.features}</SectionEyebrow>
         <h1 className="max-w-4xl text-4xl font-display font-semibold tracking-tight leading-[1.08] lg:text-6xl xl:text-7xl lg:leading-[0.98]">
           {t.produit.title}
           <br />

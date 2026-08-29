@@ -175,7 +175,7 @@ export const fr = {
     ],
   },
   infra: {
-    eyebrow: "Chaque matin",
+    eyebrow: "Les conversations",
     title: "Les conversations",
     titleLine2: "de vos visiteurs",
     titleMuted: "chaque matin dans votre boîte mail",
@@ -231,12 +231,13 @@ export const fr = {
     ],
   },
   integrations: {
-    eyebrow: "Intégrations",
+    eyebrow: "WordPress",
     title: "Compatible avec WordPress,",
     titleMuted: "sans rien changer à votre site.",
     body: "Un zip Talker.now à téléverser dans WP-Admin. Fonctionne avec la plupart des thèmes et constructeurs de pages (Elementor, Divi, etc.).",
   },
   pricing: {
+    eyebrow: "Tarifs",
     title: "Nos tarifs.",
     monthly: "Mensuel",
     annual: "Annuel",

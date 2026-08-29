@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useLocale } from "@/components/i18n/locale-context";
+import { SectionEyebrow } from "@/components/landing/section-eyebrow";
 
 function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffix?: string; prefix?: string }) {
   const [count, setCount] = useState(0);
@@ -74,10 +75,7 @@ export function MetricsSection() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
           <div>
-            <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
-              <span className="w-8 h-px bg-foreground/30" />
-              {t.metrics.eyebrow}
-            </span>
+            <SectionEyebrow>{t.metrics.eyebrow}</SectionEyebrow>
             <h2
               className={`text-4xl lg:text-6xl font-display tracking-tight transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"

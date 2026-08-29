@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/components/i18n/locale-context";
+import { SectionEyebrow } from "@/components/landing/section-eyebrow";
 import type { Messages } from "@/lib/i18n";
 
 type FeatureItem = Messages["features"]["items"][number];
@@ -188,10 +189,7 @@ export function FeaturesSection() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="mb-8 lg:mb-10">
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
-            <span className="w-8 h-px bg-foreground/30" />
-            {t.features.eyebrow}
-          </span>
+          <SectionEyebrow>{t.features.eyebrow}</SectionEyebrow>
           <h2
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"

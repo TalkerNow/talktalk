@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useLocale } from "@/components/i18n/locale-context";
+import { SectionEyebrow } from "@/components/landing/section-eyebrow";
 
 export function IntegrationsSection() {
   const { t } = useLocale();
@@ -28,11 +29,7 @@ export function IntegrationsSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
-            <span className="w-8 h-px bg-foreground/30" />
-            {t.integrations.eyebrow}
-            <span className="w-8 h-px bg-foreground/30" />
-          </span>
+          <SectionEyebrow>{t.integrations.eyebrow}</SectionEyebrow>
           <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-6">
             {t.integrations.title}
             <br />

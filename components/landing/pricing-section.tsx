@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { useLocale } from "@/components/i18n/locale-context";
+import { SectionEyebrow } from "@/components/landing/section-eyebrow";
 import type { Messages } from "@/lib/i18n";
 
 type PlanCopy = Messages["pricing"]["plans"][number];
@@ -144,6 +145,7 @@ export function PricingSection() {
     <section id="pricing" className="relative py-12 lg:py-16 border-t border-foreground/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-10">
+          <SectionEyebrow>{t.pricing.eyebrow}</SectionEyebrow>
           <h2 className="font-display font-semibold text-5xl md:text-6xl lg:text-7xl tracking-tight text-foreground leading-[0.95]">
             {t.pricing.title}
           </h2>

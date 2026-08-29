@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/components/i18n/locale-context";
+import { SectionEyebrow } from "@/components/landing/section-eyebrow";
 import { TalkerChatLoop } from "@/components/landing/installer-vignette/talker-chat-loop";
 
 export function HowItWorksSection() {
@@ -54,10 +55,7 @@ export function HowItWorksSection() {
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="mb-12 lg:mb-16">
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
-            <span className="w-8 h-px bg-white/30" />
-            {t.how.eyebrow}
-          </span>
+          <SectionEyebrow onDark>{t.how.eyebrow}</SectionEyebrow>
           <h2
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
