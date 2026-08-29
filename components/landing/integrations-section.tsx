@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useLocale } from "@/components/i18n/locale-context";
-import { BlockTitle } from "@/components/landing/block-title";
+import { SectionEyebrow } from "@/components/landing/section-eyebrow";
 
 export function IntegrationsSection() {
   const { t } = useLocale();
@@ -29,12 +29,12 @@ export function IntegrationsSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <BlockTitle>{t.integrations.eyebrow}</BlockTitle>
-          <p className="text-4xl lg:text-6xl font-display tracking-tight mb-6">
+          <SectionEyebrow>{t.integrations.eyebrow}</SectionEyebrow>
+          <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-6">
             {t.integrations.title}
             <br />
             <span className="text-foreground/30">{t.integrations.titleMuted}</span>
-          </p>
+          </h2>
           <p className="text-xl text-muted-foreground">
             {t.integrations.body}
           </p>

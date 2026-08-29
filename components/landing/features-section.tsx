@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/components/i18n/locale-context";
-import { BlockTitle } from "@/components/landing/block-title";
+import { SectionEyebrow } from "@/components/landing/section-eyebrow";
 import type { Messages } from "@/lib/i18n";
 
 type FeatureItem = Messages["features"]["items"][number];
@@ -189,8 +189,8 @@ export function FeaturesSection() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="mb-8 lg:mb-10">
-          <BlockTitle>{t.features.eyebrow}</BlockTitle>
-          <p
+          <SectionEyebrow>{t.features.eyebrow}</SectionEyebrow>
+          <h2
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
@@ -198,7 +198,7 @@ export function FeaturesSection() {
             {t.features.title}
             <br />
             <span className="text-muted-foreground">{t.features.titleMuted}</span>
-          </p>
+          </h2>
         </div>
 
         {/* Liste */}

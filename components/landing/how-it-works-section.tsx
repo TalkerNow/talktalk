@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/components/i18n/locale-context";
-import { BlockTitle } from "@/components/landing/block-title";
+import { SectionEyebrow } from "@/components/landing/section-eyebrow";
 import { TalkerChatLoop } from "@/components/landing/installer-vignette/talker-chat-loop";
 
 export function HowItWorksSection() {
@@ -55,8 +55,8 @@ export function HowItWorksSection() {
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="mb-12 lg:mb-16">
-          <BlockTitle>{t.how.eyebrow}</BlockTitle>
-          <p
+          <SectionEyebrow onDark>{t.how.eyebrow}</SectionEyebrow>
+          <h2
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
@@ -64,7 +64,7 @@ export function HowItWorksSection() {
             {t.how.title}
             <br />
             <span className="text-white/40">{t.how.titleMuted}</span>
-          </p>
+          </h2>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
