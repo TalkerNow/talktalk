@@ -1,25 +1,22 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-/** Charte accent pastille for section labels. Hairline rails removed. */
+/** Attio-style pastel pill — crawlable section <h2>, CSS background only. */
 export function SectionEyebrow({
   children,
   className,
-  onDark = false,
 }: {
   children: ReactNode;
   className?: string;
-  onDark?: boolean;
 }) {
   return (
-    <span
+    <h2
       className={cn(
-        "mb-6 inline-flex items-center rounded-full px-3 py-1 text-xs font-mono font-medium tracking-wide text-[#C43F17]",
-        onDark ? "bg-[#FAEDE7]/90" : "bg-[#FAEDE7]",
+        "mb-6 inline-flex items-center rounded-full bg-[#F4D4C8] px-3 py-1 text-xs font-medium leading-none text-[#111111]",
         className
       )}
     >
       {children}
-    </span>
+    </h2>
   );
 }

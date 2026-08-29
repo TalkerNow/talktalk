@@ -30,11 +30,11 @@ export function IntegrationsSection() {
           }`}
         >
           <SectionEyebrow>{t.integrations.eyebrow}</SectionEyebrow>
-          <h2 className="text-4xl lg:text-6xl font-display tracking-tight mb-6">
+          <p className="text-4xl lg:text-6xl font-display tracking-tight mb-6">
             {t.integrations.title}
             <br />
             <span className="text-foreground/30">{t.integrations.titleMuted}</span>
-          </h2>
+          </p>
           <p className="text-xl text-muted-foreground">
             {t.integrations.body}
           </p>

@@ -76,7 +76,7 @@ export function MetricsSection() {
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
           <div>
             <SectionEyebrow>{t.metrics.eyebrow}</SectionEyebrow>
-            <h2
+            <p
               className={`text-4xl lg:text-6xl font-display tracking-tight transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
@@ -84,7 +84,7 @@ export function MetricsSection() {
               {t.metrics.title}
               <br />
               <span className="text-foreground/30">{t.metrics.titleMuted}</span>
-            </h2>
+            </p>
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
             <span className="flex items-center gap-2">

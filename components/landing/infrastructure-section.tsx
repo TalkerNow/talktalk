@@ -35,13 +35,13 @@ export function InfrastructureSection() {
             }`}
           >
             <SectionEyebrow>{t.infra.eyebrow}</SectionEyebrow>
-            <h2 className="text-5xl lg:text-7xl font-display font-semibold tracking-tight mb-8 leading-[0.95]">
+            <p className="text-5xl lg:text-7xl font-display font-semibold tracking-tight mb-8 leading-[0.95]">
               {t.infra.title}
               <br />
               {t.infra.titleLine2}
               <br />
               <span className="text-foreground/30">{t.infra.titleMuted}</span>
-            </h2>
+            </p>
             <div className="space-y-4 text-xl text-muted-foreground leading-relaxed">
               <p>{t.infra.p1}</p>
               <p>{t.infra.p2}</p>
