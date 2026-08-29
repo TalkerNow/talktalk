@@ -13,8 +13,8 @@ export const fr = {
   },
   hero: {
     eyebrow: "Les IA aspirent le trafic de votre site. Talker le récupère.",
-    titleBefore: "Le chatbot IA qui",
-    titleAfter: "à votre place",
+    titleBefore: "Talker s’installe en zip.",
+    titleAfter: "Vos visiteurs ont une réponse.",
     phrases: [
       "décrit vos prestations",
       "donne vos tarifs",
@@ -23,8 +23,7 @@ export const fr = {
       "capte l'email",
       "demande des avis Google",
     ],
-    subtitle:
-      "Un chatbot IA qui connaît votre métier, capte le numéro ou l'email de vos prospects, répond aux tarifs sans que vous leviez le petit doigt, trie les demandes de vos clients existants, et récupère vos avis Google. Installé en 10 minutes, sans code.",
+    subtitle: "Plugin WordPress pour TPE déjà en ligne. Pas de live chat.",
     createAgent: "Créer mon agent gratuitement",
     seeDemo: "Voir une démo",
     wordpress: "Zip Talker.now — à téléverser dans WP-Admin",

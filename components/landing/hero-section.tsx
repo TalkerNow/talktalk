@@ -8,24 +8,14 @@ import { ArrowRight } from "lucide-react";
 
 export function HeroSection() {
   const { t } = useLocale();
-  const phrases = t.hero.phrases;
   const stats = t.hero.stats;
   const [isVisible, setIsVisible] = useState(false);
-  const [wordIndex, setWordIndex] = useState(0);
   const { openTalker } = useTalker();
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setIsVisible(true));
     return () => cancelAnimationFrame(id);
   }, []);
-
-  useEffect(() => {
-    setWordIndex(0);
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % phrases.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [phrases]);
 
   return (
     <section className="relative flex min-h-screen flex-col justify-between overflow-visible">
@@ -71,25 +61,7 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="block text-foreground">{t.hero.titleBefore}</span>
-          <span className="block text-foreground/40">
-            <span className="relative inline-block">
-              <span key={wordIndex} className="inline-flex flex-wrap">
-                {phrases[wordIndex].split("").map((char, i) => (
-                  <span
-                    key={`${wordIndex}-${i}`}
-                    className="inline-block animate-char-in"
-                    style={{
-                      animationDelay: `${i * 50}ms`,
-                    }}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </span>
-                ))}
-              </span>
-              <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-foreground/12" />
-            </span>
-          </span>
+          <span className="block text-foreground">{t.hero.titleBefore}</span>{" "}
           <span className="block text-foreground/30">{t.hero.titleAfter}</span>
         </h1>
 
