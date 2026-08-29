@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Paperclip } from "lucide-react";
 import { TalkerMark } from "@/components/brand/mark";
 import { useLocale } from "@/components/i18n/locale-context";
+import { BlockTitle } from "@/components/landing/block-title";
 
 export function InfrastructureSection() {
   const { t } = useLocale();
@@ -33,17 +34,14 @@ export function InfrastructureSection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >
-            <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
-              <span className="w-8 h-px bg-foreground/30" />
-              {t.infra.eyebrow}
-            </span>
-            <h2 className="text-5xl lg:text-7xl font-display font-semibold tracking-tight mb-8 leading-[0.95]">
+            <BlockTitle>{t.infra.eyebrow}</BlockTitle>
+            <p className="text-5xl lg:text-7xl font-display font-semibold tracking-tight mb-8 leading-[0.95]">
               {t.infra.title}
               <br />
               {t.infra.titleLine2}
               <br />
               <span className="text-foreground/30">{t.infra.titleMuted}</span>
-            </h2>
+            </p>
             <div className="space-y-4 text-xl text-muted-foreground leading-relaxed">
               <p>{t.infra.p1}</p>
               <p>{t.infra.p2}</p>

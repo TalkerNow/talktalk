@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useLocale } from "@/components/i18n/locale-context";
+import { BlockTitle } from "@/components/landing/block-title";
 
 function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffix?: string; prefix?: string }) {
   const [count, setCount] = useState(0);
@@ -74,11 +75,8 @@ export function MetricsSection() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
           <div>
-            <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
-              <span className="w-8 h-px bg-foreground/30" />
-              {t.metrics.eyebrow}
-            </span>
-            <h2
+            <BlockTitle>{t.metrics.eyebrow}</BlockTitle>
+            <p
               className={`text-4xl lg:text-6xl font-display tracking-tight transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
@@ -86,7 +84,7 @@ export function MetricsSection() {
               {t.metrics.title}
               <br />
               <span className="text-foreground/30">{t.metrics.titleMuted}</span>
-            </h2>
+            </p>
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
             <span className="flex items-center gap-2">

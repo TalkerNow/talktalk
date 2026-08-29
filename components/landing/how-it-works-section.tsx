@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/components/i18n/locale-context";
+import { BlockTitle } from "@/components/landing/block-title";
 import { TalkerChatLoop } from "@/components/landing/installer-vignette/talker-chat-loop";
 
 export function HowItWorksSection() {
@@ -54,11 +55,8 @@ export function HowItWorksSection() {
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="mb-12 lg:mb-16">
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
-            <span className="w-8 h-px bg-white/30" />
-            {t.how.eyebrow}
-          </span>
-          <h2
+          <BlockTitle>{t.how.eyebrow}</BlockTitle>
+          <p
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
@@ -66,7 +64,7 @@ export function HowItWorksSection() {
             {t.how.title}
             <br />
             <span className="text-white/40">{t.how.titleMuted}</span>
-          </h2>
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
