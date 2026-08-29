@@ -54,7 +54,7 @@ export const fr = {
     beamLead: "Les visiteurs arrivent. Talker relie. Le matin, c’est dans votre boîte.",
   },
   features: {
-    eyebrow: "Ce que ça fait",
+    eyebrow: "Fonctionnalités",
     title: "Ce qu'il faut.",
     titleMuted: "Rien de plus.",
     items: [
