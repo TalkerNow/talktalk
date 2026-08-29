@@ -160,6 +160,7 @@ function FeatureCard({ feature, index }: { feature: FeatureItem; index: number }
   );
 }
 
+/** Parked off the homepage; rendered on /produit for a later product page. */
 export function FeaturesSection() {
   const { t } = useLocale();
   const features = t.features.items;

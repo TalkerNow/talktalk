@@ -82,6 +82,55 @@ export const en = {
       },
     ],
   },
+  produit: {
+    title: "Talker installs as a WordPress zip.",
+    titleMuted: "Your visitors get an answer.",
+    subtitle:
+      "For small businesses that already have a site. No live chat. No setup to start.",
+    bullets: [
+      "Zip, activate — the bubble is there",
+      "Talker reads the site, then asks the business questions",
+      "Conversations in your inbox",
+      "100 conversations to try",
+    ],
+  },
+  faq: {
+    title: "FAQs",
+    items: [
+      {
+        q: "What is Talker?",
+        a: "Talker is a WordPress plugin. It asks your visitors questions and sends you the conversations. You install it as a zip. No account to create to see the bubble.",
+      },
+      {
+        q: "Who is it for?",
+        a: "For a small business that already has a WordPress site and nobody behind a live chat. Not for a team that wants support software, and not for a site without WordPress.",
+      },
+      {
+        q: "How do you install it?",
+        a: "You download the zip, add it in WordPress, activate. The bubble is there. No form to fill at install. The contact email is the WordPress one.",
+      },
+      {
+        q: "Is it a live chat?",
+        a: "No. Nobody answers in real time. Talker asks the questions, captures the need and the contact details. You read the conversations afterwards.",
+      },
+      {
+        q: "Is it free to start?",
+        a: "Yes. 100 conversations per install, no card. Then the site stops taking more, until you move to Pro.",
+      },
+      {
+        q: "How much does it cost after that?",
+        a: "Three offers as shown: Starter 0 € (100 conv) · Pro 29 €/month yearly (35 € monthly) · Agencies & Companies 45 €/month yearly for 3 sites, 99 €/month yearly for 10 sites. Shopify/Woo 59 € one site, 29 €/site from 10.",
+      },
+      {
+        q: "How do I receive the conversations?",
+        a: "By email, every 4 hours, raw conversations stacked. If there were none, no email. It is not a written summary.",
+      },
+      {
+        q: "Does Talker read my files or a knowledge base?",
+        a: "No. No upload, no database to connect. Talker reads the public pages of the site, then asks the business questions to the owner in WordPress. Visitors only see the public bubble.",
+      },
+    ],
+  },
   how: {
     eyebrow: "How it works",
     title: "3 steps. 5 minutes.",
@@ -332,7 +381,7 @@ export const en = {
       {
         title: "Product",
         links: [
-          { name: "Features", href: "#features" },
+          { name: "Features", href: "/produit" },
           { name: "How it works", href: "#how-it-works" },
           { name: "Pricing", href: "#pricing" },
           { name: "Integrations", href: "#integrations" },
@@ -342,6 +391,7 @@ export const en = {
       {
         title: "Resources",
         links: [
+          { name: "FAQs", href: "/faq" },
           { name: "Help center", href: "#" },
           { name: "Setup guide", href: "#" },
           { name: "Script templates", href: "#" },

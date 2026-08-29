@@ -37,7 +37,7 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navLinks = [
-    { name: t.nav.features, href: "#features" },
+    { name: t.nav.features, href: "/produit" },
     { name: t.nav.howItWorks, href: "#how-it-works" },
     { name: t.nav.pricing, href: "#pricing" },
     { name: t.nav.contact, href: "/contact" },
