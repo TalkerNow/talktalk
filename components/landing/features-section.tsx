@@ -190,7 +190,7 @@ export function FeaturesSection() {
         {/* Header */}
         <div className="mb-8 lg:mb-10">
           <SectionEyebrow>{t.features.eyebrow}</SectionEyebrow>
-          <p
+          <h2
             className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
@@ -198,7 +198,7 @@ export function FeaturesSection() {
             {t.features.title}
             <br />
             <span className="text-muted-foreground">{t.features.titleMuted}</span>
-          </p>
+          </h2>
         </div>
 
         {/* Liste */}

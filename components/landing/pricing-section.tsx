@@ -146,9 +146,9 @@ export function PricingSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-10">
           <SectionEyebrow>{t.pricing.eyebrow}</SectionEyebrow>
-          <p className="font-display font-semibold text-5xl md:text-6xl lg:text-7xl tracking-tight text-foreground leading-[0.95]">
+          <h2 className="font-display font-semibold text-5xl md:text-6xl lg:text-7xl tracking-tight text-foreground leading-[0.95]">
             {t.pricing.title}
-          </p>
+          </h2>
         </div>
 
         <div className="mb-8 flex items-center justify-center gap-4 lg:mb-10">

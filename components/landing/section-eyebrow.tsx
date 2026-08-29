@@ -1,22 +1,25 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-/** Attio-style pastel pill — crawlable section <h2>, CSS background only. */
+/** Charte v1 accent pastille — Attio-tight pill, no hairline rails. */
 export function SectionEyebrow({
   children,
   className,
+  onDark = false,
 }: {
   children: ReactNode;
   className?: string;
+  onDark?: boolean;
 }) {
   return (
-    <h2
+    <span
       className={cn(
-        "mb-6 inline-flex items-center rounded-full bg-[#F4D4C8] px-3 py-1 text-xs font-medium leading-none text-[#111111]",
+        "mb-6 inline-flex items-center rounded-full px-3 py-1 text-xs font-mono font-medium tracking-wide text-[#C43F17]",
+        onDark ? "bg-[#FAEDE7]/90" : "bg-[#FAEDE7]",
         className
       )}
     >
       {children}
-    </h2>
+    </span>
   );
 }
