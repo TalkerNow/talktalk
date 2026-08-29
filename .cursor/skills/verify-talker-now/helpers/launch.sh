@@ -15,12 +15,26 @@ if [[ -f "$PID_FILE" ]]; then
   rm -f "$PID_FILE"
 fi
 
-if command -v ss >/dev/null 2>&1; then
-  if ss -ltnH "sport = :$TALKER_VERIFY_PORT" | grep -q .; then
-    echo "Port $TALKER_VERIFY_PORT is already in use. Set TALKER_VERIFY_PORT to a free port, or stop the occupant."
-    echo "Do not drive whatever is bound to that port unless doctor.sh confirms it is this run's pid."
-    exit 1
-  fi
+if python3 - "$TALKER_VERIFY_HOST" "$TALKER_VERIFY_PORT" <<'PY'
+import socket, sys
+host, port = sys.argv[1], int(sys.argv[2])
+s = socket.socket()
+s.settimeout(0.4)
+try:
+    s.connect((host, port))
+except OSError:
+    sys.exit(0)
+else:
+    sys.exit(1)
+finally:
+    s.close()
+PY
+then
+  :
+else
+  echo "Port $TALKER_VERIFY_PORT is already in use. Set TALKER_VERIFY_PORT to a free port, or stop the occupant."
+  echo "Do not drive whatever is bound to that port unless doctor.sh confirms it is this run's pid."
+  exit 1
 fi
 
 if [[ ! -d "$REPO/node_modules/next" ]]; then

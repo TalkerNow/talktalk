@@ -25,7 +25,7 @@ const baseUrl = urlFlag >= 0 ? process.argv[urlFlag + 1] : BASE_URL;
 
 if (!feature) {
   console.error("Usage: node drive.mjs <home|demo-chat|contact|installer|locale> [--url URL]");
-  process.exit 2;
+  process.exit(2);
 }
 
 async function launchBrowser() {
@@ -42,7 +42,7 @@ async function saveProof(page, dir, stem, extra = {}) {
   const html = path.join(dir, `${stem}.html`);
   const aria = path.join(dir, `${stem}.aria.txt`);
   const meta = path.join(dir, `${stem}.meta.json`);
-  await page.screenshot({ path: png, fullPage: true });
+  await page.screenshot({ path: png, fullPage: false });
   await writeFile(html, await page.content(), "utf8");
   const snapshot = await page.locator("body").innerText();
   await writeFile(aria, snapshot, "utf8");

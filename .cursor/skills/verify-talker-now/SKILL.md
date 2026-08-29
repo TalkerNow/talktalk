@@ -93,7 +93,7 @@ Write under `.cursor/skills/verify-talker-now/evidence/<feature>/`. Cleanup must
 
 Each proof needs:
 
-- The action (click, fill, download) and the resulting screen or file, not only the last screenshot.
+- The action (click, fill, download) and the resulting screen or file, not only the last screenshot. The driver writes viewport screenshots (not full-page) plus `*.aria.txt` and `*.meta.json`.
 - App identity visible: wordmark `talker.now` and the French (or switched English) copy.
 - For contact: the success sentence `C’est transmis. On vous écrit à cette adresse.` after using the form (not a raw POST unless you are also proving `/api/contact` as a side check). The server only `console.log`s — there is no DB row to read.
 - For installer: the downloaded file named `talker-now.zip` plus a 200 on `/talker-now.zip`.

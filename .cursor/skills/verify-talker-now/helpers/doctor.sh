@@ -14,13 +14,7 @@ kill -0 "$pid" 2>/dev/null || fail "pid $pid is not running"
 port="$(cat "$PORT_FILE" 2>/dev/null || echo "$TALKER_VERIFY_PORT")"
 url="$(cat "$URL_FILE" 2>/dev/null || echo "http://${TALKER_VERIFY_HOST}:${port}")"
 
-# Confirm the listening socket belongs to our process (or a child).
-if command -v ss >/dev/null 2>&1; then
-  if ! ss -ltnpH "sport = :$port" 2>/dev/null | grep -E "pid=$pid|users:" >/dev/null; then
-    # next often binds from a child; accept if something on this port and our pid is alive
-    ss -ltnH "sport = :$port" | grep -q . || fail "nothing listening on :$port"
-  fi
-fi
+curl -fsS -o /dev/null "$url/" || fail "nothing answering at $url"
 
 home="$(curl -fsS -D - "$url/" -o /tmp/talker-verify-home.html)"
 echo "$home" | head -n 1 | grep -q "200" || fail "GET / is not 200"
