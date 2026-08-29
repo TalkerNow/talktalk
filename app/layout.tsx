@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: "Talker — L'agent qui vend à votre place",
   description:
-    "Les IA aspirent le trafic de votre site. Talker le récupère. Un chatbot IA qui connaît votre métier, capte le numéro ou l'email de vos prospects, et s'installe en 10 minutes, sans code.",
+    "Talker s’installe en zip. Vos visiteurs ont une réponse. Plugin WordPress pour TPE déjà en ligne. Pas de live chat.",
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
