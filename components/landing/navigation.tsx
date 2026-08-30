@@ -40,6 +40,7 @@ export function Navigation() {
     { name: t.nav.features, href: "#features" },
     { name: t.nav.howItWorks, href: "#how-it-works" },
     { name: t.nav.pricing, href: "#pricing" },
+    { name: t.nav.faq, href: "/faq" },
     { name: t.nav.contact, href: "/contact" },
   ];
 
