@@ -80,7 +80,7 @@ export const en = {
           "Natural conversion: collects email, phone, and the context of the request before the exchange ends.",
           "Offers a Google review when satisfaction shows in the exchange.",
           "Sends the opportunity recap and exchange detail by email every 4 hours.",
-          "Sends an SMS alert at your usage thresholds (50 / 75 / 90 conversations).",
+          "Sends an SMS alert when a number is captured and the request looks urgent.",
           "Shows what visitors actually ask for on the ground — not an abstract summary.",
         ],
         visual: "collab",

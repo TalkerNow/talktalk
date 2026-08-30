@@ -79,7 +79,7 @@ export const fr = {
           "Conversion naturelle : collecte l'e-mail, le téléphone et le contexte de la demande avant la fin de l'échange.",
           "Propose un avis Google quand la satisfaction se lit dans l'échange.",
           "Transmet le récapitulatif des opportunités et le détail des échanges par e-mail toutes les 4 heures.",
-          "Envoie une alerte SMS selon vos seuils d'utilisation (50 / 75 / 90 conversations).",
+          "Envoie une alerte SMS lorsqu'un numéro est capté et que la demande semble urgente.",
           "Vous montre ce que les visiteurs demandent vraiment sur le terrain — pas une synthèse abstraite.",
         ],
         visual: "collab",
