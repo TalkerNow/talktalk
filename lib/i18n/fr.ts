@@ -61,22 +61,35 @@ export const fr = {
       {
         number: "01",
         title: "Un agent qui connaît votre métier",
-        description:
-          "Formé sur votre activité, vos services et vos tarifs, et reprenant la syntaxe rédactionnelle de votre site. Que vous soyez un avocat, un musée, une entreprise du bâtiment ou une société de conseil et de services, il répond avec le bon vocabulaire, pas avec des réponses génériques de type IA.",
+        bullets: [
+          "Lit votre site pour comprendre votre activité et ce que vous proposez",
+          "S'aligne sur vos prestations, pas sur un discours générique",
+          "Répond sur vos tarifs, options et modalités quand ils sont sur le site",
+          "S'adapte au métier (cabinet, artisan, conseil, culture…) sans liste de secteurs à cocher",
+          "Reprend le ton de votre marque — pas le style « réponse IA »",
+        ],
         visual: "ai",
       },
       {
         number: "02",
-        title: "Capture les coordonnées, pas juste les questions",
-        description:
-          "Numéro de téléphone ou email récupéré avant la fin de la conversation. Prospect chaud transmis direct, client existant redirigé vers le bon service. Rien ne se perd dans un formulaire jamais rempli.",
+        title: "Capture les coordonnées (et convertit)",
+        bullets: [
+          "Mène une conversation utile : clarifie le besoin avant de pousser à l'action",
+          "Collecte e-mail, téléphone et infos utiles avant la fin de l'échange",
+          "Oriente vers l'étape suivante (rappel, devis, prise de contact)",
+          "Peut proposer un avis Google quand ça sert votre réputation",
+        ],
         visual: "collab",
       },
       {
         number: "03",
         title: "Un support avant votre support",
-        description:
-          "Talker distingue un prospect d'un client en une phrase. Panne, question tarifaire, service additionnel : il qualifie la demande et vous transmet un dossier prêt à traiter. Votre client ne raconte plus son problème deux fois.",
+        bullets: [
+          "Fait préciser la situation du visiteur avant un humain",
+          "Recueille un créneau de rappel (agenda / Calendar possible plus tard)",
+          "Sépare prospect à convertir et client déjà en portefeuille",
+          "Transmet un dossier déjà cadré, pas un « rappelez-moi » vide",
+        ],
         visual: "security",
       },
     ],

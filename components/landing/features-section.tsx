@@ -138,14 +138,25 @@ function FeatureCard({ feature, index }: { feature: FeatureItem; index: number }
         </div>
         
         {/* Content */}
-        <div className="flex-1 grid lg:grid-cols-2 gap-8 items-center">
+        <div className="flex-1 grid lg:grid-cols-2 gap-8 items-start">
           <div>
             <h3 className="text-3xl lg:text-4xl font-display mb-4 group-hover:translate-x-2 transition-transform duration-500">
               {feature.title}
             </h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {feature.description}
-            </p>
+            <ul className="space-y-2.5">
+              {feature.bullets.map((bullet) => (
+                <li
+                  key={bullet}
+                  className="flex items-start gap-3 text-base leading-snug text-muted-foreground lg:text-lg"
+                >
+                  <span
+                    className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]"
+                    aria-hidden
+                  />
+                  {bullet}
+                </li>
+              ))}
+            </ul>
           </div>
           
           {/* Visual */}

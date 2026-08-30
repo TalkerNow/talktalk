@@ -62,22 +62,35 @@ export const en = {
       {
         number: "01",
         title: "An agent that knows your business",
-        description:
-          "Trained on your services and prices, in your site's voice. Law firm, museum, contractor, consultancy: it answers with your vocabulary, not generic AI filler.",
+        bullets: [
+          "Reads your site to understand what you do and what you offer",
+          "Stays aligned with your services, not a generic pitch",
+          "Answers on prices, options, and terms when they are on the site",
+          "Fits the trade (practice, craft, consulting, culture…) without a sector checklist",
+          "Uses your brand voice — not the \"AI reply\" style",
+        ],
         visual: "ai",
       },
       {
         number: "02",
-        title: "It captures contact details, not just questions",
-        description:
-          "Phone or email before the chat ends. New leads go straight to you. Existing customers go to the right team. Nothing dies in a form nobody fills out.",
+        title: "Captures contact details (and converts)",
+        bullets: [
+          "Runs a useful conversation: clarifies the need before pushing an action",
+          "Collects email, phone, and useful details before the exchange ends",
+          "Points to the next step (callback, quote, contact)",
+          "Can offer a Google review when it helps your reputation",
+        ],
         visual: "collab",
       },
       {
         number: "03",
         title: "Support before your support team",
-        description:
-          "Talker tells a prospect from a customer in one message. Outage, pricing question, extra service: it qualifies the request and hands you a ready brief. Your customer doesn't repeat themselves.",
+        bullets: [
+          "Gets the visitor's situation clear before a human steps in",
+          "Collects a callback slot (calendar / Calendar possible later)",
+          "Separates a prospect to convert from a client already on the books",
+          "Hands over a framed brief, not an empty \"call me back\"",
+        ],
         visual: "security",
       },
     ],
