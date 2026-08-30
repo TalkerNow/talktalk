@@ -71,11 +71,12 @@ export const fr = {
       },
       {
         number: "02",
-        title: "Capture les coordonnées (et convertit)",
+        title: "Mène la conversation et capture les coordonnées",
         bullets: [
           "Mène la conversation comme un commercial senior : clarifie le besoin avant de proposer l'étape suivante",
           "S'appuie sur des cadres reconnus : persuasion (Cialdini), vente consultative (SPIN Selling), négociation et reformulation (Chris Voss)",
           "Collecte e-mail, téléphone et infos utiles avant la fin de l'échange",
+          "Quand l'internaute montre qu'il est satisfait du service, propose un avis Google",
           "Vous envoie par e-mail, toutes les 4 heures, le détail des échanges s'il y en a eu",
           "Alerte SMS possible aux seuils 50 / 75 / 90 conversations (si mobile renseigné)",
           "Vous montre ce que les visiteurs demandent vraiment — pas un résumé marketing",

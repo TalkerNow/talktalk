@@ -72,11 +72,12 @@ export const en = {
       },
       {
         number: "02",
-        title: "Captures contact details (and converts)",
+        title: "Leads the conversation and captures contact details",
         bullets: [
           "Runs the conversation like a senior salesperson: clarifies the need before proposing the next step",
           "Uses recognized frames: persuasion (Cialdini), consultative selling (SPIN Selling), negotiation and reformulation (Chris Voss)",
           "Collects email, phone, and useful details before the exchange ends",
+          "When the visitor shows they are satisfied with the service, offers a Google review",
           "Emails you every 4 hours with the detail of exchanges, if any took place",
           "Optional SMS alert at the 50 / 75 / 90 conversation thresholds (if a mobile is on file)",
           "Shows what visitors actually ask for — not a marketing summary",
