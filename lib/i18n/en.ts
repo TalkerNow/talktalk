@@ -14,7 +14,7 @@ export const en = {
   },
   hero: {
     eyebrow: "Search and AI answer first. Talker brings the visit back.",
-    titleBefore: "The AI agent that",
+    titleBefore: "The conversational agent that",
     titleAfter: "so you don't have to",
     phrases: [
       "lists your services",

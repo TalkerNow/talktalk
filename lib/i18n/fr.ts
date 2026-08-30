@@ -13,7 +13,7 @@ export const fr = {
   },
   hero: {
     eyebrow: "Les IA aspirent le trafic de votre site. Talker le récupère.",
-    titleBefore: "L'agent IA qui",
+    titleBefore: "L'agent conversationnel qui",
     titleAfter: "à votre place",
     phrases: [
       "décrit vos prestations",
