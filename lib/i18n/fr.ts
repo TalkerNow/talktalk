@@ -65,7 +65,7 @@ export const fr = {
           "Lit votre site pour cadrer l'activité, les prestations et le contexte — pas un bot générique multi-secteurs.",
           "Répond précisément sur les tarifs, les options et les modalités dès qu'ils figurent sur vos pages.",
           "Adopte le ton et le vocabulaire de votre marque ; refuse le style « réponse IA » formatée et générique.",
-          "S'adapte immédiatement à votre métier sans aucun paramétrage complexe ni menu à cocher (cabinet, artisan, commerçant, conseil, culture…).",
+          "S'adapte à votre métier sans paramétrage complexe ni menu à cocher (cabinet, artisan, commerçant, conseil, culture…).",
         ],
         visual: "ai",
       },
@@ -87,7 +87,7 @@ export const fr = {
         number: "03",
         title: "Un support avant votre support",
         bullets: [
-          "Distingue immédiatement un prospect à convertir d'un client déjà en portefeuille.",
+          "Distingue un prospect à convertir d'un client déjà en portefeuille.",
           "Fait préciser la situation ou la nature du problème avant tout passage de main à vos équipes.",
           "Recueille les créneaux et modalités de rappel souhaités par votre interlocuteur.",
           "Transmet un dossier d'intervention cadré et complet, prêt à être traité sans perte d'information.",

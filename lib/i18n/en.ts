@@ -66,7 +66,7 @@ export const en = {
           "Reads your site to frame the activity, offers, and context — not a generic multi-sector bot.",
           "Answers precisely on prices, options, and terms as soon as they appear on your pages.",
           "Takes your brand tone and vocabulary; refuses the formatted, generic \"AI reply\" style.",
-          "Fits your trade at once with no complex setup or menu to tick (practice, craft, shop, consulting, culture…).",
+          "Fits your trade with no complex setup or menu to tick (practice, craft, shop, consulting, culture…).",
         ],
         visual: "ai",
       },
@@ -88,7 +88,7 @@ export const en = {
         number: "03",
         title: "Support before your support team",
         bullets: [
-          "Separates a prospect to convert from a client already on the books at once.",
+          "Separates a prospect to convert from a client already on the books.",
           "Gets the situation or the nature of the problem clear before any handoff to your teams.",
           "Collects the callback slots and terms your contact wants.",
           "Hands over a framed, complete intervention brief, ready to handle with no information lost.",
