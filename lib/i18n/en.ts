@@ -122,8 +122,11 @@ export const en = {
         a: "Yes: email, phone, and the context of the request before the exchange ends, then it is sent on to you.",
       },
       {
-        q: "Do I see the conversations?",
-        a: "You get an email every 4 hours with the detail of exchanges if any took place. SMS alerts are possible at your thresholds (50 / 75 / 90 conversations).",
+        q: "Do I see my visitors' conversations?",
+        a: [
+          "You get an email every 4 hours with the detail of exchanges if any took place.",
+          "SMS alerts are possible when a phone number is captured and a request looks urgent.",
+        ],
       },
       {
         q: "Can Talker ask for a Google review?",
@@ -135,11 +138,11 @@ export const en = {
       },
       {
         q: "Do I need to know how to code to install it?",
-        a: "No. Upload the Talker.now zip in WP-Admin; the widget goes live with no code.",
+        a: "No. Upload the Talker.now zip in WP-Admin; the widget activates and installs itself with no code.",
       },
       {
         q: "Does Talker replace my customer support?",
-        a: "It acts as support before your support: it clarifies the situation, separates a prospect from an existing client, then hands you a framed brief.",
+        a: "It acts as support before your support: it clarifies the situation, separates a prospect from an existing client, then hands you a framed brief with your client's questions.",
       },
     ],
   },

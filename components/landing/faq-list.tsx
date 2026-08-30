@@ -45,9 +45,11 @@ export function FaqList({ variant = "page" }: { variant?: "page" | "section" }) 
                   <span className="hidden group-open:inline">−</span>
                 </span>
               </summary>
-              <p className="max-w-2xl pb-6 text-base leading-relaxed text-[#52525B] lg:pb-8 lg:text-lg">
-                {item.a}
-              </p>
+              <div className="max-w-2xl space-y-3 pb-6 text-base leading-relaxed text-[#52525B] lg:pb-8 lg:text-lg">
+                {(Array.isArray(item.a) ? item.a : [item.a]).map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </details>
           ))}
         </div>

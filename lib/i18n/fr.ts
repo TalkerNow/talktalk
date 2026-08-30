@@ -121,8 +121,11 @@ export const fr = {
         a: "Oui : e-mail, téléphone et contexte de la demande avant la fin de l'échange, puis transmission vers vous.",
       },
       {
-        q: "Est-ce que je vois les conversations ?",
-        a: "Vous recevez par e-mail, toutes les 4 heures, le détail des échanges s'il y en a eu. Des alertes SMS sont possibles selon vos seuils (50 / 75 / 90 conversations).",
+        q: "Est-ce que je vois les conversations de mes visiteurs ?",
+        a: [
+          "Vous recevez par e-mail, toutes les 4 heures, le détail des échanges s'il y en a eu.",
+          "Des alertes SMS sont possibles lorsqu'un numéro de téléphone est capté et qu'une demande semble urgente.",
+        ],
       },
       {
         q: "Talker peut-il demander un avis Google ?",
@@ -134,11 +137,11 @@ export const fr = {
       },
       {
         q: "Faut-il savoir coder pour l'installer ?",
-        a: "Non. Zip Talker.now à téléverser dans WP-Admin ; le widget s'active sans code.",
+        a: "Non. Zip Talker.now à téléverser dans WP-Admin ; le widget s'active et s'installe automatiquement sans code.",
       },
       {
         q: "Talker remplace-t-il mon support client ?",
-        a: "Il agit comme un support avant votre support : précise la situation, distingue prospect et client existant, puis vous transmet un dossier cadré.",
+        a: "Il agit comme un support avant votre support : précise la situation, distingue prospect et client existant, puis vous transmet un dossier cadré avec les questions de votre client.",
       },
     ],
   },
