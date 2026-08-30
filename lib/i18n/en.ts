@@ -14,7 +14,7 @@ export const en = {
   },
   hero: {
     eyebrow: "Search and AI answer first. Talker brings the visit back.",
-    titleBefore: "The AI chatbot that",
+    titleBefore: "The AI agent that",
     titleAfter: "so you don't have to",
     phrases: [
       "lists your services",
@@ -25,7 +25,7 @@ export const en = {
       "asks for Google reviews",
     ],
     subtitle:
-      "An AI chatbot trained on your business. It captures phone numbers and emails, answers pricing on its own, routes existing customers, and collects Google reviews. Live on WordPress in 10 minutes. No code.",
+      "An AI chatbot **WordPress** trained on your business. It captures phone numbers and emails, answers pricing on its own, routes existing customers, and collects Google reviews. Live in 10 minutes. No code.",
     createAgent: "Start for free",
     seeDemo: "View demo",
     wordpress: "Talker.now zip — upload it in WP-Admin",
