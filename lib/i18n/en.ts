@@ -77,6 +77,7 @@ export const en = {
           "Runs the conversation like a senior salesperson: clarifies the real need before steering to contact.",
           "Uses recognized behavioural frames: persuasion (Cialdini), consultative selling (SPIN Selling), and negotiation (Chris Voss).",
           "Natural conversion: collects email, phone, and the context of the request before the exchange ends.",
+          "Offers a Google review when satisfaction shows in the exchange.",
           "Sends the opportunity recap and exchange detail by email every 4 hours.",
           "Sends an SMS alert at your usage thresholds (50 / 75 / 90 conversations).",
           "Shows what visitors actually ask for on the ground — not an abstract summary.",

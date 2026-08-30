@@ -76,6 +76,7 @@ export const fr = {
           "Mène la conversation comme un commercial senior : clarifie le besoin réel avant d'amener vers la prise de contact.",
           "S'appuie sur des cadres comportementaux reconnus : persuasion (Cialdini), vente consultative (SPIN Selling) et négociation (Chris Voss).",
           "Conversion naturelle : collecte l'e-mail, le téléphone et le contexte de la demande avant la fin de l'échange.",
+          "Propose un avis Google quand la satisfaction se lit dans l'échange.",
           "Transmet le récapitulatif des opportunités et le détail des échanges par e-mail toutes les 4 heures.",
           "Envoie une alerte SMS selon vos seuils d'utilisation (50 / 75 / 90 conversations).",
           "Vous montre ce que les visiteurs demandent vraiment sur le terrain — pas une synthèse abstraite.",
