@@ -2,15 +2,30 @@
 
 import { useLocale } from "@/components/i18n/locale-context";
 
-export function FaqList() {
+export function FaqList({ variant = "page" }: { variant?: "page" | "section" }) {
   const { t } = useLocale();
+  const isPage = variant === "page";
+  const Heading = isPage ? "h1" : "h2";
 
   return (
-    <section className="relative overflow-visible pb-20 pt-32 lg:pb-28 lg:pt-40">
+    <section
+      id="faq"
+      className={
+        isPage
+          ? "relative overflow-visible pb-20 pt-32 lg:pb-28 lg:pt-40"
+          : "relative overflow-visible py-12 lg:py-16"
+      }
+    >
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-        <h1 className="mb-12 font-display text-5xl font-semibold tracking-tight lg:mb-16 lg:text-7xl xl:text-8xl">
+        <Heading
+          className={
+            isPage
+              ? "mb-12 font-display text-5xl font-semibold tracking-tight lg:mb-16 lg:text-7xl xl:text-8xl"
+              : "mb-8 font-display text-4xl font-semibold tracking-tight lg:mb-10 lg:text-6xl xl:text-7xl"
+          }
+        >
           {t.faq.title}
-        </h1>
+        </Heading>
 
         <div className="max-w-3xl border-t border-[#DCD9CE]">
           {t.faq.items.map((item) => (

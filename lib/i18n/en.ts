@@ -103,35 +103,43 @@ export const en = {
     items: [
       {
         q: "What is Talker?",
-        a: "Talker is a WordPress plugin. It asks your visitors questions and sends you the conversations. You install it as a zip. No account to create to see the bubble.",
+        a: "Talker is a conversational AI agent for WordPress: it reads the site, answers like a salesperson, captures email and phone, and can offer a Google review when the visitor is satisfied.",
       },
       {
-        q: "Who is it for?",
-        a: "For a small business that already has a WordPress site and nobody behind a live chat. Not for a team that wants support software, and not for a site without WordPress.",
+        q: "Is Talker a WordPress chatbot?",
+        a: "Yes. It is an AI WordPress chatbot (a zip to activate in WP-Admin) built to sell and qualify, not only to answer the site FAQ.",
       },
       {
-        q: "How do you install it?",
-        a: "You download the zip, add it in WordPress, activate. The bubble is there. No form to fill at install. The contact email is the WordPress one.",
+        q: "How is Talker different from a generic chatbot?",
+        a: "It stays aligned with your services and tone, with no sector menu. The conversation uses recognized frames (Cialdini, SPIN Selling, Chris Voss) to clarify the need, then steer to contact.",
       },
       {
-        q: "Is it a live chat?",
-        a: "No. Nobody answers in real time. Talker asks the questions, captures the need and the contact details. You read the conversations afterwards.",
+        q: "How does Talker learn my business?",
+        a: "It reads your site pages (services, prices, terms) to frame the answers. No complex setup at the start.",
       },
       {
-        q: "Is it free to start?",
-        a: "Yes. 100 conversations per install, no card. Then the site stops taking more, until you move to Pro.",
+        q: "Does Talker capture prospect contact details?",
+        a: "Yes: email, phone, and the context of the request before the exchange ends, then it is sent on to you.",
       },
       {
-        q: "How much does it cost after that?",
-        a: "Three offers as shown: Starter 0 € (100 conv) · Pro 29 €/month yearly (35 € monthly) · Agencies & Companies 45 €/month yearly for 3 sites, 99 €/month yearly for 10 sites. Shopify/Woo 59 € one site, 29 €/site from 10.",
+        q: "Do I see the conversations?",
+        a: "You get an email every 4 hours with the detail of exchanges if any took place. SMS alerts are possible at your thresholds (50 / 75 / 90 conversations).",
       },
       {
-        q: "How do I receive the conversations?",
-        a: "By email, every 4 hours, raw conversations stacked. If there were none, no email. It is not a written summary.",
+        q: "Can Talker ask for a Google review?",
+        a: "Yes, when it detects that the visitor is satisfied with the service in the conversation.",
       },
       {
-        q: "Does Talker read my files or a knowledge base?",
-        a: "No. No upload, no database to connect. Talker reads the public pages of the site, then asks the business questions to the owner in WordPress. Visitors only see the public bubble.",
+        q: "How much does Talker cost?",
+        a: "A free plan up to 100 conversations per install. Pro and Agency add unlimited, white label, and more channels — see the pricing grid above.",
+      },
+      {
+        q: "Do I need to know how to code to install it?",
+        a: "No. Upload the Talker.now zip in WP-Admin; the widget goes live with no code.",
+      },
+      {
+        q: "Does Talker replace my customer support?",
+        a: "It acts as support before your support: it clarifies the situation, separates a prospect from an existing client, then hands you a framed brief.",
       },
     ],
   },
@@ -395,7 +403,7 @@ export const en = {
       {
         title: "Resources",
         links: [
-          { name: "FAQ", href: "/faq" },
+          { name: "FAQ", href: "/#faq" },
           { name: "Help center", href: "#" },
           { name: "Setup guide", href: "#" },
           { name: "Script templates", href: "#" },

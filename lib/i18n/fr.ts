@@ -101,36 +101,44 @@ export const fr = {
     title: "FAQs",
     items: [
       {
-        q: "C’est quoi Talker ?",
-        a: "Talker est un plugin WordPress. Il pose les questions à vos visiteurs et vous envoie les conversations. Vous l’installez en zip. Pas de compte à créer pour voir la bulle.",
+        q: "Qu'est-ce que Talker ?",
+        a: "Talker est un agent conversationnel IA pour WordPress : il lit le site, répond comme un commercial, capture e-mail et téléphone, et peut proposer un avis Google quand le visiteur est satisfait.",
       },
       {
-        q: "Pour qui c’est fait ?",
-        a: "Pour une TPE qui a déjà un site WordPress et qui n’a pas de personne derrière un live chat. Pas pour une équipe qui veut un logiciel de support, ni pour un site sans WordPress.",
+        q: "Talker est-il un chatbot WordPress ?",
+        a: "Oui. C'est un chatbot IA WordPress (zip à activer dans WP-Admin) conçu pour vendre et qualifier, pas seulement pour répondre aux FAQ du site.",
       },
       {
-        q: "Comment on l’installe ?",
-        a: "Vous téléchargez le zip, vous l’ajoutez dans WordPress, vous activez. La bulle est là. Aucun formulaire à remplir à l’install. L’e-mail de contact, c’est celui de WordPress.",
+        q: "En quoi Talker est-il différent d'un chatbot générique ?",
+        a: "Il s'aligne sur vos prestations et votre ton, sans menu de secteurs. La conversation s'appuie sur des cadres reconnus (Cialdini, SPIN Selling, Chris Voss) pour clarifier le besoin puis amener à la prise de contact.",
       },
       {
-        q: "C’est un live chat ?",
-        a: "Non. Personne ne répond en direct. Talker pose les questions, récupère le besoin et les coordonnées. Vous lisez les conversations après.",
+        q: "Comment Talker apprend-il mon métier ?",
+        a: "Il lit les pages de votre site (prestations, tarifs, modalités) pour cadrer les réponses. Pas de paramétrage complexe au démarrage.",
       },
       {
-        q: "C’est gratuit au départ ?",
-        a: "Oui. 100 conversations par installation, sans carte. Ensuite le site s’arrête d’en prendre, jusqu’à ce que vous passiez en Pro.",
+        q: "Talker capture-t-il les coordonnées des prospects ?",
+        a: "Oui : e-mail, téléphone et contexte de la demande avant la fin de l'échange, puis transmission vers vous.",
       },
       {
-        q: "Combien ça coûte ensuite ?",
-        a: "Trois offres telles qu’affichées: Starter 0 € (100 conv) · Pro 29 €/mois annuel (35 € au mois) · Agences & Entreprises 45 €/mois annuel pour 3 sites, 99 €/mois annuel pour 10 sites. Shopify/Woo 59 € un site, 29 €/site à partir de 10.",
+        q: "Est-ce que je vois les conversations ?",
+        a: "Vous recevez par e-mail, toutes les 4 heures, le détail des échanges s'il y en a eu. Des alertes SMS sont possibles selon vos seuils (50 / 75 / 90 conversations).",
       },
       {
-        q: "Comment je reçois les conversations ?",
-        a: "Par e-mail, toutes les 4 heures, conversations brutes empilées. S’il n’y en a eu aucune, pas de mail. Ce n’est pas un résumé rédigé.",
+        q: "Talker peut-il demander un avis Google ?",
+        a: "Oui, lorsqu'il détecte que l'internaute est satisfait du service dans la conversation.",
       },
       {
-        q: "Talker lit-il mes fichiers ou une base documentaire ?",
-        a: "Non. Pas d’upload, pas de base à brancher. Talker lit les pages publiques du site, puis pose les questions métier au gérant dans WordPress. Les visiteurs voient seulement la bulle publique.",
+        q: "Combien coûte Talker ?",
+        a: "Un plan gratuit jusqu'à 100 conversations par installation. Les offres Pro et Agences ajoutent l'illimité, la marque blanche et plus de canaux — voir la grille tarifaire ci-dessus.",
+      },
+      {
+        q: "Faut-il savoir coder pour l'installer ?",
+        a: "Non. Zip Talker.now à téléverser dans WP-Admin ; le widget s'active sans code.",
+      },
+      {
+        q: "Talker remplace-t-il mon support client ?",
+        a: "Il agit comme un support avant votre support : précise la situation, distingue prospect et client existant, puis vous transmet un dossier cadré.",
       },
     ],
   },
@@ -399,7 +407,7 @@ export const fr = {
       {
         title: "Ressources",
         links: [
-          { name: "FAQ", href: "/faq" },
+          { name: "FAQ", href: "/#faq" },
           { name: "Centre d'aide", href: "#" },
           { name: "Guide d'installation", href: "#" },
           { name: "Modèles de scripts", href: "#" },
