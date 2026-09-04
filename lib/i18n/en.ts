@@ -15,7 +15,7 @@ export const en = {
   },
   hero: {
     eyebrow: "Search and AI answer first. Talker brings the visit back.",
-    titleBefore: "The conversational AI agent that",
+    titleBefore: "The AI chatbot that",
     titleAfter: "so you don't have to",
     phrases: [
       "lists your services",
@@ -26,10 +26,10 @@ export const en = {
       "asks for Google reviews",
     ],
     subtitle:
-      "An AI chatbot **WordPress** trained on your business. It captures phone numbers and emails, answers pricing on its own, routes existing customers, and collects Google reviews. Live in 10 minutes. No code.",
-    createAgent: "Start for free",
+      "AI chatbots have become real conversational agents that know your business, capture your prospects' phone number or email, answer pricing on their own, route existing customers, and collect Google reviews. Live in 10 minutes. No code.",
+    createAgent: "Create my chatbot",
     seeDemo: "View demo",
-    wordpress: "Talker.now zip — upload it in WP-Admin",
+    wordpress: "Free, no credit card, two-minute install.",
     stats: [
       { value: "+50%", label: "more leads from your site" },
       { value: "−80%", label: "time on repetitive questions" },
@@ -396,7 +396,7 @@ export const en = {
       {
         title: "Product",
         links: [
-          { name: "Features", href: "#features" },
+          { name: "Features", href: "/produit" },
           { name: "How it works", href: "#how-it-works" },
           { name: "Pricing", href: "#pricing" },
           { name: "Integrations", href: "#integrations" },

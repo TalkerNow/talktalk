@@ -14,7 +14,7 @@ export const fr = {
   },
   hero: {
     eyebrow: "Les IA aspirent le trafic de votre site. Talker le récupère.",
-    titleBefore: "L'agent conversationnel IA qui",
+    titleBefore: "Le chatbot IA qui",
     titleAfter: "à votre place",
     phrases: [
       "décrit vos prestations",
@@ -25,10 +25,10 @@ export const fr = {
       "demande des avis Google",
     ],
     subtitle:
-      "Un chatbot IA **WordPress** qui connaît votre métier, capte le numéro ou l'email de vos prospects, répond aux tarifs sans que vous leviez le petit doigt, trie les demandes de vos clients existants, et récupère vos avis Google. Installé en 10 minutes, sans code.",
-    createAgent: "Créer mon agent gratuitement",
+      "Les chatbots IA sont devenus de vrais agents conversationnels qui connaissent votre métier, captent le numéro ou l'email de vos prospects, répondent aux tarifs sans que vous leviez le petit doigt, trient les demandes de vos clients existants, et récupèrent vos avis Google. Installé en 10 minutes, sans code.",
+    createAgent: "Créer mon chatbot",
     seeDemo: "Voir une démo",
-    wordpress: "Zip Talker.now — à téléverser dans WP-Admin",
+    wordpress: "Gratuit, sans carte bancaire, installation en deux minutes.",
     stats: [
       { value: "+50%", label: "de leads sur votre site" },
       { value: "-80%", label: "de temps passé à répondre aux mêmes questions" },
@@ -400,7 +400,7 @@ export const fr = {
       {
         title: "Produit",
         links: [
-          { name: "Fonctionnalités", href: "#features" },
+          { name: "Fonctionnalités", href: "/produit" },
           { name: "Comment ça marche", href: "#how-it-works" },
           { name: "Tarifs", href: "#pricing" },
           { name: "Intégrations", href: "#integrations" },
