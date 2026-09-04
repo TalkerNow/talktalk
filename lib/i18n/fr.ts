@@ -20,7 +20,7 @@ export const fr = {
       "décrit vos prestations",
       "donne vos tarifs",
       "donne vos disponibilités",
-      "capte le numéro",
+      "récupère le numéro",
       "capte l'email",
       "demande des avis Google",
     ],

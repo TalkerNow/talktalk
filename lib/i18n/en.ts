@@ -21,7 +21,7 @@ export const en = {
       "lists your services",
       "quotes your prices",
       "shows your availability",
-      "captures phone numbers",
+      "retrieves the phone number",
       "captures emails",
       "asks for Google reviews",
     ],
