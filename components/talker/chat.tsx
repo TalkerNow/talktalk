@@ -17,10 +17,18 @@ function normalize(value: string) {
   return value.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
-function looksLikeProviderError(text: string) {
-  return /api key|unauthorized|ai_gateway|incorrect api|authentication/i.test(
-    text,
-  );
+const DEMO_SESSION_KEY = "talkerDemoSession";
+
+function demoSessionId() {
+  try {
+    const existing = window.sessionStorage.getItem(DEMO_SESSION_KEY);
+    if (existing) return existing;
+    const id = `tn_${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
+    window.sessionStorage.setItem(DEMO_SESSION_KEY, id);
+    return id;
+  } catch {
+    return `tn_${Date.now().toString(36)}`;
+  }
 }
 
 export function TalkerChat({
@@ -152,6 +160,8 @@ function DemoLlmChat({
         headers: { "Content-Type": "application/json" },
         signal: controller.signal,
         body: JSON.stringify({
+          session: demoSessionId(),
+          message: value,
           messages: history.map((message) => ({
             role: message.from === "bot" ? "assistant" : "user",
             content: message.text,
@@ -159,38 +169,14 @@ function DemoLlmChat({
         }),
       });
 
-      if (!response.ok) {
-        let fallback = t.bubble.fallback;
-        try {
-          const data = (await response.json()) as { message?: string };
-          if (data.message) fallback = data.message;
-        } catch {
-          /* keep fallback */
-        }
-        applyBot(fallback);
-        return;
+      let data: { reply?: string; message?: string; text?: string } = {};
+      try {
+        data = (await response.json()) as typeof data;
+      } catch {
+        /* keep empty */
       }
-
-      if (!response.body) {
-        applyBot(t.bubble.fallback);
-        return;
-      }
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let assembled = "";
-      while (true) {
-        const { done, value: chunk } = await reader.read();
-        if (done) break;
-        assembled += decoder.decode(chunk, { stream: true });
-        applyBot(assembled);
-      }
-      assembled += decoder.decode();
-      if (!assembled.trim() || looksLikeProviderError(assembled)) {
-        applyBot(t.bubble.fallback);
-      } else {
-        applyBot(assembled);
-      }
+      const reply = (data.reply || data.message || data.text || "").trim();
+      applyBot(reply || t.bubble.fallback);
     } catch (error) {
       if (controller.signal.aborted) return;
       console.error("[demo-chat]", error);

@@ -459,7 +459,7 @@ export const en = {
     opener:
       "Hello — I'm here for your site. Tell me what you need, I'll point you the right way.",
     fallback:
-      "I can't reply right now. Leave a way to reach you and we'll pick this up. I'm still here.",
+      "I can't reply right now. Try again in a moment — I'm still here.",
     suggest: [
       { label: "Learn more", userText: "I want to learn more about Talker." },
       { label: "Pricing", userText: "What are your prices?" },

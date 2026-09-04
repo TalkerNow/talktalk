@@ -35,15 +35,31 @@ Pour basculer le texte vers le CMS plus tard : publier un singleton `landingPage
 
 Le bloc contact envoie email + URL de site vers une Server Action (`lib/actions/waitlist.ts`). Les demandes sont validées et journalisées. Brancher ensuite Sanity (écriture avec un vrai jeton) ou un e-mail. Ne pas inventer de secret.
 
-## Démo bulle (LLM preview)
+## Démo bulle (n8n / Gemini)
 
-`POST /api/demo-chat` passe par le Vercel AI Gateway (`openai/gpt-5.4`). Sur Preview :
+`POST /api/demo-chat` proxie vers le webhook n8n (même schéma que le plugin WordPress). Le prompt 5-blocs vit dans n8n (`lib/demo/system-prompt-client.ts` est la copie à coller). Next n’envoie que la session + les messages.
 
-1. Activer **AI Gateway** sur le projet Vercel (OIDC, aucun secret à coller), **ou**
-2. Ajouter `AI_GATEWAY_API_KEY` sur l’environnement **Preview**, **ou**
-3. Ajouter `OPENAI_API_KEY` (repli direct OpenAI si Gateway n’est pas configuré).
+**Env Preview (secret)** : `DEMO_CHAT_WEBHOOK`  
+`NEXT_PUBLIC_DEMO_CHAT_WEBHOOK` marche aussi mais fuit l’URL. Sans webhook, la bulle affiche une phrase de secours — elle n’invente pas de réponses.
 
-Sans l’un de ces trois, la bulle affiche la phrase de secours — elle n’invente pas de réponses. `NEXT_PUBLIC_DEMO_LLM=0` remet le fil scripté.
+**Next → n8n**
+
+```json
+{
+  "site": "https://talker.now",
+  "session": "tn_…",
+  "message": "dernier message visiteur",
+  "messages": [{ "role": "user|assistant", "content": "…" }],
+  "intent": "message",
+  "actor": "visitor",
+  "surface": "preview",
+  "sent_at": "2026-09-04T12:00:00.000Z"
+}
+```
+
+**n8n → Next** (premier champ non vide) : `{ reply }` (préféré, comme le plugin WP), `{ text }`, `{ message }`, `{ output }`, `{ question }`, OpenAI `{ choices[0].message.content }`, item n8n `{ json: { reply } }` / `[{ json }]`, ou une chaîne brute.
+
+`NEXT_PUBLIC_DEMO_LLM=0` remet le fil scripté.
 
 ## Déploiement
 

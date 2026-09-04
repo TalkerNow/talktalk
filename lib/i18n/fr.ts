@@ -463,7 +463,7 @@ export const fr = {
     opener:
       "Bonjour — je suis là pour votre site. Dites-moi ce que vous cherchez, je vous oriente.",
     fallback:
-      "Je n’arrive pas à vous répondre pour le moment. Laissez un moyen de vous joindre, on reprend. Je reste là.",
+      "Je n’arrive pas à vous répondre pour le moment. Réessayez dans un instant, je reste là.",
     suggest: [
       { label: "S'informer", userText: "Je veux m'informer sur Talker." },
       { label: "Tarifs", userText: "Quels sont vos tarifs ?" },
