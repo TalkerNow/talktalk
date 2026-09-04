@@ -1,11 +1,11 @@
 import { DEMO_CHAT_FALLBACK } from "@/lib/demo/system-prompt-client";
+import {
+  buildWebhookPayload,
+  collectTurns,
+  type ChatTurn,
+} from "@/lib/demo/webhook-payload";
 
 export const maxDuration = 60;
-
-type ChatTurn = {
-  role: "user" | "assistant";
-  content: string;
-};
 
 function fallbackResponse(status = 503) {
   return Response.json(
@@ -38,28 +38,7 @@ function parseIncoming(body: unknown): { messages: ChatTurn[]; session: string }
       : "";
   if (!session) return null;
 
-  const messages: ChatTurn[] = [];
-  if (Array.isArray(rec.messages)) {
-    for (const item of rec.messages) {
-      if (!item || typeof item !== "object") continue;
-      const role = (item as { role?: unknown }).role;
-      const content = (item as { content?: unknown }).content;
-      if ((role !== "user" && role !== "assistant") || typeof content !== "string") {
-        continue;
-      }
-      const text = content.trim();
-      if (!text || text.length > 2000) continue;
-      messages.push({ role, content: text });
-    }
-  }
-
-  if (messages.length === 0 && typeof rec.message === "string") {
-    const text = rec.message.trim();
-    if (text && text.length <= 2000) {
-      messages.push({ role: "user", content: text });
-    }
-  }
-
+  const messages = collectTurns(body);
   if (messages.length === 0 || messages.length > 24) return null;
   if (messages.at(-1)?.role !== "user") return null;
   return { messages, session };
@@ -124,8 +103,7 @@ export async function POST(request: Request) {
   const lastUser = parsed.messages.at(-1);
   if (!lastUser) return fallbackResponse(400);
 
-  // n8n talker-demo-0e81 accepts one of: prompt | message | chatInput | messages[]
-  const payload = { message: lastUser.content };
+  const payload = buildWebhookPayload(parsed.session, parsed.messages);
 
   try {
     const response = await fetch(hook, {

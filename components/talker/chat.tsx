@@ -59,12 +59,7 @@ function ChatShell({
   const chrome = useMemo(
     () => (
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
-        <div className="min-w-0">
-          <TalkerWordmark className="text-[16px]" />
-          <p className="mt-1.5 text-[11px] leading-none text-muted-2">
-            {t.bubble.assistant}
-          </p>
-        </div>
+        <TalkerWordmark className="text-[16px]" />
         {onClose ? (
           <button
             type="button"
@@ -77,7 +72,7 @@ function ChatShell({
         ) : null}
       </div>
     ),
-    [onClose, t.bubble.assistant, t.bubble.close],
+    [onClose, t.bubble.close],
   );
 
   return (
@@ -154,6 +149,13 @@ function DemoLlmChat({
       );
     };
 
+    const turns = history
+      .filter((message) => message.text.trim())
+      .map((message) => ({
+        role: message.from === "bot" ? ("assistant" as const) : ("user" as const),
+        content: message.text,
+      }));
+
     try {
       const response = await fetch("/api/demo-chat", {
         method: "POST",
@@ -162,10 +164,8 @@ function DemoLlmChat({
         body: JSON.stringify({
           session: demoSessionId(),
           message: value,
-          messages: history.map((message) => ({
-            role: message.from === "bot" ? "assistant" : "user",
-            content: message.text,
-          })),
+          messages: turns,
+          history: turns,
         }),
       });
 
@@ -466,7 +466,8 @@ function Compose({
 function PoweredBy() {
   const { t } = useLocale();
   return (
-    <p className="shrink-0 border-t border-foreground/8 bg-[#F7F6F4] px-3 py-2 text-center font-mono text-[10px] tracking-wide text-[#6B6B73]">
+    <p className="inline-flex w-full shrink-0 items-center justify-center gap-2 border-t border-foreground/8 bg-[#F7F6F4] px-3 py-2 font-mono text-[10px] tracking-wide text-[#6B6B73]">
+      <span className="h-2 w-2 rounded-full bg-green-500" />
       {t.bubble.poweredBy}
     </p>
   );

@@ -68,24 +68,30 @@ export function Navigation() {
         }`}
       >
         <div 
-          className={`flex items-center justify-between overflow-visible transition-all duration-500 ${
+          className={`flex items-center overflow-visible transition-all duration-500 ${
             isScrolled ? "h-12 px-4 sm:px-5" : "h-20 px-6 lg:px-8"
           }`}
         >
-          <a href="/" className="flex shrink-0 items-center">
-            <TalkerWordmark compact={isScrolled} />
-          </a>
-
           <div
-            className={`hidden items-center md:flex ${
-              isScrolled ? "ml-8 gap-6 lg:gap-8" : "ml-12 gap-10 lg:gap-12"
+            className={`flex min-w-0 items-center ${
+              isScrolled ? "gap-8" : "gap-10 lg:gap-12"
             }`}
           >
-            {navLinks.map((link) => (
-              <NavTextLink key={link.name} href={resolveNavHref(link.href, pathname)}>
-                {link.name}
-              </NavTextLink>
-            ))}
+            <a href="/" className="flex shrink-0 items-center">
+              <TalkerWordmark compact={isScrolled} />
+            </a>
+
+            <div
+              className={`hidden items-center md:flex ${
+                isScrolled ? "gap-6 lg:gap-8" : "gap-10 lg:gap-12"
+              }`}
+            >
+              {navLinks.map((link) => (
+                <NavTextLink key={link.name} href={resolveNavHref(link.href, pathname)}>
+                  {link.name}
+                </NavTextLink>
+              ))}
+            </div>
           </div>
 
           <div
@@ -106,7 +112,7 @@ export function Navigation() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="shrink-0 p-2 -mr-0.5 md:hidden"
+            className="ml-auto shrink-0 p-2 -mr-0.5 md:hidden"
             aria-label={t.nav.menu}
           >
             {isMobileMenuOpen ? (
