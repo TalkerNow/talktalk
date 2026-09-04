@@ -1,4 +1,3 @@
-import { site } from "@/lib/site";
 import { DEMO_CHAT_FALLBACK } from "@/lib/demo/system-prompt-client";
 
 export const maxDuration = 30;
@@ -15,12 +14,18 @@ function fallbackResponse(status = 503) {
   );
 }
 
+/** Preview-only fallback so this branch works before DEMO_CHAT_WEBHOOK is set on Vercel. Never used in production. */
+const PREVIEW_WEBHOOK =
+  "https://static.58.65.28.2.clients.your-server.de/webhook/talker-demo-0e81";
+
 function webhookUrl() {
-  return (
+  const fromEnv =
     process.env.DEMO_CHAT_WEBHOOK?.trim() ||
     process.env.NEXT_PUBLIC_DEMO_CHAT_WEBHOOK?.trim() ||
-    ""
-  );
+    "";
+  if (fromEnv) return fromEnv;
+  if (process.env.VERCEL_ENV === "production") return "";
+  return PREVIEW_WEBHOOK;
 }
 
 function parseIncoming(body: unknown): { messages: ChatTurn[]; session: string } | null {
@@ -119,21 +124,13 @@ export async function POST(request: Request) {
   const lastUser = parsed.messages.at(-1);
   if (!lastUser) return fallbackResponse(400);
 
-  const payload = {
-    site: site.url,
-    session: parsed.session,
-    message: lastUser.content,
-    messages: parsed.messages,
-    intent: "message",
-    actor: "visitor",
-    surface: "preview",
-    sent_at: new Date().toISOString(),
-  };
+  // n8n talker-demo-0e81 accepts one of: prompt | message | chatInput | messages[]
+  const payload = { message: lastUser.content };
 
   try {
     const response = await fetch(hook, {
       method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
       signal: AbortSignal.timeout(20_000),
       cache: "no-store",
@@ -147,14 +144,15 @@ export async function POST(request: Request) {
       /* keep raw string */
     }
 
-    const reply = stripTags(extractReply(data));
-    if (!response.ok || !reply) {
-      console.error("[demo-chat] webhook empty or failed", response.status);
-      return fallbackResponse(503);
+    if (!response.ok) {
+      console.error("[demo-chat] webhook failed", response.status);
+      return fallbackResponse(response.status === 400 ? 400 : 503);
     }
 
+    // {"text":""} is success until Gemini is keyed — do not invent a reply.
+    const reply = stripTags(extractReply(data));
     return Response.json(
-      { reply, message: reply },
+      { reply, text: reply, message: reply },
       { status: 200, headers: { "Cache-Control": "no-store" } },
     );
   } catch (error) {

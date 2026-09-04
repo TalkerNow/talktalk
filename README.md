@@ -42,19 +42,10 @@ Le bloc contact envoie email + URL de site vers une Server Action (`lib/actions/
 **Env Preview (secret)** : `DEMO_CHAT_WEBHOOK`  
 `NEXT_PUBLIC_DEMO_CHAT_WEBHOOK` marche aussi mais fuit l’URL. Sans webhook, la bulle affiche une phrase de secours — elle n’invente pas de réponses.
 
-**Next → n8n**
+**Next → n8n** (`talker-demo-0e81`, one accepted shape)
 
 ```json
-{
-  "site": "https://talker.now",
-  "session": "tn_…",
-  "message": "dernier message visiteur",
-  "messages": [{ "role": "user|assistant", "content": "…" }],
-  "intent": "message",
-  "actor": "visitor",
-  "surface": "preview",
-  "sent_at": "2026-09-04T12:00:00.000Z"
-}
+{ "message": "dernier message visiteur" }
 ```
 
 **n8n → Next** (premier champ non vide) : `{ reply }` (préféré, comme le plugin WP), `{ text }`, `{ message }`, `{ output }`, `{ question }`, OpenAI `{ choices[0].message.content }`, item n8n `{ json: { reply } }` / `[{ json }]`, ou une chaîne brute.
