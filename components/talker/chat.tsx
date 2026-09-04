@@ -69,15 +69,15 @@ function ChatShell({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full px-2 py-1 text-sm text-muted transition-colors hover:text-ink"
-            aria-label={t.bubble.closeTalker}
+            className="flex size-8 shrink-0 items-center justify-center rounded-full text-[22px] leading-none text-[#6B6B73] transition-colors hover:bg-[#EDEBE3] hover:text-[#111111]"
+            aria-label={t.bubble.close}
           >
-            {t.bubble.close}
+            <span aria-hidden>×</span>
           </button>
         ) : null}
       </div>
     ),
-    [onClose, t.bubble.assistant, t.bubble.close, t.bubble.closeTalker],
+    [onClose, t.bubble.assistant, t.bubble.close],
   );
 
   return (
