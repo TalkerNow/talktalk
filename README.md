@@ -35,6 +35,16 @@ Pour basculer le texte vers le CMS plus tard : publier un singleton `landingPage
 
 Le bloc contact envoie email + URL de site vers une Server Action (`lib/actions/waitlist.ts`). Les demandes sont validées et journalisées. Brancher ensuite Sanity (écriture avec un vrai jeton) ou un e-mail. Ne pas inventer de secret.
 
+## Démo bulle (LLM preview)
+
+`POST /api/demo-chat` passe par le Vercel AI Gateway (`openai/gpt-5.4`). Sur Preview :
+
+1. Activer **AI Gateway** sur le projet Vercel (OIDC, aucun secret à coller), **ou**
+2. Ajouter `AI_GATEWAY_API_KEY` sur l’environnement **Preview**, **ou**
+3. Ajouter `OPENAI_API_KEY` (repli direct OpenAI si Gateway n’est pas configuré).
+
+Sans l’un de ces trois, la bulle affiche la phrase de secours — elle n’invente pas de réponses. `NEXT_PUBLIC_DEMO_LLM=0` remet le fil scripté.
+
 ## Déploiement
 
 Le projet Vercel `talktalk` (équipe Talker) se déploie depuis `main` sur GitHub `TalkerNow/talktalk`.

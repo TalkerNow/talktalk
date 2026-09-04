@@ -451,15 +451,28 @@ export const en = {
     open: "Open Talker",
     close: "Close",
     closeTalker: "Close Talker",
-    assistant: "Your assistant",
-    placeholder: "Type a message...",
+    assistant: "Talker.now",
+    placeholder: "Write to me…",
     send: "Send",
     writing: "Talker is typing",
     poweredBy: "Powered by talker.now",
+    opener:
+      "Hello — I'm here for your site. Tell me what you need, I'll point you the right way.",
+    fallback:
+      "I can't reply right now. Leave a way to reach you and we'll pick this up. I'm still here.",
+    suggest: [
+      { label: "Learn more", userText: "I want to learn more about Talker." },
+      { label: "Pricing", userText: "What are your prices?" },
+      { label: "See a demo", userText: "I want to see a demo." },
+      { label: "Create my agent", userText: "I want to create my agent." },
+      { label: "Leave a contact", userText: "I'll leave you a contact." },
+    ],
     chips: [
-      { label: "Talker Now", intent: "talker" as const },
-      { label: "Ask a question", intent: "question" as const },
-      { label: "Book a visit", intent: "rdv" as const },
+      { label: "Try me!", intent: "talker" as const },
+      {
+        label: "I'm available for your site — click here",
+        intent: "question" as const,
+      },
     ],
   },
   notFound: {

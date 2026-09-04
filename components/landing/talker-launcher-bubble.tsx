@@ -160,7 +160,7 @@ export function TalkerLauncherBubble() {
                     setHovered(false);
                     openTalker(invite.intent);
                   }}
-                  className={`relative rounded-full border bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink ${
+                  className={`relative max-w-[min(calc(100vw-6rem),20rem)] rounded-full border bg-background px-3 py-1.5 text-left text-[13px] leading-snug text-ink transition-colors hover:border-ink ${
                     shine
                       ? "overflow-hidden border-foreground/12"
                       : "border-line"

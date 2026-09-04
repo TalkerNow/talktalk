@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { useTalker } from "./provider";
 import { useLocale } from "@/components/i18n/locale-context";
 import type { DemoStep } from "@/lib/content/demo";
+import { DEMO_LLM_ENABLED } from "@/lib/demo/flags";
 
 type Message = {
   id: string;
@@ -16,6 +17,12 @@ function normalize(value: string) {
   return value.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
+function looksLikeProviderError(text: string) {
+  return /api key|unauthorized|ai_gateway|incorrect api|authentication/i.test(
+    text,
+  );
+}
+
 export function TalkerChat({
   onClose,
   variant = "panel",
@@ -23,37 +30,271 @@ export function TalkerChat({
   onClose?: () => void;
   variant?: "panel" | "window";
 }) {
+  const { resetKey } = useTalker();
+  return DEMO_LLM_ENABLED ? (
+    <DemoLlmChat key={resetKey} onClose={onClose} variant={variant} />
+  ) : (
+    <ScriptedDemoChat key={resetKey} onClose={onClose} variant={variant} />
+  );
+}
+
+function ChatShell({
+  onClose,
+  variant,
+  children,
+}: {
+  onClose?: () => void;
+  variant: "panel" | "window";
+  children: ReactNode;
+}) {
   const { t } = useLocale();
-  const demoSteps = t.demoSteps as Record<string, DemoStep>;
-  const { intent, resetKey } = useTalker();
-  const [stepId, setStepId] = useState("start");
+  const chrome = useMemo(
+    () => (
+      <div className="flex items-center justify-between border-b border-line px-4 py-3">
+        <div className="min-w-0">
+          <TalkerWordmark className="text-[16px]" />
+          <p className="mt-1.5 text-[11px] leading-none text-muted-2">
+            {t.bubble.assistant}
+          </p>
+        </div>
+        {onClose ? (
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-full px-2 py-1 text-sm text-muted transition-colors hover:text-ink"
+            aria-label={t.bubble.closeTalker}
+          >
+            {t.bubble.close}
+          </button>
+        ) : null}
+      </div>
+    ),
+    [onClose, t.bubble.assistant, t.bubble.close, t.bubble.closeTalker],
+  );
+
+  return (
+    <div
+      className={
+        variant === "panel"
+          ? "flex h-full min-h-[420px] flex-col bg-paper"
+          : "flex h-full flex-col bg-paper"
+      }
+    >
+      {chrome}
+      {children}
+    </div>
+  );
+}
+
+function DemoLlmChat({
+  onClose,
+  variant,
+}: {
+  onClose?: () => void;
+  variant: "panel" | "window";
+}) {
+  const { t } = useLocale();
   const [messages, setMessages] = useState<Message[]>([
-    { id: "m0", from: "bot", text: demoSteps.start.bot },
+    { id: "m0", from: "bot", text: t.bubble.opener },
   ]);
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState(false);
   const scroller = useRef<HTMLDivElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const idRef = useRef(0);
+  const lastBotIndex = messages.findLastIndex((message) => message.from === "bot");
+  const showSuggest =
+    !pending && messages.every((message) => message.from !== "user");
+
+  useEffect(() => {
+    scroller.current?.scrollTo({
+      top: scroller.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [messages, pending]);
+
+  useEffect(() => () => abortRef.current?.abort(), []);
+
+  const sendToLlm = async (text: string) => {
+    const value = text.trim();
+    if (!value || pending) return;
+
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
+    idRef.current += 1;
+    const userId = `u-${idRef.current}`;
+    idRef.current += 1;
+    const botId = `b-${idRef.current}`;
+    const history = [
+      ...messages,
+      { id: userId, from: "user" as const, text: value },
+    ];
+    setDraft("");
+    setPending(true);
+    setMessages([
+      ...history,
+      { id: botId, from: "bot", text: "" },
+    ]);
+
+    const applyBot = (next: string) => {
+      setMessages((current) =>
+        current.map((message) =>
+          message.id === botId ? { ...message, text: next } : message,
+        ),
+      );
+    };
+
+    try {
+      const response = await fetch("/api/demo-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
+        body: JSON.stringify({
+          messages: history.map((message) => ({
+            role: message.from === "bot" ? "assistant" : "user",
+            content: message.text,
+          })),
+        }),
+      });
+
+      if (!response.ok) {
+        let fallback = t.bubble.fallback;
+        try {
+          const data = (await response.json()) as { message?: string };
+          if (data.message) fallback = data.message;
+        } catch {
+          /* keep fallback */
+        }
+        applyBot(fallback);
+        return;
+      }
+
+      if (!response.body) {
+        applyBot(t.bubble.fallback);
+        return;
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let assembled = "";
+      while (true) {
+        const { done, value: chunk } = await reader.read();
+        if (done) break;
+        assembled += decoder.decode(chunk, { stream: true });
+        applyBot(assembled);
+      }
+      assembled += decoder.decode();
+      if (!assembled.trim() || looksLikeProviderError(assembled)) {
+        applyBot(t.bubble.fallback);
+      } else {
+        applyBot(assembled);
+      }
+    } catch (error) {
+      if (controller.signal.aborted) return;
+      console.error("[demo-chat]", error);
+      applyBot(t.bubble.fallback);
+    } finally {
+      if (abortRef.current === controller) abortRef.current = null;
+      setPending(false);
+    }
+  };
+
+  const submitDraft = (event: React.FormEvent) => {
+    event.preventDefault();
+    void sendToLlm(draft);
+  };
+
+  return (
+    <ChatShell onClose={onClose} variant={variant}>
+      <div ref={scroller} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+        {messages.map((message, index) => {
+          if (message.from === "bot" && !message.text && pending) return null;
+          return (
+            <div key={message.id}>
+              <p
+                className={
+                  message.from === "bot"
+                    ? "max-w-[92%] rounded-2xl rounded-tl-md bg-[#f1ece5] px-3.5 py-2.5 text-[14px] leading-6 text-ink"
+                    : "ml-auto max-w-[86%] rounded-2xl rounded-tr-md bg-ink px-3.5 py-2.5 text-[14px] leading-6 text-paper"
+                }
+              >
+                {message.text}
+              </p>
+              {showSuggest &&
+              message.from === "bot" &&
+              index === lastBotIndex ? (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {t.bubble.suggest.map((chip) => (
+                    <button
+                      key={chip.label}
+                      type="button"
+                      onClick={() => void sendToLlm(chip.userText)}
+                      className="rounded-full border border-line bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink"
+                    >
+                      {chip.label}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          );
+        })}
+        {pending && messages.at(-1)?.from === "bot" && !messages.at(-1)?.text ? (
+          <TypingDots label={t.bubble.writing} />
+        ) : null}
+      </div>
+      <Compose
+        draft={draft}
+        pending={pending}
+        placeholder={t.bubble.placeholder}
+        sendLabel={t.bubble.send}
+        fieldLabel={t.contact.message}
+        onDraft={setDraft}
+        onSubmit={submitDraft}
+      />
+    </ChatShell>
+  );
+}
+
+function ScriptedDemoChat({
+  onClose,
+  variant,
+}: {
+  onClose?: () => void;
+  variant: "panel" | "window";
+}) {
+  const { t } = useLocale();
+  const demoSteps = t.demoSteps as Record<string, DemoStep>;
+  const { intent } = useTalker();
+  const [stepId, setStepId] = useState("start");
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const start: Message[] = [
+      { id: "m0", from: "bot", text: demoSteps.start.bot },
+    ];
+    const chip = intent
+      ? demoSteps.start.chips?.find((item) => item.next === intent)
+      : undefined;
+    if (!chip) return start;
+    return [...start, { id: "u-seed", from: "user", text: chip.userText }];
+  });
+  const [draft, setDraft] = useState("");
+  const [pending, setPending] = useState(() => {
+    if (!intent) return false;
+    return Boolean(demoSteps.start.chips?.some((item) => item.next === intent) && demoSteps[intent]);
+  });
+  const scroller = useRef<HTMLDivElement>(null);
   const step = demoSteps[stepId];
   const lastBotIndex = messages.findLastIndex((message) => message.from === "bot");
   const showChips = Boolean(!pending && step?.chips?.length);
+  const askingEmail = Boolean(step?.askEmail);
 
   useEffect(() => {
-    setStepId("start");
-    setMessages([{ id: "m0", from: "bot", text: demoSteps.start.bot }]);
-    setDraft("");
-    setPending(false);
-
     if (!intent) return;
-
     const chip = demoSteps.start.chips?.find((item) => item.next === intent);
     const next = demoSteps[intent];
     if (!chip || !next) return;
-
-    setPending(true);
-    setMessages((current) => [
-      ...current,
-      { id: `u-${current.length}`, from: "user", text: chip.userText },
-    ]);
 
     const timer = window.setTimeout(() => {
       setMessages((current) => [
@@ -65,7 +306,7 @@ export function TalkerChat({
     }, 1800);
 
     return () => window.clearTimeout(timer);
-  }, [resetKey, intent, demoSteps]);
+  }, [intent, demoSteps]);
 
   useEffect(() => {
     scroller.current?.scrollTo({
@@ -119,45 +360,9 @@ export function TalkerChat({
     advance(nextFromText(value), value);
   };
 
-  const chrome = useMemo(
-    () => (
-      <div className="flex items-center justify-between border-b border-line px-4 py-3">
-        <div className="min-w-0">
-          <TalkerWordmark className="text-[16px]" />
-          <p className="mt-1.5 text-[11px] leading-none text-muted-2">
-            {t.bubble.assistant}
-          </p>
-        </div>
-        {onClose ? (
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-full px-2 py-1 text-sm text-muted transition-colors hover:text-ink"
-            aria-label={t.bubble.closeTalker}
-          >
-            {t.bubble.close}
-          </button>
-        ) : null}
-      </div>
-    ),
-    [onClose, t.bubble.assistant, t.bubble.close, t.bubble.closeTalker],
-  );
-
-  const askingEmail = Boolean(step?.askEmail);
-
   return (
-    <div
-      className={
-        variant === "panel"
-          ? "flex h-full min-h-[420px] flex-col bg-paper"
-          : "flex h-full flex-col bg-paper"
-      }
-    >
-      {chrome}
-      <div
-        ref={scroller}
-        className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
-      >
+    <ChatShell onClose={onClose} variant={variant}>
+      <div ref={scroller} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
         {messages.map((message, index) => (
           <div key={message.id}>
             <p
@@ -185,42 +390,81 @@ export function TalkerChat({
             ) : null}
           </div>
         ))}
-        {pending ? (
-          <p className="w-fit rounded-2xl bg-[#f1ece5] px-3.5 py-2.5">
-            <span className="inline-flex items-center gap-1" aria-hidden>
-              <span className="talker-typing-dot talker-typing-dot-1 size-1.5 rounded-full bg-[#111111]" />
-              <span className="talker-typing-dot talker-typing-dot-2 size-1.5 rounded-full bg-[#111111]" />
-              <span className="talker-typing-dot talker-typing-dot-3 size-1.5 rounded-full bg-[#111111]" />
-            </span>
-            <span className="sr-only">{t.bubble.writing}</span>
-          </p>
-        ) : null}
+        {pending ? <TypingDots label={t.bubble.writing} /> : null}
       </div>
-      <form
+      <Compose
+        draft={draft}
+        pending={pending}
+        placeholder={
+          askingEmail
+            ? (step.placeholder ?? t.demoSteps.email.placeholder)
+            : t.bubble.placeholder
+        }
+        sendLabel={t.bubble.send}
+        fieldLabel={askingEmail ? t.contact.email : t.contact.message}
+        inputType={askingEmail ? "email" : "text"}
+        required={askingEmail}
+        onDraft={setDraft}
         onSubmit={submitDraft}
-        className="border-t border-line bg-white px-3 py-3"
-      >
+      />
+    </ChatShell>
+  );
+}
+
+function TypingDots({ label }: { label: string }) {
+  return (
+    <p className="w-fit rounded-2xl bg-[#f1ece5] px-3.5 py-2.5">
+      <span className="inline-flex items-center gap-1" aria-hidden>
+        <span className="talker-typing-dot talker-typing-dot-1 size-1.5 rounded-full bg-[#111111]" />
+        <span className="talker-typing-dot talker-typing-dot-2 size-1.5 rounded-full bg-[#111111]" />
+        <span className="talker-typing-dot talker-typing-dot-3 size-1.5 rounded-full bg-[#111111]" />
+      </span>
+      <span className="sr-only">{label}</span>
+    </p>
+  );
+}
+
+function Compose({
+  draft,
+  pending,
+  placeholder,
+  sendLabel,
+  fieldLabel,
+  inputType = "text",
+  required = false,
+  onDraft,
+  onSubmit,
+}: {
+  draft: string;
+  pending: boolean;
+  placeholder: string;
+  sendLabel: string;
+  fieldLabel: string;
+  inputType?: "text" | "email";
+  required?: boolean;
+  onDraft: (value: string) => void;
+  onSubmit: (event: React.FormEvent) => void;
+}) {
+  return (
+    <>
+      <form onSubmit={onSubmit} className="border-t border-line bg-white px-3 py-3">
         <div className="flex items-center gap-2 rounded-full bg-[#F1ECE5] px-4 py-2">
           <label className="sr-only" htmlFor="talker-compose">
-            {askingEmail ? t.contact.email : t.contact.message}
+            {fieldLabel}
           </label>
           <input
             id="talker-compose"
-            type={askingEmail ? "email" : "text"}
-            required={askingEmail}
+            type={inputType}
+            required={required}
             disabled={pending}
             value={draft}
-            onChange={(event) => setDraft(event.target.value)}
-            placeholder={
-              askingEmail
-                ? (step.placeholder ?? t.demoSteps.email.placeholder)
-                : t.bubble.placeholder
-            }
+            onChange={(event) => onDraft(event.target.value)}
+            placeholder={placeholder}
             className="min-w-0 flex-1 border-0 bg-transparent p-0 text-[14px] text-ink outline-none placeholder:text-[#6B6B73] disabled:opacity-50"
           />
           <button
             type="submit"
-            aria-label={t.bubble.send}
+            aria-label={sendLabel}
             disabled={pending || !draft.trim()}
             className="inline-flex shrink-0 text-[#C43F17] disabled:opacity-40"
           >
@@ -228,10 +472,17 @@ export function TalkerChat({
           </button>
         </div>
       </form>
-      <p className="shrink-0 border-t border-foreground/8 bg-[#F7F6F4] px-3 py-2 text-center font-mono text-[10px] tracking-wide text-[#6B6B73]">
-        {t.bubble.poweredBy}
-      </p>
-    </div>
+      <PoweredBy />
+    </>
+  );
+}
+
+function PoweredBy() {
+  const { t } = useLocale();
+  return (
+    <p className="shrink-0 border-t border-foreground/8 bg-[#F7F6F4] px-3 py-2 text-center font-mono text-[10px] tracking-wide text-[#6B6B73]">
+      {t.bubble.poweredBy}
+    </p>
   );
 }
 

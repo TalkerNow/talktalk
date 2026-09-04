@@ -455,15 +455,28 @@ export const fr = {
     open: "Ouvrir Talker",
     close: "Fermer",
     closeTalker: "Fermer Talker",
-    assistant: "L'assistant du cabinet",
-    placeholder: "Posez votre question...",
+    assistant: "Talker.now",
+    placeholder: "Écrivez-moi…",
     send: "Envoyer",
     writing: "Talker écrit",
     poweredBy: "Propulsé par talker.now",
+    opener:
+      "Bonjour — je suis là pour votre site. Dites-moi ce que vous cherchez, je vous oriente.",
+    fallback:
+      "Je n’arrive pas à vous répondre pour le moment. Laissez un moyen de vous joindre, on reprend. Je reste là.",
+    suggest: [
+      { label: "S'informer", userText: "Je veux m'informer sur Talker." },
+      { label: "Tarifs", userText: "Quels sont vos tarifs ?" },
+      { label: "Voir une démo", userText: "Je veux voir une démo." },
+      { label: "Créer mon agent", userText: "Je veux créer mon agent." },
+      { label: "Laisser un contact", userText: "Je vous laisse un contact." },
+    ],
     chips: [
-      { label: "Talker Now", intent: "talker" as const },
-      { label: "Poser une question", intent: "question" as const },
-      { label: "Prendre rendez-vous", intent: "rdv" as const },
+      { label: "Testez-moi !", intent: "talker" as const },
+      {
+        label: "Je suis disponible pour votre site — cliquez ici",
+        intent: "question" as const,
+      },
     ],
   },
   notFound: {
