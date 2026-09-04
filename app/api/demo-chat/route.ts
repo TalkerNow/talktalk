@@ -1,6 +1,6 @@
 import { DEMO_CHAT_FALLBACK } from "@/lib/demo/system-prompt-client";
 
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 type ChatTurn = {
   role: "user" | "assistant";
@@ -132,7 +132,7 @@ export async function POST(request: Request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(20_000),
+      signal: AbortSignal.timeout(60_000),
       cache: "no-store",
     });
 
