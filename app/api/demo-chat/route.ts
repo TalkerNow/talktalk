@@ -32,11 +32,11 @@ function parseIncoming(body: unknown): { messages: ChatTurn[]; session: string }
   if (!body || typeof body !== "object") return null;
   const rec = body as Record<string, unknown>;
 
-  const session =
-    typeof rec.session === "string" && rec.session.trim()
-      ? rec.session.trim().slice(0, 80)
-      : "";
-  if (!session) return null;
+  const rawSession =
+    (typeof rec.session === "string" && rec.session.trim()) ||
+    (typeof rec.sessionId === "string" && rec.sessionId.trim()) ||
+    "";
+  const session = (rawSession || `tn_${Date.now().toString(36)}`).slice(0, 80);
 
   const messages = collectTurns(body);
   if (messages.length === 0 || messages.length > 24) return null;
