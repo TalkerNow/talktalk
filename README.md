@@ -35,6 +35,23 @@ Pour basculer le texte vers le CMS plus tard : publier un singleton `landingPage
 
 Le bloc contact envoie email + URL de site vers une Server Action (`lib/actions/waitlist.ts`). Les demandes sont validées et journalisées. Brancher ensuite Sanity (écriture avec un vrai jeton) ou un e-mail. Ne pas inventer de secret.
 
+## Démo bulle (n8n / Gemini)
+
+`POST /api/demo-chat` proxie vers le webhook n8n (même schéma que le plugin WordPress). Le prompt 5-blocs vit dans n8n (`lib/demo/system-prompt-client.ts` est la copie à coller). Next n’envoie que la session + les messages.
+
+**Env Preview (secret)** : `DEMO_CHAT_WEBHOOK`  
+`NEXT_PUBLIC_DEMO_CHAT_WEBHOOK` marche aussi mais fuit l’URL. Sans webhook, la bulle affiche une phrase de secours — elle n’invente pas de réponses.
+
+**Next → n8n** (`talker-demo-0e81`, one accepted shape)
+
+```json
+{ "message": "dernier message visiteur" }
+```
+
+**n8n → Next** (premier champ non vide) : `{ reply }` (préféré, comme le plugin WP), `{ text }`, `{ message }`, `{ output }`, `{ question }`, OpenAI `{ choices[0].message.content }`, item n8n `{ json: { reply } }` / `[{ json }]`, ou une chaîne brute.
+
+`NEXT_PUBLIC_DEMO_LLM=0` remet le fil scripté.
+
 ## Déploiement
 
 Le projet Vercel `talktalk` (équipe Talker) se déploie depuis `main` sur GitHub `TalkerNow/talktalk`.

@@ -7,6 +7,7 @@ export const fr = {
     howItWorks: "Comment ça marche",
     pricing: "Tarifs",
     contact: "Contact",
+    faq: "FAQ",
     download: "Télécharger",
     createAgent: "Créer mon agent gratuitement",
     menu: "Menu",
@@ -16,18 +17,19 @@ export const fr = {
     titleBefore: "Le chatbot IA qui",
     titleAfter: "à votre place",
     phrases: [
+      "vend",
       "décrit vos prestations",
+      "parle de votre métier",
       "donne vos tarifs",
-      "donne vos disponibilités",
-      "capte le numéro",
+      "récupère le numéro",
       "capte l'email",
       "demande des avis Google",
     ],
     subtitle:
-      "Un chatbot IA qui connaît votre métier, capte le numéro ou l'email de vos prospects, répond aux tarifs sans que vous leviez le petit doigt, trie les demandes de vos clients existants, et récupère vos avis Google. Installé en 10 minutes, sans code.",
-    createAgent: "Créer mon agent gratuitement",
+      "Les chatbots IA sont devenus de vrais agents conversationnels qui connaissent votre métier, captent le numéro ou l'email de vos prospects, répondent aux tarifs sans que vous leviez le petit doigt, trient les demandes de vos clients existants, et récupèrent vos avis Google. Installé en 10 minutes, sans code.",
+    createAgent: "Créer mon chatbot",
     seeDemo: "Voir une démo",
-    wordpress: "Zip Talker.now — à téléverser dans WP-Admin",
+    wordpress: "Gratuit, sans carte bancaire, installation en deux minutes.",
     stats: [
       { value: "+50%", label: "de leads sur votre site" },
       { value: "-80%", label: "de temps passé à répondre aux mêmes questions" },
@@ -61,23 +63,86 @@ export const fr = {
       {
         number: "01",
         title: "Un agent qui connaît votre métier",
-        description:
-          "Formé sur votre activité, vos services et vos tarifs, et reprenant la syntaxe rédactionnelle de votre site. Que vous soyez un avocat, un musée, une entreprise du bâtiment ou une société de conseil et de services, il répond avec le bon vocabulaire, pas avec des réponses génériques de type IA.",
+        bullets: [
+          "Lit votre site pour cadrer l'activité, les prestations et le contexte — pas un bot générique multi-secteurs.",
+          "Répond précisément sur les tarifs, les options et les modalités dès qu'ils figurent sur vos pages.",
+          "Adopte le ton et le vocabulaire de votre marque ; refuse le style « réponse IA » formatée et générique.",
+          "S'adapte à votre métier sans paramétrage complexe ni menu à cocher (cabinet, artisan, commerçant, conseil, culture…).",
+        ],
         visual: "ai",
       },
       {
         number: "02",
-        title: "Capture les coordonnées, pas juste les questions",
-        description:
-          "Numéro de téléphone ou email récupéré avant la fin de la conversation. Prospect chaud transmis direct, client existant redirigé vers le bon service. Rien ne se perd dans un formulaire jamais rempli.",
+        title: "Persuade et capture les coordonnées",
+        bullets: [
+          "Mène la conversation comme un commercial senior : clarifie le besoin réel avant d'amener vers la prise de contact.",
+          "S'appuie sur des cadres comportementaux reconnus : persuasion (Cialdini), vente consultative (SPIN Selling) et négociation (Chris Voss).",
+          "Conversion naturelle : collecte l'e-mail, le téléphone et le contexte de la demande avant la fin de l'échange.",
+          "Propose un avis Google quand la satisfaction se lit dans l'échange.",
+          "Transmet le récapitulatif des opportunités et le détail des échanges par e-mail toutes les 4 heures.",
+          "Envoie une alerte SMS lorsqu'un numéro est capté et que la demande semble urgente.",
+          "Vous montre ce que les visiteurs demandent vraiment sur le terrain — pas une synthèse abstraite.",
+        ],
         visual: "collab",
       },
       {
         number: "03",
         title: "Un support avant votre support",
-        description:
-          "Talker distingue un prospect d'un client en une phrase. Panne, question tarifaire, service additionnel : il qualifie la demande et vous transmet un dossier prêt à traiter. Votre client ne raconte plus son problème deux fois.",
+        bullets: [
+          "Distingue un prospect à convertir d'un client déjà en portefeuille.",
+          "Fait préciser la situation ou la nature du problème avant tout passage de main à vos équipes.",
+          "Recueille les créneaux et modalités de rappel souhaités par votre interlocuteur.",
+          "Transmet un dossier d'intervention cadré et complet, prêt à être traité sans perte d'information.",
+        ],
         visual: "security",
+      },
+    ],
+  },
+  faq: {
+    title: "FAQs",
+    items: [
+      {
+        q: "Qu'est-ce que Talker ?",
+        a: "Talker est un agent conversationnel IA pour WordPress : il lit le site, répond comme un commercial, capture e-mail et téléphone, et peut proposer un avis Google quand le visiteur est satisfait.",
+      },
+      {
+        q: "Talker est-il un chatbot WordPress ?",
+        a: "Oui. C'est un chatbot IA WordPress (zip à activer dans WP-Admin) conçu pour vendre et qualifier, pas seulement pour répondre aux FAQ du site.",
+      },
+      {
+        q: "En quoi Talker est-il différent d'un chatbot générique ?",
+        a: "Il s'aligne sur vos prestations et votre ton, sans menu de secteurs. La conversation s'appuie sur des cadres reconnus (Cialdini, SPIN Selling, Chris Voss) pour clarifier le besoin puis amener à la prise de contact.",
+      },
+      {
+        q: "Comment Talker apprend-il mon métier ?",
+        a: "Il lit les pages de votre site (prestations, tarifs, modalités) pour cadrer les réponses. Pas de paramétrage complexe au démarrage.",
+      },
+      {
+        q: "Talker capture-t-il les coordonnées des prospects ?",
+        a: "Oui : e-mail, téléphone et contexte de la demande avant la fin de l'échange, puis transmission vers vous.",
+      },
+      {
+        q: "Est-ce que je vois les conversations de mes visiteurs ?",
+        a: [
+          "Vous recevez par e-mail, toutes les 4 heures, le détail des échanges s'il y en a eu.",
+          "Des alertes SMS sont possibles lorsqu'un numéro de téléphone est capté et qu'une demande semble urgente.",
+        ],
+      },
+      {
+        q: "Talker peut-il demander un avis Google ?",
+        a: "Oui, lorsqu'il détecte que l'internaute est satisfait du service dans la conversation.",
+      },
+      {
+        q: "Combien coûte Talker ?",
+        a: "Un plan gratuit jusqu'à 100 conversations par installation. Les offres Pro et Agences ajoutent l'illimité, la marque blanche et plus de canaux — voir la grille tarifaire ci-dessus.",
+      },
+      {
+        q: "Faut-il savoir coder pour l'installer ?",
+        a: "Non. Zip Talker.now à téléverser dans WP-Admin ; le widget s'active et s'installe automatiquement sans code.",
+      },
+      {
+        q: "Talker remplace-t-il mon support client ?",
+        a: "Il agit comme un support avant votre support : précise la situation, distingue prospect et client existant, puis vous transmet un dossier cadré avec les questions de votre client.",
       },
     ],
   },
@@ -336,7 +401,7 @@ export const fr = {
       {
         title: "Produit",
         links: [
-          { name: "Fonctionnalités", href: "#features" },
+          { name: "Fonctionnalités", href: "/produit" },
           { name: "Comment ça marche", href: "#how-it-works" },
           { name: "Tarifs", href: "#pricing" },
           { name: "Intégrations", href: "#integrations" },
@@ -346,6 +411,7 @@ export const fr = {
       {
         title: "Ressources",
         links: [
+          { name: "FAQ", href: "/#faq" },
           { name: "Centre d'aide", href: "#" },
           { name: "Guide d'installation", href: "#" },
           { name: "Modèles de scripts", href: "#" },
@@ -390,15 +456,28 @@ export const fr = {
     open: "Ouvrir Talker",
     close: "Fermer",
     closeTalker: "Fermer Talker",
-    assistant: "L'assistant du cabinet",
-    placeholder: "Posez votre question...",
+    assistant: "Talker.now",
+    placeholder: "Écrivez-moi…",
     send: "Envoyer",
     writing: "Talker écrit",
     poweredBy: "Propulsé par talker.now",
+    opener:
+      "Bonjour — je suis là pour votre site. Dites-moi ce que vous cherchez, je vous oriente.",
+    fallback:
+      "Je n’arrive pas à vous répondre pour le moment. Réessayez dans un instant, je reste là.",
+    suggest: [
+      { label: "S'informer", userText: "Je veux m'informer sur Talker." },
+      { label: "Tarifs", userText: "Quels sont vos tarifs ?" },
+      { label: "Voir une démo", userText: "Je veux voir une démo." },
+      { label: "Créer mon agent", userText: "Je veux créer mon agent." },
+      { label: "Laisser un contact", userText: "Je vous laisse un contact." },
+    ],
     chips: [
-      { label: "Talker Now", intent: "talker" as const },
-      { label: "Poser une question", intent: "question" as const },
-      { label: "Prendre rendez-vous", intent: "rdv" as const },
+      { label: "Testez-moi !", intent: "talker" as const },
+      {
+        label: "Je suis disponible pour votre site — cliquez ici",
+        intent: "question" as const,
+      },
     ],
   },
   notFound: {

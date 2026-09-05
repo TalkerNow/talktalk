@@ -160,7 +160,7 @@ export function TalkerLauncherBubble() {
                     setHovered(false);
                     openTalker(invite.intent);
                   }}
-                  className={`relative rounded-full border bg-background px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink ${
+                  className={`relative max-w-[min(calc(100vw-6rem),20rem)] rounded-full border bg-background px-3 py-1.5 text-left text-[13px] leading-snug text-ink transition-colors hover:border-ink ${
                     shine
                       ? "overflow-hidden border-foreground/12"
                       : "border-line"
@@ -189,10 +189,12 @@ export function TalkerLauncherBubble() {
               closeTalker();
               return;
             }
-            setChipsPinned((pinned) => !pinned);
+            setChipsPinned(false);
+            setHovered(false);
+            openTalker();
           }}
           aria-label={t.bubble.open}
-          aria-expanded={open || chipsShown}
+          aria-expanded={open}
           className="pointer-events-auto relative z-10 flex size-[80px] cursor-pointer items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
         >
           <span

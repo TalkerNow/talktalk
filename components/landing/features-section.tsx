@@ -138,14 +138,25 @@ function FeatureCard({ feature, index }: { feature: FeatureItem; index: number }
         </div>
         
         {/* Content */}
-        <div className="flex-1 grid lg:grid-cols-2 gap-8 items-center">
+        <div className="flex-1 grid lg:grid-cols-2 gap-8 items-start">
           <div>
             <h3 className="text-3xl lg:text-4xl font-display mb-4 group-hover:translate-x-2 transition-transform duration-500">
               {feature.title}
             </h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {feature.description}
-            </p>
+            <ul className="space-y-2.5">
+              {feature.bullets.map((bullet) => (
+                <li
+                  key={bullet}
+                  className="flex items-start gap-3 text-base leading-snug text-muted-foreground lg:text-lg"
+                >
+                  <span
+                    className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-[#C43F17]"
+                    aria-hidden
+                  />
+                  {bullet}
+                </li>
+              ))}
+            </ul>
           </div>
           
           {/* Visual */}
@@ -160,11 +171,17 @@ function FeatureCard({ feature, index }: { feature: FeatureItem; index: number }
   );
 }
 
-export function FeaturesSection() {
+export function FeaturesSection({
+  variant = "section",
+}: {
+  variant?: "page" | "section";
+}) {
   const { t } = useLocale();
   const features = t.features.items;
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const isPage = variant === "page";
+  const Heading = isPage ? "h1" : "h2";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -182,24 +199,32 @@ export function FeaturesSection() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative py-12 lg:py-16"
+      className={
+        isPage
+          ? "relative overflow-visible pb-20 pt-32 lg:pb-28 lg:pt-40"
+          : "relative py-12 lg:py-16"
+      }
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="mb-8 lg:mb-10">
+        <div className={isPage ? "mb-12 lg:mb-16" : "mb-8 lg:mb-10"}>
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
             <span className="w-8 h-px bg-foreground/30" />
             {t.features.eyebrow}
           </span>
-          <h2
-            className={`text-4xl lg:text-6xl xl:text-7xl font-display font-semibold tracking-tight transition-all duration-700 ${
+          <Heading
+            className={`font-display font-semibold tracking-tight transition-all duration-700 ${
+              isPage
+                ? "text-5xl lg:text-7xl xl:text-8xl"
+                : "text-4xl lg:text-6xl xl:text-7xl"
+            } ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             {t.features.title}
             <br />
             <span className="text-muted-foreground">{t.features.titleMuted}</span>
-          </h2>
+          </Heading>
         </div>
 
         {/* Liste */}

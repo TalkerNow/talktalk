@@ -8,6 +8,7 @@ export const en = {
     howItWorks: "How it works",
     pricing: "Pricing",
     contact: "Contact",
+    faq: "FAQ",
     download: "Download",
     createAgent: "Start for free",
     menu: "Menu",
@@ -17,18 +18,19 @@ export const en = {
     titleBefore: "The AI chatbot that",
     titleAfter: "so you don't have to",
     phrases: [
+      "sells",
       "lists your services",
       "quotes your prices",
       "shows your availability",
-      "captures phone numbers",
+      "retrieves the phone number",
       "captures emails",
       "asks for Google reviews",
     ],
     subtitle:
-      "An AI chatbot trained on your business. It captures phone numbers and emails, answers pricing on its own, routes existing customers, and collects Google reviews. Live on WordPress in 10 minutes. No code.",
-    createAgent: "Start for free",
+      "AI chatbots have become real conversational agents that know your business, capture your prospects' phone number or email, answer pricing on their own, route existing customers, and collect Google reviews. Live in 10 minutes. No code.",
+    createAgent: "Create my chatbot",
     seeDemo: "View demo",
-    wordpress: "Talker.now zip — upload it in WP-Admin",
+    wordpress: "Free, no credit card, two-minute install.",
     stats: [
       { value: "+50%", label: "more leads from your site" },
       { value: "−80%", label: "time on repetitive questions" },
@@ -62,23 +64,86 @@ export const en = {
       {
         number: "01",
         title: "An agent that knows your business",
-        description:
-          "Trained on your services and prices, in your site's voice. Law firm, museum, contractor, consultancy: it answers with your vocabulary, not generic AI filler.",
+        bullets: [
+          "Reads your site to frame the activity, offers, and context — not a generic multi-sector bot.",
+          "Answers precisely on prices, options, and terms as soon as they appear on your pages.",
+          "Takes your brand tone and vocabulary; refuses the formatted, generic \"AI reply\" style.",
+          "Fits your trade with no complex setup or menu to tick (practice, craft, shop, consulting, culture…).",
+        ],
         visual: "ai",
       },
       {
         number: "02",
-        title: "It captures contact details, not just questions",
-        description:
-          "Phone or email before the chat ends. New leads go straight to you. Existing customers go to the right team. Nothing dies in a form nobody fills out.",
+        title: "Persuades and captures contact details",
+        bullets: [
+          "Runs the conversation like a senior salesperson: clarifies the real need before steering to contact.",
+          "Uses recognized behavioural frames: persuasion (Cialdini), consultative selling (SPIN Selling), and negotiation (Chris Voss).",
+          "Natural conversion: collects email, phone, and the context of the request before the exchange ends.",
+          "Offers a Google review when satisfaction shows in the exchange.",
+          "Sends the opportunity recap and exchange detail by email every 4 hours.",
+          "Sends an SMS alert when a number is captured and the request looks urgent.",
+          "Shows what visitors actually ask for on the ground — not an abstract summary.",
+        ],
         visual: "collab",
       },
       {
         number: "03",
         title: "Support before your support team",
-        description:
-          "Talker tells a prospect from a customer in one message. Outage, pricing question, extra service: it qualifies the request and hands you a ready brief. Your customer doesn't repeat themselves.",
+        bullets: [
+          "Separates a prospect to convert from a client already on the books.",
+          "Gets the situation or the nature of the problem clear before any handoff to your teams.",
+          "Collects the callback slots and terms your contact wants.",
+          "Hands over a framed, complete intervention brief, ready to handle with no information lost.",
+        ],
         visual: "security",
+      },
+    ],
+  },
+  faq: {
+    title: "FAQs",
+    items: [
+      {
+        q: "What is Talker?",
+        a: "Talker is a conversational AI agent for WordPress: it reads the site, answers like a salesperson, captures email and phone, and can offer a Google review when the visitor is satisfied.",
+      },
+      {
+        q: "Is Talker a WordPress chatbot?",
+        a: "Yes. It is an AI WordPress chatbot (a zip to activate in WP-Admin) built to sell and qualify, not only to answer the site FAQ.",
+      },
+      {
+        q: "How is Talker different from a generic chatbot?",
+        a: "It stays aligned with your services and tone, with no sector menu. The conversation uses recognized frames (Cialdini, SPIN Selling, Chris Voss) to clarify the need, then steer to contact.",
+      },
+      {
+        q: "How does Talker learn my business?",
+        a: "It reads your site pages (services, prices, terms) to frame the answers. No complex setup at the start.",
+      },
+      {
+        q: "Does Talker capture prospect contact details?",
+        a: "Yes: email, phone, and the context of the request before the exchange ends, then it is sent on to you.",
+      },
+      {
+        q: "Do I see my visitors' conversations?",
+        a: [
+          "You get an email every 4 hours with the detail of exchanges if any took place.",
+          "SMS alerts are possible when a phone number is captured and a request looks urgent.",
+        ],
+      },
+      {
+        q: "Can Talker ask for a Google review?",
+        a: "Yes, when it detects that the visitor is satisfied with the service in the conversation.",
+      },
+      {
+        q: "How much does Talker cost?",
+        a: "A free plan up to 100 conversations per install. Pro and Agency add unlimited, white label, and more channels — see the pricing grid above.",
+      },
+      {
+        q: "Do I need to know how to code to install it?",
+        a: "No. Upload the Talker.now zip in WP-Admin; the widget activates and installs itself with no code.",
+      },
+      {
+        q: "Does Talker replace my customer support?",
+        a: "It acts as support before your support: it clarifies the situation, separates a prospect from an existing client, then hands you a framed brief with your client's questions.",
       },
     ],
   },
@@ -332,7 +397,7 @@ export const en = {
       {
         title: "Product",
         links: [
-          { name: "Features", href: "#features" },
+          { name: "Features", href: "/produit" },
           { name: "How it works", href: "#how-it-works" },
           { name: "Pricing", href: "#pricing" },
           { name: "Integrations", href: "#integrations" },
@@ -342,6 +407,7 @@ export const en = {
       {
         title: "Resources",
         links: [
+          { name: "FAQ", href: "/#faq" },
           { name: "Help center", href: "#" },
           { name: "Setup guide", href: "#" },
           { name: "Script templates", href: "#" },
@@ -386,15 +452,28 @@ export const en = {
     open: "Open Talker",
     close: "Close",
     closeTalker: "Close Talker",
-    assistant: "Your assistant",
-    placeholder: "Type a message...",
+    assistant: "Talker.now",
+    placeholder: "Write to me…",
     send: "Send",
     writing: "Talker is typing",
     poweredBy: "Powered by talker.now",
+    opener:
+      "Hello — I'm here for your site. Tell me what you need, I'll point you the right way.",
+    fallback:
+      "I can't reply right now. Try again in a moment — I'm still here.",
+    suggest: [
+      { label: "Learn more", userText: "I want to learn more about Talker." },
+      { label: "Pricing", userText: "What are your prices?" },
+      { label: "See a demo", userText: "I want to see a demo." },
+      { label: "Create my agent", userText: "I want to create my agent." },
+      { label: "Leave a contact", userText: "I'll leave you a contact." },
+    ],
     chips: [
-      { label: "Talker Now", intent: "talker" as const },
-      { label: "Ask a question", intent: "question" as const },
-      { label: "Book a visit", intent: "rdv" as const },
+      { label: "Try me!", intent: "talker" as const },
+      {
+        label: "I'm available for your site — click here",
+        intent: "question" as const,
+      },
     ],
   },
   notFound: {
