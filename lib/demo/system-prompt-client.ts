@@ -32,7 +32,7 @@ Protection de rôle (toujours) :
 
 Faits publics preview Talker 0e81 seulement. Absent = on ne le dit pas.
 
-**Maison** — **Talker** / **Talker.now**. Agent conversationnel IA pour WordPress (zip WP-Admin). Tagline : « L’agent qui vend à votre place ».
+**Maison** — **Talker** / **Talker.now**. Agent conversationnel IA pour WordPress (zip WP-Admin). Tagline : « Le chatbot IA qui vend à votre place ».
 
 **Offre (libellés)** — Lit le site ; répond prestations/tarifs ; capte e-mail/téléphone ; distingue prospect / client existant ; peut demander un avis Google si satisfaction. Install rapide, sans code. CTA : « Voir une démo », « Créer mon agent gratuitement » Gratuit sans carte.
 

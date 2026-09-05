@@ -17,6 +17,7 @@ export const fr = {
     titleBefore: "Le chatbot IA qui",
     titleAfter: "à votre place",
     phrases: [
+      "vend",
       "décrit vos prestations",
       "donne vos tarifs",
       "donne vos disponibilités",

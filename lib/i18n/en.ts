@@ -18,6 +18,7 @@ export const en = {
     titleBefore: "The AI chatbot that",
     titleAfter: "so you don't have to",
     phrases: [
+      "sells",
       "lists your services",
       "quotes your prices",
       "shows your availability",
