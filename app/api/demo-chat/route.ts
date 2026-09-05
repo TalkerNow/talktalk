@@ -1,15 +1,17 @@
-import { DEMO_CHAT_FALLBACK } from "@/lib/demo/system-prompt-client";
+import { demoChatFallback } from "@/lib/demo/system-prompt-client";
 import {
   buildWebhookPayload,
   collectTurns,
   type ChatTurn,
 } from "@/lib/demo/webhook-payload";
+import { isLocale } from "@/lib/i18n";
 
 export const maxDuration = 60;
 
-function fallbackResponse(status = 503) {
+function fallbackResponse(status = 503, locale = "fr") {
+  const text = demoChatFallback(locale);
   return Response.json(
-    { reply: DEMO_CHAT_FALLBACK, message: DEMO_CHAT_FALLBACK },
+    { reply: text, message: text },
     { status, headers: { "Cache-Control": "no-store" } },
   );
 }
@@ -28,7 +30,9 @@ function webhookUrl() {
   return PREVIEW_WEBHOOK;
 }
 
-function parseIncoming(body: unknown): { messages: ChatTurn[]; session: string } | null {
+function parseIncoming(
+  body: unknown,
+): { messages: ChatTurn[]; session: string; locale: string } | null {
   if (!body || typeof body !== "object") return null;
   const rec = body as Record<string, unknown>;
 
@@ -37,11 +41,16 @@ function parseIncoming(body: unknown): { messages: ChatTurn[]; session: string }
     (typeof rec.sessionId === "string" && rec.sessionId.trim()) ||
     "";
   const session = (rawSession || `tn_${Date.now().toString(36)}`).slice(0, 80);
+  const rawLocale =
+    (typeof rec.locale === "string" && rec.locale.trim()) ||
+    (typeof rec.lang === "string" && rec.lang.trim()) ||
+    "";
+  const locale = isLocale(rawLocale) ? rawLocale : "fr";
 
   const messages = collectTurns(body);
   if (messages.length === 0 || messages.length > 24) return null;
   if (messages.at(-1)?.role !== "user") return null;
-  return { messages, session };
+  return { messages, session, locale };
 }
 
 function extractReply(data: unknown): string {
@@ -90,20 +99,20 @@ export async function POST(request: Request) {
   const hook = webhookUrl();
   if (!hook) {
     console.warn("[demo-chat] DEMO_CHAT_WEBHOOK is empty");
-    return fallbackResponse(503);
+    return fallbackResponse(503, parsed.locale);
   }
 
   try {
     new URL(hook);
   } catch {
     console.error("[demo-chat] DEMO_CHAT_WEBHOOK is not a valid URL");
-    return fallbackResponse(503);
+    return fallbackResponse(503, parsed.locale);
   }
 
   const lastUser = parsed.messages.at(-1);
-  if (!lastUser) return fallbackResponse(400);
+  if (!lastUser) return fallbackResponse(400, parsed.locale);
 
-  const payload = buildWebhookPayload(parsed.session, parsed.messages);
+  const payload = buildWebhookPayload(parsed.session, parsed.messages, parsed.locale);
 
   try {
     const response = await fetch(hook, {
@@ -124,7 +133,7 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       console.error("[demo-chat] webhook failed", response.status);
-      return fallbackResponse(response.status === 400 ? 400 : 503);
+      return fallbackResponse(response.status === 400 ? 400 : 503, parsed.locale);
     }
 
     // {"text":""} is success until Gemini is keyed — do not invent a reply.
@@ -135,6 +144,6 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     console.error("[demo-chat]", error);
-    return fallbackResponse(503);
+    return fallbackResponse(503, parsed.locale);
   }
 }

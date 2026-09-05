@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { metadataForPage } from "@/lib/i18n/metadata";
 import { Navigation } from "@/components/landing/navigation";
 import { HeroSection } from "@/components/landing/hero-section";
 import { ContextSection } from "@/components/landing/context-section";
@@ -11,6 +13,14 @@ import { FaqList } from "@/components/landing/faq-list";
 import { FooterSection } from "@/components/landing/footer-section";
 import { TalkerLauncherBubble } from "@/components/landing/talker-launcher-bubble";
 import { TalkerProvider } from "@/components/talker/provider";
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string | string[] }>;
+}): Promise<Metadata> {
+  return metadataForPage(searchParams, "home");
+}
 
 export default function Home() {
   return (

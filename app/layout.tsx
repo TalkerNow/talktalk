@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import { LocaleProvider } from "@/components/i18n/locale-context";
+import { DocumentMeta } from "@/components/i18n/document-meta";
+import { dictionaries } from "@/lib/i18n";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,9 +16,8 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
 });
 
-const title = "Talker — Le chatbot IA qui vend à votre place";
-const description =
-  "Les IA aspirent le trafic de votre site. Talker le récupère. Un chatbot IA qui connaît votre métier, capte le numéro ou l'email de vos prospects, et s'installe en 10 minutes, sans code.";
+const title = dictionaries.fr.meta.homeTitle;
+const description = dictionaries.fr.meta.homeDescription;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -43,7 +44,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
-        <LocaleProvider>{children}</LocaleProvider>
+        <LocaleProvider>
+          <DocumentMeta />
+          {children}
+        </LocaleProvider>
       </body>
     </html>
   );

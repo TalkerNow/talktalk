@@ -11,6 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! function_exists( 'talker_now_i18n' ) ) {
+	require_once dirname( __FILE__ ) . '/class-i18n.php';
+}
+
 class Talker_Now_Crawl {
 	const OPTION = 'talker_now_crawl';
 
@@ -224,7 +228,7 @@ class Talker_Now_Crawl {
 					'visual'   => 'talk',
 					'crawl'    => 'done',
 					'qcm'      => 'done',
-					'reply'    => 'C’est noté. Dites-moi si quelque chose a changé sur le site.',
+					'reply'    => talker_now_i18n( 'qcm.noted_changed' ),
 					'intro'    => '',
 					'question' => '',
 				);
@@ -262,30 +266,30 @@ class Talker_Now_Crawl {
 	public static function confirm_question( $family, $facts ) {
 		$people  = self::people_list( $facts );
 		$city    = trim( (string) $facts['city'] );
-		$where   = '' !== $city ? ' à ' . $city : '';
+		$where   = '' !== $city ? talker_now_i18n( 'qcm.city_prefix', array( $city ) ) : '';
 		$societe = self::societe_label( $facts );
 		$metier  = self::metier_short( $family, $facts );
-		$escape  = ' Si vous posez le plugin pour eux, dites « j’installe pour quelqu’un d’autre ».';
+		$escape  = talker_now_i18n( 'qcm.escape' );
 
 		if ( 1 === count( $people ) ) {
 			$who = $people[0];
 			$job = '' !== $metier ? ', ' . $metier : '';
-			return 'Vous êtes bien ' . $who . $job . $where . ' ?' . $escape;
+			return talker_now_i18n( 'qcm.confirm_one', array( $who, $job, $where ) ) . $escape;
 		}
 		if ( count( $people ) >= 2 ) {
 			$shown = array_slice( $people, 0, 3 );
 			$last  = array_pop( $shown );
 			$list  = implode( ', ', $shown );
 			if ( '' !== $list ) {
-				$list .= ' et ' . $last;
+				$list .= talker_now_i18n( 'qcm.and' ) . $last;
 			} else {
 				$list = $last;
 			}
-			return 'Je vois ' . $list . ' — c’est bien vous, ou quelqu’un d’autre ?' . $escape;
+			return talker_now_i18n( 'qcm.confirm_many', array( $list ) ) . $escape;
 		}
 
-		$org = '' !== $societe ? $societe : ( '' !== $metier ? $metier : 'cette activité' );
-		return 'Vous parlez pour ' . $org . $where . ', ou vous posez le plugin pour eux ?';
+		$org = '' !== $societe ? $societe : ( '' !== $metier ? $metier : talker_now_i18n( 'qcm.this_activity' ) );
+		return talker_now_i18n( 'qcm.confirm_org', array( $org, $where ) );
 	}
 
 	/**
@@ -296,12 +300,12 @@ class Talker_Now_Crawl {
 		$facts   = array_merge( self::empty_facts(), is_array( $facts ) ? $facts : array() );
 		$societe = self::societe_label( $facts );
 		$city    = trim( (string) $facts['city'] );
-		$where   = '' !== $city ? ' à ' . $city : '';
-		$org     = '' !== $societe ? $societe : 'cette activité';
+		$where   = '' !== $city ? talker_now_i18n( 'qcm.city_prefix', array( $city ) ) : '';
+		$org     = '' !== $societe ? $societe : talker_now_i18n( 'qcm.this_activity' );
 		return array(
-			'Le site dit trop peu. Vous parlez pour ' . $org . $where . ', ou vous posez le plugin pour quelqu’un d’autre ? Si vous installez pour quelqu’un d’autre, dites « j’installe pour quelqu’un d’autre ».',
-			'Pourquoi les gens appellent ou écrivent, en premier ?',
-			'Qu’est-ce que le bot ne doit jamais dire ou promettre — à leur place, pas à la vôtre si vous n’êtes pas le gérant ?',
+			talker_now_i18n( 'qcm.frame_1', array( $org, $where ) ),
+			talker_now_i18n( 'qcm.frame_2' ),
+			talker_now_i18n( 'qcm.frame_3' ),
 		);
 	}
 
@@ -430,12 +434,12 @@ class Talker_Now_Crawl {
 
 		if ( $with_intro ) {
 			if ( 'failed' === $crawl['status'] || ! empty( $crawl['thin'] ) && 'frame' === $phase && 0 === (int) $crawl['q_index'] ) {
-				$intro = 'J’ai parcouru votre site : il dit trop peu pour que je devine. On cadre en trois questions, puis je génère la suite.';
+				$intro = talker_now_i18n( 'qcm.intro_thin' );
 			} elseif ( 'done' === $phase ) {
-				$intro = 'J’ai parcouru votre site.';
-				$question = 'On a déjà cadré l’essentiel. Dites-moi si quelque chose a changé.';
+				$intro = talker_now_i18n( 'qcm.intro_short' );
+				$question = talker_now_i18n( 'qcm.already_framed' );
 			} else {
-				$intro = 'J’ai parcouru votre site, on peut commencer le QCM.';
+				$intro = talker_now_i18n( 'qcm.intro_ready' );
 			}
 		}
 
@@ -457,10 +461,10 @@ class Talker_Now_Crawl {
 		if ( 'done' === $phase && '' === $question ) {
 			if ( 'proxy' === (string) $crawl['voice'] ) {
 				$who      = trim( (string) $crawl['gerant_name'] );
-				$who      = '' !== $who ? $who : 'le gérant';
-				$question = 'C’est noté. Je parlerai comme ' . $who . ', pas avec votre voix.';
+				$who      = '' !== $who ? $who : talker_now_i18n( 'qcm.the_manager' );
+				$question = talker_now_i18n( 'qcm.noted_proxy', array( $who ) );
 			} else {
-				$question = 'C’est noté. Je m’en servirai pour parler comme vous sur le site.';
+				$question = talker_now_i18n( 'qcm.noted_self' );
 			}
 		}
 
@@ -711,14 +715,14 @@ class Talker_Now_Crawl {
 	 */
 	private static function proxy_question( $crawl ) {
 		unset( $crawl );
-		return 'Qui est le vrai gérant — nom et e-mail ? Je ne dois pas écrire le prompt du client avec votre voix.';
+		return talker_now_i18n( 'qcm.proxy_who' );
 	}
 
 	/**
 	 * @return string
 	 */
 	private static function reclass_question() {
-		return 'D’accord, je me trompe. Vous êtes plutôt : un lieu avec des horaires (musée, visites), un artisan local (plombier, dépannage…), une agence immobilière, un cabinet médical, ou un accompagnement / conseil ?';
+		return talker_now_i18n( 'qcm.reclass' );
 	}
 
 	/**
@@ -749,6 +753,15 @@ class Talker_Now_Crawl {
 			'pas le dirigeant',
 			'pour le client',
 			'je pose pour',
+			'i m installing for',
+			'im installing for',
+			'installing for someone',
+			'ich installiere fur',
+			'installo per qualcun',
+			'instalo para otra',
+			'ik installeer voor',
+			'instaluje dla kogos',
+			'instaluję dla kogoś',
 		);
 		foreach ( $needles as $needle ) {
 			if ( false !== strpos( $n, $needle ) ) {
@@ -809,7 +822,7 @@ class Talker_Now_Crawl {
 			$who = self::societe_label( $facts );
 		}
 		if ( '' === $who ) {
-			$who = 'leur activité';
+			$who = talker_now_i18n( 'qcm.their_activity' );
 		}
 		$q = (string) $question;
 		$q = preg_replace( '/\b[Vv]ous êtes\b/u', $who . ' est', $q );
@@ -919,25 +932,25 @@ class Talker_Now_Crawl {
 			case 'medical':
 				$label = self::medical_label( $facts );
 				$map   = array(
-					'un cabinet dentaire'          => 'dentiste',
-					'un cabinet d’ostéopathie'     => 'ostéopathe',
-					'un cabinet de kinésithérapie' => 'kinésithérapeute',
-					'un cabinet médical'           => 'médecin',
-					'un cabinet vétérinaire'       => 'vétérinaire',
-					'un cabinet de psychologie'    => 'psychologue',
-					'un cabinet de santé'          => 'praticien',
+					talker_now_i18n( 'label.dental' )  => talker_now_i18n( 'job.dentist' ),
+					talker_now_i18n( 'label.osteo' )   => talker_now_i18n( 'job.osteo' ),
+					talker_now_i18n( 'label.physio' )  => talker_now_i18n( 'job.physio' ),
+					talker_now_i18n( 'label.medical' ) => talker_now_i18n( 'job.doctor' ),
+					talker_now_i18n( 'label.vet' )     => talker_now_i18n( 'job.vet' ),
+					talker_now_i18n( 'label.psych' )   => talker_now_i18n( 'job.psych' ),
+					talker_now_i18n( 'label.health' )  => talker_now_i18n( 'job.practitioner' ),
 				);
 				return isset( $map[ $label ] ) ? $map[ $label ] : $label;
 			case 'trade':
 				return self::trade_label( $facts );
 			case 'realtor':
-				return 'agent immobilier';
+				return talker_now_i18n( 'job.realtor' );
 			case 'hours':
 				$act = self::activity_label( $facts );
-				return '' !== $act ? $act : 'un lieu ouvert au public';
+				return '' !== $act ? $act : talker_now_i18n( 'job.public_place' );
 			case 'spin':
 				$act = self::activity_label( $facts );
-				return '' !== $act ? $act : 'conseil';
+				return '' !== $act ? $act : talker_now_i18n( 'job.advice' );
 			default:
 				return self::activity_label( $facts );
 		}
@@ -952,10 +965,10 @@ class Talker_Now_Crawl {
 		if ( '' === $n ) {
 			return 'other';
 		}
-		if ( preg_match( '/^(non|nan|nope|faux|incorrect)\b|pas du tout|pas vraiment|vous vous trompez|ce n est pas|c est pas ca|c est pas/', $n ) ) {
+		if ( preg_match( '/^(non|nan|nope|faux|incorrect|nein|nee|nie|no)\b|pas du tout|pas vraiment|vous vous trompez|ce n est pas|c est pas ca|c est pas|nicht wahr|nicht stimmt|no es|non e|het klopt niet/', $n ) ) {
 			return 'no';
 		}
-		if ( preg_match( '/\b(oui|ouais|yep|yes|exactement|exact|correct|voila|tout a fait|c est ca|cest ca|c est bien ca|bien sur|tout juste)\b/', $n ) ) {
+		if ( preg_match( '/\b(oui|ouais|yep|yes|ja|si|sí|tak|exactement|exact|correct|voila|tout a fait|c est ca|cest ca|c est bien ca|bien sur|tout juste|genau|richtig|esatto|exacto|klopt|zgadza)\b/', $n ) ) {
 			return 'yes';
 		}
 		return 'other';
@@ -1392,27 +1405,27 @@ class Talker_Now_Crawl {
 		$out      = array();
 
 		if ( '' !== $hours ) {
-			$out[] = 'J’ai lu sur le site : « ' . $hours . ' ». Ce sont bien les horaires à donner aux visiteurs ?';
+			$out[] = talker_now_i18n( 'q.hours_read', array( $hours ) );
 		} else {
-			$out[] = 'Quels horaires je dois donner, y compris le jour de fermeture, sans rien inventer ?';
+			$out[] = talker_now_i18n( 'q.hours_ask' );
 		}
 		if ( '' !== $booking ) {
-			$out[] = 'Les visites se préparent comment — j’ai vu « ' . $booking . ' ». C’est le bon canal ?';
+			$out[] = talker_now_i18n( 'q.hours_booking_read', array( $booking ) );
 		} else {
-			$out[] = 'Billet, groupe, scolaire : on réserve comment, concrètement ?';
+			$out[] = talker_now_i18n( 'q.hours_booking_ask' );
 		}
 		if ( '' !== $services ) {
-			$out[] = 'J’ai vu « ' . $services . ' ». C’est encore d’actualité, et je le propose comment ?';
+			$out[] = talker_now_i18n( 'q.hours_svc_read', array( $services ) );
 		} else {
-			$out[] = 'Visite libre, guidée, expo temporaire : qu’est-ce que je peux citer sans me tromper de saison ?';
+			$out[] = talker_now_i18n( 'q.hours_svc_ask' );
 		}
 		if ( '' !== $city ) {
-			$out[] = 'L’accueil se fait bien à ' . $city . ' — accès, parking, entrée, je précise quoi ?';
+			$out[] = talker_now_i18n( 'q.hours_city_read', array( $city ) );
 		} else {
-			$out[] = 'Adresse et accès : qu’est-ce qu’un visiteur se trompe souvent, pour que je le dise juste ?';
+			$out[] = talker_now_i18n( 'q.hours_city_ask' );
 		}
-		$out[] = 'Un visiteur demande un jour férié ou une nocturne : je dis quoi, concrètement ?';
-		$out[] = 'Tarif, jauge, expo terminée : qu’est-ce que je ne dois jamais inventer ?';
+		$out[] = talker_now_i18n( 'q.hours_holiday' );
+		$out[] = talker_now_i18n( 'q.hours_never' );
 		return $out;
 	}
 
@@ -1430,28 +1443,28 @@ class Talker_Now_Crawl {
 		$out      = array();
 
 		if ( '' !== $services ) {
-			$out[] = 'J’ai vu « ' . $services . ' ». C’est bien ce que les gens appellent en premier — fuite, débouchage, panne ?';
+			$out[] = talker_now_i18n( 'q.trade_svc_read', array( $services ) );
 		} else {
-			$out[] = 'Dépannage du jour : fuite, débouchage, chauffage, autre — qu’est-ce qui sonne le plus ?';
+			$out[] = talker_now_i18n( 'q.trade_svc_ask' );
 		}
 		if ( '' !== $city ) {
-			$out[] = 'Vous vous déplacez bien sur ' . $city . ' — jusqu’où autour, sans que j’invente une zone ?';
+			$out[] = talker_now_i18n( 'q.trade_city_read', array( $city ) );
 		} else {
-			$out[] = 'Zone d’intervention : quelles communes oui, quelles communes je dois refuser ?';
+			$out[] = talker_now_i18n( 'q.trade_city_ask' );
 		}
 		if ( '' !== $hours ) {
-			$out[] = 'J’ai lu « ' . $hours . ' ». Urgence le soir ou le week-end : vous venez, ça dépend, ou je renvoie au lendemain ?';
+			$out[] = talker_now_i18n( 'q.trade_hours_read', array( $hours ) );
 		} else {
-			$out[] = 'Le soir et le week-end : je dis que vous venez, que ça dépend, ou que ce n’est pas possible ?';
+			$out[] = talker_now_i18n( 'q.trade_hours_ask' );
 		}
 		if ( '' !== $join ) {
-			$out[] = 'Pour joindre, j’ai vu « ' . $join . ' ». Numéro d’urgence à part, ou c’est le bon réflexe ?';
+			$out[] = talker_now_i18n( 'q.trade_join_read', array( $join ) );
 		} else {
-			$out[] = 'On vous joint comment pour un dépannage — téléphone, formulaire, SMS ?';
+			$out[] = talker_now_i18n( 'q.trade_join_ask' );
 		}
-		$out[] = 'Devis ou prix au téléphone : je m’arrête où ? Je ne dois jamais inventer un tarif.';
-		$out[] = 'Quels dépannages vous ne faites pas, pour que je ne promette pas à votre place ?';
-		$out[] = 'Délai, garantie, marque de pièce : qu’est-ce que le bot ne doit jamais dire ?';
+		$out[] = talker_now_i18n( 'q.trade_price' );
+		$out[] = talker_now_i18n( 'q.trade_refuse' );
+		$out[] = talker_now_i18n( 'q.trade_never' );
 		return $out;
 	}
 
@@ -1466,24 +1479,24 @@ class Talker_Now_Crawl {
 		$out      = array();
 
 		if ( '' !== $services ) {
-			$out[] = 'Le site parle de « ' . $services . ' ». C’est bien votre quotidien — vente, location, gestion ?';
+			$out[] = talker_now_i18n( 'q.re_svc_read', array( $services ) );
 		} else {
-			$out[] = 'Achat, location, estimation, gestion : par quoi commencent le plus souvent les messages ?';
+			$out[] = talker_now_i18n( 'q.re_svc_ask' );
 		}
 		if ( '' !== $city ) {
-			$out[] = 'Vous travaillez bien ' . $city . ' — d’autres communes, ou je m’en tiens à ça ?';
+			$out[] = talker_now_i18n( 'q.re_city_read', array( $city ) );
 		} else {
-			$out[] = 'Quelles communes et quels types de biens je peux citer, sans prétendre couvrir tout le département ?';
+			$out[] = talker_now_i18n( 'q.re_city_ask' );
 		}
 		if ( '' !== $booking ) {
-			$out[] = 'Pour une visite, j’ai vu « ' . $booking . ' ». On prend rendez-vous comment, concrètement ?';
+			$out[] = talker_now_i18n( 'q.re_book_read', array( $booking ) );
 		} else {
-			$out[] = 'Visite d’un bien : créneau en ligne, appel, ou passage à l’agence ?';
+			$out[] = talker_now_i18n( 'q.re_book_ask' );
 		}
-		$out[] = 'Un visiteur demande si un bien est encore dispo ou son prix : je ne dois rien inventer — je fais quoi ?';
-		$out[] = 'Estimation / avis de valeur : vous le faites, sur rendez-vous, ou je dois recadrer poliment ?';
-		$out[] = 'Quels mandats ou types de biens je ne dois pas prétendre avoir ?';
-		$out[] = 'Prix, dispo, « c’est vendu » : qu’est-ce que le bot ne doit jamais dire ?';
+		$out[] = talker_now_i18n( 'q.re_avail' );
+		$out[] = talker_now_i18n( 'q.re_estimate' );
+		$out[] = talker_now_i18n( 'q.re_mandate' );
+		$out[] = talker_now_i18n( 'q.re_never' );
 		return $out;
 	}
 
@@ -1500,28 +1513,28 @@ class Talker_Now_Crawl {
 		$out      = array();
 
 		if ( '' !== $services ) {
-			$out[] = 'J’ai lu ' . $label . ' et « ' . $services . ' ». Les motifs d’appel les plus fréquents, c’est bien ça ?';
+			$out[] = talker_now_i18n( 'q.med_svc_read', array( $label, $services ) );
 		} else {
-			$out[] = 'Pour ' . $label . ' : les gens écrivent surtout pour un premier rendez-vous, un renouvellement, une urgence ?';
+			$out[] = talker_now_i18n( 'q.med_svc_ask', array( $label ) );
 		}
 		if ( '' !== $booking ) {
-			$out[] = 'J’ai vu « ' . $booking . ' ». C’est bien comme ça qu’on prend rendez-vous — pas un autre canal ?';
+			$out[] = talker_now_i18n( 'q.med_book_read', array( $booking ) );
 		} else {
-			$out[] = 'Rendez-vous : Doctolib, téléphone du secrétariat, ou les deux ?';
+			$out[] = talker_now_i18n( 'q.med_book_ask' );
 		}
 		if ( '' !== $hours ) {
-			$out[] = 'Horaires lus : « ' . $hours . ' ». Une douleur le soir : je dis rappel, pharmacie de garde, ou rien d’inventé ?';
+			$out[] = talker_now_i18n( 'q.med_hours_read', array( $hours ) );
 		} else {
-			$out[] = 'Horaires du cabinet et absences : que puis-je dire sans inventer une urgence médicale ?';
+			$out[] = talker_now_i18n( 'q.med_hours_ask' );
 		}
 		if ( '' !== $city ) {
-			$out[] = 'Le cabinet est bien à ' . $city . ' — étage, interphone, parking à préciser ?';
+			$out[] = talker_now_i18n( 'q.med_city_read', array( $city ) );
 		} else {
-			$out[] = 'Comment on trouve le cabinet sans se tromper de porte ?';
+			$out[] = talker_now_i18n( 'q.med_city_ask' );
 		}
-		$out[] = 'Ordonnance, certificat, diagnostic en message : je refuse, je prends un rendez-vous, autre chose ?';
-		$out[] = 'Annulation ou retard : quelle règle je peux citer, sans en inventer une ?';
-		$out[] = 'Avis médical, tarif non affiché, « venez tout de suite » : qu’est-ce que le bot ne doit jamais dire ?';
+		$out[] = talker_now_i18n( 'q.med_rx' );
+		$out[] = talker_now_i18n( 'q.med_cancel' );
+		$out[] = talker_now_i18n( 'q.med_never' );
 		return $out;
 	}
 
@@ -1539,26 +1552,26 @@ class Talker_Now_Crawl {
 		$out      = array();
 
 		if ( '' !== $activity ) {
-			$out[] = 'J’ai parcouru l’accueil : « ' . $activity . ' ». C’est bien le sujet d’une première conversation ?';
+			$out[] = talker_now_i18n( 'q.spin_act_read', array( $activity ) );
 		} elseif ( '' !== $spoken ) {
-			$out[] = 'Vous avez dit « ' . self::clip( $spoken, 120 ) . ' ». C’est bien le cadre d’un premier échange ?';
+			$out[] = talker_now_i18n( 'q.spin_spoken', array( self::clip( $spoken, 120 ) ) );
 		} else {
-			$out[] = 'En une phrase, quel problème quelqu’un doit avoir pour que ce soit chez vous — pas un commerce de passage ?';
+			$out[] = talker_now_i18n( 'q.spin_act_ask' );
 		}
-		$out[] = 'Qui vous écrit surtout — dirigeant, RH, particulier — et après quel déclencheur ?';
+		$out[] = talker_now_i18n( 'q.spin_who' );
 		if ( '' !== $booking ) {
-			$out[] = 'Un premier échange, c’est « ' . $booking . ' » ?';
+			$out[] = talker_now_i18n( 'q.spin_book_read', array( $booking ) );
 		} else {
-			$out[] = 'Premier échange : appel, formulaire, rendez-vous agenda — je oriente vers quoi ?';
+			$out[] = talker_now_i18n( 'q.spin_book_ask' );
 		}
 		if ( '' !== $city ) {
-			$out[] = 'Vous opérez depuis ' . $city . ' — France entière, ou un périmètre plus serré ?';
+			$out[] = talker_now_i18n( 'q.spin_city_read', array( $city ) );
 		} else {
-			$out[] = 'Périmètre : local, France, international — que puis-je dire sans gonfler ?';
+			$out[] = talker_now_i18n( 'q.spin_city_ask' );
 		}
-		$out[] = 'Qu’est-ce qu’il faut que je clarifie avant de proposer un rendez-vous (périmètre, délai, qui décide) ?';
-		$out[] = 'Quelles demandes je dois écarter poliment, parce que ce n’est pas chez vous ?';
-		$out[] = 'Prix, engagement de résultat, « on s’occupe de tout » : qu’est-ce que le bot ne doit jamais dire ?';
+		$out[] = talker_now_i18n( 'q.spin_clarify' );
+		$out[] = talker_now_i18n( 'q.spin_refuse' );
+		$out[] = talker_now_i18n( 'q.spin_never' );
 		return $out;
 	}
 
@@ -1569,12 +1582,12 @@ class Talker_Now_Crawl {
 	private static function medical_label( $facts ) {
 		$h = self::norm( (string) $facts['haystack'] . ' ' . (string) $facts['activity'] );
 		$map = array(
-			'un cabinet dentaire'     => array( 'dentiste', 'dentaire', 'orthodont' ),
-			'un cabinet d’ostéopathie' => array( 'osteo', 'ostéo', 'osteopathe' ),
-			'un cabinet de kinésithérapie' => array( 'kine', 'kiné', 'kinesither' ),
-			'un cabinet médical'      => array( 'medecin', 'médecin', 'docteur', 'generaliste', 'généraliste' ),
-			'un cabinet vétérinaire'  => array( 'veterinaire', 'vétérinaire' ),
-			'un cabinet de psychologie' => array( 'psychologue', 'psychotherapie', 'psychothérapie' ),
+			talker_now_i18n( 'label.dental' )  => array( 'dentiste', 'dentaire', 'orthodont' ),
+			talker_now_i18n( 'label.osteo' )   => array( 'osteo', 'ostéo', 'osteopathe' ),
+			talker_now_i18n( 'label.physio' )  => array( 'kine', 'kiné', 'kinesither' ),
+			talker_now_i18n( 'label.medical' ) => array( 'medecin', 'médecin', 'docteur', 'generaliste', 'généraliste' ),
+			talker_now_i18n( 'label.vet' )     => array( 'veterinaire', 'vétérinaire' ),
+			talker_now_i18n( 'label.psych' )   => array( 'psychologue', 'psychotherapie', 'psychothérapie' ),
 		);
 		foreach ( $map as $label => $needles ) {
 			foreach ( $needles as $needle ) {
@@ -1587,7 +1600,7 @@ class Talker_Now_Crawl {
 		if ( '' !== $activity ) {
 			return $activity;
 		}
-		return 'un cabinet de santé';
+		return talker_now_i18n( 'label.health' );
 	}
 
 	/**
@@ -1615,7 +1628,7 @@ class Talker_Now_Crawl {
 		if ( '' !== $activity ) {
 			return $activity;
 		}
-		return 'un artisan du bâtiment';
+		return talker_now_i18n( 'job.trade' );
 	}
 
 	/**

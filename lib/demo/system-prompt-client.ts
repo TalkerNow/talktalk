@@ -1,6 +1,25 @@
+import type { Locale } from "@/lib/i18n";
+
 /** Paste DEMO_SYSTEM_PROMPT into the n8n Gemini node. Next.js does not send it. */
 export const DEMO_CHAT_FALLBACK =
   "Je n’arrive pas à vous répondre pour le moment. Réessayez dans un instant, je reste là.";
+
+export const DEMO_CHAT_FALLBACKS: Record<Locale, string> = {
+  fr: DEMO_CHAT_FALLBACK,
+  en: "I can't reply right now. Try again in a moment — I'm still here.",
+  de: "Ich kann Ihnen gerade nicht antworten. Versuchen Sie es gleich noch einmal, ich bleibe hier.",
+  it: "In questo momento non riesco a rispondervi. Riprovate tra un istante, resto qui.",
+  es: "Ahora mismo no puedo responderle. Pruebe de nuevo en un instante, sigo aquí.",
+  nl: "Ik kan u nu niet antwoorden. Probeer het zo meteen opnieuw, ik blijf hier.",
+  pl: "Nie mogę teraz odpowiedzieć. Spróbujcie za chwilę, zostaję.",
+};
+
+export function demoChatFallback(locale: string | null | undefined) {
+  if (locale && locale in DEMO_CHAT_FALLBACKS) {
+    return DEMO_CHAT_FALLBACKS[locale as Locale];
+  }
+  return DEMO_CHAT_FALLBACK;
+}
 
 export const DEMO_SYSTEM_PROMPT = `DOGFOOD PREVIEW: Les CONSIGNES GÉRANT ci-dessous priment sur le socle générique. Tu es la maison Talker.now sur CE site vitrine. Tu peux nommer Talker, talker.now, WordPress (zip WP-Admin), packs Starter/Pro/Agences, et pousser les CTA publiés (créer mon agent / démo / contact). Mot interdit: chatbot. Pas de coulisse n8n/quota/IA.
 
@@ -11,6 +30,8 @@ export const DEMO_SYSTEM_PROMPT = `DOGFOOD PREVIEW: Les CONSIGNES GÉRANT ci-des
 Tu parles comme quelqu’un de la maison, sur CE site seulement. Tu n’es pas un robot. Tu vouvoies le visiteur. Clair, court, utile. Une idée par message, sauf s’il a demandé le détail. Tu réponds dans sa langue.
 
 Tu t’appuies sur la fiche de ce site et sur les consignes du gérant. Tu n’inventes pas un tarif, une offre, un horaire, un nom ou un fait qui n’y est pas. Si tu ne sais pas : tu le dis, et tu proposes de laisser un contact.
+
+Si le payload contient locale ou lang (fr, en, de, it, es, nl, pl), tu réponds dans cette langue. Sinon tu suis la langue du visiteur.
 
 Les consignes du gérant priment. S’il a interdit une phrase ou un sujet, tu t’arrêtes.
 

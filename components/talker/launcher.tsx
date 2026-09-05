@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import { TalkerMark } from "@/components/brand/mark";
 import { TalkerChat } from "./chat";
 import { useTalker } from "./provider";
+import { useLocale } from "@/components/i18n/locale-context";
 
 export function TalkerLauncher() {
+  const { t } = useLocale();
   const { open, openTalker, closeTalker } = useTalker();
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export function TalkerLauncher() {
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="Démo Talker"
+            aria-label={t.bubble.dialogLabel}
             className="mb-3 h-[min(70vh,560px)] w-full overflow-hidden rounded-[28px] border border-line bg-paper shadow-[0_20px_70px_rgba(22,19,16,0.16)]"
           >
             <TalkerChat onClose={closeTalker} />
@@ -41,12 +43,10 @@ export function TalkerLauncher() {
             <TalkerMark className="size-8" />
             <span className="text-left">
               <span className="block text-[15px] font-medium text-ink">
-                {open ? "Talker est ouvert" : "Talker pose les questions"}
+                {open ? t.bubble.demoOpen : t.bubble.demoClosed}
               </span>
               <span className="block text-[12px] text-muted">
-                {open
-                  ? "Répondez par choix, comme sur un site"
-                  : "La démo, c’est le produit"}
+                {open ? t.bubble.demoOpenHint : t.bubble.demoClosedHint}
               </span>
             </span>
           </span>
@@ -57,7 +57,7 @@ export function TalkerLauncher() {
             </span>
           </span>
           <span className="sr-only">
-            {open ? "Fermer Talker" : "Ouvrir Talker"}
+            {open ? t.bubble.closeTalker : t.bubble.open}
           </span>
         </button>
       </div>

@@ -12,7 +12,7 @@ const ATTRACT_ON_MS = 4000;
 const CHIP_LEAVE_MS = 220;
 
 export function TalkerLauncherBubble() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const invites = t.bubble.chips;
   const { open, openTalker, closeTalker } = useTalker();
   const [chipsPinned, setChipsPinned] = useState(false);
@@ -116,14 +116,14 @@ export function TalkerLauncherBubble() {
           ref={panelRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Talker"
+          aria-label={t.bubble.dialogLabel}
           className="fixed z-[60] w-[min(calc(100vw-2rem),380px)] h-[min(70vh,560px)] overflow-hidden rounded-2xl border border-foreground/10 bg-[#F7F6F4] shadow-[0_16px_50px_rgba(0,0,0,0.14)]"
           style={{
             right: "calc(max(1.5rem, env(safe-area-inset-right)) + 20px)",
             bottom: "calc(7.5rem + 20px + env(safe-area-inset-bottom))",
           }}
         >
-          <TalkerChat onClose={closeTalker} />
+          <TalkerChat key={locale} onClose={closeTalker} />
         </div>
       ) : null}
 

@@ -51,6 +51,14 @@ class Talker_Now_Widget {
 			true
 		);
 
+		$fr_defaults = talker_now_defaults();
+		$localized   = talker_now_defaults_for_locale();
+		foreach ( array( 'invite_1', 'invite_2', 'invite_3', 'greeting' ) as $key ) {
+			if ( $settings[ $key ] === $fr_defaults[ $key ] ) {
+				$settings[ $key ] = $localized[ $key ];
+			}
+		}
+
 		$invites = array(
 			array(
 				'id'    => ( 'free' === $plan ) ? 'talker' : 'one',
@@ -65,11 +73,17 @@ class Talker_Now_Widget {
 				'label' => $settings['invite_3'],
 			),
 		);
+
+		// FR seed stays in this file so Contrôle / QCM source checks still see it.
+		$admin_hello = 'Bonjour, vous me voyez ? je suis là, cliquez-moi.';
+		if ( function_exists( 'talker_now_i18n' ) ) {
+			$admin_hello = talker_now_i18n( 'admin.hello_chip' );
+		}
 		if ( $admin ) {
 			$invites = array(
 				array(
 					'id'    => 'hello',
-					'label' => 'Bonjour, vous me voyez ? je suis là, cliquez-moi.',
+					'label' => $admin_hello,
 				),
 			);
 		}
@@ -88,22 +102,12 @@ class Talker_Now_Widget {
 				'poweredBy' => ( ! $admin && 'free' === $plan ),
 				'showContact' => ! $admin,
 				'invites'   => $invites,
-				'i18n'      => array(
-					'title'         => wp_strip_all_tags( get_bloginfo( 'name' ) ),
-					'placeholder'   => __( 'Écrivez votre message…', 'talker-now' ),
-					'send'          => __( 'Envoyer', 'talker-now' ),
-					'close'         => __( 'Fermer', 'talker-now' ),
-					'open'          => __( 'Ouvrir la discussion', 'talker-now' ),
-					'contactHint'   => __( 'Vous pouvez laisser un nom, un e-mail ou un téléphone.', 'talker-now' ),
-					'contactToggle' => __( 'Laisser un contact', 'talker-now' ),
-					'name'          => __( 'Nom', 'talker-now' ),
-					'email'         => __( 'E-mail', 'talker-now' ),
-					'phone'         => __( 'Téléphone', 'talker-now' ),
-					'offline'        => __( 'Merci. Nous vous recontacterons.', 'talker-now' ),
-					'scanning'       => __( 'Je parcours votre site.', 'talker-now' ),
-					'scanningShort'  => __( 'Je parcours votre site…', 'talker-now' ),
-					'scanned'        => __( 'J’ai parcouru votre site, on peut commencer le QCM.', 'talker-now' ),
-					'poweredBy'      => __( 'Propulsé par talker.now', 'talker-now' ),
+				'locale'    => talker_now_locale(),
+				'i18n'      => array_merge(
+					array(
+						'title' => wp_strip_all_tags( get_bloginfo( 'name' ) ),
+					),
+					talker_now_widget_i18n()
 				),
 			)
 		);

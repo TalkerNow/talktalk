@@ -11,6 +11,7 @@ import {
 import {
   dictionaries,
   isLocale,
+  localeInfo,
   STORAGE_KEY,
   type Locale,
   type Messages,
@@ -34,7 +35,7 @@ function persistLocale(locale: Locale) {
   const url = new URL(window.location.href);
   url.searchParams.set("lang", locale);
   window.history.replaceState({}, "", url);
-  document.documentElement.lang = locale;
+  document.documentElement.lang = localeInfo[locale].htmlLang;
 }
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {

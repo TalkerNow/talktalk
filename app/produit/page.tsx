@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Navigation } from "@/components/landing/navigation";
 import { FooterSection } from "@/components/landing/footer-section";
 import { FeaturesSection } from "@/components/landing/features-section";
+import { metadataForPage } from "@/lib/i18n/metadata";
 
-export const metadata: Metadata = {
-  title: "Fonctionnalités — Talker",
-  description: "Ce qu'il faut. Rien de plus.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string | string[] }>;
+}): Promise<Metadata> {
+  return metadataForPage(searchParams, "produit");
+}
 
 export default function ProduitPage() {
   return (

@@ -2,6 +2,21 @@ import type { DemoStep } from "@/lib/content/demo";
 
 export const fr = {
   langLabel: "Langue",
+  meta: {
+    homeTitle: "Talker — Le chatbot IA qui vend à votre place",
+    homeDescription:
+      "Les IA aspirent le trafic de votre site. Talker le récupère. Un chatbot IA qui connaît votre métier, capte le numéro ou l'email de vos prospects, et s'installe en 10 minutes, sans code.",
+    produitTitle: "Fonctionnalités — Talker",
+    produitDescription: "Ce qu'il faut. Rien de plus.",
+    faqTitle: "Questions fréquentes — Talker",
+    faqDescription:
+      "Talker est un plugin WordPress. Il pose les questions à vos visiteurs et vous envoie les conversations.",
+    contactTitle: "Contact — Talker",
+    contactDescription: "Dites-nous où vous en êtes. On vous répond.",
+    installerTitle: "Télécharger Talker — talker.now",
+    installerDescription:
+      "Zip WordPress Talker, sans carte bancaire. Téléversez-le dans WP-Admin.",
+  },
   nav: {
     features: "Fonctionnalités",
     howItWorks: "Comment ça marche",
@@ -456,6 +471,11 @@ export const fr = {
     open: "Ouvrir Talker",
     close: "Fermer",
     closeTalker: "Fermer Talker",
+    dialogLabel: "Talker",
+    demoOpen: "Talker est ouvert",
+    demoClosed: "Talker pose les questions",
+    demoOpenHint: "Répondez par choix, comme sur un site",
+    demoClosedHint: "La démo, c’est le produit",
     assistant: "Talker.now",
     placeholder: "Écrivez-moi…",
     send: "Envoyer",

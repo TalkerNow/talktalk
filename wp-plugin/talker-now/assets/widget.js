@@ -532,6 +532,7 @@
         intent: "hello",
         surface: "admin",
         actor: "manager",
+        locale: cfg.locale || "",
         contact: {},
       }),
     })
@@ -589,6 +590,7 @@
       intent: intent || "message",
       surface: cfg.surface === "admin" ? "admin" : "public",
       actor: cfg.manager && cfg.surface === "admin" ? "manager" : "visitor",
+      locale: cfg.locale || "",
       contact: contactPayload(),
     };
     var fallback = isManager
@@ -714,6 +716,7 @@
             intent: "site_read",
             surface: "admin",
             actor: "manager",
+            locale: cfg.locale || "",
             contact: {},
           }),
         })

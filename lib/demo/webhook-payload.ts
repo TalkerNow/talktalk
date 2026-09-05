@@ -56,13 +56,19 @@ export function collectTurns(body: unknown): ChatTurn[] {
   return messages;
 }
 
-/** Full conversation for n8n — never last-turn-only. */
-export function buildWebhookPayload(session: string, messages: ChatTurn[]) {
+/** Full conversation for n8n — never last-turn-only. Locale steers the reply language. */
+export function buildWebhookPayload(
+  session: string,
+  messages: ChatTurn[],
+  locale = "fr",
+) {
   const lastUser = [...messages].reverse().find((turn) => turn.role === "user");
   return {
     session,
     message: lastUser?.content ?? "",
     messages,
     history: messages,
+    locale,
+    lang: locale,
   };
 }
