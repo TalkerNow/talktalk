@@ -15,7 +15,8 @@
  * Inbound auth (any one is enough):
  *   - X-WP-Nonce for action wp_rest (visitor widget + admin cookie)
  *   - logged-in REST auth (application password / cookie already accepted by WP)
- *   - X-Talker-Signature + X-Talker-Timestamp (HMAC-SHA256 of "{ts}.{raw body}" with talker_site_key)
+ *   - Talker HMAC: X-Talker-Site + Timestamp (±300s) + Nonce + Signature v1=<hex>
+ *     canon = timestamp\nnonce\nPOST\npath\nsha256_hex(rawBody)  (HMAC-SHA256 with talker_site_key)
  *
  * Outbound webhook: HTTPS only, private/link-local hosts blocked, HMAC signed. No Gemini/n8n secrets.
  *
@@ -264,35 +265,83 @@ class Talker_Now_Security {
 	}
 
 	/**
-	 * HMAC headers for the outbound webhook. Site key stays on this WordPress.
+	 * URL path used in the HMAC canon (pathname only, no scheme/host/query).
 	 *
-	 * @param string $body Exact JSON body that will be posted.
-	 * @param string|int|null $timestamp Unix seconds; default now.
+	 * @param string $url
+	 * @return string
+	 */
+	public static function signing_path( $url ) {
+		$parts = function_exists( 'wp_parse_url' ) ? wp_parse_url( $url ) : parse_url( $url );
+		$path  = ( is_array( $parts ) && isset( $parts['path'] ) ) ? (string) $parts['path'] : '';
+		return ( '' === $path ) ? '/' : $path;
+	}
+
+	/**
+	 * Ops canon: timestamp\nnonce\nPOST\npath\nsha256_hex(rawBody)
+	 *
+	 * @param string $timestamp
+	 * @param string $nonce
+	 * @param string $method
+	 * @param string $path
+	 * @param string $raw_body
+	 * @return string
+	 */
+	public static function canon_string( $timestamp, $nonce, $method, $path, $raw_body ) {
+		return (string) $timestamp . "\n" . (string) $nonce . "\n" . (string) $method . "\n" . (string) $path . "\n" . hash( 'sha256', (string) $raw_body );
+	}
+
+	/**
+	 * @return string
+	 */
+	public static function fresh_nonce() {
+		if ( function_exists( 'random_bytes' ) ) {
+			return bin2hex( random_bytes( 16 ) );
+		}
+		if ( function_exists( 'wp_generate_password' ) ) {
+			return wp_generate_password( 32, false, false );
+		}
+		return md5( uniqid( (string) mt_rand(), true ) );
+	}
+
+	/**
+	 * HMAC headers for wp_remote_post. Site key stays in WP options (never in widget JS).
+	 *
+	 * @param string          $body        Exact JSON body that will be posted.
+	 * @param string          $webhook_url Destination URL (path is signed).
+	 * @param string|int|null $timestamp   Unix seconds; default now.
+	 * @param string|null     $nonce       Opaque nonce; default random.
 	 * @return array<string, string>
 	 */
-	public static function webhook_headers( $body, $timestamp = null ) {
-		$signed = self::sign_body( (string) $body, $timestamp );
+	public static function webhook_headers( $body, $webhook_url, $timestamp = null, $nonce = null ) {
+		$signed = self::sign_webhook( (string) $body, (string) $webhook_url, $timestamp, $nonce );
 		return array(
-			'Content-Type'        => 'application/json; charset=utf-8',
-			'X-Talker-Timestamp'  => $signed['timestamp'],
-			'X-Talker-Signature'  => $signed['signature'],
-			'X-Talker-Site'       => function_exists( 'talker_now_home_url' ) ? talker_now_home_url() : '',
+			'Content-Type'       => 'application/json; charset=utf-8',
+			'X-Talker-Site'      => function_exists( 'talker_now_home_url' ) ? talker_now_home_url() : '',
+			'X-Talker-Timestamp' => $signed['timestamp'],
+			'X-Talker-Nonce'     => $signed['nonce'],
+			'X-Talker-Signature' => $signed['signature'],
 		);
 	}
 
 	/**
-	 * @param string $body
+	 * @param string          $body
+	 * @param string          $webhook_url
 	 * @param string|int|null $timestamp
-	 * @return array{timestamp: string, signature: string, payload: string}
+	 * @param string|null     $nonce
+	 * @return array{timestamp: string, nonce: string, path: string, canon: string, signature: string}
 	 */
-	public static function sign_body( $body, $timestamp = null ) {
-		$ts  = null === $timestamp ? (string) time() : (string) $timestamp;
-		$key = self::get_site_key();
-		$sig = hash_hmac( 'sha256', $ts . '.' . (string) $body, $key );
+	public static function sign_webhook( $body, $webhook_url, $timestamp = null, $nonce = null ) {
+		$ts    = null === $timestamp ? (string) time() : (string) $timestamp;
+		$nonce = null === $nonce || '' === $nonce ? self::fresh_nonce() : (string) $nonce;
+		$path  = self::signing_path( $webhook_url );
+		$canon = self::canon_string( $ts, $nonce, 'POST', $path, (string) $body );
+		$sig   = hash_hmac( 'sha256', $canon, self::get_site_key() );
 		return array(
 			'timestamp' => $ts,
-			'signature' => 'sha256=' . $sig,
-			'payload'   => $ts . '.' . (string) $body,
+			'nonce'     => $nonce,
+			'path'      => $path,
+			'canon'     => $canon,
+			'signature' => 'v1=' . $sig,
 		);
 	}
 
@@ -304,9 +353,10 @@ class Talker_Now_Security {
 		if ( ! is_object( $request ) || ! method_exists( $request, 'get_header' ) ) {
 			return false;
 		}
-		$sig = (string) $request->get_header( 'X-Talker-Signature' );
-		$ts  = (string) $request->get_header( 'X-Talker-Timestamp' );
-		if ( '' === $sig || '' === $ts || ! ctype_digit( $ts ) ) {
+		$sig   = (string) $request->get_header( 'X-Talker-Signature' );
+		$ts    = (string) $request->get_header( 'X-Talker-Timestamp' );
+		$nonce = (string) $request->get_header( 'X-Talker-Nonce' );
+		if ( '' === $sig || '' === $ts || '' === $nonce || ! ctype_digit( $ts ) ) {
 			return false;
 		}
 		$skew = max( 30, (int) TALKER_NOW_SIGN_SKEW );
@@ -318,12 +368,36 @@ class Talker_Now_Security {
 		if ( strlen( $key ) < 32 ) {
 			return false;
 		}
+		$path     = self::incoming_request_path( $request );
+		$canon    = self::canon_string( $ts, $nonce, 'POST', $path, $body );
+		$expected = 'v1=' . hash_hmac( 'sha256', $canon, $key );
 		$provided = $sig;
-		if ( 0 !== stripos( $provided, 'sha256=' ) ) {
-			$provided = 'sha256=' . $provided;
+		if ( 0 !== stripos( $provided, 'v1=' ) ) {
+			$provided = 'v1=' . $provided;
 		}
-		$expected = 'sha256=' . hash_hmac( 'sha256', $ts . '.' . $body, $key );
 		return hash_equals( $expected, $provided );
+	}
+
+	/**
+	 * Path the inbound client signed: /wp-json + REST route, or REQUEST_URI pathname.
+	 *
+	 * @param WP_REST_Request|object $request
+	 * @return string
+	 */
+	public static function incoming_request_path( $request ) {
+		if ( is_object( $request ) && method_exists( $request, 'get_route' ) ) {
+			$route  = (string) $request->get_route();
+			$prefix = function_exists( 'rest_get_url_prefix' ) ? (string) rest_get_url_prefix() : 'wp-json';
+			$prefix = '/' . trim( $prefix, '/' );
+			if ( '' !== $route && '/' !== substr( $route, 0, 1 ) ) {
+				$route = '/' . $route;
+			}
+			return $prefix . $route;
+		}
+		if ( ! empty( $_SERVER['REQUEST_URI'] ) ) {
+			return self::signing_path( 'https://local.example' . (string) $_SERVER['REQUEST_URI'] );
+		}
+		return '/';
 	}
 
 	/**

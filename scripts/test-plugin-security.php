@@ -85,6 +85,7 @@ class WP_Error {
 class TN_Request_Stub {
 	public $headers = array();
 	public $body    = '';
+	public $route   = '/talker/v1/message';
 	public function get_header( $name ) {
 		$key = strtolower( (string) $name );
 		return isset( $this->headers[ $key ] ) ? $this->headers[ $key ] : '';
@@ -92,6 +93,13 @@ class TN_Request_Stub {
 	public function get_body() {
 		return $this->body;
 	}
+	public function get_route() {
+		return $this->route;
+	}
+}
+
+function rest_get_url_prefix() {
+	return 'wp-json';
 }
 
 require dirname( __DIR__ ) . '/wp-plugin/talker-now/includes/class-security.php';
@@ -140,36 +148,57 @@ tn_assert( Talker_Now_Security::ip_is_blocked( '127.0.0.1' ), "loopback IPv4 is 
 tn_assert( Talker_Now_Security::host_is_blocked( 'localhost' ), "localhost hostname is blocked" );
 
 $body = '{"message":"ping","actor":"visitor"}';
-$signed = Talker_Now_Security::sign_body( $body, '1700000000' );
-tn_assert( 0 === strpos( $signed['signature'], 'sha256=' ), "signature uses sha256= prefix" );
-$again = Talker_Now_Security::sign_body( $body, '1700000000' );
-tn_assert( $signed['signature'] === $again['signature'], "HMAC is deterministic" );
-$headers = Talker_Now_Security::webhook_headers( $body, '1700000000' );
-tn_assert( $headers['X-Talker-Timestamp'] === '1700000000' && $headers['X-Talker-Signature'] === $signed['signature'], "outbound webhook headers carry HMAC" );
-tn_assert( false !== strpos( $headers['X-Talker-Site'], 'site.example' ), "outbound headers include site URL" );
+$hook = 'https://hooks.example.com/talker';
+tn_assert( '/talker' === Talker_Now_Security::signing_path( $hook ), "signing path is webhook pathname" );
+tn_assert( '/' === Talker_Now_Security::signing_path( 'https://hooks.example.com' ), "empty pathname signs as /" );
 
-$req = new TN_Request_Stub();
-$req->body = $body;
-$req->headers = array(
-	'x-talker-timestamp' => (string) time(),
-	'x-talker-signature' => Talker_Now_Security::sign_body( $body, $req->headers['x-talker-timestamp'] = (string) time() )['signature'],
+$signed = Talker_Now_Security::sign_webhook( $body, $hook, '1700000000', 'n1' );
+$canon  = Talker_Now_Security::canon_string( '1700000000', 'n1', 'POST', '/talker', $body );
+$expect = 'v1=' . hash_hmac( 'sha256', $canon, $key );
+tn_assert( $signed['canon'] === $canon, "canon is timestamp\\nnonce\\nPOST\\npath\\nsha256(body)" );
+tn_assert( $signed['signature'] === $expect && 0 === strpos( $signed['signature'], 'v1=' ), "signature uses v1= prefix" );
+$again = Talker_Now_Security::sign_webhook( $body, $hook, '1700000000', 'n1' );
+tn_assert( $signed['signature'] === $again['signature'], "HMAC is deterministic for same nonce" );
+$headers = Talker_Now_Security::webhook_headers( $body, $hook, '1700000000', 'n1' );
+tn_assert(
+	$headers['X-Talker-Timestamp'] === '1700000000'
+	&& $headers['X-Talker-Nonce'] === 'n1'
+	&& $headers['X-Talker-Signature'] === $signed['signature']
+	&& false !== strpos( $headers['X-Talker-Site'], 'site.example' ),
+	"outbound webhook headers: Site, Timestamp, Nonce, Signature v1="
 );
-$req->headers['x-talker-signature'] = Talker_Now_Security::sign_body( $body, $req->headers['x-talker-timestamp'] )['signature'];
+
+$in_path = '/wp-json/talker/v1/message';
+$in_ts   = (string) time();
+$in_n    = 'in-nonce-1';
+$in_sig  = Talker_Now_Security::sign_webhook( $body, 'https://site.example' . $in_path, $in_ts, $in_n );
+$req     = new TN_Request_Stub();
+$req->body    = $body;
+$req->headers = array(
+	'x-talker-timestamp' => $in_ts,
+	'x-talker-nonce'     => $in_n,
+	'x-talker-signature' => $in_sig['signature'],
+	'x-talker-site'      => 'https://site.example/',
+);
 tn_assert( Talker_Now_Security::verify_incoming_signature( $req ), "valid HMAC is accepted" );
 
-$stale = new TN_Request_Stub();
-$stale->body = $body;
+$stale_ts  = (string) ( time() - 800 );
+$stale_sig = Talker_Now_Security::sign_webhook( $body, 'https://site.example' . $in_path, $stale_ts, $in_n );
+$stale     = new TN_Request_Stub();
+$stale->body    = $body;
 $stale->headers = array(
-	'x-talker-timestamp' => (string) ( time() - 800 ),
-	'x-talker-signature' => Talker_Now_Security::sign_body( $body, (string) ( time() - 800 ) )['signature'],
+	'x-talker-timestamp' => $stale_ts,
+	'x-talker-nonce'     => $in_n,
+	'x-talker-signature' => $stale_sig['signature'],
 );
 tn_assert( ! Talker_Now_Security::verify_incoming_signature( $stale ), "stale HMAC timestamp is rejected" );
 
 $bad = new TN_Request_Stub();
-$bad->body = $body;
+$bad->body    = $body;
 $bad->headers = array(
-	'x-talker-timestamp' => (string) time(),
-	'x-talker-signature' => 'sha256=deadbeef',
+	'x-talker-timestamp' => $in_ts,
+	'x-talker-nonce'     => $in_n,
+	'x-talker-signature' => 'v1=deadbeef',
 );
 tn_assert( ! Talker_Now_Security::verify_incoming_signature( $bad ), "wrong HMAC is rejected" );
 tn_assert( ! Talker_Now_Security::verify_incoming_signature( new TN_Request_Stub() ), "missing signature is rejected" );
@@ -230,10 +259,11 @@ tn_assert( false !== strpos( $rest_src, 'wp_safe_remote_post' ), "webhook uses w
 tn_assert( false !== strpos( $rest_src, 'webhook_url_is_allowed' ), "webhook URL is validated before POST" );
 tn_assert( false !== strpos( $rest_src, 'Laissez votre nom' ) && false !== strpos( $rest_src, 'Merci. Nous vous recontacterons.' ), "French stub still used when webhook empty/unsafe" );
 tn_assert( false !== strpos( $rest_src, 'manager_message' ) && false !== strpos( $rest_src, 'site_read' ), "gérant QCM path still in REST" );
-tn_assert( false !== strpos( $boot_src, 'class-security.php' ) && false !== strpos( $boot_src, '0.1.13' ), "boot loads security class and bumps version" );
+tn_assert( false !== strpos( $boot_src, 'class-security.php' ) && false !== strpos( $boot_src, '0.1.14' ), "boot loads security class and bumps version" );
 tn_assert( false !== strpos( $boot_src, 'ensure_site_key' ), "activation/boot ensures site key" );
 tn_assert( false !== strpos( $uninstall, 'talker_site_key' ), "uninstall deletes talker_site_key" );
-tn_assert( false !== strpos( $widget_php, "wp_create_nonce( 'wp_rest' )" ), "widget still localizes wp_rest nonce" );
+tn_assert( false !== strpos( $widget_php, "wp_create_nonce( 'wp_rest' )" ) && false === strpos( $widget_php, 'talker_site_key' ) && false === strpos( $widget_js, 'talker_site_key' ), "widget still localizes wp_rest nonce; site key stays server-side" );
+tn_assert( false !== strpos( $rest_src, 'webhook_headers( $json, $webhook )' ), "REST signs outbound with webhook URL path" );
 tn_assert( false !== strpos( $widget_js, 'X-WP-Nonce' ) && false !== strpos( $widget_js, 'function parseRest' ), "widget still sends nonce and handles 429" );
 tn_assert( false !== strpos( $widget_js, 'intent: "site_read"' ) && false !== strpos( $widget_js, 'intent: "hello"' ), "gérant site_read + hello fetches unchanged" );
 

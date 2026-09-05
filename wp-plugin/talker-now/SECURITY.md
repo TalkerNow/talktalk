@@ -10,7 +10,7 @@ Thin client. No Gemini, n8n, or vendor secrets in this zip. `webhook_url` stays 
 | Rate limit per IP + per site (transients) | `Talker_Now_Security::consume_rate_limit` |
 | Webhook HTTPS + block private / link-local / reserved IPs | `Talker_Now_Security::webhook_url_is_allowed` |
 | `talker_site_key` on activate / first boot | `Talker_Now_Security::ensure_site_key` |
-| Outbound HMAC `X-Talker-Signature` | `Talker_Now_Security::webhook_headers` |
+| Outbound HMAC `v1=` (ops contract 2026-09-05) | `Talker_Now_Security::webhook_headers` |
 
 `permission_callback` is **not** `__return_true`. The widget already sends `X-WP-Nonce` (`wp_rest`).
 
@@ -32,13 +32,22 @@ Empty or rejected `webhook_url` → French stub, HTTP 200. Invalid webhook is ne
 
 ### Outbound signature (backend must reject unsigned)
 
+Headers on `wp_safe_remote_post`:
+
 ```
-X-Talker-Timestamp: <unix seconds>
-X-Talker-Signature: sha256=<hex>
 X-Talker-Site: <home_url>
+X-Talker-Timestamp: <unix seconds>   # backend: reject |now - ts| > 300
+X-Talker-Nonce: <opaque per request>
+X-Talker-Signature: v1=<hex>
 ```
 
-`hex = HMAC_SHA256( site_key, "{timestamp}.{raw_json_body}" )`. Option: `talker_site_key`. Allowlist later: `talker_now_webhook_url_is_allowed`.
+Canon (exact, LF newlines) signed with HMAC-SHA256(`talker_site_key`):
+
+```
+timestamp\nnonce\nPOST\npath\nsha256_hex(rawBody)
+```
+
+`path` is the webhook URL pathname only (`https://hooks.example.com/talker` → `/talker`). `talker_site_key` is generated in PHP on activate / first boot (`Talker_Now_Security::ensure_site_key`) and stored as WP option `talker_site_key`. Never localized into widget JS. Allowlist later: `talker_now_webhook_url_is_allowed`.
 
 ## Cap'tain — verify
 
@@ -69,21 +78,31 @@ done
 
 Unauthenticated hits still consume the IP/site buckets. After the hard cap: `429` and `"code":"talker_rate_limited"`. Default hard is 90/min/IP — lower `TALKER_NOW_RATE_HARD` to see it quickly.
 
-### HMAC (outbound / inbound)
+### HMAC (inbound verify curl — same canon as outbound)
 
 ```bash
 # After activate: wp option get talker_site_key
 # Unsigned webhook posts must be rejected by the Talker backend.
-# Signed inbound (optional, same formula as outbound):
+
+SITE_KEY="$(wp option get talker_site_key)"
 TS=$(date +%s)
+NONCE=$(openssl rand -hex 16)
 BODY='{"message":"ping","actor":"visitor"}'
-SIG=$(printf '%s' "$TS.$BODY" | openssl dgst -sha256 -hmac "$SITE_KEY" | awk '{print $NF}')
-curl -sD - -X POST "$SITE/wp-json/talker/v1/message" \
+PATH_PART="/wp-json/talker/v1/message"
+BODY_HASH=$(printf '%s' "$BODY" | openssl dgst -sha256 | awk '{print $NF}')
+CANON=$(printf '%s\n%s\nPOST\n%s\n%s' "$TS" "$NONCE" "$PATH_PART" "$BODY_HASH")
+SIG=$(printf '%s' "$CANON" | openssl dgst -sha256 -hmac "$SITE_KEY" | awk '{print $NF}')
+
+curl -sD - -X POST "$SITE$PATH_PART" \
   -H "Content-Type: application/json" \
+  -H "X-Talker-Site: $SITE/" \
   -H "X-Talker-Timestamp: $TS" \
-  -H "X-Talker-Signature: sha256=$SIG" \
+  -H "X-Talker-Nonce: $NONCE" \
+  -H "X-Talker-Signature: v1=$SIG" \
   -d "$BODY"
 ```
+
+Missing `X-Talker-Signature` / nonce / WP nonce → 401 `talker_rest_forbidden`.
 
 ### Offline (no WordPress)
 

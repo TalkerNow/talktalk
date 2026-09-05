@@ -4,7 +4,7 @@
  *
  * Controls (see includes/class-security.php and SECURITY.md):
  *   TALKER_NOW_RATE_WINDOW / _SOFT / _HARD / _SITE_SOFT / _SITE_HARD / _SOFT_SLEEP
- *   Auth: X-WP-Nonce (wp_rest) | application password | X-Talker-Signature
+ *   Auth: X-WP-Nonce (wp_rest) | application password | X-Talker-Signature v1=
  *   Webhook: HTTPS + no private IPs + HMAC with talker_site_key
  *
  * @package TalkerNow
@@ -110,7 +110,7 @@ class Talker_Now_REST {
 			array(
 				'timeout'     => 12,
 				'redirection' => 3,
-				'headers'     => Talker_Now_Security::webhook_headers( $json ),
+				'headers'     => Talker_Now_Security::webhook_headers( $json, $webhook ),
 				'body'        => $json,
 			)
 		);
