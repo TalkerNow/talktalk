@@ -11,3 +11,4 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 delete_option( 'talker_now_settings' );
 delete_option( 'talker_now_crawl' );
+delete_option( 'talker_site_key' );
