@@ -18,8 +18,9 @@ export const fr = {
     titleAfter: "à votre place",
     phrases: [
       "vend",
-      "parle de votre métier",
+      "décrit vos prestations",
       "donne vos tarifs",
+      "parle de votre métier",
       "récupère le numéro",
       "capte l'email",
       "demande des avis Google",
