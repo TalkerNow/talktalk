@@ -189,10 +189,12 @@ export function TalkerLauncherBubble() {
               closeTalker();
               return;
             }
-            setChipsPinned((pinned) => !pinned);
+            setChipsPinned(false);
+            setHovered(false);
+            openTalker();
           }}
           aria-label={t.bubble.open}
-          aria-expanded={open || chipsShown}
+          aria-expanded={open}
           className="pointer-events-auto relative z-10 flex size-[80px] cursor-pointer items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
         >
           <span
