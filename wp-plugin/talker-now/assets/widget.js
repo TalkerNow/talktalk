@@ -19,6 +19,19 @@
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  function parseRest(res) {
+    if (res && res.status === 429) {
+      return Promise.resolve({
+        code: "talker_rate_limited",
+        visual: "scan",
+        crawl: "running",
+      });
+    }
+    return res.json().catch(function () {
+      return {};
+    });
+  }
+
   function sessionId() {
     try {
       var existing = window.sessionStorage.getItem(SESSION_KEY);
@@ -535,11 +548,7 @@
         contact: {},
       }),
     })
-      .then(function (res) {
-        return res.json().catch(function () {
-          return {};
-        });
-      })
+      .then(parseRest)
       .then(function (data) {
         managerHelloBusy = false;
         rememberCrawl(data && data.crawl);
@@ -618,11 +627,7 @@
       },
       body: JSON.stringify(body),
     })
-      .then(function (res) {
-        return res.json().catch(function () {
-          return {};
-        });
-      })
+      .then(parseRest)
       .then(function (data) {
         var reply =
           (data && (data.reply || data.question || data.message || data.text)) ||
@@ -717,11 +722,7 @@
             contact: {},
           }),
         })
-          .then(function (res) {
-            return res.json().catch(function () {
-              return {};
-            });
-          })
+          .then(parseRest)
           .then(function (data) {
             rememberCrawl(data && data.crawl);
           })

@@ -1,4 +1,14 @@
 <?php
+/**
+ * POST talker/v1/message — visitor stub or signed webhook; gérant QCM unchanged.
+ *
+ * Controls (see includes/class-security.php and SECURITY.md):
+ *   TALKER_NOW_RATE_WINDOW / _SOFT / _HARD / _SITE_SOFT / _SITE_HARD / _SOFT_SLEEP
+ *   Auth: X-WP-Nonce (wp_rest) | application password | X-Talker-Signature v1=
+ *   Webhook: HTTPS + no private IPs + HMAC with talker_site_key
+ *
+ * @package TalkerNow
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -16,7 +26,7 @@ class Talker_Now_REST {
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( __CLASS__, 'message' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( 'Talker_Now_Security', 'can_message' ),
 			)
 		);
 	}
@@ -66,7 +76,7 @@ class Talker_Now_REST {
 			'sent_at'     => gmdate( 'c' ),
 		);
 
-		$webhook = $settings['webhook_url'];
+		$webhook = isset( $settings['webhook_url'] ) ? trim( (string) $settings['webhook_url'] ) : '';
 		if ( '' === $webhook ) {
 			return new WP_REST_Response(
 				array(
@@ -76,14 +86,32 @@ class Talker_Now_REST {
 			);
 		}
 
-		$response = wp_remote_post(
+		if ( ! Talker_Now_Security::webhook_url_is_allowed( $webhook ) ) {
+			return new WP_REST_Response(
+				array(
+					'reply' => self::stub_reply( $contact_clean, $message ),
+				),
+				200
+			);
+		}
+
+		$json = wp_json_encode( $payload );
+		if ( ! is_string( $json ) || '' === $json ) {
+			return new WP_REST_Response(
+				array(
+					'reply' => self::stub_reply( $contact_clean, $message ),
+				),
+				200
+			);
+		}
+
+		$response = wp_safe_remote_post(
 			$webhook,
 			array(
-				'timeout' => 12,
-				'headers' => array(
-					'Content-Type' => 'application/json; charset=utf-8',
-				),
-				'body'    => wp_json_encode( $payload ),
+				'timeout'     => 12,
+				'redirection' => 3,
+				'headers'     => Talker_Now_Security::webhook_headers( $json, $webhook ),
+				'body'        => $json,
 			)
 		);
 

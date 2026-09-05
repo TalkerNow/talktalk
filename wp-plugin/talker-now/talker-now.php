@@ -3,7 +3,7 @@
  * Plugin Name: Talker
  * Plugin URI: https://talker.now
  * Description: L’agent qui répond sur votre site WordPress. Zip, sans carte, sans WordPress.org.
- * Version: 0.1.12
+ * Version: 0.1.14
  * Author: Talker
  * Author URI: https://talker.now
  * Text Domain: talker-now
@@ -15,12 +15,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TALKER_NOW_VERSION', '0.1.12' );
+define( 'TALKER_NOW_VERSION', '0.1.14' );
 define( 'TALKER_NOW_FILE', __FILE__ );
 define( 'TALKER_NOW_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TALKER_NOW_URL', plugin_dir_url( __FILE__ ) );
 define( 'TALKER_NOW_OPTION', 'talker_now_settings' );
+define( 'TALKER_NOW_SITE_KEY_OPTION', 'talker_site_key' );
 
+require_once TALKER_NOW_DIR . 'includes/class-security.php';
 require_once TALKER_NOW_DIR . 'includes/class-crawl.php';
 require_once TALKER_NOW_DIR . 'includes/class-rest.php';
 require_once TALKER_NOW_DIR . 'includes/class-widget.php';
@@ -101,7 +103,18 @@ function talker_now_site_read() {
 	return apply_filters( 'talker_now_site_read', $data );
 }
 
+/**
+ * Per-site HMAC key. Generated on activate / first boot. Never a form field.
+ * Not a Gemini or n8n secret. Backend rejects unsigned webhook posts.
+ *
+ * @return string
+ */
+function talker_now_get_site_key() {
+	return Talker_Now_Security::get_site_key();
+}
+
 function talker_now_boot() {
+	Talker_Now_Security::ensure_site_key();
 	Talker_Now_REST::init();
 	Talker_Now_Widget::init();
 }
@@ -113,5 +126,6 @@ register_activation_hook(
 		if ( false === get_option( TALKER_NOW_OPTION, false ) ) {
 			add_option( TALKER_NOW_OPTION, talker_now_defaults() );
 		}
+		Talker_Now_Security::ensure_site_key();
 	}
 );
