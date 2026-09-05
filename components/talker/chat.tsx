@@ -96,7 +96,7 @@ function DemoLlmChat({
   onClose?: () => void;
   variant: "panel" | "window";
 }) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const [messages, setMessages] = useState<Message[]>([
     { id: "m0", from: "bot", text: t.bubble.opener },
   ]);
@@ -166,6 +166,8 @@ function DemoLlmChat({
           message: value,
           messages: turns,
           history: turns,
+          locale,
+          lang: locale,
         }),
       });
 

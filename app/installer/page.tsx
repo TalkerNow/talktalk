@@ -4,12 +4,15 @@ import { FooterSection } from "@/components/landing/footer-section";
 import { InstallerPanel } from "@/components/landing/installer-panel";
 import { TalkerLauncherBubble } from "@/components/landing/talker-launcher-bubble";
 import { TalkerProvider } from "@/components/talker/provider";
+import { metadataForPage } from "@/lib/i18n/metadata";
 
-export const metadata: Metadata = {
-  title: "Télécharger Talker — talker.now",
-  description:
-    "Zip WordPress Talker, sans carte bancaire. Téléversez-le dans WP-Admin.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string | string[] }>;
+}): Promise<Metadata> {
+  return metadataForPage(searchParams, "installer");
+}
 
 export default function InstallerPage() {
   return (

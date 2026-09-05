@@ -2,47 +2,22 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "./locale-context";
-import type { Locale } from "@/lib/i18n";
-
-function FlagFR({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 3 2" className={className} aria-hidden preserveAspectRatio="none">
-      <rect width="1" height="2" fill="#002395" />
-      <rect x="1" width="1" height="2" fill="#FFFFFF" />
-      <rect x="2" width="1" height="2" fill="#ED2939" />
-    </svg>
-  );
-}
-
-function FlagUK({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 3 2" className={className} aria-hidden preserveAspectRatio="none">
-      <rect width="3" height="2" fill="#012169" />
-      <path d="M0,0 L3,2 M3,0 L0,2" stroke="#FFFFFF" strokeWidth="0.36" />
-      <path d="M0,0 L3,2 M3,0 L0,2" stroke="#C8102E" strokeWidth="0.12" />
-      <path d="M1.5,0 V2 M0,1 H3" stroke="#FFFFFF" strokeWidth="0.6" />
-      <path d="M1.5,0 V2 M0,1 H3" stroke="#C8102E" strokeWidth="0.36" />
-    </svg>
-  );
-}
-
-const options: { locale: Locale; Flag: typeof FlagFR; label: string }[] = [
-  { locale: "en", Flag: FlagUK, label: "English" },
-  { locale: "fr", Flag: FlagFR, label: "Français" },
-];
+import { localeFlags } from "./flags";
+import { locales, localeInfo, type Locale } from "@/lib/i18n";
 
 function MenuSwitcher() {
   const { locale, t, setLocale } = useLocale();
 
   return (
-    <div className="flex items-center gap-3" role="group" aria-label={t.langLabel}>
-      {options.map(({ locale: value, Flag, label }) => {
+    <div className="flex flex-wrap items-center gap-3" role="group" aria-label={t.langLabel}>
+      {locales.map((value) => {
+        const Flag = localeFlags[value];
         const active = locale === value;
         return (
           <button
             key={value}
             type="button"
-            aria-label={label}
+            aria-label={localeInfo[value].label}
             aria-pressed={active}
             onClick={() => setLocale(value)}
             className={`relative inline-flex items-center justify-center bg-transparent p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17] ${
@@ -65,7 +40,7 @@ function NavSwitcher() {
   const [open, setOpen] = useState(false);
   const [pinned, setPinned] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
-  const TriggerFlag = locale === "en" ? FlagUK : FlagFR;
+  const TriggerFlag = localeFlags[locale];
 
   const close = () => {
     setOpen(false);
@@ -117,25 +92,28 @@ function NavSwitcher() {
           aria-label={t.langLabel}
           className="absolute left-0 top-full z-50 pointer-events-auto before:absolute before:-top-2 before:right-0 before:left-0 before:h-2 before:content-['']"
         >
-          <div className="min-w-[7.5rem] border border-foreground/12 bg-[#F7F6F4] py-1 shadow-[0_8px_24px_rgba(0,0,0,0.08)]">
-            {options.map(({ locale: value, Flag, label }) => (
-              <button
-                key={value}
-                type="button"
-                role="option"
-                aria-selected={locale === value}
-                onClick={() => {
-                  setLocale(value);
-                  close();
-                }}
-                className={`flex w-full items-center gap-2 px-2.5 py-1.5 text-left text-[12px] transition-colors hover:bg-foreground/5 ${
-                  locale === value ? "text-foreground" : "text-foreground/70"
-                }`}
-              >
-                <Flag className="h-4 w-6 shrink-0" />
-                {label}
-              </button>
-            ))}
+          <div className="min-w-[9.5rem] border border-foreground/12 bg-[#F7F6F4] py-1 shadow-[0_8px_24px_rgba(0,0,0,0.08)]">
+            {locales.map((value: Locale) => {
+              const Flag = localeFlags[value];
+              return (
+                <button
+                  key={value}
+                  type="button"
+                  role="option"
+                  aria-selected={locale === value}
+                  onClick={() => {
+                    setLocale(value);
+                    close();
+                  }}
+                  className={`flex w-full items-center gap-2 px-2.5 py-1.5 text-left text-[12px] transition-colors hover:bg-foreground/5 ${
+                    locale === value ? "text-foreground" : "text-foreground/70"
+                  }`}
+                >
+                  <Flag className="h-4 w-6 shrink-0" />
+                  {localeInfo[value].label}
+                </button>
+              );
+            })}
           </div>
         </div>
       ) : null}

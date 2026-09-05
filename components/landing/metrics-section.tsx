@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useLocale } from "@/components/i18n/locale-context";
+import { localeInfo } from "@/lib/i18n";
 
 function AnimatedCounter({ end, suffix = "", prefix = "" }: { end: number; suffix?: string; prefix?: string }) {
   const [count, setCount] = useState(0);
@@ -94,7 +95,7 @@ export function MetricsSection() {
               {t.metrics.live}
             </span>
             <span className="text-foreground/30">|</span>
-            <span>{time.toLocaleTimeString(locale === "en" ? "en-GB" : "fr-FR")}</span>
+            <span>{time.toLocaleTimeString(localeInfo[locale].bcp47)}</span>
           </div>
         </div>
         

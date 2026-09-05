@@ -3,6 +3,21 @@ import type { Messages } from "./fr";
 
 export const en = {
   langLabel: "Language",
+  meta: {
+    homeTitle: "Talker — The AI chatbot that sells so you don't have to",
+    homeDescription:
+      "Search and AI answer first. Talker brings the visit back. An AI agent that knows your business, captures phone or email, and is live in 10 minutes. No code.",
+    produitTitle: "Features — Talker",
+    produitDescription: "What you need. Nothing extra.",
+    faqTitle: "Frequently asked questions — Talker",
+    faqDescription:
+      "Talker is a WordPress plugin. It asks your visitors the questions and sends you the conversations.",
+    contactTitle: "Contact — Talker",
+    contactDescription: "Tell us where you are. We'll get back to you.",
+    installerTitle: "Download Talker — talker.now",
+    installerDescription:
+      "Talker WordPress zip, no credit card. Upload it in WP-Admin.",
+  },
   nav: {
     features: "Features",
     howItWorks: "How it works",
@@ -153,7 +168,7 @@ export const en = {
     titleMuted: "Your site, live with AI.",
     createAgent: "Start for free",
     assistantName: "Marie",
-    assistantRole: "Mon entreprise",
+    assistantRole: "My company",
     close: "Close",
     placeholder: "Type a message...",
     poweredBy: "Powered by talker.now",
@@ -341,14 +356,14 @@ export const en = {
       ariaLabel:
         "Demo: a conversation, downloading talker-now.zip, then installing it in WP-Admin.",
       assistantName: "Marie",
-      assistantRole: "Mon entreprise",
+      assistantRole: "My company",
       poweredBy: "Powered by talker.now",
-      greeting: "Bonjour, une question sur Talker Now ?",
+      greeting: "Hi — a question about Talker Now?",
       chipTalker: "Talker Now",
       chipQuestion: "Ask a question",
-      userMessage: "Oui je veux l’installer.",
+      userMessage: "Yes, I want to install it.",
       botReply:
-        "OK facile, vous téléchargez le zip et vous le déposez dans Ajouter une extension (ou plugin) sur votre WordPress.",
+        "Easy: download the zip and drop it on Add Plugin in your WordPress.",
       compose: "Write a message…",
       tab: "talker.now",
       address: "talker.now",
@@ -360,13 +375,13 @@ export const en = {
       downloadYes: "Yes",
       downloadNo: "No",
       downloadSaved: "Saved to Downloads",
-      liveHost: "mon-entreprise.fr",
-      liveTab: "Mon entreprise",
-      liveTitle: "Mon entreprise",
+      liveHost: "my-company.com",
+      liveTab: "My company",
+      liveTitle: "My company",
       liveHome: "Home",
-      liveNav: ["Home", "Rates", "Interventions", "Contact"],
+      liveNav: ["Home", "Rates", "Call-outs", "Contact"],
       liveEyebrow: "On-site service · Greater Paris",
-      liveHeading: "Welcome to Mon entreprise",
+      liveHeading: "Welcome to My company",
       liveBody:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident — contact Marie for an intervention.",
       liveFooter:
@@ -452,6 +467,11 @@ export const en = {
     open: "Open Talker",
     close: "Close",
     closeTalker: "Close Talker",
+    dialogLabel: "Talker",
+    demoOpen: "Talker is open",
+    demoClosed: "Talker asks the questions",
+    demoOpenHint: "Answer by choice, like on a live site",
+    demoClosedHint: "The demo is the product",
     assistant: "Talker.now",
     placeholder: "Write to me…",
     send: "Send",

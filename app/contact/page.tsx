@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Navigation } from "@/components/landing/navigation";
 import { FooterSection } from "@/components/landing/footer-section";
 import { ContactPanel } from "@/components/landing/contact-panel";
+import { metadataForPage } from "@/lib/i18n/metadata";
 
-export const metadata: Metadata = {
-  title: "Contact — Talker",
-  description: "Dites-nous où vous en êtes. On vous répond.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string | string[] }>;
+}): Promise<Metadata> {
+  return metadataForPage(searchParams, "contact");
+}
 
 export default function ContactPage() {
   return (

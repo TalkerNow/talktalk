@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import { Navigation } from "@/components/landing/navigation";
 import { FooterSection } from "@/components/landing/footer-section";
 import { FaqList } from "@/components/landing/faq-list";
+import { metadataForPage } from "@/lib/i18n/metadata";
 
-export const metadata: Metadata = {
-  title: "Questions fréquentes — Talker",
-  description:
-    "Talker est un plugin WordPress. Il pose les questions à vos visiteurs et vous envoie les conversations.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string | string[] }>;
+}): Promise<Metadata> {
+  return metadataForPage(searchParams, "faq");
+}
 
 export default function FaqPage() {
   return (

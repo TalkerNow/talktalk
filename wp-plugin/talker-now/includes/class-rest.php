@@ -4,6 +4,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! function_exists( 'talker_now_i18n' ) ) {
+	require_once dirname( __FILE__ ) . '/class-i18n.php';
+}
+
 class Talker_Now_REST {
 	public static function init() {
 		add_action( 'rest_api_init', array( __CLASS__, 'routes' ) );
@@ -54,7 +58,8 @@ class Talker_Now_REST {
 
 		$settings = talker_now_get_settings();
 		$site     = talker_now_home_url();
-		$payload  = array(
+		$locale  = isset( $body['locale'] ) ? talker_now_normalize_locale( (string) $body['locale'] ) : talker_now_locale();
+		$payload = array(
 			'site'        => $site,
 			'site_id'     => wp_hash( $site ),
 			'admin_email' => talker_now_admin_email(),
@@ -63,6 +68,8 @@ class Talker_Now_REST {
 			'intent'      => $intent,
 			'actor'       => 'visitor',
 			'contact'     => $contact_clean,
+			'locale'      => $locale,
+			'lang'        => $locale,
 			'sent_at'     => gmdate( 'c' ),
 		);
 
@@ -172,11 +179,11 @@ class Talker_Now_REST {
 	private static function stub_reply( $contact, $message ) {
 		$has_contact = '' !== $contact['email'] || '' !== $contact['phone'] || '' !== $contact['name'];
 		if ( $has_contact ) {
-			return 'Merci. Nous vous recontacterons.';
+			return talker_now_i18n( 'visitor.stub_thanks' );
 		}
 		if ( '' !== trim( (string) $message ) ) {
-			return 'Bien reçu. Laissez votre nom et un e-mail ou un téléphone, nous vous recontacterons.';
+			return talker_now_i18n( 'visitor.stub_message' );
 		}
-		return 'Laissez votre nom et un moyen de vous joindre, nous vous recontacterons.';
+		return talker_now_i18n( 'visitor.stub_empty' );
 	}
 }
