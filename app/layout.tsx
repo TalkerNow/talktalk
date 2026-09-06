@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import { LocaleProvider } from "@/components/i18n/locale-context";
+import {
+  VERCEL_IP_COUNTRY_HEADER,
+  localeFromCountry,
+} from "@/lib/i18n";
 import "./globals.css";
 
 const inter = Inter({
@@ -47,13 +52,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const country = (await headers()).get(VERCEL_IP_COUNTRY_HEADER);
+  const defaultLocale = localeFromCountry(country);
+
   return (
-    <html lang="fr">
+    <html lang={defaultLocale}>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
-        <LocaleProvider>{children}</LocaleProvider>
+        <LocaleProvider defaultLocale={defaultLocale}>{children}</LocaleProvider>
       </body>
     </html>
   );

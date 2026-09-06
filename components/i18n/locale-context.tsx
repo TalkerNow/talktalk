@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import {
+  DEFAULT_LOCALE,
   dictionaries,
   isLocale,
   STORAGE_KEY,
@@ -37,8 +38,14 @@ function persistLocale(locale: Locale) {
   document.documentElement.lang = locale;
 }
 
-export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("fr");
+export function LocaleProvider({
+  children,
+  defaultLocale = DEFAULT_LOCALE,
+}: {
+  children: React.ReactNode;
+  defaultLocale?: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
 
   useEffect(() => {
     const fromQuery = readQueryLocale();
@@ -51,8 +58,11 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     if (isLocale(stored)) {
       setLocaleState(stored);
       persistLocale(stored);
+      return;
     }
-  }, []);
+    setLocaleState(defaultLocale);
+    document.documentElement.lang = defaultLocale;
+  }, [defaultLocale]);
 
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next);

@@ -8,7 +8,8 @@
     "build": "npm run build:plugin && next build",
     "start": "next start",
     "lint": "eslint",
-    "smoke:gate": "node --experimental-strip-types scripts/smoke-gate.mjs"
+    "smoke:gate": "node --experimental-strip-types scripts/smoke-gate.mjs",
+    "smoke:geo-lang": "node --experimental-strip-types scripts/smoke-geo-lang.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
