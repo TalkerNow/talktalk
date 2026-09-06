@@ -476,6 +476,13 @@ export const en = {
       },
     ],
   },
+  gate: {
+    title: "Restricted access",
+    body: "This site is not public yet. Enter the password to continue.",
+    password: "Password",
+    submit: "Enter",
+    error: "Incorrect password.",
+  },
   notFound: {
     title: "This page doesn't exist.",
     back: "Back to talker.now",

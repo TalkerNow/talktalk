@@ -480,6 +480,13 @@ export const fr = {
       },
     ],
   },
+  gate: {
+    title: "Accès restreint",
+    body: "Ce site n’est pas encore public. Entrez le mot de passe pour continuer.",
+    password: "Mot de passe",
+    submit: "Entrer",
+    error: "Mot de passe incorrect.",
+  },
   notFound: {
     title: "Cette page n’existe pas.",
     back: "Retour à talker.now",
