@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function DemoAssistantHeader({
@@ -73,7 +74,14 @@ export function DemoPoweredBy({
           : "px-3 py-2 text-[10px]",
       )}
     >
-      {label}
+      <a
+        href={site.homepage}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-inherit underline-offset-2 hover:underline"
+      >
+        {label}
+      </a>
     </p>
   );
 }

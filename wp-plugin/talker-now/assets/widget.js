@@ -149,11 +149,16 @@
   }
   panel.appendChild(composer);
   if (cfg.poweredBy) {
-    panel.appendChild(
-      el("p", "talker-now-powered", {
+    var powered = el("p", "talker-now-powered");
+    powered.appendChild(
+      el("a", null, {
+        href: "https://talker.now",
+        target: "_blank",
+        rel: "noopener noreferrer",
         text: i18n.poweredBy || "Propulsé par talker.now",
       })
     );
+    panel.appendChild(powered);
   }
 
   launcherWrap.appendChild(halo);
