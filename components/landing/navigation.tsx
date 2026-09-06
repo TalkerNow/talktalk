@@ -37,9 +37,10 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navLinks = [
-    { name: t.nav.features, href: "#features" },
+    { name: t.nav.features, href: "/produit" },
     { name: t.nav.howItWorks, href: "#how-it-works" },
     { name: t.nav.pricing, href: "#pricing" },
+    { name: t.nav.faq, href: "#faq" },
     { name: t.nav.contact, href: "/contact" },
   ];
 
@@ -67,27 +68,38 @@ export function Navigation() {
         }`}
       >
         <div 
-          className={`flex items-center justify-between overflow-visible transition-all duration-500 ${
+          className={`flex items-center overflow-visible transition-all duration-500 ${
             isScrolled ? "h-12 px-4 sm:px-5" : "h-20 px-6 lg:px-8"
           }`}
         >
-          <a href="/" className="flex items-center shrink-0">
-            <TalkerWordmark compact={isScrolled} />
-          </a>
+          <div
+            className={`flex min-w-0 items-center ${
+              isScrolled ? "gap-8" : "gap-10 lg:gap-12"
+            }`}
+          >
+            <a href="/" className="flex shrink-0 items-center">
+              <TalkerWordmark compact={isScrolled} />
+            </a>
 
-          {/* Desktop Navigation */}
-          <div className={`hidden md:flex items-center ${isScrolled ? "gap-6 lg:gap-8" : "gap-12"}`}>
-            {navLinks.map((link) => (
-              <NavTextLink key={link.name} href={resolveNavHref(link.href, pathname)}>
-                {link.name}
-              </NavTextLink>
-            ))}
+            <div
+              className={`hidden items-center md:flex ${
+                isScrolled ? "gap-6 lg:gap-8" : "gap-10 lg:gap-12"
+              }`}
+            >
+              {navLinks.map((link) => (
+                <NavTextLink key={link.name} href={resolveNavHref(link.href, pathname)}>
+                  {link.name}
+                </NavTextLink>
+              ))}
+            </div>
           </div>
 
-          {/* Desktop CTA */}
-          <div className={`hidden md:flex items-center overflow-visible ${isScrolled ? "gap-3" : "gap-4"}`}>
+          <div
+            className={`ml-auto hidden items-center overflow-visible md:flex ${
+              isScrolled ? "gap-3" : "gap-4"
+            }`}
+          >
             {!isScrolled ? <LanguageSwitcher variant="nav" /> : null}
-            <NavTextLink href="/installer">{t.nav.download}</NavTextLink>
             <Button
               asChild
               size="sm"
@@ -100,7 +112,7 @@ export function Navigation() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="shrink-0 p-2 -mr-0.5 md:hidden"
+            className="ml-auto shrink-0 p-2 -mr-0.5 md:hidden"
             aria-label={t.nav.menu}
           >
             {isMobileMenuOpen ? (
@@ -152,7 +164,6 @@ export function Navigation() {
             </div>
           </div>
           
-          {/* Bottom CTAs */}
           <div className={`flex gap-4 overflow-visible pt-8 border-t border-foreground/10 transition-all duration-500 ${
             isMobileMenuOpen 
               ? "opacity-100 translate-y-0" 
@@ -160,15 +171,6 @@ export function Navigation() {
           }`}
           style={{ transitionDelay: isMobileMenuOpen ? "300ms" : "0ms" }}
           >
-            <Button 
-              asChild
-              variant="outline" 
-              className="flex-1 rounded-full h-14 text-base"
-            >
-              <a href="/installer" onClick={() => setIsMobileMenuOpen(false)}>
-                {t.nav.download}
-              </a>
-            </Button>
             <Button 
               asChild
               variant="iridescent"

@@ -46,7 +46,7 @@ export default function OpenGraphImage() {
             maxWidth: 880,
           }}
         >
-          {"L'agent qui vend à votre place."}
+          {"Le chatbot IA qui vend à votre place."}
         </div>
         <div style={{ fontSize: 24, color: "#6F6862", maxWidth: 720 }}>
           Les IA aspirent le trafic de votre site. Talker le récupère.

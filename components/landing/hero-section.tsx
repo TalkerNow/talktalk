@@ -6,6 +6,21 @@ import { useTalker } from "@/components/talker/provider";
 import { useLocale } from "@/components/i18n/locale-context";
 import { ArrowRight } from "lucide-react";
 
+function HeroSubtitle({ text }: { text: string }) {
+  const parts = text.split("**");
+  if (parts.length === 1) return text;
+
+  return parts.map((part, index) =>
+    index % 2 === 1 ? (
+      <strong key={part} className="font-semibold text-foreground">
+        {part}
+      </strong>
+    ) : (
+      part
+    )
+  );
+}
+
 export function HeroSection() {
   const { t } = useLocale();
   const phrases = t.hero.phrases;
@@ -98,7 +113,7 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          {t.hero.subtitle}
+          <HeroSubtitle text={t.hero.subtitle} />
         </p>
 
         <div
