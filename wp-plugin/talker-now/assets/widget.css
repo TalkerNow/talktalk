@@ -610,6 +610,15 @@
   background: var(--talker-canvas);
 }
 
+.talker-now-powered a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.talker-now-powered a:hover {
+  text-decoration: underline;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .talker-now-dot,
   .talker-now-root.is-beat-b .talker-now-halo.is-pulse .talker-now-ring,

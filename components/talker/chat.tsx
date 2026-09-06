@@ -6,6 +6,7 @@ import { useTalker } from "./provider";
 import { useLocale } from "@/components/i18n/locale-context";
 import type { DemoStep } from "@/lib/content/demo";
 import { DEMO_LLM_ENABLED } from "@/lib/demo/flags";
+import { site } from "@/lib/site";
 
 type Message = {
   id: string;
@@ -468,7 +469,14 @@ function PoweredBy() {
   return (
     <p className="inline-flex w-full shrink-0 items-center justify-center gap-2 border-t border-foreground/8 bg-[#F7F6F4] px-3 py-2 font-mono text-[10px] tracking-wide text-[#6B6B73]">
       <span className="h-2 w-2 rounded-full bg-green-500" />
-      {t.bubble.poweredBy}
+      <a
+        href={site.homepage}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-inherit underline-offset-2 hover:underline"
+      >
+        {t.bubble.poweredBy}
+      </a>
     </p>
   );
 }
