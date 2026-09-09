@@ -1,6 +1,9 @@
 const { parseTranscript, nextMessageSeq } = await import(
   new URL("../lib/talker/transcript.ts", import.meta.url).href
 );
+const { hideLauncher } = await import(
+  new URL("../lib/talker/paths.ts", import.meta.url).href
+);
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -37,5 +40,9 @@ assert(saved?.mode === "scripted", "mode kept");
 assert(saved?.stepId === "horaires", "step kept");
 assert(saved?.messages.length === 2, "invalid rows dropped");
 assert(nextMessageSeq(saved.messages) === 2, "seq from last numeric id");
+assert(hideLauncher("/gate") === true, "omit launcher on /gate");
+assert(hideLauncher("/gate/next") === true, "omit launcher under /gate");
+assert(hideLauncher("/") === false, "show launcher on home");
+assert(hideLauncher("/produit") === false, "show launcher on produit");
 
 console.log("smoke-talker-session: ok");

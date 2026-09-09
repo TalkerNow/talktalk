@@ -59,10 +59,24 @@ export function parseTranscript(raw: string | null | undefined): TalkerTranscrip
   }
 }
 
+let cachedTranscript: TalkerTranscript | null = null;
+let cachedRaw: string | null = null;
+let hasCache = false;
+
+function remember(raw: string | null, value: TalkerTranscript | null) {
+  cachedRaw = raw;
+  cachedTranscript = value;
+  hasCache = true;
+}
+
 export function readTranscript(): TalkerTranscript | null {
   if (typeof window === "undefined") return null;
   try {
-    return parseTranscript(window.sessionStorage.getItem(TALKER_TRANSCRIPT_KEY));
+    const raw = window.sessionStorage.getItem(TALKER_TRANSCRIPT_KEY);
+    if (hasCache && raw === cachedRaw) return cachedTranscript;
+    const parsed = parseTranscript(raw);
+    remember(raw, parsed);
+    return parsed;
   } catch {
     return null;
   }
@@ -73,7 +87,9 @@ export function writeTranscript(data: TalkerTranscript): void {
   const sanitized = parseTranscript(JSON.stringify(data));
   if (!sanitized) return;
   try {
-    window.sessionStorage.setItem(TALKER_TRANSCRIPT_KEY, JSON.stringify(sanitized));
+    const raw = JSON.stringify(sanitized);
+    window.sessionStorage.setItem(TALKER_TRANSCRIPT_KEY, raw);
+    remember(raw, sanitized);
     notify();
   } catch {
     /* private mode / quota */
@@ -85,6 +101,7 @@ export function clearTalkerSession(): void {
   try {
     window.sessionStorage.removeItem(TALKER_TRANSCRIPT_KEY);
     window.sessionStorage.removeItem(TALKER_DEMO_SESSION_KEY);
+    remember(null, null);
     notify();
   } catch {
     /* ignore */
