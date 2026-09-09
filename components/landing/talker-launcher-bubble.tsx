@@ -1,8 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { TalkerChat } from "@/components/talker/chat";
-import { useTalker } from "@/components/talker/provider";
+import {
+  useTalker,
+  type TalkerIntent,
+} from "@/components/talker/provider";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { useLocale } from "@/components/i18n/locale-context";
 
@@ -10,6 +18,12 @@ const BUBBLE_PX = 80;
 const ATTRACT_REST_MS = 7000;
 const ATTRACT_ON_MS = 4000;
 const CHIP_LEAVE_MS = 220;
+const GHOST_CLOSE_MS = 500;
+const SUPPRESS_CLICK_MS = 500;
+
+function isMousePointer(event: { pointerType: string }) {
+  return event.pointerType === "mouse";
+}
 
 export function TalkerLauncherBubble() {
   const { t } = useLocale();
@@ -21,22 +35,52 @@ export function TalkerLauncherBubble() {
   const panelRef = useRef<HTMLDivElement>(null);
   const clusterRef = useRef<HTMLDivElement>(null);
   const hideTimer = useRef(0);
+  const ignoreOutsideUntil = useRef(0);
+  const suppressBubbleClick = useRef(false);
 
   const clearHideTimer = () => {
     window.clearTimeout(hideTimer.current);
     hideTimer.current = 0;
   };
 
-  const onChipRegionEnter = () => {
+  const launchTalker = (intent?: TalkerIntent) => {
+    setChipsPinned(false);
+    setHovered(false);
+    ignoreOutsideUntil.current = Date.now() + GHOST_CLOSE_MS;
+    openTalker(intent);
+  };
+
+  const toggleBubble = () => {
+    if (open) {
+      closeTalker();
+      return;
+    }
+    launchTalker();
+  };
+
+  // iOS/WebKit treats the first tap as hover. Showing chips on touch
+  // swallows the click, then pointerleave hides them — every tap loops.
+  const onChipRegionEnter = (event: ReactPointerEvent<HTMLElement>) => {
+    if (!isMousePointer(event)) return;
     clearHideTimer();
     setHovered(true);
   };
 
-  const onChipRegionLeave = () => {
+  const onChipRegionLeave = (event: ReactPointerEvent<HTMLElement>) => {
+    if (!isMousePointer(event)) return;
     clearHideTimer();
     hideTimer.current = window.setTimeout(() => {
       setHovered(false);
     }, CHIP_LEAVE_MS);
+  };
+
+  const onBubblePointerUp = (event: ReactPointerEvent<HTMLButtonElement>) => {
+    if (isMousePointer(event) || event.button !== 0) return;
+    suppressBubbleClick.current = true;
+    window.setTimeout(() => {
+      suppressBubbleClick.current = false;
+    }, SUPPRESS_CLICK_MS);
+    toggleBubble();
   };
 
   useEffect(() => () => clearHideTimer(), []);
@@ -88,6 +132,7 @@ export function TalkerLauncherBubble() {
   useEffect(() => {
     if (open) {
       const onPointerDown = (event: PointerEvent) => {
+        if (Date.now() < ignoreOutsideUntil.current) return;
         const target = event.target as Node;
         if (panelRef.current?.contains(target)) return;
         if (clusterRef.current?.contains(target)) return;
@@ -117,7 +162,7 @@ export function TalkerLauncherBubble() {
           role="dialog"
           aria-modal="true"
           aria-label="Talker"
-          className="fixed z-[60] w-[min(calc(100vw-2rem),380px)] h-[min(70vh,560px)] overflow-hidden rounded-2xl border border-foreground/10 bg-[#F7F6F4] shadow-[0_16px_50px_rgba(0,0,0,0.14)]"
+          className="fixed z-[80] w-[min(calc(100vw-2rem),380px)] h-[min(70vh,560px)] overflow-hidden rounded-2xl border border-foreground/10 bg-[#F7F6F4] shadow-[0_16px_50px_rgba(0,0,0,0.14)]"
           style={{
             right: "calc(max(1.5rem, env(safe-area-inset-right)) + 20px)",
             bottom: "calc(7.5rem + 20px + env(safe-area-inset-bottom))",
@@ -129,7 +174,7 @@ export function TalkerLauncherBubble() {
 
       <div
         ref={clusterRef}
-        className="pointer-events-none fixed z-40"
+        className="fixed z-[70]"
         style={{
           right: "calc(max(1.5rem, env(safe-area-inset-right)) + 20px)",
           bottom: "calc(max(1.5rem, env(safe-area-inset-bottom)) + 20px)",
@@ -156,9 +201,7 @@ export function TalkerLauncherBubble() {
                   onClick={(event) => {
                     event.preventDefault();
                     event.stopPropagation();
-                    setChipsPinned(false);
-                    setHovered(false);
-                    openTalker(invite.intent);
+                    launchTalker(invite.intent);
                   }}
                   className={`relative max-w-[min(calc(100vw-6rem),20rem)] rounded-full border bg-background px-3 py-1.5 text-left text-[13px] leading-snug text-ink transition-colors hover:border-ink ${
                     shine
@@ -184,18 +227,14 @@ export function TalkerLauncherBubble() {
           type="button"
           onPointerEnter={onChipRegionEnter}
           onPointerLeave={onChipRegionLeave}
+          onPointerUp={onBubblePointerUp}
           onClick={() => {
-            if (open) {
-              closeTalker();
-              return;
-            }
-            setChipsPinned(false);
-            setHovered(false);
-            openTalker();
+            if (suppressBubbleClick.current) return;
+            toggleBubble();
           }}
           aria-label={t.bubble.open}
           aria-expanded={open}
-          className="pointer-events-auto relative z-10 flex size-[80px] cursor-pointer items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
+          className="pointer-events-auto relative z-10 flex size-[80px] cursor-pointer touch-manipulation items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
         >
           <span
             aria-hidden
@@ -208,7 +247,7 @@ export function TalkerLauncherBubble() {
             height={BUBBLE_PX}
             role="img"
             aria-hidden="true"
-            className="drop-shadow-[0_8px_20px_rgba(0,0,0,0.12)]"
+            className="pointer-events-none drop-shadow-[0_8px_20px_rgba(0,0,0,0.12)]"
           >
             <path
               d="M -93.33 396.27 A 466.65 400.00 0 1 0 -291.66 315.72 L -312.50 554.69 Z"
