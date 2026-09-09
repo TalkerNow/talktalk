@@ -20,6 +20,8 @@ const ATTRACT_ON_MS = 4000;
 const CHIP_LEAVE_MS = 220;
 const GHOST_CLOSE_MS = 500;
 const SUPPRESS_CLICK_MS = 500;
+const TOUCH_SAFE_CLASS =
+  "select-none [-webkit-touch-callout:none] [-webkit-user-select:none]";
 
 function isMousePointer(event: { pointerType: string }) {
   return event.pointerType === "mouse";
@@ -185,7 +187,7 @@ export function TalkerLauncherBubble() {
             onPointerEnter={onChipRegionEnter}
             onPointerLeave={onChipRegionLeave}
             aria-hidden={!chipsShown}
-            className={`absolute right-0 bottom-full z-30 flex w-max flex-col items-end gap-1.5 pb-3 transition-opacity duration-200 ${
+            className={`absolute right-0 bottom-full z-30 flex w-max flex-col items-end gap-1.5 pb-3 transition-opacity duration-200 ${TOUCH_SAFE_CLASS} ${
               chipsShown
                 ? "pointer-events-auto opacity-100"
                 : "pointer-events-none opacity-0"
@@ -203,7 +205,7 @@ export function TalkerLauncherBubble() {
                     event.stopPropagation();
                     launchTalker(invite.intent);
                   }}
-                  className={`relative max-w-[min(calc(100vw-6rem),20rem)] rounded-full border bg-background px-3 py-1.5 text-left text-[13px] leading-snug text-ink transition-colors hover:border-ink ${
+                  className={`relative max-w-[min(calc(100vw-6rem),20rem)] rounded-full border bg-background px-3 py-1.5 text-left text-[13px] leading-snug text-ink transition-colors hover:border-ink ${TOUCH_SAFE_CLASS} ${
                     shine
                       ? "overflow-hidden border-foreground/12"
                       : "border-line"
@@ -228,13 +230,14 @@ export function TalkerLauncherBubble() {
           onPointerEnter={onChipRegionEnter}
           onPointerLeave={onChipRegionLeave}
           onPointerUp={onBubblePointerUp}
+          onContextMenu={(event) => event.preventDefault()}
           onClick={() => {
             if (suppressBubbleClick.current) return;
             toggleBubble();
           }}
           aria-label={t.bubble.open}
           aria-expanded={open}
-          className="pointer-events-auto relative z-10 flex size-[80px] cursor-pointer touch-manipulation items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17]"
+          className={`pointer-events-auto relative z-10 flex size-[80px] cursor-pointer touch-manipulation items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17] ${TOUCH_SAFE_CLASS}`}
         >
           <span
             aria-hidden
