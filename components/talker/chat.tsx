@@ -3,29 +3,26 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { useTalker } from "./provider";
+import { useTalkerTranscript } from "./use-transcript";
 import { useLocale } from "@/components/i18n/locale-context";
 import type { DemoStep } from "@/lib/content/demo";
 import { DEMO_LLM_ENABLED } from "@/lib/demo/flags";
 import { site } from "@/lib/site";
-
-type Message = {
-  id: string;
-  from: "bot" | "user";
-  text: string;
-};
+import {
+  TALKER_DEMO_SESSION_KEY,
+  nextMessageSeq,
+} from "@/lib/talker/transcript";
 
 function normalize(value: string) {
   return value.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
-const DEMO_SESSION_KEY = "talkerDemoSession";
-
 function demoSessionId() {
   try {
-    const existing = window.sessionStorage.getItem(DEMO_SESSION_KEY);
+    const existing = window.sessionStorage.getItem(TALKER_DEMO_SESSION_KEY);
     if (existing) return existing;
     const id = `tn_${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
-    window.sessionStorage.setItem(DEMO_SESSION_KEY, id);
+    window.sessionStorage.setItem(TALKER_DEMO_SESSION_KEY, id);
     return id;
   } catch {
     return `tn_${Date.now().toString(36)}`;
@@ -49,7 +46,6 @@ export function TalkerChat({
 
 function ChatShell({
   onClose,
-  variant,
   children,
 }: {
   onClose?: () => void;
@@ -57,33 +53,38 @@ function ChatShell({
   children: ReactNode;
 }) {
   const { t } = useLocale();
+  const { newChat } = useTalker();
   const chrome = useMemo(
     () => (
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
         <TalkerWordmark className="text-[16px]" />
-        {onClose ? (
+        <div className="flex items-center gap-1">
           <button
             type="button"
-            onClick={onClose}
-            className="flex size-8 shrink-0 items-center justify-center rounded-full text-[22px] leading-none text-[#6B6B73] transition-colors hover:bg-[#EDEBE3] hover:text-[#111111]"
-            aria-label={t.bubble.close}
+            onClick={() => newChat()}
+            className="rounded-full px-2.5 py-1 text-[12px] text-[#6B6B73] transition-colors hover:bg-[#EDEBE3] hover:text-[#111111]"
+            aria-label={t.bubble.newChatAria}
           >
-            <span aria-hidden>×</span>
+            {t.bubble.newChat}
           </button>
-        ) : null}
+          {onClose ? (
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex size-8 shrink-0 items-center justify-center rounded-full text-[22px] leading-none text-[#6B6B73] transition-colors hover:bg-[#EDEBE3] hover:text-[#111111]"
+              aria-label={t.bubble.close}
+            >
+              <span aria-hidden>×</span>
+            </button>
+          ) : null}
+        </div>
       </div>
     ),
-    [onClose, t.bubble.close],
+    [newChat, onClose, t.bubble.close, t.bubble.newChat, t.bubble.newChatAria],
   );
 
   return (
-    <div
-      className={
-        variant === "panel"
-          ? "flex h-full min-h-[420px] flex-col bg-paper"
-          : "flex h-full flex-col bg-paper"
-      }
-    >
+    <div className="flex h-full flex-col bg-paper">
       {chrome}
       {children}
     </div>
@@ -98,7 +99,7 @@ function DemoLlmChat({
   variant: "panel" | "window";
 }) {
   const { t } = useLocale();
-  const [messages, setMessages] = useState<Message[]>([
+  const { messages, setMessages } = useTalkerTranscript("llm", [
     { id: "m0", from: "bot", text: t.bubble.opener },
   ]);
   const [draft, setDraft] = useState("");
@@ -127,6 +128,7 @@ function DemoLlmChat({
     const controller = new AbortController();
     abortRef.current = controller;
 
+    idRef.current = Math.max(idRef.current, nextMessageSeq(messages));
     idRef.current += 1;
     const userId = `u-${idRef.current}`;
     idRef.current += 1;
@@ -255,34 +257,46 @@ function ScriptedDemoChat({
   const { t } = useLocale();
   const demoSteps = t.demoSteps as Record<string, DemoStep>;
   const { intent } = useTalker();
-  const [stepId, setStepId] = useState("start");
-  const [messages, setMessages] = useState<Message[]>(() => {
-    const start: Message[] = [
-      { id: "m0", from: "bot", text: demoSteps.start.bot },
-    ];
-    const chip = intent
-      ? demoSteps.start.chips?.find((item) => item.next === intent)
-      : undefined;
-    if (!chip) return start;
-    return [...start, { id: "u-seed", from: "user", text: chip.userText }];
-  });
+  const seededUser = intent
+    ? demoSteps.start.chips?.find((item) => item.next === intent)
+    : undefined;
+  const {
+    messages,
+    setMessages,
+    stepId,
+    setStepId,
+    restored,
+  } = useTalkerTranscript(
+    "scripted",
+    seededUser
+      ? [
+          { id: "m0", from: "bot", text: demoSteps.start.bot },
+          { id: "u-seed", from: "user", text: seededUser.userText },
+        ]
+      : [{ id: "m0", from: "bot", text: demoSteps.start.bot }],
+  );
   const [draft, setDraft] = useState("");
-  const [pending, setPending] = useState(() => {
-    if (!intent) return false;
-    return Boolean(demoSteps.start.chips?.some((item) => item.next === intent) && demoSteps[intent]);
-  });
+  const [pending, setPending] = useState(false);
   const scroller = useRef<HTMLDivElement>(null);
+  const intentLock = useRef(false);
   const step = demoSteps[stepId];
   const lastBotIndex = messages.findLastIndex((message) => message.from === "bot");
   const showChips = Boolean(!pending && step?.chips?.length);
   const askingEmail = Boolean(step?.askEmail);
 
   useEffect(() => {
-    if (!intent) return;
+    if (intentLock.current || restored || !intent) {
+      intentLock.current = true;
+      return;
+    }
     const chip = demoSteps.start.chips?.find((item) => item.next === intent);
     const next = demoSteps[intent];
-    if (!chip || !next) return;
-
+    if (!chip || !next) {
+      intentLock.current = true;
+      return;
+    }
+    intentLock.current = true;
+    const start = window.setTimeout(() => setPending(true), 0);
     const timer = window.setTimeout(() => {
       setMessages((current) => [
         ...current,
@@ -292,8 +306,11 @@ function ScriptedDemoChat({
       setPending(false);
     }, 1800);
 
-    return () => window.clearTimeout(timer);
-  }, [intent, demoSteps]);
+    return () => {
+      window.clearTimeout(start);
+      window.clearTimeout(timer);
+    };
+  }, [demoSteps, intent, restored, setMessages, setStepId]);
 
   useEffect(() => {
     scroller.current?.scrollTo({

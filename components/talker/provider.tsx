@@ -7,6 +7,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { clearTalkerSession } from "@/lib/talker/transcript";
 
 export type TalkerIntent = "talker" | "horaires" | "question" | "rdv";
 
@@ -15,6 +16,7 @@ type TalkerContextValue = {
   setOpen: (open: boolean) => void;
   openTalker: (intent?: TalkerIntent) => void;
   closeTalker: () => void;
+  newChat: (intent?: TalkerIntent) => void;
   intent: TalkerIntent | null;
   resetKey: number;
 };
@@ -27,8 +29,7 @@ export function TalkerProvider({ children }: { children: React.ReactNode }) {
   const [resetKey, setResetKey] = useState(0);
 
   const openTalker = useCallback((nextIntent?: TalkerIntent) => {
-    setIntent(nextIntent ?? null);
-    setResetKey((key) => key + 1);
+    if (nextIntent) setIntent(nextIntent);
     setOpen(true);
   }, []);
 
@@ -36,11 +37,15 @@ export function TalkerProvider({ children }: { children: React.ReactNode }) {
     setOpen(false);
   }, []);
 
+  const newChat = useCallback((nextIntent?: TalkerIntent) => {
+    clearTalkerSession();
+    setIntent(nextIntent ?? null);
+    setResetKey((key) => key + 1);
+    setOpen(true);
+  }, []);
+
   const handleSetOpen = useCallback((next: boolean) => {
     setOpen(next);
-    if (next) {
-      setResetKey((key) => key + 1);
-    }
   }, []);
 
   const value = useMemo(
@@ -49,10 +54,11 @@ export function TalkerProvider({ children }: { children: React.ReactNode }) {
       setOpen: handleSetOpen,
       openTalker,
       closeTalker,
+      newChat,
       intent,
       resetKey,
     }),
-    [open, handleSetOpen, openTalker, closeTalker, intent, resetKey],
+    [open, handleSetOpen, openTalker, closeTalker, newChat, intent, resetKey],
   );
 
   return (

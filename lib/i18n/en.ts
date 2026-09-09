@@ -452,6 +452,8 @@ export const en = {
     open: "Open Talker",
     close: "Close",
     closeTalker: "Close Talker",
+    newChat: "New",
+    newChatAria: "New conversation",
     assistant: "Talker.now",
     placeholder: "Write to me…",
     send: "Send",

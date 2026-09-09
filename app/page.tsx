@@ -9,26 +9,21 @@ import { PricingSection } from "@/components/landing/pricing-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { FaqList } from "@/components/landing/faq-list";
 import { FooterSection } from "@/components/landing/footer-section";
-import { TalkerLauncherBubble } from "@/components/landing/talker-launcher-bubble";
-import { TalkerProvider } from "@/components/talker/provider";
 
 export default function Home() {
   return (
-    <TalkerProvider>
-      <main className="relative min-h-screen overflow-x-hidden noise-overlay">
-        <Navigation />
-        <HeroSection />
-        <ContextSection />
-        <HowItWorksSection />
-        <InfrastructureSection />
-        <MetricsSection />
-        <IntegrationsSection />
-        <PricingSection />
-        <CtaSection />
-        <FaqList variant="section" />
-        <FooterSection />
-      </main>
-      <TalkerLauncherBubble />
-    </TalkerProvider>
+    <main className="relative min-h-screen overflow-x-hidden noise-overlay">
+      <Navigation />
+      <HeroSection />
+      <ContextSection />
+      <HowItWorksSection />
+      <InfrastructureSection />
+      <MetricsSection />
+      <IntegrationsSection />
+      <PricingSection />
+      <CtaSection />
+      <FaqList variant="section" />
+      <FooterSection />
+    </main>
   );
 }

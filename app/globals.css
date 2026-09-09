@@ -137,6 +137,25 @@
   }
 }
 
+/* Live demo panel: dvw + safe-area so iPhone 16 Pro Max does not overflow
+   the right edge, and folded Flip-class widths hug that edge. */
+.talker-demo-panel {
+  --talker-panel-gutter-left: max(12px, env(safe-area-inset-left, 0px));
+  --talker-panel-gutter-right: max(12px, env(safe-area-inset-right, 0px));
+  position: fixed;
+  z-index: 60;
+  right: var(--talker-panel-gutter-right);
+  bottom: calc(7.5rem + 20px + env(safe-area-inset-bottom, 0px));
+  width: min(
+    380px,
+    calc(100dvw - var(--talker-panel-gutter-left) - var(--talker-panel-gutter-right)),
+    calc(100vw - var(--talker-panel-gutter-left) - var(--talker-panel-gutter-right))
+  );
+  height: min(70dvh, 70vh, 560px);
+  display: flex;
+  flex-direction: column;
+}
+
 @layer utilities {
   .font-display {
     font-family: var(--font-display);
