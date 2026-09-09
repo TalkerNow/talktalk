@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import { LocaleProvider } from "@/components/i18n/locale-context";
+import { TalkerShell } from "@/components/talker/shell";
 import "./globals.css";
 
 const inter = Inter({
@@ -47,13 +48,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export const viewport: Viewport = {
+  viewportFit: "cover",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="fr">
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
-        <LocaleProvider>{children}</LocaleProvider>
+        <LocaleProvider>
+          <TalkerShell>{children}</TalkerShell>
+        </LocaleProvider>
       </body>
     </html>
   );

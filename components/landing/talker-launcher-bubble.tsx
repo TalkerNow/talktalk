@@ -112,7 +112,7 @@ function TouchSafeButton({
 export function TalkerLauncherBubble() {
   const { t } = useLocale();
   const invites = t.bubble.chips;
-  const { open, openTalker, closeTalker } = useTalker();
+  const { open, openTalker, closeTalker, resetKey } = useTalker();
   const fineHover = useFineHover();
   const [chipsPinned, setChipsPinned] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -224,21 +224,17 @@ export function TalkerLauncherBubble() {
 
   return (
     <>
-      {open ? (
-        <div
-          ref={panelRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Talker"
-          className="fixed z-[60] w-[min(calc(100vw-2rem),380px)] h-[min(70vh,560px)] overflow-hidden rounded-2xl border border-foreground/10 bg-[#F7F6F4] shadow-[0_16px_50px_rgba(0,0,0,0.14)]"
-          style={{
-            right: "calc(max(1.5rem, env(safe-area-inset-right)) + 20px)",
-            bottom: "calc(7.5rem + 20px + env(safe-area-inset-bottom))",
-          }}
-        >
-          <TalkerChat onClose={closeTalker} />
-        </div>
-      ) : null}
+      <div
+        ref={panelRef}
+        hidden={!open}
+        role={open ? "dialog" : undefined}
+        aria-modal={open ? true : undefined}
+        aria-hidden={!open}
+        aria-label="Talker"
+        className="talker-demo-panel overflow-hidden rounded-2xl border border-foreground/10 bg-[#F7F6F4] shadow-[0_16px_50px_rgba(0,0,0,0.14)]"
+      >
+        <TalkerChat key={resetKey} onClose={closeTalker} />
+      </div>
 
       <div
         ref={clusterRef}
