@@ -39,14 +39,13 @@ export default function OpenGraphImage() {
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            fontSize: 72,
-            lineHeight: 0.95,
+            width: 1040,
+            fontSize: 48,
+            lineHeight: 1.12,
             color: "#161310",
-            maxWidth: 880,
           }}
         >
-          {"Le chatbot IA qui vend à votre place."}
+          Talker — le chatbot IA / agent conversationnel pour votre site WordPress
         </div>
         <div style={{ fontSize: 24, color: "#6F6862", maxWidth: 720 }}>
           Les IA aspirent le trafic de votre site. Talker le récupère.

@@ -23,24 +23,14 @@ function HeroSubtitle({ text }: { text: string }) {
 
 export function HeroSection() {
   const { t } = useLocale();
-  const phrases = t.hero.phrases;
   const stats = t.hero.stats;
   const [isVisible, setIsVisible] = useState(false);
-  const [wordIndex, setWordIndex] = useState(0);
   const { openTalker } = useTalker();
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setIsVisible(true));
     return () => cancelAnimationFrame(id);
   }, []);
-
-  useEffect(() => {
-    setWordIndex(0);
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % phrases.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [phrases]);
 
   return (
     <section className="relative flex min-h-screen flex-col justify-between overflow-visible">
@@ -82,30 +72,11 @@ export function HeroSection() {
         </div>
 
         <h1
-          className={`text-[clamp(2.1rem,6.4vw,6.2rem)] font-display font-bold leading-[0.96] tracking-tight mb-10 transition-all duration-1000 ${
+          className={`max-w-[16em] text-balance text-[clamp(2.15rem,4.6vw,4.75rem)] font-display font-bold leading-[1.02] tracking-tight mb-10 text-foreground transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="block text-foreground">{t.hero.titleBefore}</span>
-          <span className="block text-foreground/40">
-            <span className="relative inline-block">
-              <span key={wordIndex} className="inline-flex flex-wrap">
-                {phrases[wordIndex].split("").map((char, i) => (
-                  <span
-                    key={`${wordIndex}-${i}`}
-                    className="inline-block animate-char-in"
-                    style={{
-                      animationDelay: `${i * 50}ms`,
-                    }}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </span>
-                ))}
-              </span>
-              <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-foreground/12" />
-            </span>
-          </span>
-          <span className="block text-foreground/30">{t.hero.titleAfter}</span>
+          {t.hero.title}
         </h1>
 
         <p
