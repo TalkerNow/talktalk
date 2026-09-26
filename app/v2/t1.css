@@ -223,6 +223,15 @@ html.t1 .talker-ripple.is-on {
   text-underline-offset: 2px;
 }
 
+/* Section kickers. Cobalt MAIN only. Accent stays on logo, launcher, FAQ marks. */
+html.t1 .t1-kicker {
+  color: var(--t1-cobalt);
+}
+
+html.t1 .t1-kicker > span {
+  background-color: var(--t1-cobalt);
+}
+
 /* /v2/faq accordion. Marks are solid MAIN discs, not the thin shared plus. */
 html.t1 .t1-faq {
   border-top: 1px solid color-mix(in srgb, var(--t1-cobalt) 45%, transparent);

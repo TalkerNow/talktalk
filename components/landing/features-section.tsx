@@ -208,7 +208,7 @@ export function FeaturesSection({
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className={isPage ? "mb-12 lg:mb-16" : "mb-8 lg:mb-10"}>
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
+          <span className="t1-kicker inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
             <span className="w-8 h-px bg-foreground/30" />
             {t.features.eyebrow}
           </span>

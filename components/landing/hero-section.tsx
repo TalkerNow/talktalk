@@ -68,7 +68,7 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground max-w-2xl">
+          <span className="t1-kicker inline-flex items-center gap-3 text-sm font-mono text-muted-foreground max-w-2xl">
             <span className="w-8 h-px bg-foreground/30 shrink-0" />
             {t.hero.eyebrow}
           </span>

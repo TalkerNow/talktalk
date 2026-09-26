@@ -55,7 +55,7 @@ export function MethodeArticle() {
     <article className="relative overflow-visible pb-20 pt-32 lg:pb-28 lg:pt-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
         <header className="mb-14 max-w-3xl lg:mb-20">
-          <span className="mb-6 inline-flex items-center gap-3 font-mono text-sm text-muted-foreground">
+          <span className="t1-kicker mb-6 inline-flex items-center gap-3 font-mono text-sm text-muted-foreground">
             <span className="h-px w-8 bg-foreground/30" />
             {copy.eyebrow}
           </span>

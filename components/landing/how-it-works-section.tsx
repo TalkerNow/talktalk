@@ -57,7 +57,7 @@ export function HowItWorksSection() {
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="mb-12 lg:mb-16">
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
+          <span className="t1-kicker inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
             <span className="w-8 h-px bg-white/30" />
             {t.how.eyebrow}
           </span>
