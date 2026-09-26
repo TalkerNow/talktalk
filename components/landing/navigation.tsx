@@ -10,6 +10,7 @@ import { Menu, X } from "lucide-react";
 
 function resolveNavHref(href: string, pathname: string) {
   if (!href.startsWith("#")) return href;
+  if (pathname === "/v2") return `/v2${href}`;
   return pathname === "/" ? href : `/${href}`;
 }
 

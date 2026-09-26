@@ -1,0 +1,194 @@
+/* Scoped Territoire 1. Hex values live in lib/theme/territoire-1.ts
+   (HARD-talker-home-v2-color-20260926). Active only while html.t1 is set. */
+
+html.t1 {
+  --background: var(--t1-cobalt-50);
+  --primary: var(--t1-cobalt);
+  --primary-foreground: #ffffff;
+  --ring: var(--t1-cobalt);
+}
+
+/* Primary chrome: nav, unread/infra marks, FAQ marker, toggles, discount pills. */
+html.t1 .bg-\[\#C43F17\] {
+  background-color: var(--t1-cobalt);
+}
+
+/* Voice callout dots sit on the vermillon wash. */
+html.t1 .bg-\[\#F4DCD4\] .bg-\[\#C43F17\] {
+  background-color: var(--t1-vermillon);
+}
+
+/* Voice text: marquee, send. FAQ marker stays cobalt. */
+html.t1 .text-\[\#C43F17\] {
+  color: var(--t1-vermillon);
+}
+
+html.t1 .text-2xl.text-\[\#C43F17\] {
+  color: var(--t1-cobalt);
+}
+
+html.t1 .border-\[\#C43F17\]\/20 {
+  border-color: color-mix(in srgb, var(--t1-vermillon) 35%, transparent);
+}
+
+html.t1 .border-\[\#C43F17\]\/35 {
+  border-color: color-mix(in srgb, var(--t1-vermillon) 40%, transparent);
+}
+
+html.t1 .focus-visible\:outline-\[\#C43F17\]:focus-visible {
+  outline-color: var(--t1-cobalt);
+}
+
+html.t1 .bg-\[\#F4DCD4\] {
+  background-color: var(--t1-vermillon-50);
+}
+
+/* Paper surfaces leave the cream; page wash stays cobalt 50. */
+html.t1 .bg-\[\#F7F6F4\],
+html.t1 .bg-\[\#F7F6F4\]\/90 {
+  background-color: #ffffff;
+}
+
+html.t1 .from-\[\#F7F6F4\] {
+  --tw-gradient-from: var(--t1-cobalt-50);
+}
+
+html.t1 .bg-\[\#f1ece5\],
+html.t1 .bg-\[\#F1ECE5\] {
+  background-color: var(--t1-cobalt-50);
+}
+
+html.t1 .bg-\[\#D8E3F0\] {
+  background-color: var(--t1-cobalt-300);
+}
+
+html.t1 .border-\[\#DCD9CE\] {
+  border-color: var(--t1-cobalt-300);
+}
+
+/* Priority notification badge. */
+html.t1 .bg-\[\#E11D48\] {
+  background-color: var(--t1-vermillon);
+}
+
+/* Live pulse on the metrics strip. Status greens elsewhere stay. */
+html.t1 .animate-pulse.bg-green-500 {
+  background-color: var(--t1-vermillon);
+}
+
+/* Black primary controls become cobalt. The hover wipe is vermillon. */
+html.t1 .bg-black {
+  background-color: var(--t1-cobalt);
+}
+
+html.t1 .btn-iridescent,
+html.t1 .btn-iridescent:hover,
+html.t1 .btn-iridescent:focus-visible {
+  background-color: var(--t1-cobalt);
+  color: #ffffff;
+}
+
+html.t1 .btn-iridescent::before {
+  background: var(--t1-vermillon);
+}
+
+html.t1 .pricing-card-popular {
+  border-color: var(--t1-cobalt);
+}
+
+html.t1 .pricing-card-popular:hover,
+html.t1 .pricing-card-popular:focus-within {
+  border-color: var(--t1-vermillon);
+}
+
+html.t1 .pricing-card-badge {
+  background: var(--t1-cobalt);
+}
+
+html.t1 .pricing-card-popular:hover .pricing-card-badge,
+html.t1 .pricing-card-popular:focus-within .pricing-card-badge {
+  background: var(--t1-vermillon);
+}
+
+html.t1 .pricing-card-stroke {
+  stroke: var(--t1-cobalt);
+}
+
+/* Outline bubble = voice. Filled mark = infra. */
+html.t1 [stroke="#C43F17"] {
+  stroke: var(--t1-vermillon);
+}
+
+html.t1 [fill="#C43F17"] {
+  fill: var(--t1-cobalt);
+}
+
+html.t1 [fill="#F7F6F4"] {
+  fill: #ffffff;
+}
+
+html.t1 .animate-aurora {
+  background-image: linear-gradient(
+    135deg,
+    var(--t1-cobalt),
+    var(--t1-vermillon),
+    var(--t1-cobalt-800),
+    var(--t1-cobalt)
+  ) !important;
+}
+
+html.t1 .motion-safe\:animate-shine {
+  background-image: radial-gradient(
+    transparent,
+    transparent,
+    var(--t1-cobalt),
+    var(--t1-cobalt-800),
+    transparent,
+    transparent
+  ) !important;
+}
+
+html.t1 .talker-ripple {
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--t1-vermillon) 70%, transparent);
+}
+
+html.t1 .talker-ripple.is-on {
+  animation-name: talker-ripple-t1;
+}
+
+@keyframes talker-ripple-t1 {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--t1-vermillon) 70%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--t1-vermillon) 0%, transparent);
+  }
+}
+
+.t1-draft-banner {
+  position: fixed;
+  z-index: 70;
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: calc(100vw - 7.5rem);
+  border: 1px solid var(--t1-cobalt-300);
+  border-radius: 9999px;
+  background: color-mix(in srgb, #ffffff 94%, transparent);
+  padding: 0.35rem 0.9rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--t1-cobalt-800);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--t1-cobalt-800) 12%, transparent);
+}
+
+.t1-draft-banner a {
+  color: var(--t1-cobalt);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
