@@ -1,4 +1,5 @@
 import type { DemoStep } from "@/lib/content/demo";
+import { methodeFr } from "@/lib/content/methode";
 
 export const fr = {
   langLabel: "Langue",
@@ -410,6 +411,7 @@ export const fr = {
         title: "Ressources",
         links: [
           { name: "FAQ", href: "/#faq" },
+          { name: "La méthode", href: "/methode" },
           { name: "Centre d'aide", href: "#" },
           { name: "Guide d'installation", href: "#" },
           { name: "Modèles de scripts", href: "#" },
@@ -487,6 +489,7 @@ export const fr = {
     submit: "Entrer",
     error: "Mot de passe incorrect.",
   },
+  methode: methodeFr,
   notFound: {
     title: "Cette page n’existe pas.",
     back: "Retour à talker.now",

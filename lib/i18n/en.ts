@@ -1,4 +1,5 @@
 import type { DemoStep } from "@/lib/content/demo";
+import { methodeEn } from "@/lib/content/methode";
 import type { Messages } from "./fr";
 
 export const en = {
@@ -406,6 +407,7 @@ export const en = {
         title: "Resources",
         links: [
           { name: "FAQ", href: "/#faq" },
+          { name: "The method", href: "/methode" },
           { name: "Help center", href: "#" },
           { name: "Setup guide", href: "#" },
           { name: "Script templates", href: "#" },
@@ -483,6 +485,7 @@ export const en = {
     submit: "Enter",
     error: "Incorrect password.",
   },
+  methode: methodeEn,
   notFound: {
     title: "This page doesn't exist.",
     back: "Back to talker.now",

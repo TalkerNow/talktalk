@@ -14,6 +14,7 @@ assert(isPublicPath("/api/health"), "health must be public");
 assert(isPublicPath("/brand/symbole.svg"), "brand assets must be public");
 assert(!isPublicPath("/"), "home must be gated");
 assert(!isPublicPath("/produit"), "produit must be gated");
+assert(!isPublicPath("/methode"), "methode must be gated");
 assert(!isPublicPath("/api/demo-chat"), "demo chat must be gated");
 
 assert(safeNextPath("/produit") === "/produit", "relative next path");
