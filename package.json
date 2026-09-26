@@ -10,6 +10,7 @@
     "lint": "eslint",
     "smoke:gate": "node --experimental-strip-types scripts/smoke-gate.mjs",
     "smoke:seo": "node --experimental-strip-types scripts/smoke-seo-prep.mjs",
+    "smoke:methode": "node --experimental-strip-types scripts/smoke-methode.mjs",
     "smoke:talker": "node --experimental-strip-types scripts/smoke-talker-session.mjs"
   },
   "dependencies": {

@@ -49,6 +49,7 @@ export function FaqList({ variant = "page" }: { variant?: "page" | "section" }) 
                 {(Array.isArray(item.a) ? item.a : [item.a]).map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
+                {item.c ? <p>{item.c}</p> : null}
               </div>
             </details>
           ))}

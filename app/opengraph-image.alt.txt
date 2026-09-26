@@ -1,1 +1,1 @@
-Talker — le chatbot IA / agent conversationnel pour votre site WordPress. Les IA aspirent le trafic de votre site. Talker le récupère.
+Talker — chatbot IA / agent conversationnel pour WordPress. Les IA aspirent le trafic de votre site. Talker le récupère.

@@ -1,5 +1,7 @@
 import type { DemoStep } from "@/lib/content/demo";
 import { consentEn } from "@/lib/content/consent-copy";
+import { faqEn } from "@/lib/content/faq";
+import { methodeEn } from "@/lib/content/methode";
 import { pagesEn } from "@/lib/content/site-pages";
 import type { Messages } from "./fr";
 
@@ -53,6 +55,8 @@ export const en = {
     eyebrow: "What it does",
     title: "What you need.",
     titleMuted: "Nothing extra.",
+    pageH1: "Talker — features of the AI chatbot for WordPress",
+    faqLink: "FAQ",
     items: [
       {
         number: "01",
@@ -92,54 +96,7 @@ export const en = {
       },
     ],
   },
-  faq: {
-    title: "FAQs",
-    items: [
-      {
-        q: "What is Talker?",
-        a: "Talker is a conversational AI agent for WordPress: it reads the site, answers like a salesperson, captures email and phone, and can offer a Google review when the visitor is satisfied.",
-      },
-      {
-        q: "Is Talker a WordPress chatbot?",
-        a: "Yes. It is an AI WordPress chatbot (a zip to activate in WP-Admin) built to sell and qualify, not only to answer the site FAQ.",
-      },
-      {
-        q: "How is Talker different from a generic chatbot?",
-        a: "It stays aligned with your services and tone, with no sector menu. The conversation uses recognized frames (Cialdini, SPIN Selling, Chris Voss) to clarify the need, then steer to contact.",
-      },
-      {
-        q: "How does Talker learn my business?",
-        a: "It reads your site pages (services, prices, terms) to frame the answers. No complex setup at the start.",
-      },
-      {
-        q: "Does Talker capture prospect contact details?",
-        a: "Yes: email, phone, and the context of the request before the exchange ends, then it is sent on to you.",
-      },
-      {
-        q: "Do I see my visitors' conversations?",
-        a: [
-          "You get an email every 4 hours with the detail of exchanges if any took place.",
-          "SMS alerts are possible when a phone number is captured and a request looks urgent.",
-        ],
-      },
-      {
-        q: "Can Talker ask for a Google review?",
-        a: "Yes, when it detects that the visitor is satisfied with the service in the conversation.",
-      },
-      {
-        q: "How much does Talker cost?",
-        a: "A free plan up to 100 conversations per install. Pro and Agency add unlimited, white label, and more channels — see the pricing grid above.",
-      },
-      {
-        q: "Do I need to know how to code to install it?",
-        a: "No. Upload the Talker.now zip in WP-Admin; the widget activates and installs itself with no code.",
-      },
-      {
-        q: "Does Talker replace my customer support?",
-        a: "It acts as support before your support: it clarifies the situation, separates a prospect from an existing client, then hands you a framed brief with your client's questions.",
-      },
-    ],
-  },
+  faq: faqEn,
   how: {
     eyebrow: "How it works",
     title: "3 steps. 5 minutes.",
@@ -314,7 +271,7 @@ export const en = {
     noCard: "No credit card required",
   },
   installer: {
-    title: "Download Talker",
+    title: "Install Talker on WordPress",
     subtitle:
       "A WordPress zip, no credit card. 100 conversations, then you activate it in WP-Admin.",
     download: "Download the zip",
@@ -428,7 +385,7 @@ export const en = {
     ],
   },
   contact: {
-    title: "Contact",
+    title: "Contact Talker",
     titleMuted: "We'll get back to you.",
     lead1: "You install. Talker talks. The leads come in.",
     lead2: "Not a ticket. A conversation.",
@@ -479,6 +436,7 @@ export const en = {
   },
   consent: consentEn,
   pages: pagesEn,
+  methode: methodeEn,
   notFound: {
     title: "This page doesn't exist.",
     back: "Back to talker.now",

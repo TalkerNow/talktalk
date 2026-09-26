@@ -4,7 +4,7 @@ import { FooterSection } from "@/components/landing/footer-section";
 import { ContactPanel } from "@/components/landing/contact-panel";
 
 export const metadata: Metadata = {
-  title: "Contact — Talker",
+  title: "Contact — Talker chatbot WordPress",
   description: "Dites-nous où vous en êtes. On vous répond.",
 };
 

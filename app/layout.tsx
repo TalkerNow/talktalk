@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const title =
-  "Talker — le chatbot IA / agent conversationnel pour votre site WordPress";
+  "Talker — chatbot IA / agent conversationnel pour WordPress";
 const description =
   "Les IA aspirent le trafic de votre site. Talker le récupère. Un chatbot IA qui connaît votre métier, capte le numéro ou l'email de vos prospects, et s'installe en 10 minutes, sans code.";
 

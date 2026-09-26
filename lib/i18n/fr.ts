@@ -1,5 +1,7 @@
 import type { DemoStep } from "@/lib/content/demo";
 import { consentFr } from "@/lib/content/consent-copy";
+import { faqFr } from "@/lib/content/faq";
+import { methodeFr } from "@/lib/content/methode";
 import { pagesFr } from "@/lib/content/site-pages";
 
 export const fr = {
@@ -52,6 +54,8 @@ export const fr = {
     eyebrow: "Fonctionnalités",
     title: "Ce qu'il faut.",
     titleMuted: "Rien de plus.",
+    pageH1: "Talker — fonctionnalités du chatbot IA pour WordPress",
+    faqLink: "Questions fréquentes",
     items: [
       {
         number: "01",
@@ -91,54 +95,7 @@ export const fr = {
       },
     ],
   },
-  faq: {
-    title: "FAQs",
-    items: [
-      {
-        q: "Qu'est-ce que Talker ?",
-        a: "Talker est un agent conversationnel IA pour WordPress : il lit le site, répond comme un commercial, capture e-mail et téléphone, et peut proposer un avis Google quand le visiteur est satisfait.",
-      },
-      {
-        q: "Talker est-il un chatbot WordPress ?",
-        a: "Oui. C'est un chatbot IA WordPress (zip à activer dans WP-Admin) conçu pour vendre et qualifier, pas seulement pour répondre aux FAQ du site.",
-      },
-      {
-        q: "En quoi Talker est-il différent d'un chatbot générique ?",
-        a: "Il s'aligne sur vos prestations et votre ton, sans menu de secteurs. La conversation s'appuie sur des cadres reconnus (Cialdini, SPIN Selling, Chris Voss) pour clarifier le besoin puis amener à la prise de contact.",
-      },
-      {
-        q: "Comment Talker apprend-il mon métier ?",
-        a: "Il lit les pages de votre site (prestations, tarifs, modalités) pour cadrer les réponses. Pas de paramétrage complexe au démarrage.",
-      },
-      {
-        q: "Talker capture-t-il les coordonnées des prospects ?",
-        a: "Oui : e-mail, téléphone et contexte de la demande avant la fin de l'échange, puis transmission vers vous.",
-      },
-      {
-        q: "Est-ce que je vois les conversations de mes visiteurs ?",
-        a: [
-          "Vous recevez par e-mail, toutes les 4 heures, le détail des échanges s'il y en a eu.",
-          "Des alertes SMS sont possibles lorsqu'un numéro de téléphone est capté et qu'une demande semble urgente.",
-        ],
-      },
-      {
-        q: "Talker peut-il demander un avis Google ?",
-        a: "Oui, lorsqu'il détecte que l'internaute est satisfait du service dans la conversation.",
-      },
-      {
-        q: "Combien coûte Talker ?",
-        a: "Un plan gratuit jusqu'à 100 conversations par installation. Les offres Pro et Agences ajoutent l'illimité, la marque blanche et plus de canaux — voir la grille tarifaire ci-dessus.",
-      },
-      {
-        q: "Faut-il savoir coder pour l'installer ?",
-        a: "Non. Zip Talker.now à téléverser dans WP-Admin ; le widget s'active et s'installe automatiquement sans code.",
-      },
-      {
-        q: "Talker remplace-t-il mon support client ?",
-        a: "Il agit comme un support avant votre support : précise la situation, distingue prospect et client existant, puis vous transmet un dossier cadré avec les questions de votre client.",
-      },
-    ],
-  },
+  faq: faqFr,
   how: {
     eyebrow: "Comment ça marche",
     title: "3 étapes. 5 minutes.",
@@ -318,7 +275,7 @@ export const fr = {
     noCard: "Sans carte bancaire",
   },
   installer: {
-    title: "Télécharger Talker",
+    title: "Installer Talker sur WordPress",
     subtitle:
       "Un zip WordPress, sans carte bancaire. 100 conversations, puis vous activez dans WP-Admin.",
     download: "Télécharger le zip",
@@ -432,7 +389,7 @@ export const fr = {
     ],
   },
   contact: {
-    title: "Contact",
+    title: "Contact Talker",
     titleMuted: "On vous répond.",
     lead1: "Vous installez. Talker parle. Les demandes arrivent.",
     lead2: "Pas un ticket. Une conversation.",
@@ -483,6 +440,7 @@ export const fr = {
   },
   consent: consentFr,
   pages: pagesFr,
+  methode: methodeFr,
   notFound: {
     title: "Cette page n’existe pas.",
     back: "Retour à talker.now",

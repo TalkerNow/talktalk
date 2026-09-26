@@ -45,7 +45,7 @@ export default function OpenGraphImage() {
             color: "#161310",
           }}
         >
-          Talker — le chatbot IA / agent conversationnel pour votre site WordPress
+          Talker — chatbot IA / agent conversationnel pour WordPress
         </div>
         <div style={{ fontSize: 24, color: "#6F6862", maxWidth: 720 }}>
           Les IA aspirent le trafic de votre site. Talker le récupère.

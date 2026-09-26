@@ -4,7 +4,7 @@ import { FooterSection } from "@/components/landing/footer-section";
 import { InstallerPanel } from "@/components/landing/installer-panel";
 
 export const metadata: Metadata = {
-  title: "Télécharger Talker — talker.now",
+  title: "Installer Talker — chatbot WordPress (zip)",
   description:
     "Zip WordPress Talker, sans carte bancaire. Téléversez-le dans WP-Admin.",
 };
