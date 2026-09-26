@@ -262,8 +262,6 @@ export const fr = {
     sites3: "3 sites",
     sites10: "10 sites",
     agencySitesToggle: "Choisir le nombre de sites",
-    shopify:
-      "Shopify et WooCommerce — 59 € pour un site. À partir de 10 sites : 29 € par site.",
     plans: [
       {
         key: "starter",
@@ -300,7 +298,7 @@ export const fr = {
         title: "Agences & Entreprises",
         description: "3 sites",
         cta: "Installer",
-        features: ["3 Talker", "Tout Pro inclus", "Marque blanche"],
+        features: ["3 sites", "Tout Pro inclus", "Marque blanche"],
       },
       {
         key: "agency10",
@@ -309,7 +307,7 @@ export const fr = {
         description: "10 sites",
         cta: "Installer",
         features: [
-          "10 Talker",
+          "10 sites",
           "Tout Pro inclus",
           "Un agent par site et par établissement",
           "Tableau de bord multi-comptes",

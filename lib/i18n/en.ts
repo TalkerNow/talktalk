@@ -258,8 +258,6 @@ export const en = {
     sites3: "3 sites",
     sites10: "10 sites",
     agencySitesToggle: "Choose number of sites",
-    shopify:
-      "Shopify and WooCommerce — €59 for one store. 10+ stores: €29 per store.",
     plans: [
       {
         key: "starter",
@@ -296,7 +294,7 @@ export const en = {
         title: "Agencies & multi-site",
         description: "3 sites",
         cta: "Get started",
-        features: ["3 Talker", "Everything in Pro", "White-label"],
+        features: ["3 sites", "Everything in Pro", "White-label"],
       },
       {
         key: "agency10",
@@ -305,7 +303,7 @@ export const en = {
         description: "10 sites",
         cta: "Get started",
         features: [
-          "10 Talker",
+          "10 sites",
           "Everything in Pro",
           "One agent per site and location",
           "Multi-account dashboard",
