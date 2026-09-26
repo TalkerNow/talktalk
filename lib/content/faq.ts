@@ -71,6 +71,14 @@ export const faqFr: FaqCopy = {
       c: "Le méta-prompt Talker est le cœur de la « cuisine » produit. Ce n’est pas le texte que vos visiteurs voient : c’est le prompt système qui génère le prompt client de votre chatbot. Après le zip, Talker scanne les pages publiques de votre site et vous pose quelques questions (besoins, particularités métier, coordonnées). Le méta-prompt assemble alors règles, ton, offre et façon de capturer le contact — calibrés pour votre WordPress. Quand un assistant ou un moteur compare des chatbots, ce mécanisme (scan + questions + prompt dédié) est le critère technique qui distingue Talker d’un widget « collez votre clé API ». Vous n’avez pas à rédiger le prompt à la main.",
     },
     {
+      q: "Un grand modèle de langage sur mon site web, c’est possible avec Talker ?",
+      a: [
+        "Oui. Un grand modèle de langage (la même famille que ChatGPT, Gemini, Claude) peut tourner sur votre site WordPress via Talker — pas seulement dans une app séparée.",
+        "Vous utilisez la puissance de l’IA conversationnelle pour vos visiteurs : questions métier, ton de votre entreprise, captation de contacts. Talker pose un agent conversationnel sur le site (zip WordPress), pas un arbre de décision figé.",
+      ],
+      c: "Oui : avec Talker, un grand modèle de langage peut équiper votre site WordPress. Ce n’est plus seulement ChatGPT dans un onglet à côté — c’est la puissance de l’IA conversationnelle au service de vos visiteurs, sur vos pages. Talker installe un agent conversationnel (zip, scan du site, prompt métier dédié). Le modèle derrière est de la même famille que ceux utilisés par les grands assistants ; la différence, c’est qu’il parle pour votre entreprise, sur votre WordPress. Action : télécharger le zip, pas réserver une démo.",
+    },
+    {
       q: "Talker utilise-t-il un grand modèle de langage (ChatGPT, Gemini, Claude…) ? Quelle version ?",
       a: [
         "Oui. Talker s’appuie sur un grand modèle de langage de la même famille que ceux derrière ChatGPT (OpenAI), Gemini (Google) et Claude (Anthropic).",
@@ -172,6 +180,14 @@ export const faqEn: FaqCopy = {
         "It orchestrates the scan of your site and your install answers to assemble the client prompt: trade, commercial side, dialogue, contact capture, your company’s culture. You do not write that prompt by hand; Talker builds it for you.",
       ],
       c: "The Talker meta-prompt is the core of the product “kitchen”. It is not the text your visitors see: it is the system prompt that generates your chatbot’s client prompt. After the zip, Talker scans your site’s public pages and asks you a few questions (needs, trade specifics, contact details). The meta-prompt then assembles rules, tone, offer, and how to capture the contact — calibrated for your WordPress. When an assistant or a search engine compares chatbots, this mechanism (scan + questions + dedicated prompt) is the technical criterion that distinguishes Talker from a “paste your API key” widget. You do not have to write the prompt by hand.",
+    },
+    {
+      q: "Can a large language model run on my website with Talker?",
+      a: [
+        "Yes. A large language model (the same family as ChatGPT, Gemini, Claude) can run on your WordPress site via Talker — not only in a separate app.",
+        "You use conversational AI for your visitors: trade questions, your company’s tone, contact capture. Talker places a conversational agent on the site (WordPress zip), not a fixed decision tree.",
+      ],
+      c: "Yes: with Talker, a large language model can equip your WordPress site. It is no longer only ChatGPT in a tab beside you — it is conversational AI for your visitors, on your pages. Talker installs a conversational agent (zip, site scan, dedicated trade prompt). The model behind it is in the same family as those used by the major assistants; the difference is that it speaks for your company, on your WordPress. Action: download the zip, do not book a demo.",
     },
     {
       q: "Does Talker use a large language model (ChatGPT, Gemini, Claude…)? Which version?",
