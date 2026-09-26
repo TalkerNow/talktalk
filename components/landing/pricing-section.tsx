@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { useLocale } from "@/components/i18n/locale-context";
 import type { Messages } from "@/lib/i18n";
+import { toV2Href } from "@/lib/theme/v2-href";
 
 type PlanCopy = Messages["pricing"]["plans"][number];
 type AgencySites = 3 | 10;
@@ -96,6 +98,7 @@ function AgencySitesToggle({
 export function PricingSection() {
   const { t } = useLocale();
   const [isAnnual, setIsAnnual] = useState(true);
+  const pathname = usePathname();
   const [agencySites, setAgencySites] = useState<AgencySites>(3);
 
   const starterCopy = copyByKey(t.pricing.plans, "starter");
@@ -262,7 +265,7 @@ export function PricingSection() {
                       : "relative z-10 mt-auto w-full shrink-0 cursor-pointer rounded-full overflow-hidden"
                   }
                 >
-                  <a href="/installer">{plan.copy.cta}</a>
+                  <a href={toV2Href("/installer", pathname)}>{plan.copy.cta}</a>
                 </Button>
               </div>
             );

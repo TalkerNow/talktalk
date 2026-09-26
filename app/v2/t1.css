@@ -36,6 +36,35 @@ html.t1 .border-\[\#C43F17\]\/35 {
   border-color: color-mix(in srgb, var(--t1-accent) 40%, transparent);
 }
 
+html.t1 .border-\[\#C43F17\]\/45,
+html.t1 .focus\:border-\[\#C43F17\]:focus {
+  border-color: var(--t1-accent);
+}
+
+html.t1 .border-\[\#C43F17\]\/45 {
+  border-color: color-mix(in srgb, var(--t1-accent) 45%, transparent);
+}
+
+html.t1 .hover\:text-\[\#A8350F\]:hover {
+  color: var(--t1-accent-600);
+}
+
+html.t1 .decoration-\[\#C43F17\]\/40 {
+  text-decoration-color: color-mix(in srgb, var(--t1-accent) 40%, transparent);
+}
+
+html.t1 .hover\:decoration-\[\#A8350F\]:hover {
+  text-decoration-color: var(--t1-accent-600);
+}
+
+html.t1 .bg-\[\#FAEDE7\] {
+  background-color: var(--t1-accent-50);
+}
+
+html.t1 .bg-\[\#FAEDE7\] .bg-\[\#C43F17\] {
+  background-color: var(--t1-accent);
+}
+
 html.t1 .focus-visible\:outline-\[\#C43F17\]:focus-visible {
   outline-color: var(--t1-cobalt);
 }

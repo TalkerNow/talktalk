@@ -324,7 +324,11 @@ export function InstallerVignette() {
           );
           tl.to(
             dropzone,
-            { borderColor: "#C43F17", backgroundColor: "#FAEDE7", duration: 0.2 },
+            {
+              borderColor: "var(--t1-accent, #C43F17)",
+              backgroundColor: "var(--t1-accent-50, #FAEDE7)",
+              duration: 0.2,
+            },
             "download+=5.8",
           );
           tl.to(zip, { autoAlpha: 0, scale: 0.8, duration: 0.2 }, "download+=5.95");

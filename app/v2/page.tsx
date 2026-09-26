@@ -9,6 +9,7 @@ import { PricingSection } from "@/components/landing/pricing-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { FaqList } from "@/components/landing/faq-list";
 import { FooterSection } from "@/components/landing/footer-section";
+import { V2Banner } from "./v2-banner";
 
 export default function HomeV2() {
   return (
@@ -24,10 +25,7 @@ export default function HomeV2() {
       <CtaSection />
       <FaqList variant="section" />
       <FooterSection />
-      <p className="t1-draft-banner">
-        <span>V2 — charte T1 (brouillon)</span>
-        <a href="/">Voir la home</a>
-      </p>
+      <V2Banner />
     </main>
   );
 }

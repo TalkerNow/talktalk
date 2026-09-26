@@ -7,10 +7,11 @@ import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/i18n/language-switcher";
 import { useLocale } from "@/components/i18n/locale-context";
 import { Menu, X } from "lucide-react";
+import { isV2Path, toV2Href } from "@/lib/theme/v2-href";
 
 function resolveNavHref(href: string, pathname: string) {
+  if (isV2Path(pathname)) return toV2Href(href, pathname);
   if (!href.startsWith("#")) return href;
-  if (pathname === "/v2") return `/v2${href}`;
   return pathname === "/" ? href : `/${href}`;
 }
 
@@ -78,7 +79,7 @@ export function Navigation() {
               isScrolled ? "gap-8" : "gap-10 lg:gap-12"
             }`}
           >
-            <a href="/" className="flex shrink-0 items-center">
+            <a href={toV2Href("/", pathname)} className="flex shrink-0 items-center">
               <TalkerWordmark compact={isScrolled} />
             </a>
 
@@ -107,7 +108,7 @@ export function Navigation() {
               variant="iridescent"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
             >
-              <a href="/installer">{t.nav.download}</a>
+              <a href={toV2Href("/installer", pathname)}>{t.nav.download}</a>
             </Button>
           </div>
 
@@ -177,7 +178,7 @@ export function Navigation() {
               variant="iridescent"
               className="flex-1 rounded-full h-14 text-base"
             >
-              <a href="/installer" onClick={() => setIsMobileMenuOpen(false)}>
+              <a href={toV2Href("/installer", pathname)} onClick={() => setIsMobileMenuOpen(false)}>
                 {t.nav.download}
               </a>
             </Button>

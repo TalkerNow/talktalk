@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/components/i18n/locale-context";
+import { usePathname } from "next/navigation";
 import { TalkerChatLoop } from "@/components/landing/installer-vignette/talker-chat-loop";
+import { toV2Href } from "@/lib/theme/v2-href";
 
 export function HowItWorksSection() {
   const { t } = useLocale();
   const steps = t.how.steps;
+  const pathname = usePathname();
   const [activeStep, setActiveStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -112,7 +115,7 @@ export function HowItWorksSection() {
               variant="iridescent"
               className="mt-8 rounded-full px-6 overflow-hidden"
             >
-              <a href="/installer">{t.how.createAgent}</a>
+              <a href={toV2Href("/installer", pathname)}>{t.how.createAgent}</a>
             </Button>
           </div>
 

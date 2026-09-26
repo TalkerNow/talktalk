@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { AnimatedWave } from "./animated-wave";
 import { ContactForm } from "./contact-form";
 import { useLocale } from "@/components/i18n/locale-context";
+import { toV2Href } from "@/lib/theme/v2-href";
 
 export function ContactPanel() {
   const { t } = useLocale();
+  const pathname = usePathname();
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 40 });
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -34,7 +37,7 @@ export function ContactPanel() {
       />
 
       <div className="relative z-10 overflow-visible px-8 py-12 lg:px-16 lg:py-16">
-        <a href="/" className="mb-12 inline-flex">
+        <a href={toV2Href("/", pathname)} className="mb-12 inline-flex">
           <TalkerWordmark className="text-[30px]" />
         </a>
 

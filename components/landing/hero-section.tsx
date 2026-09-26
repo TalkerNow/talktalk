@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTalker } from "@/components/talker/provider";
 import { useLocale } from "@/components/i18n/locale-context";
+import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
+import { toV2Href } from "@/lib/theme/v2-href";
 
 function HeroSubtitle({ text }: { text: string }) {
   const parts = text.split("**");
@@ -26,6 +28,7 @@ export function HeroSection() {
   const stats = t.hero.stats;
   const [isVisible, setIsVisible] = useState(false);
   const { openTalker } = useTalker();
+  const pathname = usePathname();
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setIsVisible(true));
@@ -98,7 +101,7 @@ export function HeroSection() {
             variant="iridescent"
             className="h-14 rounded-full px-8 text-base group overflow-hidden"
           >
-            <a href="/installer">
+            <a href={toV2Href("/installer", pathname)}>
               {t.hero.createAgent}
               <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
             </a>

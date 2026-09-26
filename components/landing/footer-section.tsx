@@ -1,10 +1,12 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { AnimatedWave } from "./animated-wave";
 import { useLocale } from "@/components/i18n/locale-context";
 import { CONSENT_OPEN_EVENT } from "@/lib/consent";
+import { toV2Href } from "@/lib/theme/v2-href";
 
 function TwitterMark({ className }: { className?: string }) {
   return (
@@ -38,6 +40,7 @@ const socialLinks = [
 
 export function FooterSection() {
   const { t } = useLocale();
+  const pathname = usePathname();
   return (
     <footer className="relative border-t border-foreground/10">
       <div className="absolute inset-0 h-64 opacity-20 pointer-events-none overflow-hidden">
@@ -48,7 +51,7 @@ export function FooterSection() {
         <div className="py-12 lg:py-16">
           <div className="grid grid-cols-2 md:grid-cols-6 gap-12 lg:gap-8">
             <div className="col-span-2">
-              <a href="/" className="inline-flex items-center gap-2 mb-6">
+              <a href={toV2Href("/", pathname)} className="inline-flex items-center gap-2 mb-6">
                 <TalkerWordmark className="text-[30px]" />
                 <span className="text-xs text-muted-foreground font-mono">TM</span>
               </a>
@@ -61,7 +64,7 @@ export function FooterSection() {
                 {socialLinks.map((link) => (
                   <a
                     key={link.name}
-                    href={link.href}
+                    href={toV2Href(link.href, pathname)}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 group"
                   >
                     <link.Icon className="h-4 w-4 shrink-0" />
@@ -79,7 +82,7 @@ export function FooterSection() {
                   {column.links.map((link) => (
                     <li key={link.name}>
                       <a
-                        href={link.href}
+                        href={toV2Href(link.href, pathname)}
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
                       >
                         {link.name}
