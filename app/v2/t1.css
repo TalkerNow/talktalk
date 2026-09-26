@@ -222,3 +222,63 @@ html.t1 .talker-ripple.is-on {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+/* /v2/faq accordion. Marks are solid MAIN discs, not the thin shared plus. */
+html.t1 .t1-faq {
+  border-top: 1px solid color-mix(in srgb, var(--t1-cobalt) 45%, transparent);
+}
+
+html.t1 .t1-faq-item[data-tone="cobalt"] {
+  --t1-faq: var(--t1-cobalt);
+}
+
+html.t1 .t1-faq-item[data-tone="accent"] {
+  --t1-faq: var(--t1-accent);
+}
+
+html.t1 .t1-faq-item {
+  border-bottom: 1px solid color-mix(in srgb, var(--t1-faq) 45%, transparent);
+}
+
+html.t1 .t1-faq-summary {
+  display: flex;
+  cursor: pointer;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.15rem 0.85rem;
+}
+
+html.t1 .t1-faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+html.t1 .t1-faq-summary:hover {
+  background: color-mix(in srgb, var(--t1-faq) 14%, transparent);
+}
+
+html.t1 .t1-faq-summary:focus-visible {
+  outline: 2px solid var(--t1-faq);
+  outline-offset: 3px;
+}
+
+html.t1 .t1-faq-item[open] {
+  background: color-mix(in srgb, var(--t1-faq) 16%, var(--t1-cobalt-50));
+  box-shadow: inset 4px 0 0 var(--t1-faq);
+}
+
+html.t1 .t1-faq-mark {
+  display: flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--t1-faq);
+  color: #ffffff;
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1;
+}
