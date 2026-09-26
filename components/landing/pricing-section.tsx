@@ -10,11 +10,11 @@ import type { Messages } from "@/lib/i18n";
 type PlanCopy = Messages["pricing"]["plans"][number];
 type AgencySites = 3 | 10;
 
-/** Existing published tariffs — UX reshape only, do not change these amounts. */
+/** Published grid. Agency 3-site annual is 49 € (HARD 2026-09-26). Agency monthly stays as last published — HARD did not set a new monthly. */
 const PLAN_PRICES = {
   starter: { monthly: 0, annual: 0, popular: false },
   pro: { monthly: 35, annual: 29, popular: true },
-  agency3: { monthly: 69, annual: 45, popular: false },
+  agency3: { monthly: 69, annual: 49, popular: false },
   agency10: { monthly: 119, annual: 99, popular: false },
 } as const;
 
@@ -267,12 +267,6 @@ export function PricingSection() {
               </div>
             );
           })}
-        </div>
-
-        <div className="mt-6 flex w-full items-center justify-center border border-foreground/12 bg-background px-6 py-4">
-          <p className="w-full text-center text-sm leading-snug text-muted-foreground lg:whitespace-nowrap">
-            {t.pricing.shopify}
-          </p>
         </div>
       </div>
     </section>
