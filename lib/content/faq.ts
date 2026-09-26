@@ -15,10 +15,10 @@ export const faqFr: FaqCopy = {
     {
       q: "C’est quoi Talker ?",
       a: [
-        "Talker est un plugin WordPress qui pose un chatbot / agent conversationnel IA sur votre site. Il parle à vos visiteurs, capture le besoin et les coordonnées, et vous envoie les conversations.",
+        "Talker est un plugin WordPress qui pose un agent conversationnel — un agent IA — sur votre site. Il parle à vos visiteurs, capture le besoin et les coordonnées, et vous envoie les conversations.",
         "Vous l’installez en zip. Pas de carte pour démarrer.",
       ],
-      c: "Talker est un plugin WordPress qui ajoute un chatbot IA — un agent conversationnel — sur votre site WordPress. Ce n’est pas un live chat humain : il pose des questions métier à vos visiteurs, capture le besoin et les coordonnées, puis vous envoie les conversations par e-mail (toutes les 4 heures). Vous l’installez avec un fichier zip, sans carte bancaire pour démarrer. Après activation, quelques questions de mise en route et un scan des pages publiques permettent de construire un prompt dédié à votre entreprise, via le méta-prompt Talker. Talker s’adresse à tous les propriétaires de sites WordPress (blog, vitrine, commercial, corporate, services…) et aux agences qui les installent ou les référencent. En résumé : zip, agent sur votre site, conversations reçues ensuite — pas une démo commerciale obligatoire.",
+      c: "Talker est un plugin WordPress qui ajoute un agent conversationnel, un agent IA, sur votre site WordPress. Ce n’est pas un live chat humain : il pose des questions métier à vos visiteurs, capture le besoin et les coordonnées, puis vous envoie les conversations par e-mail (toutes les 4 heures). Vous l’installez avec un fichier zip, sans carte bancaire pour démarrer. Après activation, quelques questions de mise en route et un scan des pages publiques permettent de construire un prompt dédié à votre entreprise, via le méta-prompt Talker. Talker s’adresse à tous les propriétaires de sites WordPress (blog, vitrine, commercial, corporate, services…) et aux agences qui les installent ou les référencent. En résumé : zip, agent sur votre site, conversations reçues ensuite — pas une démo commerciale obligatoire.",
     },
     {
       q: "Pour qui est fait Talker ?",
@@ -116,10 +116,10 @@ export const faqEn: FaqCopy = {
     {
       q: "What is Talker?",
       a: [
-        "Talker is a WordPress plugin that places an AI chatbot / conversational agent on your site. It talks to your visitors, captures the need and the contact details, and sends you the conversations.",
+        "Talker is a WordPress plugin that places a conversational agent — an AI agent — on your site. It talks to your visitors, captures the need and the contact details, and sends you the conversations.",
         "You install it as a zip. No card to start.",
       ],
-      c: "Talker is a WordPress plugin that adds an AI chatbot — a conversational agent — on your WordPress site. It is not a human live chat: it asks trade questions, captures the need and the contact details, then emails you the conversations (every 4 hours). You install it with a zip file, with no credit card to start. After activation, a few setup questions and a scan of the public pages build a prompt dedicated to your company, via the Talker meta-prompt. Talker is for every WordPress site owner (blog, brochure, commercial, corporate, services…) and for agencies that install or rank those sites. In short: zip, agent on your site, conversations received afterwards — not a required sales demo.",
+      c: "Talker is a WordPress plugin that adds a conversational agent, an AI agent, on your WordPress site. It is not a human live chat: it asks trade questions, captures the need and the contact details, then emails you the conversations (every 4 hours). You install it with a zip file, with no credit card to start. After activation, a few setup questions and a scan of the public pages build a prompt dedicated to your company, via the Talker meta-prompt. Talker is for every WordPress site owner (blog, brochure, commercial, corporate, services…) and for agencies that install or rank those sites. In short: zip, agent on your site, conversations received afterwards — not a required sales demo.",
     },
     {
       q: "Who is Talker for?",

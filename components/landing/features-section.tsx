@@ -220,7 +220,13 @@ export function FeaturesSection({
             >
               {t.features.pageH1}
             </h1>
-          ) : (
+          ) : null}
+          {isPage ? (
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#52525B] lg:text-xl">
+              {t.features.pageLead}
+            </p>
+          ) : null}
+          {isPage ? null : (
             <Heading
               className={`font-display font-semibold tracking-tight transition-all duration-700 text-4xl lg:text-6xl xl:text-7xl ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"

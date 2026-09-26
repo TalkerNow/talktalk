@@ -54,14 +54,16 @@ export const fr = {
     eyebrow: "Fonctionnalités",
     title: "Ce qu'il faut.",
     titleMuted: "Rien de plus.",
-    pageH1: "Talker — fonctionnalités du chatbot IA pour WordPress",
+    pageH1: "Talker — l’agent IA conversationnel pour votre WordPress",
+    pageLead:
+      "Un agent IA conversationnel : intelligent et autonome. Il lit le site, mène l’échange et capture le contact. Pas un chatbot à arbre décisionnel.",
     faqLink: "Questions fréquentes",
     items: [
       {
         number: "01",
         title: "Un agent qui connaît votre métier",
         bullets: [
-          "Lit votre site pour cadrer l'activité, les prestations et le contexte — pas un bot générique multi-secteurs.",
+          "Agent IA autonome : lit votre site pour cadrer l'activité, les prestations et le contexte — pas un widget à arbre décisionnel.",
           "Répond précisément sur les tarifs, les options et les modalités dès qu'ils figurent sur vos pages.",
           "Adopte le ton et le vocabulaire de votre marque ; refuse le style « réponse IA » formatée et générique.",
           "S'adapte à votre métier sans paramétrage complexe ni menu à cocher (cabinet, artisan, commerçant, conseil, culture…).",
@@ -275,17 +277,17 @@ export const fr = {
     noCard: "Sans carte bancaire",
   },
   installer: {
-    title: "Installer Talker sur WordPress",
+    title: "Installer Talker en ~3 minutes",
     subtitle:
-      "Un zip WordPress, sans carte bancaire. 100 conversations, puis vous activez dans WP-Admin.",
+      "Zip, upload dans WordPress, scan et questions, agent en ligne.",
     download: "Télécharger le zip",
     placeholderNote: "talker-now.zip — sans carte, sans WordPress.org.",
     stepsEyebrow: "Dans WP-Admin",
     steps: [
-      "À gauche dans WordPress : Extensions, puis Ajouter.",
-      "Téléverser une extension",
-      "Choisir le zip Talker (talker-now.zip)",
-      "Activer. La bulle apparaît sur le site.",
+      "Télécharger le zip.",
+      "Upload dans Extensions WordPress (Ajouter une extension).",
+      "Talker lit votre site, puis questions / réponses.",
+      "L’agent est opérationnel.",
     ],
     reassurance:
       "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",

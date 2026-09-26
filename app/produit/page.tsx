@@ -4,9 +4,9 @@ import { FooterSection } from "@/components/landing/footer-section";
 import { FeaturesSection } from "@/components/landing/features-section";
 
 export const metadata: Metadata = {
-  title: "Talker — fonctionnalités du chatbot IA WordPress",
+  title: "Talker — l’agent IA conversationnel pour WordPress",
   description:
-    "Fonctionnalités du chatbot IA Talker pour un site WordPress.",
+    "Agent IA conversationnel Talker pour WordPress : intelligent et autonome, pas un arbre décisionnel.",
 };
 
 export default function ProduitPage() {

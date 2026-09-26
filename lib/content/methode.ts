@@ -76,20 +76,47 @@ export const methodeFr: MethodeCopy = {
   sections: [
     {
       id: "trafic",
-      h2: "Trafic : pourquoi un agent sur votre site",
+      h2: "Comment l’agent convertit avec moins de trafic ?",
       blocks: [
         {
           type: "p",
           parts: [
-            "Parce que les réponses des IA (ChatGPT, Gemini, aperçus IA des moteurs) prennent une partie du trafic des pages qui répondaient autrefois à ces questions. Moins de visites ne veut pas dire moins besoin de transformer.",
+            "Les réponses des IA (ChatGPT, Gemini, aperçus IA des moteurs) prennent une partie du trafic des pages qui répondaient autrefois à ces questions. Moins de visites ne veut pas dire moins besoin de transformer.",
           ],
         },
         {
           type: "p",
           parts: [
-            "Talker place un agent conversationnel IA sur votre site WordPress pour maintenir ou augmenter la transformation avec moins de trafic : questions métier, ton de votre entreprise, captation du contact. Ce n’est pas « remplacer Google », c’est convertir les visites qui restent. Le détail est dans la ",
+            "Talker place un agent conversationnel — un agent IA — sur votre site WordPress pour maintenir ou augmenter la transformation avec moins de trafic : questions métier, ton de votre entreprise, captation du contact. Ce n’est pas « remplacer Google », c’est convertir les visites qui restent. Le détail est dans la ",
             { href: "/faq", text: "FAQ", internal: true },
             ".",
+          ],
+        },
+      ],
+    },
+    {
+      id: "zip",
+      h2: "Du zip à la conversation",
+      blocks: [
+        {
+          type: "p",
+          parts: [
+            "Le second geste de la méthode : de l’installation à l’agent en ligne. Pas de démo à réserver.",
+          ],
+        },
+        {
+          type: "ul",
+          items: [
+            ["Télécharger le zip."],
+            [
+              "L’ajouter dans WordPress : Extensions, puis Ajouter. Voir ",
+              { href: "/installer", text: "l’installation", internal: true },
+              ".",
+            ],
+            [
+              "Talker scanne les pages publiques, puis pose quelques questions / réponses (métier, besoins, coordonnées).",
+            ],
+            ["L’agent est en ligne et parle aux visiteurs."],
           ],
         },
       ],
@@ -404,20 +431,47 @@ export const methodeEn: MethodeCopy = {
   sections: [
     {
       id: "trafic",
-      h2: "Traffic: why an agent on your site",
+      h2: "How does the agent convert with less traffic?",
       blocks: [
         {
           type: "p",
           parts: [
-            "Because AI answers (ChatGPT, Gemini, search AI overviews) take some of the traffic that pages used to get for those questions. Fewer visits does not mean less need to turn a visit into a contact.",
+            "AI answers (ChatGPT, Gemini, search AI overviews) take some of the traffic that pages used to get for those questions. Fewer visits does not mean less need to turn a visit into a contact.",
           ],
         },
         {
           type: "p",
           parts: [
-            "Talker places a conversational AI agent on your WordPress site to keep or raise conversion with less traffic: trade questions, your company’s tone, contact capture. This is not “replacing Google”. It converts the visits that remain. Detail is in the ",
+            "Talker places a conversational agent — an AI agent — on your WordPress site to keep or raise conversion with less traffic: trade questions, your company’s tone, contact capture. This is not “replacing Google”. It converts the visits that remain. Detail is in the ",
             { href: "/faq", text: "FAQ", internal: true },
             ".",
+          ],
+        },
+      ],
+    },
+    {
+      id: "zip",
+      h2: "From the zip to the conversation",
+      blocks: [
+        {
+          type: "p",
+          parts: [
+            "The second move of the method: from install to a live agent. No demo to book.",
+          ],
+        },
+        {
+          type: "ul",
+          items: [
+            ["Download the zip."],
+            [
+              "Add it in WordPress: Plugins, then Add New. See ",
+              { href: "/installer", text: "installation", internal: true },
+              ".",
+            ],
+            [
+              "Talker scans the public pages, then asks a few questions and answers (trade, needs, contact details).",
+            ],
+            ["The agent is live and talks to visitors."],
           ],
         },
       ],

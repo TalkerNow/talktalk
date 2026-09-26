@@ -55,14 +55,16 @@ export const en = {
     eyebrow: "What it does",
     title: "What you need.",
     titleMuted: "Nothing extra.",
-    pageH1: "Talker — features of the AI chatbot for WordPress",
+    pageH1: "Talker — the conversational AI agent for your WordPress",
+    pageLead:
+      "A conversational AI agent: intelligent and autonomous. It reads the site, runs the exchange, and captures the contact. Not a decision-tree chatbot.",
     faqLink: "FAQ",
     items: [
       {
         number: "01",
         title: "An agent that knows your business",
         bullets: [
-          "Reads your site to frame the activity, offers, and context — not a generic multi-sector bot.",
+          "An autonomous AI agent: reads your site to frame the activity, offers, and context — not a decision-tree widget.",
           "Answers precisely on prices, options, and terms as soon as they appear on your pages.",
           "Takes your brand tone and vocabulary; refuses the formatted, generic \"AI reply\" style.",
           "Fits your trade with no complex setup or menu to tick (practice, craft, shop, consulting, culture…).",
@@ -271,17 +273,16 @@ export const en = {
     noCard: "No credit card required",
   },
   installer: {
-    title: "Install Talker on WordPress",
-    subtitle:
-      "A WordPress zip, no credit card. 100 conversations, then you activate it in WP-Admin.",
+    title: "Install Talker in ~3 minutes",
+    subtitle: "Zip, upload in WordPress, scan and questions, agent live.",
     download: "Download the zip",
     placeholderNote: "talker-now.zip — no card, not on WordPress.org.",
     stepsEyebrow: "In WP-Admin",
     steps: [
-      "On the left in WordPress: Plugins, then Add New.",
-      "Upload Plugin",
-      "Choose the Talker zip (talker-now.zip)",
-      "Activate. The bubble appears on the site.",
+      "Download the zip.",
+      "Upload it in WordPress Plugins (Add New).",
+      "Talker reads your site, then questions and answers.",
+      "The agent is live.",
     ],
     reassurance:
       "No card. Not on WordPress.org. Works with the usual themes and builders (Elementor, Divi, etc.).",
