@@ -241,6 +241,46 @@ html.t1 .bg-\[\#0A0A0A\] .t1-kicker > span {
   background-color: var(--t1-accent);
 }
 
+/* Dark how-it-works band. Black stays. The action, the promise, and the demo card do not. */
+html.t1 .t1-how {
+  padding-top: 6.5rem;
+  padding-bottom: 6rem;
+}
+
+html.t1 .t1-how-muted {
+  color: #ffffff;
+  opacity: 1;
+}
+
+html.t1 .btn-iridescent.t1-how-cta,
+html.t1 .btn-iridescent.t1-how-cta:hover,
+html.t1 .btn-iridescent.t1-how-cta:focus-visible {
+  background-color: var(--t1-accent);
+  color: #ffffff;
+}
+
+html.t1 .btn-iridescent.t1-how-cta::before {
+  background: var(--t1-accent-600);
+}
+
+html.t1 .t1-how-card {
+  border-radius: 1.5rem;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+}
+
+@media (max-width: 767px) {
+  html.t1 .t1-how {
+    padding-top: 7.5rem;
+    padding-bottom: 8.5rem;
+  }
+
+  html.t1 .t1-how-card {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2.5rem;
+  }
+}
+
 /* /v2 hero hook: static lines are one ink. Every rotating phrase is accent MAIN. */
 html.t1 .t1-hero-solid {
   color: #111111;
