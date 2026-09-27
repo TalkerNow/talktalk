@@ -309,9 +309,31 @@ html.t1 .t1-hero-status {
   background-color: var(--t1-accent);
 }
 
-/* Insights strip: 12s is 2.5× the shared 30s loop. Numbers are cobalt; labels stay muted. */
+/* Insights strip. The shared .marquee box stretches to the viewport, so -50% was only
+   half a screen and then snapped. The track is two identical copies at max-content;
+   moving it by half its width lands on the same frame. One full set passes in 5s. */
+html.t1 .t1-hero-stats {
+  overflow: hidden;
+}
+
 html.t1 .t1-hero-marquee {
-  animation-duration: 12s;
+  width: max-content;
+  animation: t1-hero-marquee 5s linear infinite;
+}
+
+@keyframes t1-hero-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.t1 .t1-hero-stats:hover .t1-hero-marquee {
+    animation-play-state: paused;
+  }
 }
 
 html.t1 .t1-hero-stat {
