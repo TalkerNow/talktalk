@@ -209,7 +209,7 @@ export function HeroSection() {
           v2 ? "t1-hero-stats" : ""
         } ${isVisible ? "opacity-100" : "opacity-0"}`}
       >
-        <div className="flex marquee whitespace-nowrap">
+        <div className={`flex marquee whitespace-nowrap ${v2 ? "t1-hero-marquee" : ""}`}>
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex shrink-0">
               {stats.map((stat) => (
@@ -217,7 +217,11 @@ export function HeroSection() {
                   key={`${stat.value}-${stat.label}-${i}`}
                   className="flex min-w-[300px] flex-col justify-center gap-1 border-r border-foreground/10 px-10 py-5 lg:min-w-[360px] lg:px-14 lg:py-6"
                 >
-                  <span className="text-4xl lg:text-5xl font-display font-semibold tracking-tight">
+                  <span
+                    className={`text-4xl lg:text-5xl font-display font-semibold tracking-tight ${
+                      v2 ? "t1-hero-stat" : ""
+                    }`}
+                  >
                     {stat.value}
                   </span>
                   <span className="text-sm text-muted-foreground">{stat.label}</span>

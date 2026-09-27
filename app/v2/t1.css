@@ -309,6 +309,15 @@ html.t1 .t1-hero-status {
   background-color: var(--t1-accent);
 }
 
+/* Insights strip: 12s is 2.5× the shared 30s loop. Numbers are cobalt; labels stay muted. */
+html.t1 .t1-hero-marquee {
+  animation-duration: 12s;
+}
+
+html.t1 .t1-hero-stat {
+  color: var(--t1-cobalt);
+}
+
 html.t1 .t1-hero-grid {
   opacity: 0.12;
 }
