@@ -178,14 +178,16 @@ export function HeroSection() {
               <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
             </a>
           </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="h-14 px-8 text-base rounded-full bg-transparent border-foreground/15 text-foreground hover:bg-foreground/5 shadow-none"
-            onClick={() => openTalker()}
-          >
-            {t.hero.seeDemo}
-          </Button>
+          {v2 ? null : (
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-14 px-8 text-base rounded-full bg-transparent border-foreground/15 text-foreground hover:bg-foreground/5 shadow-none"
+              onClick={() => openTalker()}
+            >
+              {t.hero.seeDemo}
+            </Button>
+          )}
         </div>
 
         <div

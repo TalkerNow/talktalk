@@ -306,7 +306,7 @@ html.t1 .btn-iridescent.t1-hero-cta::before {
 }
 
 html.t1 .t1-hero-status {
-  background-color: #52525b;
+  background-color: var(--t1-accent);
 }
 
 html.t1 .t1-hero-grid {
