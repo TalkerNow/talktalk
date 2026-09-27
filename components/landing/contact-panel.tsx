@@ -23,7 +23,7 @@ export function ContactPanel() {
 
   return (
     <div
-      className="relative overflow-visible border border-foreground"
+      className="t1-contact-panel relative overflow-visible border border-foreground"
       onMouseMove={handleMouseMove}
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-40 overflow-hidden opacity-20">
@@ -63,8 +63,8 @@ export function ContactPanel() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 border-b border-l border-foreground/10" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-32 w-32 border-t border-r border-foreground/10" />
+      <div className="t1-contact-corner pointer-events-none absolute right-0 top-0 h-32 w-32 border-b border-l border-foreground/10" />
+      <div className="t1-contact-corner pointer-events-none absolute bottom-0 left-0 h-32 w-32 border-t border-r border-foreground/10" />
     </div>
   );
 }

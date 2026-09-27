@@ -370,7 +370,15 @@ html.t1 .t1-hero-sizers {
   visibility: hidden;
 }
 
-/* Phrase box shrinks to the current words. The slot around it stays fixed. */
+/* Phrase box shrinks to the current words. The slot around it stays fixed.
+   char-in starts at blur(40px) + translateY(100%). Without a clip, that paint
+   leaves a crescent beside the verb. */
+html.t1 .t1-hero-slot,
+html.t1 .t1-hero-phrase,
+html.t1 .t1-hero-letters {
+  overflow: clip;
+}
+
 html.t1 .t1-hero-phrase {
   position: relative;
   align-self: start;
@@ -467,6 +475,15 @@ html.t1 .t1-faq-summary:focus-visible {
 html.t1 .t1-faq-item[open] {
   background: color-mix(in srgb, var(--t1-faq) 16%, var(--t1-cobalt-50));
   box-shadow: inset 4px 0 0 var(--t1-faq);
+}
+
+/* Contact frame ticks (top-right / bottom-left) read as a 1px stub in the corner. */
+html.t1 .t1-contact-panel {
+  overflow: clip;
+}
+
+html.t1 .t1-contact-corner {
+  display: none;
 }
 
 html.t1 .t1-faq-mark {
