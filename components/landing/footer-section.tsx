@@ -6,7 +6,10 @@ import { TalkerWordmark } from "@/components/brand/mark";
 import { AnimatedWave } from "./animated-wave";
 import { useLocale } from "@/components/i18n/locale-context";
 import { CONSENT_OPEN_EVENT } from "@/lib/consent";
-import { toV2Href } from "@/lib/theme/v2-href";
+import { isV2Path, toV2Href } from "@/lib/theme/v2-href";
+
+const V2_FOOTER_BLURB =
+  "L'agent conversationnel IA qui répond, capte et vend à la place de votre standard. Installé en 5 minutes, actif 24h/24.";
 
 function TwitterMark({ className }: { className?: string }) {
   return (
@@ -41,6 +44,12 @@ const socialLinks = [
 export function FooterSection() {
   const { t } = useLocale();
   const pathname = usePathname();
+  const blurb =
+    isV2Path(pathname) &&
+    t.footer.blurb ===
+      "L'agent conversationnel qui répond, capte et vend à la place de votre standard. Installé en 5 minutes, actif 24h/24."
+      ? V2_FOOTER_BLURB
+      : t.footer.blurb;
   return (
     <footer className="relative border-t border-foreground/10">
       <div className="absolute inset-0 h-64 opacity-20 pointer-events-none overflow-hidden">
@@ -57,7 +66,7 @@ export function FooterSection() {
               </a>
 
               <p className="text-muted-foreground leading-relaxed mb-8 max-w-xs">
-                {t.footer.blurb}
+                {blurb}
               </p>
 
               <div className="flex gap-6">
