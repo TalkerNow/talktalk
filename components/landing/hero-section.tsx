@@ -108,8 +108,13 @@ export function HeroSection() {
                 }`
           }`}
         >
-          <span className="block text-foreground">{t.hero.titleBefore}</span>
-          <span className={v2 ? "t1-hero-verb block" : "block text-foreground/40"}>
+          <span className={v2 ? "t1-hero-solid block" : "block text-foreground"}>
+            {t.hero.titleBefore}
+          </span>
+          <span
+            className={v2 ? "t1-hero-verb block" : "block text-foreground/40"}
+            data-tone={v2 ? (wordIndex % 2 === 0 ? "main" : "hot") : undefined}
+          >
             <span className="relative inline-block">
               <span key={wordIndex} className="inline-flex flex-wrap">
                 {phrases[wordIndex].split("").map((char, i) => (

@@ -241,7 +241,7 @@ html.t1 .bg-\[\#0A0A0A\] .t1-kicker > span {
   background-color: var(--t1-accent);
 }
 
-/* /v2 hero promise: solid ink and cobalt. No grey wash, no letter blur. */
+/* /v2 hero hook: static lines are one ink. The rotating phrase alternates accent MAIN and 600. */
 html.t1 .t1-hero-solid {
   color: #111111;
   opacity: 1;
@@ -249,13 +249,20 @@ html.t1 .t1-hero-solid {
 }
 
 html.t1 .t1-hero-verb {
-  color: var(--t1-cobalt);
   opacity: 1;
   filter: none;
 }
 
-html.t1 .t1-hero-rule {
-  background-color: var(--t1-cobalt);
+html.t1 .t1-hero-verb[data-tone="main"] {
+  color: var(--t1-accent);
+}
+
+html.t1 .t1-hero-verb[data-tone="hot"] {
+  color: var(--t1-accent-600);
+}
+
+html.t1 .t1-hero-verb .t1-hero-rule {
+  background-color: currentColor;
 }
 
 @media (max-width: 767px) {
