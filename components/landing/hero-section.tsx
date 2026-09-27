@@ -112,27 +112,34 @@ export function HeroSection() {
             {t.hero.titleBefore}
           </span>
           <span
-            className={v2 ? "t1-hero-verb block" : "block text-foreground/40"}
+            className={v2 ? "t1-hero-verb t1-hero-slot block" : "block text-foreground/40"}
             data-tone={v2 ? (wordIndex % 2 === 0 ? "main" : "hot") : undefined}
           >
-            <span className="relative inline-block">
-              <span key={wordIndex} className="inline-flex flex-wrap">
-                {phrases[wordIndex].split("").map((char, i) => (
-                  <span
-                    key={`${wordIndex}-${i}`}
-                    className={v2 ? "inline-block" : "inline-block animate-char-in"}
-                    style={
-                      v2
-                        ? undefined
-                        : {
-                            animationDelay: `${i * 50}ms`,
-                          }
-                    }
-                  >
-                    {char === " " ? "\u00A0" : char}
+            {v2 ? (
+              <span className="t1-hero-sizers" aria-hidden>
+                {phrases.map((phrase) => (
+                  <span key={phrase} className="t1-hero-sizer">
+                    {phrase}
                   </span>
                 ))}
               </span>
+            ) : null}
+            <span className={v2 ? "t1-hero-phrase" : "relative inline-block"}>
+              {v2 ? (
+                phrases[wordIndex]
+              ) : (
+                <span key={wordIndex} className="inline-flex flex-wrap">
+                  {phrases[wordIndex].split("").map((char, i) => (
+                    <span
+                      key={`${wordIndex}-${i}`}
+                      className="inline-block animate-char-in"
+                      style={{ animationDelay: `${i * 50}ms` }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </span>
+                  ))}
+                </span>
+              )}
               <span
                 className={`absolute -bottom-1 left-0 right-0 h-[3px] ${
                   v2 ? "t1-hero-rule" : "bg-foreground/12"

@@ -265,6 +265,29 @@ html.t1 .t1-hero-verb .t1-hero-rule {
   background-color: currentColor;
 }
 
+/* Every phrase shares one grid cell, so the slot stays as wide and tall as the longest wrap. */
+html.t1 .t1-hero-slot,
+html.t1 .t1-hero-sizers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+html.t1 .t1-hero-sizers,
+html.t1 .t1-hero-phrase,
+html.t1 .t1-hero-sizer {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+html.t1 .t1-hero-sizers {
+  visibility: hidden;
+}
+
+html.t1 .t1-hero-phrase {
+  position: relative;
+  align-self: start;
+}
+
 @media (max-width: 767px) {
   html.t1 .t1-hero {
     min-height: auto;
