@@ -52,6 +52,16 @@ Le bloc contact envoie email + URL de site vers une Server Action (`lib/actions/
 
 `NEXT_PUBLIC_DEMO_LLM=0` remet le fil scripté.
 
+## GEO / SEO (préparé, pas d’indexation)
+
+`GET /llms.txt` renvoie du `text/plain` (faits produit, routes réelles).
+
+IndexNow : la clé publique est dans `public/<clé>.txt` (servie à `/<clé>.txt`). `submitIndexNow()` dans `lib/seo/indexnow.ts` peut poster vers `https://api.indexnow.org/indexnow`, mais **ne part pas** tant que `INDEXNOW_SUBMIT` n’est pas `true`. L’activer seulement après le GO Cap'tain (gate off, plus de `Disallow: /`). Ne pas l’appeler en CI tant que le site est fermé.
+
+Cartes X : `twitter:card=summary_large_image` sur le layout marketing. `twitter:image` reprend l’image Open Graph (`app/opengraph-image.tsx`) — ne pas poser `twitter.images`, sinon l’URL diverge. `twitter:site` uniquement si `NEXT_PUBLIC_TWITTER_SITE` est défini.
+
+Le soft-gate reste en place : `Disallow: /`, sitemap vide, `noindex`.
+
 ## Déploiement
 
 Le projet Vercel `talktalk` (équipe Talker) se déploie depuis `main` sur GitHub `TalkerNow/talktalk`.
