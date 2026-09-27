@@ -241,7 +241,7 @@ html.t1 .bg-\[\#0A0A0A\] .t1-kicker > span {
   background-color: var(--t1-accent);
 }
 
-/* /v2 hero hook: static lines are one ink. The rotating phrase alternates accent MAIN and 600. */
+/* /v2 hero hook: static lines are one ink. Every rotating phrase is accent MAIN. */
 html.t1 .t1-hero-solid {
   color: #111111;
   opacity: 1;
@@ -249,16 +249,9 @@ html.t1 .t1-hero-solid {
 }
 
 html.t1 .t1-hero-verb {
+  color: var(--t1-accent);
   opacity: 1;
   filter: none;
-}
-
-html.t1 .t1-hero-verb[data-tone="main"] {
-  color: var(--t1-accent);
-}
-
-html.t1 .t1-hero-verb[data-tone="hot"] {
-  color: var(--t1-accent-600);
 }
 
 html.t1 .t1-hero-verb .t1-hero-rule {
@@ -276,6 +269,10 @@ html.t1 .t1-hero-sizers,
 html.t1 .t1-hero-phrase,
 html.t1 .t1-hero-sizer {
   grid-area: 1 / 1;
+}
+
+html.t1 .t1-hero-sizers,
+html.t1 .t1-hero-sizer {
   min-width: 0;
 }
 
@@ -283,9 +280,17 @@ html.t1 .t1-hero-sizers {
   visibility: hidden;
 }
 
+/* Phrase box shrinks to the current words. The rule is left/right of that box, not the grid cell. */
 html.t1 .t1-hero-phrase {
   position: relative;
   align-self: start;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
+}
+
+html.t1 .t1-hero-letters {
+  display: block;
 }
 
 @media (max-width: 767px) {
