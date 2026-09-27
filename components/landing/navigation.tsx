@@ -136,6 +136,16 @@ export function Navigation() {
         }`}
         style={{ top: 0 }}
       >
+        {isV2Path(pathname) ? (
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="t1-menu-close absolute top-5 right-5 z-10 flex size-12 items-center justify-center text-[2rem] leading-none"
+            aria-label="Fermer"
+          >
+            <span aria-hidden>×</span>
+          </button>
+        ) : null}
         <div className="flex flex-col h-full px-8 pt-28 pb-8">
           {/* Navigation Links */}
           <div className="flex-1 flex flex-col justify-center gap-8">

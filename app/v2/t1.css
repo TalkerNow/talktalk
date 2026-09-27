@@ -14,9 +14,9 @@ html.t1 .bg-\[\#C43F17\] {
   background-color: var(--t1-cobalt);
 }
 
-/* Voice callout dots sit on the orange accent wash. */
+/* Bullets on the home accent card stay ink so they remain visible on MAIN orange. */
 html.t1 .bg-\[\#F4DCD4\] .bg-\[\#C43F17\] {
-  background-color: var(--t1-accent);
+  background-color: #111111;
 }
 
 /* Voice text: marquee, send. FAQ marker stays cobalt. */
@@ -69,8 +69,9 @@ html.t1 .focus-visible\:outline-\[\#C43F17\]:focus-visible {
   outline-color: var(--t1-cobalt);
 }
 
+/* Home callout card. Charter accent MAIN, not the pale 50 wash. */
 html.t1 .bg-\[\#F4DCD4\] {
-  background-color: var(--t1-accent-50);
+  background-color: var(--t1-accent);
 }
 
 /* Paper surfaces leave the cream; page wash stays cobalt 50. */
@@ -223,13 +224,30 @@ html.t1 .talker-ripple.is-on {
   text-underline-offset: 2px;
 }
 
-/* Section kickers. Cobalt MAIN only. Accent stays on logo, launcher, FAQ marks. */
+/* Section kickers. Cobalt on sky. Accent MAIN on the black how-it-works band. */
 html.t1 .t1-kicker {
   color: var(--t1-cobalt);
 }
 
 html.t1 .t1-kicker > span {
   background-color: var(--t1-cobalt);
+}
+
+html.t1 .bg-\[\#0A0A0A\] .t1-kicker {
+  color: var(--t1-accent);
+}
+
+html.t1 .bg-\[\#0A0A0A\] .t1-kicker > span {
+  background-color: var(--t1-accent);
+}
+
+html.t1 .t1-menu-close {
+  color: var(--t1-accent);
+}
+
+html.t1 .t1-menu-close:focus-visible {
+  outline: 2px solid var(--t1-cobalt);
+  outline-offset: 3px;
 }
 
 /* /v2/faq accordion. Marks are solid MAIN discs, not the thin shared plus. */
