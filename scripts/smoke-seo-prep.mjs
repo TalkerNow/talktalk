@@ -47,8 +47,9 @@ assert(mismatch.submitted === false && mismatch.reason === "key-mismatch", "key 
 delete process.env.INDEXNOW_SUBMIT;
 delete process.env.INDEXNOW_KEY;
 
-assert(twitterSiteFromEnv(undefined) === undefined, "twitter site unset");
-assert(twitterSiteFromEnv("") === undefined, "twitter site blank");
+delete process.env.NEXT_PUBLIC_TWITTER_SITE;
+assert(twitterSiteFromEnv() === "@TalkerNow", "twitter site defaults to @TalkerNow");
+assert(twitterSiteFromEnv("") === "@TalkerNow", "blank env uses @TalkerNow");
 assert(twitterSiteFromEnv("@TalkerNow") === "@TalkerNow", "twitter site passthrough");
 assert(twitterSiteFromEnv("TalkerNow") === "@TalkerNow", "twitter site adds @");
 assert(twitterSiteFromEnv("not a handle") === undefined, "twitter site rejects junk");
