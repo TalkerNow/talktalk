@@ -6,7 +6,13 @@ import { useTalker } from "@/components/talker/provider";
 import { useLocale } from "@/components/i18n/locale-context";
 import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
-import { toV2Href } from "@/lib/theme/v2-href";
+import { isV2Path, toV2Href } from "@/lib/theme/v2-href";
+
+/** `/v2` mobile only. Live `/` keeps `t.hero.subtitle`. */
+const V2_MOBILE_SUBTITLE = {
+  fr: "Les IA répondent sans renvoyer vers votre site. Sur WordPress, Talker transforme la visite en contact.",
+  en: "AI answers without sending people to your site. On WordPress, Talker turns the visit into a contact.",
+} as const;
 
 function HeroSubtitle({ text }: { text: string }) {
   const parts = text.split("**");
@@ -24,19 +30,34 @@ function HeroSubtitle({ text }: { text: string }) {
 }
 
 export function HeroSection() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const phrases = t.hero.phrases;
   const stats = t.hero.stats;
   const [isVisible, setIsVisible] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
   const { openTalker } = useTalker();
   const pathname = usePathname();
+  const v2 = isV2Path(pathname);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setIsVisible(true));
     return () => cancelAnimationFrame(id);
   }, []);
 
+  useEffect(() => {
+    setWordIndex(0);
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % phrases.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [phrases]);
+
   return (
-    <section className="relative flex min-h-screen flex-col justify-between overflow-visible">
+    <section
+      className={`relative flex min-h-screen flex-col justify-between overflow-visible ${
+        v2 ? "t1-hero" : ""
+      }`}
+    >
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
         {[...Array(8)].map((_, i) => (
           <div
@@ -62,7 +83,11 @@ export function HeroSection() {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 lg:px-12 pt-32 pb-10 lg:pt-40 lg:pb-12">
+      <div
+        className={`relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-12 pt-32 pb-10 lg:pt-40 lg:pb-12 ${
+          v2 ? "t1-hero-copy" : ""
+        }`}
+      >
         <div
           className={`mb-8 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -75,17 +100,55 @@ export function HeroSection() {
         </div>
 
         <h1
-          className={`max-w-[16em] text-balance text-[clamp(2.15rem,4.6vw,4.75rem)] font-display font-bold leading-[1.02] tracking-tight mb-10 text-foreground transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`text-[clamp(2.1rem,6.4vw,6.2rem)] font-display font-bold leading-[0.96] tracking-tight mb-10 ${
+            v2
+              ? ""
+              : `transition-all duration-1000 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`
           }`}
         >
-          {t.hero.title}
+          <span className="block text-foreground">{t.hero.titleBefore}</span>
+          <span className={v2 ? "t1-hero-verb block" : "block text-foreground/40"}>
+            <span className="relative inline-block">
+              <span key={wordIndex} className="inline-flex flex-wrap">
+                {phrases[wordIndex].split("").map((char, i) => (
+                  <span
+                    key={`${wordIndex}-${i}`}
+                    className={v2 ? "inline-block" : "inline-block animate-char-in"}
+                    style={
+                      v2
+                        ? undefined
+                        : {
+                            animationDelay: `${i * 50}ms`,
+                          }
+                    }
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
+              </span>
+              <span
+                className={`absolute -bottom-1 left-0 right-0 h-[3px] ${
+                  v2 ? "t1-hero-rule" : "bg-foreground/12"
+                }`}
+              />
+            </span>
+          </span>
+          <span className={v2 ? "t1-hero-solid block" : "block text-foreground/30"}>
+            {t.hero.titleAfter}
+          </span>
         </h1>
 
+        {v2 ? (
+          <p className="t1-hero-solid t1-hero-lead mb-10 max-w-2xl text-lg leading-snug md:hidden">
+            {V2_MOBILE_SUBTITLE[locale]}
+          </p>
+        ) : null}
         <p
           className={`text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10 transition-all duration-700 delay-200 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
+            v2 ? "hidden md:block" : ""
+          } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           <HeroSubtitle text={t.hero.subtitle} />
         </p>
@@ -128,8 +191,8 @@ export function HeroSection() {
 
       <div
         className={`relative z-10 border-t border-foreground/10 transition-all duration-700 delay-500 ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`}
+          v2 ? "t1-hero-stats" : ""
+        } ${isVisible ? "opacity-100" : "opacity-0"}`}
       >
         <div className="flex marquee whitespace-nowrap">
           {[...Array(2)].map((_, i) => (

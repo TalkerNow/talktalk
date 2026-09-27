@@ -241,6 +241,46 @@ html.t1 .bg-\[\#0A0A0A\] .t1-kicker > span {
   background-color: var(--t1-accent);
 }
 
+/* /v2 hero promise: solid ink and cobalt. No grey wash, no letter blur. */
+html.t1 .t1-hero-solid {
+  color: #111111;
+  opacity: 1;
+  filter: none;
+}
+
+html.t1 .t1-hero-verb {
+  color: var(--t1-cobalt);
+  opacity: 1;
+  filter: none;
+}
+
+html.t1 .t1-hero-rule {
+  background-color: var(--t1-cobalt);
+}
+
+@media (max-width: 767px) {
+  html.t1 .t1-hero {
+    min-height: auto;
+    justify-content: flex-start;
+    padding-bottom: 8.5rem;
+  }
+
+  html.t1 .t1-hero-copy {
+    padding-top: 6.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  html.t1 .t1-hero-copy h1,
+  html.t1 .t1-hero-lead {
+    margin-bottom: 1.25rem;
+  }
+
+  html.t1 .t1-hero-stats [class~="py-5"] {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+  }
+}
+
 html.t1 .t1-menu-close {
   color: var(--t1-accent);
 }
