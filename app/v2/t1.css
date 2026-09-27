@@ -69,9 +69,9 @@ html.t1 .focus-visible\:outline-\[\#C43F17\]:focus-visible {
   outline-color: var(--t1-cobalt);
 }
 
-/* Home callout card. Charter accent MAIN, not the pale 50 wash. */
+/* Home callout card only. Accent 300 is the large-pad fill; MAIN stays on logo, launcher, FAQ discs, dark kicker. */
 html.t1 .bg-\[\#F4DCD4\] {
-  background-color: var(--t1-accent);
+  background-color: var(--t1-accent-300);
 }
 
 /* Paper surfaces leave the cream; page wash stays cobalt 50. */
