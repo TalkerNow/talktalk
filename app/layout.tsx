@@ -44,10 +44,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: twitterSite,
     title,
     description,
     // images omitted on purpose: Next copies opengraph-image into twitter:image.
-    ...(twitterSite ? { site: twitterSite } : {}),
   },
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],

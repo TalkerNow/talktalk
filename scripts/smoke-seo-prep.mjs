@@ -52,6 +52,6 @@ assert(twitterSiteFromEnv() === "@TalkerNow", "twitter site defaults to @TalkerN
 assert(twitterSiteFromEnv("") === "@TalkerNow", "blank env uses @TalkerNow");
 assert(twitterSiteFromEnv("@TalkerNow") === "@TalkerNow", "twitter site passthrough");
 assert(twitterSiteFromEnv("TalkerNow") === "@TalkerNow", "twitter site adds @");
-assert(twitterSiteFromEnv("not a handle") === undefined, "twitter site rejects junk");
+assert(twitterSiteFromEnv("not a handle") === "@TalkerNow", "invalid env falls back to @TalkerNow");
 
 console.log("smoke-seo-prep: ok");

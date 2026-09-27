@@ -7,7 +7,8 @@ const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://talker.now").replac
 /**
  * Public /llms.txt body. Product facts only.
  * Live routes on this branch: /, /produit, /installer, /faq, /contact.
- * /methode and /tarifs are not pages here (tarifs is the #pricing anchor on /).
+ * /methode is not on this branch (it lives on cursor/methode-marketing-page-b032).
+ * /tarifs is not a page (pricing is the #pricing anchor on /).
  */
 export const llmsTxt = `# Talker
 
