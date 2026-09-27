@@ -311,14 +311,14 @@ html.t1 .t1-hero-status {
 
 /* Insights strip. The shared .marquee box stretches to the viewport, so -50% was only
    half a screen and then snapped. The track is two identical copies at max-content;
-   moving it by half its width lands on the same frame. One full set passes in 5s. */
+   moving it by half its width lands on the same frame. One full set passes in 12s. */
 html.t1 .t1-hero-stats {
   overflow: hidden;
 }
 
 html.t1 .t1-hero-marquee {
   width: max-content;
-  animation: t1-hero-marquee 5s linear infinite;
+  animation: t1-hero-marquee 12s linear infinite;
 }
 
 @keyframes t1-hero-marquee {
