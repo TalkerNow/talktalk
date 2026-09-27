@@ -254,8 +254,27 @@ html.t1 .t1-hero-verb {
   filter: none;
 }
 
-html.t1 .t1-hero-verb .t1-hero-rule {
-  background-color: currentColor;
+html.t1 .btn-iridescent.t1-hero-cta,
+html.t1 .btn-iridescent.t1-hero-cta:hover,
+html.t1 .btn-iridescent.t1-hero-cta:focus-visible {
+  background-color: var(--t1-accent);
+  color: #ffffff;
+}
+
+html.t1 .btn-iridescent.t1-hero-cta::before {
+  background: var(--t1-accent-600);
+}
+
+html.t1 .t1-hero-status {
+  background-color: #52525b;
+}
+
+html.t1 .t1-hero-grid {
+  opacity: 0.12;
+}
+
+html.t1 .t1-hero-actions {
+  padding-top: 1.5rem;
 }
 
 /* Every phrase shares one grid cell, so the slot stays as wide and tall as the longest wrap. */
@@ -280,7 +299,7 @@ html.t1 .t1-hero-sizers {
   visibility: hidden;
 }
 
-/* Phrase box shrinks to the current words. The rule is left/right of that box, not the grid cell. */
+/* Phrase box shrinks to the current words. The slot around it stays fixed. */
 html.t1 .t1-hero-phrase {
   position: relative;
   align-self: start;
@@ -308,6 +327,15 @@ html.t1 .t1-hero-letters {
   html.t1 .t1-hero-copy h1,
   html.t1 .t1-hero-lead {
     margin-bottom: 1.25rem;
+  }
+
+  /* The CTA row gained 24px. Give that height back so the stats clear the bubble. */
+  html.t1 .t1-hero-copy > div:first-child {
+    margin-bottom: 1rem;
+  }
+
+  html.t1 .t1-hero-note {
+    margin-top: 0.75rem;
   }
 
   html.t1 .t1-hero-stats [class~="py-5"] {

@@ -58,7 +58,11 @@ export function HeroSection() {
         v2 ? "t1-hero" : ""
       }`}
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+      <div
+        className={`pointer-events-none absolute inset-0 overflow-hidden ${
+          v2 ? "t1-hero-grid" : "opacity-30"
+        }`}
+      >
         {[...Array(8)].map((_, i) => (
           <div
             key={`h-${i}`}
@@ -133,11 +137,9 @@ export function HeroSection() {
                   </span>
                 ))}
               </span>
-              <span
-                className={`absolute -bottom-1 left-0 right-0 h-[3px] ${
-                  v2 ? "t1-hero-rule" : "bg-foreground/12"
-                }`}
-              />
+              {v2 ? null : (
+                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-foreground/12" />
+              )}
             </span>
           </span>
           <span className={v2 ? "t1-hero-solid block" : "block text-foreground/30"}>
@@ -160,14 +162,16 @@ export function HeroSection() {
 
         <div
           className={`flex flex-col sm:flex-row items-start gap-3 overflow-visible transition-all duration-700 delay-300 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
+            v2 ? "t1-hero-actions" : ""
+          } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           <Button
             asChild
             size="lg"
             variant="iridescent"
-            className="h-14 rounded-full px-8 text-base group overflow-hidden"
+            className={`h-14 rounded-full px-8 text-base group overflow-hidden ${
+              v2 ? "t1-hero-cta" : ""
+            }`}
           >
             <a href={toV2Href("/installer", pathname)}>
               {t.hero.createAgent}
@@ -186,10 +190,14 @@ export function HeroSection() {
 
         <div
           className={`mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-all duration-700 delay-300 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
+            v2 ? "t1-hero-note" : ""
+          } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
-          <span className="w-2 h-2 rounded-full bg-green-500" />
+          <span
+            className={
+              v2 ? "t1-hero-status h-2 w-2 rounded-full" : "h-2 w-2 rounded-full bg-green-500"
+            }
+          />
           {t.hero.wordpress}
         </div>
       </div>
