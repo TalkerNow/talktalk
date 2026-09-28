@@ -83,8 +83,10 @@ let lastConfigAt = 0;
 function installGtag() {
   window.dataLayer = window.dataLayer || [];
   if (window.gtag) return;
-  window.gtag = function gtag(...args: unknown[]) {
-    window.dataLayer?.push(args);
+  window.gtag = function gtag() {
+    // The Google tag reads an Arguments object. A rest array is ignored.
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer?.push(arguments);
   };
 }
 
