@@ -106,7 +106,7 @@ export function Navigation() {
               variant="iridescent"
               className={`rounded-full transition-all duration-500 ${isScrolled ? "px-4 h-8 text-xs" : "px-6"}`}
             >
-              <a href="/installer">{t.nav.createAgent}</a>
+              <a href="/installer">{t.nav.download}</a>
             </Button>
           </div>
 
@@ -177,7 +177,7 @@ export function Navigation() {
               className="flex-1 rounded-full h-14 text-base"
             >
               <a href="/installer" onClick={() => setIsMobileMenuOpen(false)}>
-                {t.nav.createAgent}
+                {t.nav.download}
               </a>
             </Button>
           </div>

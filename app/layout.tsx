@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import { LocaleProvider } from "@/components/i18n/locale-context";
+import { CookieBanner } from "@/components/consent/cookie-banner";
+import { GoogleAnalytics } from "@/components/consent/google-analytics";
 import { TalkerShell } from "@/components/talker/shell";
 import "./globals.css";
 
@@ -64,6 +66,8 @@ export default function RootLayout({
       >
         <LocaleProvider>
           <TalkerShell>{children}</TalkerShell>
+          <CookieBanner />
+          <GoogleAnalytics />
         </LocaleProvider>
       </body>
     </html>

@@ -1,4 +1,6 @@
 import type { DemoStep } from "@/lib/content/demo";
+import { consentEn } from "@/lib/content/consent-copy";
+import { pagesEn } from "@/lib/content/site-pages";
 import type { Messages } from "./fr";
 
 export const en = {
@@ -406,9 +408,10 @@ export const en = {
         title: "Resources",
         links: [
           { name: "FAQ", href: "/#faq" },
+          { name: "The method", href: "/methode" },
           { name: "Help center", href: "#" },
-          { name: "Setup guide", href: "#" },
-          { name: "Script templates", href: "#" },
+          { name: "Setup guide", href: "/installer" },
+          { name: "Download", href: "/installer" },
           { name: "Status", href: "#" },
         ],
       },
@@ -417,7 +420,7 @@ export const en = {
         links: [
           { name: "About", href: "#" },
           { name: "Blog", href: "#" },
-          { name: "Careers", href: "#" },
+          { name: "Careers", href: "/recrutement" },
           { name: "Contact", href: "/contact" },
           { name: "Partner program", href: "#" },
         ],
@@ -425,10 +428,10 @@ export const en = {
       {
         title: "Legal",
         links: [
-          { name: "Privacy", href: "#" },
-          { name: "Terms", href: "#" },
-          { name: "Legal", href: "#" },
-          { name: "GDPR", href: "#" },
+          { name: "Privacy", href: "/confidentialite" },
+          { name: "Terms", href: "/cgu" },
+          { name: "Legal notice", href: "/mentions-legales" },
+          { name: "GDPR", href: "/rgpd" },
         ],
       },
     ],
@@ -483,6 +486,8 @@ export const en = {
     submit: "Enter",
     error: "Incorrect password.",
   },
+  consent: consentEn,
+  pages: pagesEn,
   notFound: {
     title: "This page doesn't exist.",
     back: "Back to talker.now",

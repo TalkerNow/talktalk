@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --cookie-banner-offset: 0px;
   --background: #f7f6f4;
   --foreground: #000000;
   --card: #ffffff;
@@ -131,6 +132,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    padding-bottom: var(--cookie-banner-offset, 0px);
   }
   html {
     scroll-behavior: smooth;
@@ -145,7 +147,7 @@
   position: fixed;
   z-index: 60;
   right: var(--talker-panel-gutter-right);
-  bottom: calc(7.5rem + 20px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(7.5rem + 20px + env(safe-area-inset-bottom, 0px) + var(--cookie-banner-offset, 0px));
   width: min(
     380px,
     calc(100dvw - var(--talker-panel-gutter-left) - var(--talker-panel-gutter-right)),
