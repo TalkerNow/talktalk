@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { AnimatedWave } from "./animated-wave";
 import { useLocale } from "@/components/i18n/locale-context";
+import { CONSENT_OPEN_EVENT } from "@/lib/consent";
 
 function TwitterMark({ className }: { className?: string }) {
   return (
@@ -97,6 +98,13 @@ export function FooterSection() {
           </p>
 
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <button
+              type="button"
+              className="hover:text-foreground transition-colors"
+              onClick={() => window.dispatchEvent(new Event(CONSENT_OPEN_EVENT))}
+            >
+              {t.consent.manage}
+            </button>
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500" />
               {t.footer.systems}

@@ -241,7 +241,8 @@ export function TalkerLauncherBubble() {
         className={`pointer-events-none fixed z-40 ${TOUCH_SAFE_CLASS}`}
         style={{
           right: "calc(max(1.5rem, env(safe-area-inset-right)) + 20px)",
-          bottom: "calc(max(1.5rem, env(safe-area-inset-bottom)) + 20px)",
+          bottom:
+            "calc(max(1.5rem, env(safe-area-inset-bottom)) + 20px + var(--cookie-banner-offset, 0px))",
         }}
       >
         {!open ? (

@@ -15,6 +15,11 @@ assert(isPublicPath("/brand/symbole.svg"), "brand assets must be public");
 assert(!isPublicPath("/"), "home must be gated");
 assert(!isPublicPath("/produit"), "produit must be gated");
 assert(!isPublicPath("/api/demo-chat"), "demo chat must be gated");
+assert(!isPublicPath("/recrutement"), "recrutement must stay gated");
+assert(!isPublicPath("/methode"), "methode must stay gated");
+assert(!isPublicPath("/installer"), "installer must stay gated");
+assert(!isPublicPath("/confidentialite"), "privacy must stay gated");
+assert(!isPublicPath("/mentions-legales"), "legal notice must stay gated");
 
 assert(safeNextPath("/produit") === "/produit", "relative next path");
 assert(safeNextPath("/faq?lang=en") === "/faq?lang=en", "next path keeps query");

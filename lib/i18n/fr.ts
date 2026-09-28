@@ -1,4 +1,6 @@
 import type { DemoStep } from "@/lib/content/demo";
+import { consentFr } from "@/lib/content/consent-copy";
+import { pagesFr } from "@/lib/content/site-pages";
 
 export const fr = {
   langLabel: "Langue",
@@ -410,9 +412,10 @@ export const fr = {
         title: "Ressources",
         links: [
           { name: "FAQ", href: "/#faq" },
+          { name: "La méthode", href: "/methode" },
           { name: "Centre d'aide", href: "#" },
-          { name: "Guide d'installation", href: "#" },
-          { name: "Modèles de scripts", href: "#" },
+          { name: "Guide d'installation", href: "/installer" },
+          { name: "Télécharger", href: "/installer" },
           { name: "Statut du service", href: "#" },
         ],
       },
@@ -421,7 +424,7 @@ export const fr = {
         links: [
           { name: "À propos", href: "#" },
           { name: "Blog", href: "#" },
-          { name: "Recrutement", href: "#" },
+          { name: "Recrutement", href: "/recrutement" },
           { name: "Contact", href: "/contact" },
           { name: "Devenir partenaire", href: "#" },
         ],
@@ -429,10 +432,10 @@ export const fr = {
       {
         title: "Légal",
         links: [
-          { name: "Confidentialité", href: "#" },
-          { name: "CGU/CGV", href: "#" },
-          { name: "Mentions légales", href: "#" },
-          { name: "RGPD", href: "#" },
+          { name: "Confidentialité", href: "/confidentialite" },
+          { name: "CGU/CGV", href: "/cgu" },
+          { name: "Mentions légales", href: "/mentions-legales" },
+          { name: "RGPD", href: "/rgpd" },
         ],
       },
     ],
@@ -487,6 +490,8 @@ export const fr = {
     submit: "Entrer",
     error: "Mot de passe incorrect.",
   },
+  consent: consentFr,
+  pages: pagesFr,
   notFound: {
     title: "Cette page n’existe pas.",
     back: "Retour à talker.now",
