@@ -23,7 +23,7 @@ export function IdleTalkerBubble({ className }: { className?: string }) {
         strokeLinecap="round"
       />
       {BUBBLE_DOTS.map((dot) => (
-        <circle key={dot.cx} cx={dot.cx} cy={dot.cy} r={dot.r} fill="#C43F17" />
+        <circle key={dot.cx} cx={dot.cx} cy={dot.cy} r={dot.r} fill={dot.fill} />
       ))}
     </svg>
   );

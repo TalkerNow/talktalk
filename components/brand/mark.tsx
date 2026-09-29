@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import {
   BUBBLE_DOTS,
-  BUBBLE_FILLED,
   BUBBLE_OUTLINE,
   BUBBLE_STROKE,
   BUBBLE_VIEWBOX,
@@ -10,7 +9,6 @@ import {
 type MarkProps = {
   className?: string;
   title?: string;
-  filled?: boolean;
 };
 
 function BubbleDots() {
@@ -22,31 +20,15 @@ function BubbleDots() {
           cx={dot.cx}
           cy={dot.cy}
           r={dot.r}
-          fill="#C43F17"
+          fill={dot.fill}
         />
       ))}
     </>
   );
 }
 
-export function TalkerMark({ className, title, filled = false }: MarkProps) {
+export function TalkerMark({ className, title }: MarkProps) {
   const decorative = !title;
-  if (filled) {
-    return (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox={BUBBLE_VIEWBOX}
-        width="1em"
-        height="1em"
-        role="img"
-        aria-hidden={decorative ? true : undefined}
-        aria-label={title}
-        className={className}
-      >
-        <path fill="#C43F17" fillRule="evenodd" d={BUBBLE_FILLED} />
-      </svg>
-    );
-  }
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

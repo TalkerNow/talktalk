@@ -326,7 +326,7 @@ export function TalkerLauncherBubble() {
                 cx={dot.cx}
                 cy={dot.cy}
                 r={dot.r}
-                fill="#C43F17"
+                fill={dot.fill}
                 className={`talker-typing-dot talker-typing-dot-${index + 1}`}
               />
             ))}
