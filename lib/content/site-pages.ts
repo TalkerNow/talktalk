@@ -75,9 +75,10 @@ export const pagesFr: SitePages = {
       {
         title: "Une conversation avec une IA",
         paragraphs: [
-          "Talker est propulsé par l’IA. Le visiteur parle à un logiciel, pas à un salarié de Talker. Cette page le dit ; le rappel dans la fenêtre de chat viendra plus tard dans le produit.",
+          "Talker est un agent conversationnel propulsé par l’IA, un chatbot pour WordPress. Le visiteur parle à un logiciel, pas à un salarié de Talker. Cette page le dit ; le rappel dans la fenêtre de chat viendra plus tard dans le produit.",
           "Une réponse peut être incomplète ou fausse. Ce n’est pas un avis juridique, médical, financier ou professionnel.",
           "Celui qui installe Talker choisit le contenu et les réglages. Il reste responsable de ce que les visiteurs voient, et de la suite avec un humain.",
+          "Une question sur Talker, la société ou le produit : hello@talker.now.",
         ],
         links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
       },
@@ -328,9 +329,10 @@ export const pagesEn: SitePages = {
       {
         title: "A conversation with AI",
         paragraphs: [
-          "Talker is powered by AI. The visitor talks to software, not to an employee of Talker. This page says so; a reminder inside the chat window will come later in the product.",
+          "Talker is an AI-powered conversational agent, a chatbot for WordPress. The visitor talks to software, not to an employee of Talker. This page says so; a reminder inside the chat window will come later in the product.",
           "An answer can be incomplete or wrong. It is not legal, medical, financial, or professional advice.",
           "Whoever installs Talker chooses the content and the settings. They remain responsible for what visitors see, and for any follow-up with a human.",
+          "A question about Talker, the company or the product: hello@talker.now.",
         ],
         links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
       },
