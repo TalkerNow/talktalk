@@ -6,7 +6,9 @@ import { LocaleProvider } from "@/components/i18n/locale-context";
 import { CookieBanner } from "@/components/consent/cookie-banner";
 import { GoogleAnalytics } from "@/components/consent/google-analytics";
 import { TalkerShell } from "@/components/talker/shell";
+import { t1VarStyle } from "@/lib/theme/territoire-1";
 import "./globals.css";
+import "./v2/t1.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -66,10 +68,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className="t1">
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
+        <style dangerouslySetInnerHTML={{ __html: t1VarStyle }} />
         <LocaleProvider>
           <TalkerShell>{children}</TalkerShell>
           <CookieBanner />

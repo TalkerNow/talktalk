@@ -4,7 +4,6 @@ import { T1Scope } from "./t1-scope";
 import "./t1.css";
 
 export const metadata: Metadata = {
-  title: "V2 — charte T1 (brouillon) — Talker",
   robots: {
     index: false,
     follow: false,

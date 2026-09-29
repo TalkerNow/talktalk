@@ -20,6 +20,17 @@ export const fr = {
     eyebrow: "Les IA aspirent le trafic de votre site. Talker le récupère.",
     title:
       "Talker — le chatbot IA / agent conversationnel pour votre site WordPress",
+    titleBefore: "Le chatbot IA qui",
+    titleAfter: "à votre place",
+    phrases: [
+      "vend",
+      "décrit vos prestations",
+      "parle de votre métier",
+      "donne vos tarifs",
+      "récupère le numéro",
+      "capte l'email",
+      "demande des avis Google",
+    ],
     subtitle:
       "Les chatbots IA sont devenus de vrais agents conversationnels qui connaissent votre métier, captent le numéro ou l'email de vos prospects, répondent aux tarifs sans que vous leviez le petit doigt, trient les demandes de vos clients existants, et récupèrent vos avis Google. Installé en 10 minutes, sans code.",
     createAgent: "Créer mon chatbot",

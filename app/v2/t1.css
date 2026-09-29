@@ -197,33 +197,6 @@ html.t1 .talker-ripple.is-on {
   }
 }
 
-.t1-draft-banner {
-  position: fixed;
-  z-index: 70;
-  left: 50%;
-  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  max-width: calc(100vw - 7.5rem);
-  border: 1px solid var(--t1-cobalt-300);
-  border-radius: 9999px;
-  background: color-mix(in srgb, #ffffff 94%, transparent);
-  padding: 0.35rem 0.9rem;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: var(--t1-cobalt-800);
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--t1-cobalt-800) 12%, transparent);
-}
-
-.t1-draft-banner a {
-  color: var(--t1-cobalt);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
 /* Section kickers. Cobalt on sky. Accent MAIN on the black how-it-works band. */
 html.t1 .t1-kicker {
   color: var(--t1-cobalt);

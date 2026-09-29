@@ -9,11 +9,10 @@ import { PricingSection } from "@/components/landing/pricing-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { FaqList } from "@/components/landing/faq-list";
 import { FooterSection } from "@/components/landing/footer-section";
-import { V2Banner } from "./v2-banner";
 
 export default function HomeV2() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden noise-overlay pb-16">
+    <main className="relative min-h-screen overflow-x-hidden noise-overlay">
       <Navigation />
       <HeroSection />
       <ContextSection />
@@ -25,7 +24,6 @@ export default function HomeV2() {
       <CtaSection />
       <FaqList variant="section" />
       <FooterSection />
-      <V2Banner />
     </main>
   );
 }

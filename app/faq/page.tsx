@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navigation } from "@/components/landing/navigation";
 import { FooterSection } from "@/components/landing/footer-section";
-import { FaqList } from "@/components/landing/faq-list";
+import { FaqListV2 } from "@/components/v2/faq-list";
 import { faqFr } from "@/lib/content/faq";
 
 export const metadata: Metadata = {
@@ -38,7 +38,7 @@ export default function FaqPage() {
         }}
       />
       <Navigation />
-      <FaqList />
+      <FaqListV2 />
       <FooterSection />
     </main>
   );
