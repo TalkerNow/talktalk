@@ -6,8 +6,7 @@ const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://talker.now").replac
 
 /**
  * Public /llms.txt body. Product facts only.
- * Live routes on this branch: /, /produit, /installer, /faq, /contact.
- * /methode is not on this branch (it lives on cursor/methode-marketing-page-b032).
+ * Live routes: /, /produit, /methode, /installer, /faq, /contact.
  * /tarifs is not a page (pricing is the #pricing anchor on /).
  */
 export const llmsTxt = `# Talker
@@ -16,6 +15,7 @@ export const llmsTxt = `# Talker
 
 - [Accueil](${origin}/): vitrine Talker.
 - [Produit](${origin}/produit): fonctionnalités de l'agent sur WordPress.
+- [Méthode](${origin}/methode): du zip WordPress à la conversation sur le site.
 - [Installer](${origin}/installer): téléchargement du plugin zip, à déposer dans WP-Admin.
 - [FAQ](${origin}/faq): questions fréquentes.
 - [Contact](${origin}/contact): écrire à l'équipe.

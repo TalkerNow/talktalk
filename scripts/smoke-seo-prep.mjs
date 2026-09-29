@@ -18,10 +18,9 @@ assert(
   ),
   "llms.txt one-liner",
 );
-for (const path of ["/", "/produit", "/installer", "/faq", "/contact"]) {
+for (const path of ["/", "/produit", "/methode", "/installer", "/faq", "/contact"]) {
   assert(llmsTxt.includes(`talker.now${path === "/" ? "/" : path}`), `llms link ${path}`);
 }
-assert(!llmsTxt.includes("/methode"), "no /methode route");
 assert(!llmsTxt.includes("/tarifs"), "no /tarifs route");
 assert(!/chatbot/i.test(llmsTxt), "llms.txt is not chatbot-first");
 assert(!/noindex|disallow|gate/i.test(llmsTxt), "llms.txt stays product facts");
