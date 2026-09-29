@@ -1,5 +1,7 @@
 import type { DemoStep } from "@/lib/content/demo";
 import { consentFr } from "@/lib/content/consent-copy";
+import { faqFr } from "@/lib/content/faq";
+import { methodeFr } from "@/lib/content/methode";
 import { pagesFr } from "@/lib/content/site-pages";
 
 export const fr = {
@@ -16,17 +18,8 @@ export const fr = {
   },
   hero: {
     eyebrow: "Les IA aspirent le trafic de votre site. Talker le récupère.",
-    titleBefore: "Le chatbot IA qui",
-    titleAfter: "à votre place",
-    phrases: [
-      "vend",
-      "décrit vos prestations",
-      "parle de votre métier",
-      "donne vos tarifs",
-      "récupère le numéro",
-      "capte l'email",
-      "demande des avis Google",
-    ],
+    title:
+      "Talker — le chatbot IA / agent conversationnel pour votre site WordPress",
     subtitle:
       "Les chatbots IA sont devenus de vrais agents conversationnels qui connaissent votre métier, captent le numéro ou l'email de vos prospects, répondent aux tarifs sans que vous leviez le petit doigt, trient les demandes de vos clients existants, et récupèrent vos avis Google. Installé en 10 minutes, sans code.",
     createAgent: "Créer mon chatbot",
@@ -61,12 +54,16 @@ export const fr = {
     eyebrow: "Fonctionnalités",
     title: "Ce qu'il faut.",
     titleMuted: "Rien de plus.",
+    pageH1: "Talker — l’agent IA conversationnel pour votre WordPress",
+    pageLead:
+      "Un agent IA conversationnel : intelligent et autonome. Il lit le site, mène l’échange et capture le contact. Pas un chatbot à arbre décisionnel.",
+    faqLink: "Questions fréquentes",
     items: [
       {
         number: "01",
         title: "Un agent qui connaît votre métier",
         bullets: [
-          "Lit votre site pour cadrer l'activité, les prestations et le contexte — pas un bot générique multi-secteurs.",
+          "Agent IA autonome : lit votre site pour cadrer l'activité, les prestations et le contexte — pas un widget à arbre décisionnel.",
           "Répond précisément sur les tarifs, les options et les modalités dès qu'ils figurent sur vos pages.",
           "Adopte le ton et le vocabulaire de votre marque ; refuse le style « réponse IA » formatée et générique.",
           "S'adapte à votre métier sans paramétrage complexe ni menu à cocher (cabinet, artisan, commerçant, conseil, culture…).",
@@ -100,54 +97,7 @@ export const fr = {
       },
     ],
   },
-  faq: {
-    title: "FAQs",
-    items: [
-      {
-        q: "Qu'est-ce que Talker ?",
-        a: "Talker est un agent conversationnel IA pour WordPress : il lit le site, répond comme un commercial, capture e-mail et téléphone, et peut proposer un avis Google quand le visiteur est satisfait.",
-      },
-      {
-        q: "Talker est-il un chatbot WordPress ?",
-        a: "Oui. C'est un chatbot IA WordPress (zip à activer dans WP-Admin) conçu pour vendre et qualifier, pas seulement pour répondre aux FAQ du site.",
-      },
-      {
-        q: "En quoi Talker est-il différent d'un chatbot générique ?",
-        a: "Il s'aligne sur vos prestations et votre ton, sans menu de secteurs. La conversation s'appuie sur des cadres reconnus (Cialdini, SPIN Selling, Chris Voss) pour clarifier le besoin puis amener à la prise de contact.",
-      },
-      {
-        q: "Comment Talker apprend-il mon métier ?",
-        a: "Il lit les pages de votre site (prestations, tarifs, modalités) pour cadrer les réponses. Pas de paramétrage complexe au démarrage.",
-      },
-      {
-        q: "Talker capture-t-il les coordonnées des prospects ?",
-        a: "Oui : e-mail, téléphone et contexte de la demande avant la fin de l'échange, puis transmission vers vous.",
-      },
-      {
-        q: "Est-ce que je vois les conversations de mes visiteurs ?",
-        a: [
-          "Vous recevez par e-mail, toutes les 4 heures, le détail des échanges s'il y en a eu.",
-          "Des alertes SMS sont possibles lorsqu'un numéro de téléphone est capté et qu'une demande semble urgente.",
-        ],
-      },
-      {
-        q: "Talker peut-il demander un avis Google ?",
-        a: "Oui, lorsqu'il détecte que l'internaute est satisfait du service dans la conversation.",
-      },
-      {
-        q: "Combien coûte Talker ?",
-        a: "Un plan gratuit jusqu'à 100 conversations par installation. Les offres Pro et Agences ajoutent l'illimité, la marque blanche et plus de canaux — voir la grille tarifaire ci-dessus.",
-      },
-      {
-        q: "Faut-il savoir coder pour l'installer ?",
-        a: "Non. Zip Talker.now à téléverser dans WP-Admin ; le widget s'active et s'installe automatiquement sans code.",
-      },
-      {
-        q: "Talker remplace-t-il mon support client ?",
-        a: "Il agit comme un support avant votre support : précise la situation, distingue prospect et client existant, puis vous transmet un dossier cadré avec les questions de votre client.",
-      },
-    ],
-  },
+  faq: faqFr,
   how: {
     eyebrow: "Comment ça marche",
     title: "3 étapes. 5 minutes.",
@@ -327,17 +277,17 @@ export const fr = {
     noCard: "Sans carte bancaire",
   },
   installer: {
-    title: "Télécharger Talker",
+    title: "Installer Talker en ~3 minutes",
     subtitle:
-      "Un zip WordPress, sans carte bancaire. 100 conversations, puis vous activez dans WP-Admin.",
+      "Zip, upload dans WordPress, scan et questions, agent en ligne.",
     download: "Télécharger le zip",
     placeholderNote: "talker-now.zip — sans carte, sans WordPress.org.",
     stepsEyebrow: "Dans WP-Admin",
     steps: [
-      "À gauche dans WordPress : Extensions, puis Ajouter.",
-      "Téléverser une extension",
-      "Choisir le zip Talker (talker-now.zip)",
-      "Activer. La bulle apparaît sur le site.",
+      "Télécharger le zip.",
+      "Upload dans Extensions WordPress (Ajouter une extension).",
+      "Talker lit votre site, puis questions / réponses.",
+      "L’agent est opérationnel.",
     ],
     reassurance:
       "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",
@@ -411,7 +361,7 @@ export const fr = {
       {
         title: "Ressources",
         links: [
-          { name: "FAQ", href: "/#faq" },
+          { name: "FAQ", href: "/faq" },
           { name: "La méthode", href: "/methode" },
           { name: "Centre d'aide", href: "#" },
           { name: "Guide d'installation", href: "/installer" },
@@ -441,7 +391,7 @@ export const fr = {
     ],
   },
   contact: {
-    title: "Contact",
+    title: "Contact Talker",
     titleMuted: "On vous répond.",
     lead1: "Vous installez. Talker parle. Les demandes arrivent.",
     lead2: "Pas un ticket. Une conversation.",
@@ -492,6 +442,7 @@ export const fr = {
   },
   consent: consentFr,
   pages: pagesFr,
+  methode: methodeFr,
   notFound: {
     title: "Cette page n’existe pas.",
     back: "Retour à talker.now",

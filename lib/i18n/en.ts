@@ -1,5 +1,7 @@
 import type { DemoStep } from "@/lib/content/demo";
 import { consentEn } from "@/lib/content/consent-copy";
+import { faqEn } from "@/lib/content/faq";
+import { methodeEn } from "@/lib/content/methode";
 import { pagesEn } from "@/lib/content/site-pages";
 import type { Messages } from "./fr";
 
@@ -17,17 +19,8 @@ export const en = {
   },
   hero: {
     eyebrow: "Search and AI answer first. Talker brings the visit back.",
-    titleBefore: "The AI chatbot that",
-    titleAfter: "so you don't have to",
-    phrases: [
-      "sells",
-      "lists your services",
-      "quotes your prices",
-      "shows your availability",
-      "retrieves the phone number",
-      "captures emails",
-      "asks for Google reviews",
-    ],
+    title:
+      "Talker — the AI chatbot / conversational agent for your WordPress site",
     subtitle:
       "AI chatbots have become real conversational agents that know your business, capture your prospects' phone number or email, answer pricing on their own, route existing customers, and collect Google reviews. Live in 10 minutes. No code.",
     createAgent: "Create my chatbot",
@@ -62,12 +55,16 @@ export const en = {
     eyebrow: "What it does",
     title: "What you need.",
     titleMuted: "Nothing extra.",
+    pageH1: "Talker — the conversational AI agent for your WordPress",
+    pageLead:
+      "A conversational AI agent: intelligent and autonomous. It reads the site, runs the exchange, and captures the contact. Not a decision-tree chatbot.",
+    faqLink: "FAQ",
     items: [
       {
         number: "01",
         title: "An agent that knows your business",
         bullets: [
-          "Reads your site to frame the activity, offers, and context — not a generic multi-sector bot.",
+          "An autonomous AI agent: reads your site to frame the activity, offers, and context — not a decision-tree widget.",
           "Answers precisely on prices, options, and terms as soon as they appear on your pages.",
           "Takes your brand tone and vocabulary; refuses the formatted, generic \"AI reply\" style.",
           "Fits your trade with no complex setup or menu to tick (practice, craft, shop, consulting, culture…).",
@@ -101,54 +98,7 @@ export const en = {
       },
     ],
   },
-  faq: {
-    title: "FAQs",
-    items: [
-      {
-        q: "What is Talker?",
-        a: "Talker is a conversational AI agent for WordPress: it reads the site, answers like a salesperson, captures email and phone, and can offer a Google review when the visitor is satisfied.",
-      },
-      {
-        q: "Is Talker a WordPress chatbot?",
-        a: "Yes. It is an AI WordPress chatbot (a zip to activate in WP-Admin) built to sell and qualify, not only to answer the site FAQ.",
-      },
-      {
-        q: "How is Talker different from a generic chatbot?",
-        a: "It stays aligned with your services and tone, with no sector menu. The conversation uses recognized frames (Cialdini, SPIN Selling, Chris Voss) to clarify the need, then steer to contact.",
-      },
-      {
-        q: "How does Talker learn my business?",
-        a: "It reads your site pages (services, prices, terms) to frame the answers. No complex setup at the start.",
-      },
-      {
-        q: "Does Talker capture prospect contact details?",
-        a: "Yes: email, phone, and the context of the request before the exchange ends, then it is sent on to you.",
-      },
-      {
-        q: "Do I see my visitors' conversations?",
-        a: [
-          "You get an email every 4 hours with the detail of exchanges if any took place.",
-          "SMS alerts are possible when a phone number is captured and a request looks urgent.",
-        ],
-      },
-      {
-        q: "Can Talker ask for a Google review?",
-        a: "Yes, when it detects that the visitor is satisfied with the service in the conversation.",
-      },
-      {
-        q: "How much does Talker cost?",
-        a: "A free plan up to 100 conversations per install. Pro and Agency add unlimited, white label, and more channels — see the pricing grid above.",
-      },
-      {
-        q: "Do I need to know how to code to install it?",
-        a: "No. Upload the Talker.now zip in WP-Admin; the widget activates and installs itself with no code.",
-      },
-      {
-        q: "Does Talker replace my customer support?",
-        a: "It acts as support before your support: it clarifies the situation, separates a prospect from an existing client, then hands you a framed brief with your client's questions.",
-      },
-    ],
-  },
+  faq: faqEn,
   how: {
     eyebrow: "How it works",
     title: "3 steps. 5 minutes.",
@@ -323,17 +273,16 @@ export const en = {
     noCard: "No credit card required",
   },
   installer: {
-    title: "Download Talker",
-    subtitle:
-      "A WordPress zip, no credit card. 100 conversations, then you activate it in WP-Admin.",
+    title: "Install Talker in ~3 minutes",
+    subtitle: "Zip, upload in WordPress, scan and questions, agent live.",
     download: "Download the zip",
     placeholderNote: "talker-now.zip — no card, not on WordPress.org.",
     stepsEyebrow: "In WP-Admin",
     steps: [
-      "On the left in WordPress: Plugins, then Add New.",
-      "Upload Plugin",
-      "Choose the Talker zip (talker-now.zip)",
-      "Activate. The bubble appears on the site.",
+      "Download the zip.",
+      "Upload it in WordPress Plugins (Add New).",
+      "Talker reads your site, then questions and answers.",
+      "The agent is live.",
     ],
     reassurance:
       "No card. Not on WordPress.org. Works with the usual themes and builders (Elementor, Divi, etc.).",
@@ -407,7 +356,7 @@ export const en = {
       {
         title: "Resources",
         links: [
-          { name: "FAQ", href: "/#faq" },
+          { name: "FAQ", href: "/faq" },
           { name: "The method", href: "/methode" },
           { name: "Help center", href: "#" },
           { name: "Setup guide", href: "/installer" },
@@ -437,7 +386,7 @@ export const en = {
     ],
   },
   contact: {
-    title: "Contact",
+    title: "Contact Talker",
     titleMuted: "We'll get back to you.",
     lead1: "You install. Talker talks. The leads come in.",
     lead2: "Not a ticket. A conversation.",
@@ -488,6 +437,7 @@ export const en = {
   },
   consent: consentEn,
   pages: pagesEn,
+  methode: methodeEn,
   notFound: {
     title: "This page doesn't exist.",
     back: "Back to talker.now",

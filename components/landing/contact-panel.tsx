@@ -42,9 +42,10 @@ export function ContactPanel() {
           <div>
             <h1 className="font-display text-4xl leading-[0.95] tracking-tight lg:text-7xl">
               {t.contact.title}
-              <br />
-              <span className="text-foreground/30">{t.contact.titleMuted}</span>
             </h1>
+            <p className="mt-4 font-display text-2xl tracking-tight text-foreground/30 lg:text-4xl">
+              {t.contact.titleMuted}
+            </p>
             <p className="mt-10 text-xl leading-relaxed text-foreground">
               {t.contact.lead1}
             </p>

@@ -212,19 +212,41 @@ export function FeaturesSection({
             <span className="w-8 h-px bg-foreground/30" />
             {t.features.eyebrow}
           </span>
-          <Heading
-            className={`font-display font-semibold tracking-tight transition-all duration-700 ${
-              isPage
-                ? "text-5xl lg:text-7xl xl:text-8xl"
-                : "text-4xl lg:text-6xl xl:text-7xl"
-            } ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            {t.features.title}
-            <br />
-            <span className="text-muted-foreground">{t.features.titleMuted}</span>
-          </Heading>
+          {isPage ? (
+            <h1
+              className={`max-w-[16em] text-balance font-display text-[clamp(2.15rem,4.4vw,4.25rem)] font-semibold leading-[1.05] tracking-tight text-foreground transition-all duration-700 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              {t.features.pageH1}
+            </h1>
+          ) : null}
+          {isPage ? (
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#52525B] lg:text-xl">
+              {t.features.pageLead}
+            </p>
+          ) : null}
+          {isPage ? null : (
+            <Heading
+              className={`font-display font-semibold tracking-tight transition-all duration-700 text-4xl lg:text-6xl xl:text-7xl ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              {t.features.title}
+              <br />
+              <span className="text-muted-foreground">{t.features.titleMuted}</span>
+            </Heading>
+          )}
+          {isPage ? (
+            <p className="mt-8 max-w-xl text-lg text-muted-foreground">
+              <a
+                href="/faq"
+                className="text-[#C43F17] underline decoration-[#C43F17]/40 underline-offset-2 transition-colors hover:text-[#A8350F]"
+              >
+                {t.features.faqLink}
+              </a>
+            </p>
+          ) : null}
         </div>
 
         {/* Liste */}
