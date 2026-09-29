@@ -8,10 +8,12 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
 } from "react";
+import { usePathname } from "next/navigation";
 import { TalkerChat } from "@/components/talker/chat";
 import { useTalker, type TalkerIntent } from "@/components/talker/provider";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { useLocale } from "@/components/i18n/locale-context";
+import { isV2Path } from "@/lib/theme/v2-href";
 
 const BUBBLE_PX = 80;
 const ATTRACT_REST_MS = 7000;
@@ -111,7 +113,9 @@ function TouchSafeButton({
 
 export function TalkerLauncherBubble() {
   const { t } = useLocale();
+  const pathname = usePathname();
   const invites = t.bubble.chips;
+  const hideNudges = isV2Path(pathname);
   const { open, openTalker, closeTalker, resetKey } = useTalker();
   const fineHover = useFineHover();
   const [chipsPinned, setChipsPinned] = useState(false);
@@ -245,7 +249,7 @@ export function TalkerLauncherBubble() {
             "calc(max(1.5rem, env(safe-area-inset-bottom)) + 20px + var(--cookie-banner-offset, 0px))",
         }}
       >
-        {!open ? (
+        {!open && !hideNudges ? (
           <div
             onPointerEnter={fineHover ? onChipRegionEnter : undefined}
             onPointerLeave={fineHover ? onChipRegionLeave : undefined}

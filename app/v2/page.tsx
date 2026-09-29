@@ -10,7 +10,7 @@ import { CtaSection } from "@/components/landing/cta-section";
 import { FaqList } from "@/components/landing/faq-list";
 import { FooterSection } from "@/components/landing/footer-section";
 
-export default function Home() {
+export default function HomeV2() {
   return (
     <main className="relative min-h-screen overflow-x-hidden noise-overlay">
       <Navigation />

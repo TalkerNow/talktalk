@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: "/v2", destination: "/", permanent: false },
+      { source: "/v2/:path*", destination: "/:path*", permanent: false },
+    ];
+  },
   async headers() {
     return [
       {

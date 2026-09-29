@@ -1,0 +1,475 @@
+/* Scoped Territoire 1. Hex values live in lib/theme/territoire-1.ts.
+   Accent MAIN is #FF6B2C (HARD-talker-accent-ff6b2c-20260926).
+   Active only while html.t1 is set. */
+
+html.t1 {
+  --background: var(--t1-cobalt-50);
+  --primary: var(--t1-cobalt);
+  --primary-foreground: #ffffff;
+  --ring: var(--t1-cobalt);
+}
+
+/* Primary chrome: nav, unread/infra marks, FAQ marker, toggles, discount pills. */
+html.t1 .bg-\[\#C43F17\] {
+  background-color: var(--t1-cobalt);
+}
+
+/* Bullets on the home accent card stay ink so they remain visible on MAIN orange. */
+html.t1 .bg-\[\#F4DCD4\] .bg-\[\#C43F17\] {
+  background-color: #111111;
+}
+
+/* Voice text: marquee, send. FAQ marker stays cobalt. */
+html.t1 .text-\[\#C43F17\] {
+  color: var(--t1-accent);
+}
+
+html.t1 .text-2xl.text-\[\#C43F17\] {
+  color: var(--t1-cobalt);
+}
+
+html.t1 .border-\[\#C43F17\]\/20 {
+  border-color: color-mix(in srgb, var(--t1-accent) 35%, transparent);
+}
+
+html.t1 .border-\[\#C43F17\]\/35 {
+  border-color: color-mix(in srgb, var(--t1-accent) 40%, transparent);
+}
+
+html.t1 .border-\[\#C43F17\]\/45,
+html.t1 .focus\:border-\[\#C43F17\]:focus {
+  border-color: var(--t1-accent);
+}
+
+html.t1 .border-\[\#C43F17\]\/45 {
+  border-color: color-mix(in srgb, var(--t1-accent) 45%, transparent);
+}
+
+html.t1 .hover\:text-\[\#A8350F\]:hover {
+  color: var(--t1-accent-600);
+}
+
+html.t1 .decoration-\[\#C43F17\]\/40 {
+  text-decoration-color: color-mix(in srgb, var(--t1-accent) 40%, transparent);
+}
+
+html.t1 .hover\:decoration-\[\#A8350F\]:hover {
+  text-decoration-color: var(--t1-accent-600);
+}
+
+html.t1 .bg-\[\#FAEDE7\] {
+  background-color: var(--t1-accent-50);
+}
+
+html.t1 .bg-\[\#FAEDE7\] .bg-\[\#C43F17\] {
+  background-color: var(--t1-accent);
+}
+
+html.t1 .focus-visible\:outline-\[\#C43F17\]:focus-visible {
+  outline-color: var(--t1-cobalt);
+}
+
+/* Home callout card only. Accent 300 is the large-pad fill; MAIN stays on logo, launcher, FAQ discs, dark kicker. */
+html.t1 .bg-\[\#F4DCD4\] {
+  background-color: var(--t1-accent-300);
+}
+
+/* Paper surfaces leave the cream; page wash stays cobalt 50. */
+html.t1 .bg-\[\#F7F6F4\],
+html.t1 .bg-\[\#F7F6F4\]\/90 {
+  background-color: #ffffff;
+}
+
+html.t1 .from-\[\#F7F6F4\] {
+  --tw-gradient-from: var(--t1-cobalt-50);
+}
+
+html.t1 .bg-\[\#f1ece5\],
+html.t1 .bg-\[\#F1ECE5\] {
+  background-color: var(--t1-cobalt-50);
+}
+
+html.t1 .bg-\[\#D8E3F0\] {
+  background-color: var(--t1-cobalt-300);
+}
+
+html.t1 .border-\[\#DCD9CE\] {
+  border-color: var(--t1-cobalt-300);
+}
+
+/* Priority notification badge. */
+html.t1 .bg-\[\#E11D48\] {
+  background-color: var(--t1-accent);
+}
+
+/* Live pulse on the metrics strip. Status greens elsewhere stay. */
+html.t1 .animate-pulse.bg-green-500 {
+  background-color: var(--t1-accent);
+}
+
+/* Black primary controls become cobalt. The hover wipe is the orange accent. */
+html.t1 .bg-black {
+  background-color: var(--t1-cobalt);
+}
+
+html.t1 .btn-iridescent,
+html.t1 .btn-iridescent:hover,
+html.t1 .btn-iridescent:focus-visible {
+  background-color: var(--t1-cobalt);
+  color: #ffffff;
+}
+
+html.t1 .btn-iridescent::before {
+  background: var(--t1-accent);
+}
+
+html.t1 .pricing-card-popular {
+  border-color: var(--t1-cobalt);
+}
+
+html.t1 .pricing-card-popular:hover,
+html.t1 .pricing-card-popular:focus-within {
+  border-color: var(--t1-accent);
+}
+
+html.t1 .pricing-card-badge {
+  background: var(--t1-cobalt);
+}
+
+html.t1 .pricing-card-popular:hover .pricing-card-badge,
+html.t1 .pricing-card-popular:focus-within .pricing-card-badge {
+  background: var(--t1-accent);
+}
+
+html.t1 .pricing-card-stroke {
+  stroke: var(--t1-cobalt);
+}
+
+/* Outline bubble = voice. Filled mark = infra. */
+html.t1 [stroke="#C43F17"] {
+  stroke: var(--t1-accent);
+}
+
+html.t1 [fill="#C43F17"] {
+  fill: var(--t1-cobalt);
+}
+
+html.t1 [fill="#F7F6F4"] {
+  fill: #ffffff;
+}
+
+html.t1 .animate-aurora {
+  background-image: linear-gradient(
+    135deg,
+    var(--t1-cobalt),
+    var(--t1-accent),
+    var(--t1-cobalt-800),
+    var(--t1-cobalt)
+  ) !important;
+}
+
+html.t1 .motion-safe\:animate-shine {
+  background-image: radial-gradient(
+    transparent,
+    transparent,
+    var(--t1-cobalt),
+    var(--t1-cobalt-800),
+    transparent,
+    transparent
+  ) !important;
+}
+
+html.t1 .talker-ripple {
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--t1-accent) 70%, transparent);
+}
+
+html.t1 .talker-ripple.is-on {
+  animation-name: talker-ripple-t1;
+}
+
+@keyframes talker-ripple-t1 {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--t1-accent) 70%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--t1-accent) 0%, transparent);
+  }
+}
+
+/* Section kickers. Cobalt on sky. Accent MAIN on the black how-it-works band. */
+html.t1 .t1-kicker {
+  color: var(--t1-cobalt);
+}
+
+html.t1 .t1-kicker > span {
+  background-color: var(--t1-cobalt);
+}
+
+html.t1 .bg-\[\#0A0A0A\] .t1-kicker {
+  color: var(--t1-accent);
+}
+
+html.t1 .bg-\[\#0A0A0A\] .t1-kicker > span {
+  background-color: var(--t1-accent);
+}
+
+/* Dark how-it-works band. Black stays. The action, the promise, and the demo card do not. */
+html.t1 .t1-how {
+  padding-top: 6.5rem;
+  padding-bottom: 6rem;
+}
+
+html.t1 .t1-how-muted {
+  color: #ffffff;
+  opacity: 1;
+}
+
+html.t1 .btn-iridescent.t1-how-cta,
+html.t1 .btn-iridescent.t1-how-cta:hover,
+html.t1 .btn-iridescent.t1-how-cta:focus-visible {
+  background-color: var(--t1-accent);
+  color: #ffffff;
+}
+
+html.t1 .btn-iridescent.t1-how-cta::before {
+  background: var(--t1-accent-600);
+}
+
+html.t1 .t1-how-card {
+  border-radius: 1.5rem;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+}
+
+@media (max-width: 767px) {
+  html.t1 .t1-how {
+    padding-top: 7.5rem;
+    padding-bottom: 8.5rem;
+  }
+
+  html.t1 .t1-how-card {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2.5rem;
+  }
+}
+
+/* /v2 hero hook: static lines are one ink. Every rotating phrase is accent MAIN. */
+html.t1 .t1-hero-solid {
+  color: #111111;
+  opacity: 1;
+  filter: none;
+}
+
+html.t1 .t1-hero-verb {
+  color: var(--t1-accent);
+  opacity: 1;
+  filter: none;
+}
+
+html.t1 .btn-iridescent.t1-hero-cta,
+html.t1 .btn-iridescent.t1-hero-cta:hover,
+html.t1 .btn-iridescent.t1-hero-cta:focus-visible {
+  background-color: var(--t1-accent);
+  color: #ffffff;
+}
+
+html.t1 .btn-iridescent.t1-hero-cta::before {
+  background: var(--t1-accent-600);
+}
+
+html.t1 .t1-hero-status {
+  background-color: var(--t1-accent);
+}
+
+/* Insights strip. The shared .marquee box stretches to the viewport, so -50% was only
+   half a screen and then snapped. The track is two identical copies at max-content;
+   moving it by half its width lands on the same frame. One full set passes in 12s. */
+html.t1 .t1-hero-stats {
+  overflow: hidden;
+}
+
+html.t1 .t1-hero-marquee {
+  width: max-content;
+  animation: t1-hero-marquee 12s linear infinite;
+}
+
+@keyframes t1-hero-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.t1 .t1-hero-stats:hover .t1-hero-marquee {
+    animation-play-state: paused;
+  }
+}
+
+html.t1 .t1-hero-stat {
+  color: var(--t1-cobalt);
+}
+
+html.t1 .t1-hero-grid {
+  opacity: 0.2;
+}
+
+html.t1 .t1-hero-actions {
+  padding-top: 1.5rem;
+}
+
+/* Every phrase shares one grid cell, so the slot stays as wide and tall as the longest wrap. */
+html.t1 .t1-hero-slot,
+html.t1 .t1-hero-sizers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+html.t1 .t1-hero-sizers,
+html.t1 .t1-hero-phrase,
+html.t1 .t1-hero-sizer {
+  grid-area: 1 / 1;
+}
+
+html.t1 .t1-hero-sizers,
+html.t1 .t1-hero-sizer {
+  min-width: 0;
+}
+
+html.t1 .t1-hero-sizers {
+  visibility: hidden;
+}
+
+/* Phrase box shrinks to the current words. The slot around it stays fixed.
+   char-in starts at blur(40px) + translateY(100%). Without a clip, that paint
+   leaves a crescent beside the verb. */
+html.t1 .t1-hero-slot,
+html.t1 .t1-hero-phrase,
+html.t1 .t1-hero-letters {
+  overflow: clip;
+}
+
+html.t1 .t1-hero-phrase {
+  position: relative;
+  align-self: start;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
+}
+
+html.t1 .t1-hero-letters {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  html.t1 .t1-hero {
+    min-height: auto;
+    justify-content: flex-start;
+    padding-bottom: 8.5rem;
+  }
+
+  html.t1 .t1-hero-copy {
+    padding-top: 6.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  html.t1 .t1-hero-copy h1,
+  html.t1 .t1-hero-lead {
+    margin-bottom: 1.25rem;
+  }
+
+  /* The CTA row gained 24px. Give that height back so the stats clear the bubble. */
+  html.t1 .t1-hero-copy > div:first-child {
+    margin-bottom: 1rem;
+  }
+
+  html.t1 .t1-hero-note {
+    margin-top: 0.75rem;
+  }
+
+  html.t1 .t1-hero-stats [class~="py-5"] {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+  }
+}
+
+html.t1 .t1-menu-close {
+  color: var(--t1-accent);
+}
+
+html.t1 .t1-menu-close:focus-visible {
+  outline: 2px solid var(--t1-cobalt);
+  outline-offset: 3px;
+}
+
+/* /v2/faq accordion. Marks are solid MAIN discs, not the thin shared plus. */
+html.t1 .t1-faq {
+  border-top: 1px solid color-mix(in srgb, var(--t1-cobalt) 45%, transparent);
+}
+
+html.t1 .t1-faq-item[data-tone="cobalt"] {
+  --t1-faq: var(--t1-cobalt);
+}
+
+html.t1 .t1-faq-item[data-tone="accent"] {
+  --t1-faq: var(--t1-accent);
+}
+
+html.t1 .t1-faq-item {
+  border-bottom: 1px solid color-mix(in srgb, var(--t1-faq) 45%, transparent);
+}
+
+html.t1 .t1-faq-summary {
+  display: flex;
+  cursor: pointer;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.15rem 0.85rem;
+}
+
+html.t1 .t1-faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+html.t1 .t1-faq-summary:hover {
+  background: color-mix(in srgb, var(--t1-faq) 14%, transparent);
+}
+
+html.t1 .t1-faq-summary:focus-visible {
+  outline: 2px solid var(--t1-faq);
+  outline-offset: 3px;
+}
+
+html.t1 .t1-faq-item[open] {
+  background: color-mix(in srgb, var(--t1-faq) 16%, var(--t1-cobalt-50));
+  box-shadow: inset 4px 0 0 var(--t1-faq);
+}
+
+/* Contact frame ticks (top-right / bottom-left) read as a 1px stub in the corner. */
+html.t1 .t1-contact-panel {
+  overflow: clip;
+}
+
+html.t1 .t1-contact-corner {
+  display: none;
+}
+
+html.t1 .t1-faq-mark {
+  display: flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--t1-faq);
+  color: #ffffff;
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1;
+}

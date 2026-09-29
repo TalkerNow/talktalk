@@ -755,10 +755,11 @@ export const methodeEn: MethodeCopy = {
 
 export function buildMethodeJsonLd(
   siteUrl = "https://talker.now",
-  siteName = "Talker"
+  siteName = "Talker",
+  path = "/methode"
 ) {
   const origin = siteUrl.replace(/\/$/, "");
-  const url = `${origin}/methode`;
+  const url = `${origin}${path}`;
   const publisher = {
     "@type": "Organization" as const,
     name: siteName,

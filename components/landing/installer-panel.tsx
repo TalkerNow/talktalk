@@ -11,7 +11,7 @@ export function InstallerPanel() {
   return (
     <div>
       <div className="mx-auto max-w-2xl">
-        <span className="mb-6 block font-mono text-xs tracking-[0.2em] text-foreground uppercase">
+        <span className="t1-kicker mb-6 block font-mono text-xs tracking-[0.2em] text-foreground uppercase">
           {t.installer.stepsEyebrow}
         </span>
         <h1 className="font-display text-5xl leading-[0.95] font-semibold tracking-tight text-foreground md:text-6xl">

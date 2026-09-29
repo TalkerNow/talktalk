@@ -8,7 +8,7 @@ const fieldClassName =
   "w-full border border-[#C43F17]/45 bg-[#F7F6F4] px-4 py-3.5 text-[15px] outline-none transition-colors focus:border-[#C43F17]";
 
 const labelClassName =
-  "mb-2 block font-mono text-xs tracking-[0.16em] text-muted-foreground";
+  "t1-kicker mb-2 block font-mono text-xs tracking-[0.16em] text-muted-foreground";
 
 export function ContactForm() {
   const { t } = useLocale();

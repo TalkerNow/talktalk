@@ -3,11 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/components/i18n/locale-context";
+import { usePathname } from "next/navigation";
 import { TalkerChatLoop } from "@/components/landing/installer-vignette/talker-chat-loop";
+import { isV2Path, toV2Href } from "@/lib/theme/v2-href";
 
 export function HowItWorksSection() {
   const { t } = useLocale();
   const steps = t.how.steps;
+  const pathname = usePathname();
+  const v2 = isV2Path(pathname);
   const [activeStep, setActiveStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -35,7 +39,9 @@ export function HowItWorksSection() {
     <section
       id="how-it-works"
       ref={sectionRef}
-      className="relative overflow-visible bg-[#0A0A0A] py-12 text-white lg:py-16"
+      className={`relative overflow-visible bg-[#0A0A0A] py-12 text-white lg:py-16 ${
+        v2 ? "t1-how" : ""
+      }`}
     >
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
         <div
@@ -54,7 +60,7 @@ export function HowItWorksSection() {
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="mb-12 lg:mb-16">
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
+          <span className="t1-kicker inline-flex items-center gap-3 text-sm font-mono text-white/45 mb-6">
             <span className="w-8 h-px bg-white/30" />
             {t.how.eyebrow}
           </span>
@@ -65,7 +71,7 @@ export function HowItWorksSection() {
           >
             {t.how.title}
             <br />
-            <span className="text-white/40">{t.how.titleMuted}</span>
+            <span className={v2 ? "t1-how-muted" : "text-white/40"}>{t.how.titleMuted}</span>
           </h2>
         </div>
 
@@ -110,15 +116,17 @@ export function HowItWorksSection() {
             <Button
               asChild
               variant="iridescent"
-              className="mt-8 rounded-full px-6 overflow-hidden"
+              className={`mt-8 rounded-full px-6 overflow-hidden ${v2 ? "t1-how-cta" : ""}`}
             >
-              <a href="/installer">{t.how.createAgent}</a>
+              <a href={toV2Href("/installer", pathname)}>{t.how.createAgent}</a>
             </Button>
           </div>
 
           <div className="flex w-full justify-end self-start lg:sticky lg:top-32">
             <TalkerChatLoop
-              className="ml-auto flex h-[min(70vh,560px)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border border-foreground/10 bg-[#F7F6F4] text-[#111111] shadow-[0_16px_50px_rgba(0,0,0,0.14)]"
+              className={`ml-auto flex h-[min(70vh,560px)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border border-foreground/10 bg-[#F7F6F4] text-[#111111] shadow-[0_16px_50px_rgba(0,0,0,0.14)] ${
+                v2 ? "t1-how-card" : ""
+              }`}
               headerExtra={
                 <span className="rounded-full px-2 py-1 text-sm text-[#6B6B73]">
                   {t.how.close}

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Navigation } from "@/components/landing/navigation";
-import { FooterSection } from "@/components/landing/footer-section";
 import { FaqListV2 } from "@/components/v2/faq-list";
 import { faqFr } from "@/lib/content/faq";
+import { V2Frame } from "../v2-frame";
 
 export const metadata: Metadata = {
   title: "Questions fréquentes — chatbot WordPress Talker",
@@ -28,18 +27,16 @@ const faqJsonLd = {
   })),
 };
 
-export default function FaqPage() {
+export default function FaqV2Page() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-[#F7F6F4] noise-overlay">
+    <V2Frame>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <Navigation />
       <FaqListV2 />
-      <FooterSection />
-    </main>
+    </V2Frame>
   );
 }
