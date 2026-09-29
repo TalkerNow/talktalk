@@ -11,9 +11,15 @@ export type LegalPage = {
 };
 
 export type SitePages = {
+  apropos: {
+    title: string;
+    lead: string;
+    sections: LegalSection[];
+  };
   recrutement: {
     title: string;
     lead: string;
+    sections: LegalSection[];
     cta: string;
   };
   methode: {
@@ -36,9 +42,62 @@ export type SitePages = {
 };
 
 export const pagesFr: SitePages = {
+  apropos: {
+    title: "À propos",
+    lead: "Talker est un agent conversationnel pour WordPress. Le produit est un zip à déposer sur un site déjà en ligne.",
+    sections: [
+      {
+        title: "Éditeur",
+        paragraphs: ["Pour joindre l’éditeur du site : hello@talker.now."],
+        links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
+      },
+      {
+        title: "Identité légale",
+        paragraphs: [
+          "La raison sociale, l’immatriculation et l’adresse du siège ne figurent pas ici. Le texte complet est sur les mentions légales.",
+        ],
+        links: [{ href: "/mentions-legales", label: "Mentions légales" }],
+      },
+      {
+        title: "Hébergement",
+        paragraphs: ["Le site est hébergé par Vercel Inc."],
+        links: [
+          { href: "/mentions-legales", label: "Mentions légales" },
+          { href: "https://vercel.com", label: "vercel.com" },
+        ],
+      },
+    ],
+  },
   recrutement: {
     title: "Recrutement",
-    lead: "Aucun poste n’est ouvert. Talker est un produit zip : un agent conversationnel à déposer sur WordPress, pour les équipes qui n’ont personne pour tenir un live chat. Une candidature spontanée se lit à hello@talker.now.",
+    lead: "Aucun poste n’est ouvert. Talker est un produit zip : un agent conversationnel à déposer sur WordPress. Une candidature spontanée se lit à hello@talker.now.",
+    sections: [
+      {
+        title: "Pourquoi écrire quand même",
+        paragraphs: [
+          "Un poste fermé n’empêche pas un message court. Quand un besoin se présente, on relit d’abord les candidatures déjà reçues.",
+        ],
+      },
+      {
+        title: "Ce que l’on regarde",
+        paragraphs: [
+          "Des gens qui construisent : un plugin, une page, un parcours. Une pratique de WordPress ou du produit. Une écriture française claire.",
+        ],
+      },
+      {
+        title: "Comment écrire",
+        paragraphs: [
+          "Cinq lignes sur ce que vous faites, un CV, et un lien — site, dépôt ou texte. Pas de formulaire.",
+        ],
+        links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
+      },
+      {
+        title: "À égalité",
+        paragraphs: [
+          "Chaque message est lu de la même façon, quel que soit le parcours.",
+        ],
+      },
+    ],
     cta: "Écrire à hello@talker.now",
   },
   methode: {
@@ -208,9 +267,62 @@ export const pagesFr: SitePages = {
 };
 
 export const pagesEn: SitePages = {
+  apropos: {
+    title: "About",
+    lead: "Talker is a conversational agent for WordPress. The product is a zip you drop on a site that is already online.",
+    sections: [
+      {
+        title: "Publisher",
+        paragraphs: ["To reach the publisher of this site: hello@talker.now."],
+        links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
+      },
+      {
+        title: "Legal identity",
+        paragraphs: [
+          "Legal name, registration, and registered office are not on this page. The full text is on the legal notice.",
+        ],
+        links: [{ href: "/mentions-legales", label: "Legal notice" }],
+      },
+      {
+        title: "Hosting",
+        paragraphs: ["The site is hosted by Vercel Inc."],
+        links: [
+          { href: "/mentions-legales", label: "Legal notice" },
+          { href: "https://vercel.com", label: "vercel.com" },
+        ],
+      },
+    ],
+  },
   recrutement: {
     title: "Careers",
-    lead: "No open roles. Talker is a zip product: a conversational agent you drop on WordPress, for teams with nobody to staff a live chat. Spontaneous applications go to hello@talker.now.",
+    lead: "No open roles. Talker is a zip product: a conversational agent you drop on WordPress. Spontaneous applications go to hello@talker.now.",
+    sections: [
+      {
+        title: "Why write anyway",
+        paragraphs: [
+          "A closed role does not block a short note. When a need shows up, we reread applications already received first.",
+        ],
+      },
+      {
+        title: "What we look at",
+        paragraphs: [
+          "People who build: a plugin, a page, a flow. WordPress or product practice. Clear French writing.",
+        ],
+      },
+      {
+        title: "How to apply",
+        paragraphs: [
+          "Five lines on what you do, a CV, and a link — a site, a repo, or a piece of writing. No form.",
+        ],
+        links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
+      },
+      {
+        title: "Equal opportunity",
+        paragraphs: [
+          "Every note is read the same way, whatever the path.",
+        ],
+      },
+    ],
     cta: "Email hello@talker.now",
   },
   methode: {

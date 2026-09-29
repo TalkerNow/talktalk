@@ -418,7 +418,7 @@ export const en = {
       {
         title: "Company",
         links: [
-          { name: "About", href: "#" },
+          { name: "About", href: "/a-propos" },
           { name: "Blog", href: "#" },
           { name: "Careers", href: "/recrutement" },
           { name: "Contact", href: "/contact" },

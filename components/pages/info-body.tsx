@@ -6,6 +6,46 @@ import type { LegalPage } from "@/lib/content/site-pages";
 const linkClass =
   "text-[#C43F17] underline decoration-[#E3B49F] underline-offset-2 transition-colors hover:text-[#A8350F]";
 
+function SectionList({ sections }: { sections: LegalPage["sections"] }) {
+  return (
+    <div className="mt-12 space-y-10">
+      {sections.map((section) => (
+        <section key={section.title} className="border-t border-[#DCD9CE] pt-8">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-[#111111]">
+            {section.title}
+          </h2>
+          <div className="mt-4 space-y-4">
+            {section.paragraphs.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="text-base leading-relaxed text-[#52525B] lg:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          {section.links?.length ? (
+            <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-base">
+              {section.links.map((link) => (
+                <a
+                  key={link.href + link.label}
+                  href={link.href}
+                  className={linkClass}
+                  {...(link.href.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </p>
+          ) : null}
+        </section>
+      ))}
+    </div>
+  );
+}
+
 function LegalArticle({ page }: { page: LegalPage }) {
   return (
     <article>
@@ -15,41 +55,7 @@ function LegalArticle({ page }: { page: LegalPage }) {
       <p className="mt-6 bg-[#EDEBE3] px-4 py-3 text-sm leading-6 text-[#52525B]">
         {page.notice}
       </p>
-      <div className="mt-12 space-y-10">
-        {page.sections.map((section) => (
-          <section key={section.title} className="border-t border-[#DCD9CE] pt-8">
-            <h2 className="font-display text-2xl font-semibold tracking-tight text-[#111111]">
-              {section.title}
-            </h2>
-            <div className="mt-4 space-y-4">
-              {section.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="text-base leading-relaxed text-[#52525B] lg:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-            {section.links?.length ? (
-              <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-base">
-                {section.links.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className={linkClass}
-                    {...(link.href.startsWith("http")
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </p>
-            ) : null}
-          </section>
-        ))}
-      </div>
+      <SectionList sections={page.sections} />
     </article>
   );
 }
@@ -57,9 +63,29 @@ function LegalArticle({ page }: { page: LegalPage }) {
 export function InfoBody({
   kind,
 }: {
-  kind: "recrutement" | "methode" | "privacy" | "terms" | "mentions" | "gdpr";
+  kind:
+    | "apropos"
+    | "recrutement"
+    | "methode"
+    | "privacy"
+    | "terms"
+    | "mentions"
+    | "gdpr";
 }) {
   const { t } = useLocale();
+
+  if (kind === "apropos") {
+    const copy = t.pages.apropos;
+    return (
+      <article>
+        <h1 className="font-display text-4xl font-semibold tracking-tight text-[#111111] lg:text-6xl">
+          {copy.title}
+        </h1>
+        <p className="mt-8 text-lg leading-relaxed text-[#52525B]">{copy.lead}</p>
+        <SectionList sections={copy.sections} />
+      </article>
+    );
+  }
 
   if (kind === "recrutement") {
     const copy = t.pages.recrutement;
@@ -69,9 +95,10 @@ export function InfoBody({
           {copy.title}
         </h1>
         <p className="mt-8 text-lg leading-relaxed text-[#52525B]">{copy.lead}</p>
+        <SectionList sections={copy.sections} />
         <a
           href="mailto:hello@talker.now"
-          className="mt-8 inline-flex h-11 items-center rounded-full bg-[#C43F17] px-5 text-sm font-medium text-white transition-colors hover:bg-[#A8350F]"
+          className="mt-10 inline-flex h-11 items-center rounded-full bg-[#C43F17] px-5 text-sm font-medium text-white transition-colors hover:bg-[#A8350F]"
         >
           {copy.cta}
         </a>

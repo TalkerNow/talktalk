@@ -3,15 +3,15 @@ import { SiteFrame } from "@/components/layout/site-frame";
 import { InfoBody } from "@/components/pages/info-body";
 
 export const metadata: Metadata = {
-  title: "Recrutement — Talker",
+  title: "À propos — Talker",
   description:
-    "Aucun poste ouvert. Candidature spontanée : cinq lignes, un CV et un lien, à hello@talker.now.",
+    "Agent conversationnel WordPress, en zip. Éditeur : hello@talker.now. Identité légale sur les mentions légales.",
 };
 
-export default function RecrutementPage() {
+export default function AProposPage() {
   return (
     <SiteFrame>
-      <InfoBody kind="recrutement" />
+      <InfoBody kind="apropos" />
     </SiteFrame>
   );
-}
+};

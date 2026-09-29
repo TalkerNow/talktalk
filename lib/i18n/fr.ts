@@ -422,7 +422,7 @@ export const fr = {
       {
         title: "Entreprise",
         links: [
-          { name: "À propos", href: "#" },
+          { name: "À propos", href: "/a-propos" },
           { name: "Blog", href: "#" },
           { name: "Recrutement", href: "/recrutement" },
           { name: "Contact", href: "/contact" },
