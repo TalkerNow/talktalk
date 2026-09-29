@@ -44,8 +44,8 @@ Header site (composé, pas `logo-principal.svg`) :
 
 Fichiers :
 
-- `symbole.svg` — rayon 25, queue I2. Points croissants en taille et en chroma : `#DD9D84` → `#D06E4D` → `#C43F17`. Contour `#C43F17`.
-- `symbole-plein.svg`, `favicon.svg`, `app/icon.svg`, `app/apple-icon.svg` — le même contour et les mêmes trois points.
+- `symbole.svg` — rayon 25, queue I2. Contour `#C43F17`. Points noirs `#111111`, croissants en taille seulement.
+- `symbole-plein.svg`, `favicon.svg`, `app/icon.svg`, `app/apple-icon.svg` — le même contour et les mêmes trois points noirs.
 - `logo-principal.svg` — archive Drive (rust `.now` + ancienne bulle après). Pas le header.
 
 **Interdit** : ondes radio entre les mots.
