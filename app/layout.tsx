@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
+import { twitterSiteFromEnv } from "@/lib/seo/twitter";
 import { LocaleProvider } from "@/components/i18n/locale-context";
 import { CookieBanner } from "@/components/consent/cookie-banner";
 import { GoogleAnalytics } from "@/components/consent/google-analytics";
@@ -20,6 +21,8 @@ const jetbrainsMono = JetBrains_Mono({
 const title = "Talker — Le chatbot IA qui vend à votre place";
 const description =
   "Les IA aspirent le trafic de votre site. Talker le récupère. Un chatbot IA qui connaît votre métier, capte le numéro ou l'email de vos prospects, et s'installe en 10 minutes, sans code.";
+
+const twitterSite = twitterSiteFromEnv();
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -41,8 +44,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: twitterSite,
     title,
     description,
+    // images omitted on purpose: Next copies opengraph-image into twitter:image.
   },
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
