@@ -77,7 +77,7 @@ export const pagesFr: SitePages = {
         paragraphs: [
           "Talker est propulsé par l’IA. Le visiteur parle à un logiciel, pas à un salarié de Talker. Cette page le dit ; le rappel dans la fenêtre de chat viendra plus tard dans le produit.",
           "Une réponse peut être incomplète ou fausse. Ce n’est pas un avis juridique, médical, financier ou professionnel.",
-          "Celui qui installe Talker le configure. Il reste responsable de ce que les visiteurs lisent, et de la suite avec un humain.",
+          "Celui qui installe Talker choisit le contenu et les réglages. Il reste responsable de ce que les visiteurs voient, et de la suite avec un humain.",
         ],
         links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
       },
@@ -330,7 +330,7 @@ export const pagesEn: SitePages = {
         paragraphs: [
           "Talker is powered by AI. The visitor talks to software, not to an employee of Talker. This page says so; a reminder inside the chat window will come later in the product.",
           "An answer can be incomplete or wrong. It is not legal, medical, financial, or professional advice.",
-          "Whoever installs Talker configures it. They remain responsible for what visitors read, and for any follow-up with a human.",
+          "Whoever installs Talker chooses the content and the settings. They remain responsible for what visitors see, and for any follow-up with a human.",
         ],
         links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
       },
