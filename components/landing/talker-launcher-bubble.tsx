@@ -8,6 +8,12 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
 } from "react";
+import {
+  BUBBLE_DOTS,
+  BUBBLE_OUTLINE,
+  BUBBLE_STROKE,
+  BUBBLE_VIEWBOX,
+} from "@/components/brand/bubble";
 import { TalkerChat } from "@/components/talker/chat";
 import { useTalker, type TalkerIntent } from "@/components/talker/provider";
 import { ShineBorder } from "@/components/ui/shine-border";
@@ -299,7 +305,7 @@ export function TalkerLauncherBubble() {
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="-682.69 -622.02 1365.38 1365.38"
+            viewBox={BUBBLE_VIEWBOX}
             width={BUBBLE_PX}
             height={BUBBLE_PX}
             role="img"
@@ -307,34 +313,23 @@ export function TalkerLauncherBubble() {
             className={`pointer-events-none drop-shadow-[0_8px_20px_rgba(0,0,0,0.12)] ${TOUCH_SAFE_CLASS}`}
           >
             <path
-              d="M -93.33 396.27 A 466.65 400.00 0 1 0 -291.66 315.72 L -312.50 554.69 Z"
+              d={BUBBLE_OUTLINE}
               fill="#F7F6F4"
               stroke="#C43F17"
-              strokeWidth="66.70"
-              strokeLinejoin="miter"
-              strokeMiterlimit={10}
+              strokeWidth={BUBBLE_STROKE}
+              strokeLinejoin="round"
+              strokeLinecap="round"
             />
-            <circle
-              cx="-163"
-              cy="0"
-              r="60"
-              fill="#111111"
-              className="talker-typing-dot talker-typing-dot-1"
-            />
-            <circle
-              cx="0"
-              cy="0"
-              r="60"
-              fill="#111111"
-              className="talker-typing-dot talker-typing-dot-2"
-            />
-            <circle
-              cx="163"
-              cy="0"
-              r="60"
-              fill="#111111"
-              className="talker-typing-dot talker-typing-dot-3"
-            />
+            {BUBBLE_DOTS.map((dot, index) => (
+              <circle
+                key={dot.cx}
+                cx={dot.cx}
+                cy={dot.cy}
+                r={dot.r}
+                fill="#C43F17"
+                className={`talker-typing-dot talker-typing-dot-${index + 1}`}
+              />
+            ))}
           </svg>
           <span
             aria-hidden

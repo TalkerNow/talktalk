@@ -1,13 +1,33 @@
 import { cn } from "@/lib/utils";
-
-/** Tight crop around the rust bubble + tail (not the padded source artboard). */
-const BUBBLE_VIEWBOX = "-520 -470 1040 1080";
+import {
+  BUBBLE_DOTS,
+  BUBBLE_FILLED,
+  BUBBLE_OUTLINE,
+  BUBBLE_STROKE,
+  BUBBLE_VIEWBOX,
+} from "@/components/brand/bubble";
 
 type MarkProps = {
   className?: string;
   title?: string;
   filled?: boolean;
 };
+
+function BubbleDots() {
+  return (
+    <>
+      {BUBBLE_DOTS.map((dot) => (
+        <circle
+          key={dot.cx}
+          cx={dot.cx}
+          cy={dot.cy}
+          r={dot.r}
+          fill="#C43F17"
+        />
+      ))}
+    </>
+  );
+}
 
 export function TalkerMark({ className, title, filled = false }: MarkProps) {
   const decorative = !title;
@@ -23,11 +43,7 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
         aria-label={title}
         className={className}
       >
-        <path
-          fill="#C43F17"
-          fillRule="evenodd"
-          d="M -312.50 338.28 A 500.00 433.35 0 1 1 -100.00 424.60 L -312.50 554.69 Z M -223 0 A 60 60 0 1 0 -103 0 A 60 60 0 1 0 -223 0 Z M -60 0 A 60 60 0 1 0 60 0 A 60 60 0 1 0 -60 0 Z M 103 0 A 60 60 0 1 0 223 0 A 60 60 0 1 0 103 0 Z"
-        />
+        <path fill="#C43F17" fillRule="evenodd" d={BUBBLE_FILLED} />
       </svg>
     );
   }
@@ -43,16 +59,14 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
       className={className}
     >
       <path
-        d="M -93.33 396.27 A 466.65 400.00 0 1 0 -291.66 315.72 L -312.50 554.69 Z"
+        d={BUBBLE_OUTLINE}
         fill="none"
         stroke="#C43F17"
-        strokeWidth="66.70"
-        strokeLinejoin="miter"
-        strokeMiterlimit={10}
+        strokeWidth={BUBBLE_STROKE}
+        strokeLinejoin="round"
+        strokeLinecap="round"
       />
-      <circle cx="-163" cy="0" r="60" fill="#111111" />
-      <circle cx="0" cy="0" r="60" fill="#111111" />
-      <circle cx="163" cy="0" r="60" fill="#111111" />
+      <BubbleDots />
     </svg>
   );
 }
@@ -84,16 +98,14 @@ export function TalkerWordmark({
         className="h-[1.2em] w-auto shrink-0"
       >
         <path
-          d="M -93.33 396.27 A 466.65 400.00 0 1 0 -291.66 315.72 L -312.50 554.69 Z"
+          d={BUBBLE_OUTLINE}
           fill="none"
           stroke="#C43F17"
-          strokeWidth="66.70"
-          strokeLinejoin="miter"
-          strokeMiterlimit={10}
+          strokeWidth={BUBBLE_STROKE}
+          strokeLinejoin="round"
+          strokeLinecap="round"
         />
-        <circle cx="-163" cy="0" r="60" fill="#111111" />
-        <circle cx="0" cy="0" r="60" fill="#111111" />
-        <circle cx="163" cy="0" r="60" fill="#111111" />
+        <BubbleDots />
       </svg>
       <span className="tracking-[-0.02em]">
         <span className="font-bold text-[#111111]">talker</span>

@@ -44,8 +44,9 @@ Header site (composé, pas `logo-principal.svg`) :
 
 Fichiers :
 
-- `symbole.svg` — launcher, header, mobile sigle
-- `symbole-plein.svg` — favicon / fond sombre
-- `logo-principal.svg` — archive Drive (rust `.now` + bulle après). Pas le header.
+- `symbole.svg` — rayon 25, queue I2, points croissants (`#C43F17`). Header, launcher, sigle.
+- `symbole-plein.svg` — même contour en aplat corail (pastille sombre, très petite taille)
+- `favicon.svg` / `app/icon.svg` / `app/apple-icon.svg` — le contour rayon 25
+- `logo-principal.svg` — archive Drive (rust `.now` + ancienne bulle après). Pas le header.
 
 **Interdit** : ondes radio entre les mots.
