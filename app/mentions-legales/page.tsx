@@ -5,7 +5,7 @@ import { InfoBody } from "@/components/pages/info-body";
 export const metadata: Metadata = {
   title: "Mentions légales — Talker",
   description:
-    "Éditeur talker.now. Immatriculation non publiée. Contact : hello@talker.now.",
+    "OÜ estonienne en cours de constitution. Directeur de la publication : Jean-François Chauffeté. Contact : hello@talker.now.",
 };
 
 export default function MentionsLegalesPage() {

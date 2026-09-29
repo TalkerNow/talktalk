@@ -44,17 +44,23 @@ export type SitePages = {
 export const pagesFr: SitePages = {
   apropos: {
     title: "À propos",
-    lead: "Talker est un agent conversationnel pour WordPress. Le produit est un zip à déposer sur un site déjà en ligne.",
+    lead: "Talker est un agent conversationnel, un chatbot IA, pour WordPress. Le produit est un zip à déposer sur un site déjà en ligne.",
     sections: [
       {
         title: "Éditeur",
-        paragraphs: ["Pour joindre l’éditeur du site : hello@talker.now."],
+        paragraphs: [
+          "Le site talker.now présente Talker. Le véhicule prévu est une OÜ de droit estonien, en cours de constitution. Le siège prévu est en Estonie. Pour joindre l’éditeur : hello@talker.now.",
+        ],
         links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
+      },
+      {
+        title: "Directeur de la publication",
+        paragraphs: ["Jean-François Chauffeté."],
       },
       {
         title: "Identité légale",
         paragraphs: [
-          "La raison sociale, l’immatriculation et l’adresse du siège ne figurent pas ici. Le texte complet est sur les mentions légales.",
+          "Pas de numéro de registre, pas de capital, pas d’adresse de rue : la société n’est pas encore créée. Le texte complet est sur les mentions légales.",
         ],
         links: [{ href: "/mentions-legales", label: "Mentions légales" }],
       },
@@ -65,6 +71,15 @@ export const pagesFr: SitePages = {
           { href: "/mentions-legales", label: "Mentions légales" },
           { href: "https://vercel.com", label: "vercel.com" },
         ],
+      },
+      {
+        title: "Une conversation avec une IA",
+        paragraphs: [
+          "Talker est propulsé par l’IA. Le visiteur parle à un logiciel, pas à un salarié de Talker. Cette page le dit ; le rappel dans la fenêtre de chat viendra plus tard dans le produit.",
+          "Une réponse peut être incomplète ou fausse. Ce n’est pas un avis juridique, médical, financier ou professionnel.",
+          "Celui qui installe Talker le configure. Il reste responsable de ce que les visiteurs lisent, et de la suite avec un humain.",
+        ],
+        links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
       },
     ],
   },
@@ -125,31 +140,40 @@ export const pagesFr: SitePages = {
   mentions: {
     title: "Mentions légales",
     notice:
-      "Brouillon. La raison sociale, le SIRET, l’adresse du siège et le directeur de la publication ne sont pas publiés ici. Aucun numéro n’est inventé.",
+      "OÜ estonienne en cours de constitution. Le numéro de registre, le capital et l’adresse de rue seront ajoutés ici dès que la société existe.",
     sections: [
       {
         title: "Éditeur",
         paragraphs: [
           "Le site talker.now présente Talker, un agent conversationnel pour WordPress.",
+          "Le véhicule juridique prévu est une OÜ de droit estonien, en cours de constitution via Xolo Leap. L’e-Residency est en place. La société n’est pas encore créée. Le siège prévu est en Estonie.",
         ],
+        links: [
+          { href: "https://talker.now", label: "talker.now" },
+          { href: "mailto:hello@talker.now", label: "hello@talker.now" },
+        ],
+      },
+      {
+        title: "Directeur de la publication",
+        paragraphs: ["Jean-François Chauffeté."],
       },
       {
         title: "Contact",
         paragraphs: [
-          "Pour joindre l’éditeur, écrire à hello@talker.now. C’est aussi l’adresse pour toute demande sur ces mentions.",
+          "Pour joindre l’éditeur : hello@talker.now. C’est aussi l’adresse pour toute demande sur ces mentions.",
         ],
         links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
       },
       {
         title: "Immatriculation",
         paragraphs: [
-          "Forme juridique, capital, SIRET, RCS, adresse du siège et directeur de la publication seront ajoutés sur cette page dès qu’ils sont arrêtés. En attendant, ils ne sont pas remplacés par des valeurs fictives.",
+          "Pas de numéro de registre, pas de capital, pas de numéro de TVA, pas d’adresse de rue. Ils seront ajoutés sur cette page dès que l’OÜ existe. Aucune valeur fictive n’est mise à la place.",
         ],
       },
       {
         title: "Hébergement",
         paragraphs: [
-          "Le site est hébergé par Vercel Inc. Les coordonnées de l’hébergeur sont publiées sur vercel.com.",
+          "Le site est hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.",
         ],
         links: [{ href: "https://vercel.com", label: "vercel.com" }],
       },
@@ -158,14 +182,17 @@ export const pagesFr: SitePages = {
   privacy: {
     title: "Confidentialité",
     notice:
-      "Brouillon. L’identité légale du responsable sera celle des mentions légales dès qu’elle est publiée. Le contact reste hello@talker.now.",
+      "Contact : hello@talker.now. L’identité du responsable est celle des mentions légales.",
     sections: [
       {
         title: "Responsable",
         paragraphs: [
-          "Les questions sur vos données se posent à hello@talker.now. Le SIRET et l’adresse du siège ne sont pas encore sur les mentions légales.",
+          "Les questions sur vos données se posent à hello@talker.now. L’identité publiée est sur les mentions légales : OÜ estonienne en cours de constitution, directeur de la publication Jean-François Chauffeté. Le numéro de registre sera ajouté quand la société existera.",
         ],
-        links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
+        links: [
+          { href: "mailto:hello@talker.now", label: "hello@talker.now" },
+          { href: "/mentions-legales", label: "Mentions légales" },
+        ],
       },
       {
         title: "Formulaire de contact",
@@ -174,8 +201,9 @@ export const pagesFr: SitePages = {
         ],
       },
       {
-        title: "Cookies et stockage dans le navigateur",
+        title: "Cookies",
         paragraphs: [
+          "Deux familles. Les cookies nécessaires au site sont posés sans bandeau. La mesure d’audience ne se charge qu’après un accord. Le lien Cookies en pied de page rouvre ce choix.",
           "Nécessaires : un cookie d’accès (talker_site_gate) tant que le site n’est pas public ; un cookie et une entrée locale (talker_consent, 6 mois) pour mémoriser votre choix ; la langue (talker-lang) dans le navigateur.",
           "La démo de conversation garde le fil dans l’onglet (sessionStorage). Fermer l’onglet l’efface.",
         ],
@@ -269,17 +297,23 @@ export const pagesFr: SitePages = {
 export const pagesEn: SitePages = {
   apropos: {
     title: "About",
-    lead: "Talker is a conversational agent for WordPress. The product is a zip you drop on a site that is already online.",
+    lead: "Talker is a conversational agent, an AI chatbot, for WordPress. The product is a zip you drop on a site that is already online.",
     sections: [
       {
         title: "Publisher",
-        paragraphs: ["To reach the publisher of this site: hello@talker.now."],
+        paragraphs: [
+          "talker.now presents Talker. The planned vehicle is an Estonian private limited company (OÜ), still being formed. The planned registered office is in Estonia. To reach the publisher: hello@talker.now.",
+        ],
         links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
+      },
+      {
+        title: "Publication director",
+        paragraphs: ["Jean-François Chauffeté."],
       },
       {
         title: "Legal identity",
         paragraphs: [
-          "Legal name, registration, and registered office are not on this page. The full text is on the legal notice.",
+          "No registry number, no share capital, no street address: the company does not exist yet. The full text is on the legal notice.",
         ],
         links: [{ href: "/mentions-legales", label: "Legal notice" }],
       },
@@ -290,6 +324,15 @@ export const pagesEn: SitePages = {
           { href: "/mentions-legales", label: "Legal notice" },
           { href: "https://vercel.com", label: "vercel.com" },
         ],
+      },
+      {
+        title: "A conversation with AI",
+        paragraphs: [
+          "Talker is powered by AI. The visitor talks to software, not to an employee of Talker. This page says so; a reminder inside the chat window will come later in the product.",
+          "An answer can be incomplete or wrong. It is not legal, medical, financial, or professional advice.",
+          "Whoever installs Talker configures it. They remain responsible for what visitors read, and for any follow-up with a human.",
+        ],
+        links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
       },
     ],
   },
@@ -350,31 +393,40 @@ export const pagesEn: SitePages = {
   mentions: {
     title: "Legal notice",
     notice:
-      "Draft. Legal name, company number, registered office, and publication director are not published here. No number is invented.",
+      "Estonian OÜ being formed. The registry number, share capital, and street address will be added here once the company exists.",
     sections: [
       {
         title: "Publisher",
         paragraphs: [
           "talker.now presents Talker, a conversational agent for WordPress.",
+          "The planned legal vehicle is an Estonian private limited company (OÜ), being formed via Xolo Leap. e-Residency is in place. The company is not created yet. The planned registered office is in Estonia.",
         ],
+        links: [
+          { href: "https://talker.now", label: "talker.now" },
+          { href: "mailto:hello@talker.now", label: "hello@talker.now" },
+        ],
+      },
+      {
+        title: "Publication director",
+        paragraphs: ["Jean-François Chauffeté."],
       },
       {
         title: "Contact",
         paragraphs: [
-          "Write to hello@talker.now. That is also the address for questions about this notice.",
+          "To reach the publisher: hello@talker.now. That is also the address for questions about this notice.",
         ],
         links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
       },
       {
         title: "Registration",
         paragraphs: [
-          "Legal form, share capital, company number, registered office, and publication director will be added here once they are settled. They are not replaced with placeholder numbers.",
+          "No registry number, no share capital, no VAT number, no street address. They will be added on this page once the OÜ exists. No placeholder value is put in their place.",
         ],
       },
       {
         title: "Hosting",
         paragraphs: [
-          "The site is hosted by Vercel Inc. The host’s details are on vercel.com.",
+          "The site is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States.",
         ],
         links: [{ href: "https://vercel.com", label: "vercel.com" }],
       },
@@ -383,14 +435,17 @@ export const pagesEn: SitePages = {
   privacy: {
     title: "Privacy",
     notice:
-      "Draft. The legal identity of the controller will match the legal notice once it is published. Contact remains hello@talker.now.",
+      "Contact: hello@talker.now. The controller’s published identity is the legal notice.",
     sections: [
       {
         title: "Controller",
         paragraphs: [
-          "Questions about your data go to hello@talker.now. Company number and registered office are not on the legal notice yet.",
+          "Questions about your data go to hello@talker.now. The published identity is on the legal notice: an Estonian OÜ being formed, publication director Jean-François Chauffeté. The registry number will be added when the company exists.",
         ],
-        links: [{ href: "mailto:hello@talker.now", label: "hello@talker.now" }],
+        links: [
+          { href: "mailto:hello@talker.now", label: "hello@talker.now" },
+          { href: "/mentions-legales", label: "Legal notice" },
+        ],
       },
       {
         title: "Contact form",
@@ -399,8 +454,9 @@ export const pagesEn: SitePages = {
         ],
       },
       {
-        title: "Cookies and browser storage",
+        title: "Cookies",
         paragraphs: [
+          "Two kinds. Necessary cookies are set without a banner. Audience measurement loads only after you accept. The Cookies link in the footer reopens that choice.",
           "Necessary: an access cookie (talker_site_gate) while the site is not public; a cookie and a local entry (talker_consent, 6 months) that remember your choice; language (talker-lang) in the browser.",
           "The conversation demo keeps the thread in the tab (sessionStorage). Closing the tab clears it.",
         ],

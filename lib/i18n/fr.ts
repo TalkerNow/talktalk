@@ -402,31 +402,27 @@ export const fr = {
         title: "Produit",
         links: [
           { name: "Fonctionnalités", href: "/produit" },
-          { name: "Comment ça marche", href: "#how-it-works" },
-          { name: "Tarifs", href: "#pricing" },
-          { name: "Intégrations", href: "#integrations" },
-          { name: "Cas d'usage", href: "#cas-usage" },
+          { name: "Comment ça marche", href: "/#how-it-works" },
+          { name: "Tarifs", href: "/#pricing" },
+          { name: "Intégrations", href: "/#integrations" },
+          { name: "Cas d'usage", href: "/#cas-usage" },
         ],
       },
       {
         title: "Ressources",
         links: [
-          { name: "FAQ", href: "/#faq" },
+          { name: "FAQ", href: "/faq" },
           { name: "La méthode", href: "/methode" },
-          { name: "Centre d'aide", href: "#" },
           { name: "Guide d'installation", href: "/installer" },
           { name: "Télécharger", href: "/installer" },
-          { name: "Statut du service", href: "#" },
         ],
       },
       {
         title: "Entreprise",
         links: [
           { name: "À propos", href: "/a-propos" },
-          { name: "Blog", href: "#" },
           { name: "Recrutement", href: "/recrutement" },
           { name: "Contact", href: "/contact" },
-          { name: "Devenir partenaire", href: "#" },
         ],
       },
       {

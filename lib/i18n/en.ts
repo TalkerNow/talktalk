@@ -398,31 +398,27 @@ export const en = {
         title: "Product",
         links: [
           { name: "Features", href: "/produit" },
-          { name: "How it works", href: "#how-it-works" },
-          { name: "Pricing", href: "#pricing" },
-          { name: "Integrations", href: "#integrations" },
-          { name: "Use cases", href: "#cas-usage" },
+          { name: "How it works", href: "/#how-it-works" },
+          { name: "Pricing", href: "/#pricing" },
+          { name: "Integrations", href: "/#integrations" },
+          { name: "Use cases", href: "/#cas-usage" },
         ],
       },
       {
         title: "Resources",
         links: [
-          { name: "FAQ", href: "/#faq" },
+          { name: "FAQ", href: "/faq" },
           { name: "The method", href: "/methode" },
-          { name: "Help center", href: "#" },
           { name: "Setup guide", href: "/installer" },
           { name: "Download", href: "/installer" },
-          { name: "Status", href: "#" },
         ],
       },
       {
         title: "Company",
         links: [
           { name: "About", href: "/a-propos" },
-          { name: "Blog", href: "#" },
           { name: "Careers", href: "/recrutement" },
           { name: "Contact", href: "/contact" },
-          { name: "Partner program", href: "#" },
         ],
       },
       {
