@@ -19,8 +19,17 @@ export const en = {
   },
   hero: {
     eyebrow: "Search and AI answer first. Talker brings the visit back.",
-    title:
-      "Talker — the AI chatbot / conversational agent for your WordPress site",
+    titleBefore: "The AI chatbot that",
+    titleAfter: "so you don't have to",
+    phrases: [
+      "sells",
+      "lists your services",
+      "quotes your prices",
+      "shows your availability",
+      "retrieves the phone number",
+      "captures emails",
+      "asks for Google reviews",
+    ],
     subtitle:
       "AI chatbots have become real conversational agents that know your business, capture your prospects' phone number or email, answer pricing on their own, route existing customers, and collect Google reviews. Live in 10 minutes. No code.",
     createAgent: "Create my chatbot",
