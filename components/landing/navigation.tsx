@@ -6,7 +6,7 @@ import { TalkerWordmark } from "@/components/brand/mark";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/i18n/language-switcher";
 import { useLocale } from "@/components/i18n/locale-context";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 
 function resolveNavHref(href: string, pathname: string) {
   if (!href.startsWith("#")) return href;
@@ -61,7 +61,7 @@ export function Navigation() {
       }`}
     >
       <nav 
-        className={`mx-auto overflow-visible transition-all duration-500 ${
+        className={`relative z-50 mx-auto overflow-visible transition-all duration-500 ${
           isScrolled || isMobileMenuOpen
             ? "w-[calc(100%-2rem)] max-w-[960px] bg-[#F7F6F4]/90 backdrop-blur-xl border border-foreground/10 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
             : "bg-transparent max-w-[1400px]"
@@ -111,14 +111,21 @@ export function Navigation() {
           </div>
 
           <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="ml-auto shrink-0 p-2 -mr-0.5 md:hidden"
-            aria-label={t.nav.menu}
+            className="relative z-50 ml-auto shrink-0 p-2 -mr-0.5 text-[#111111] md:hidden"
+            aria-expanded={isMobileMenuOpen}
+            aria-label={isMobileMenuOpen ? t.bubble.close : t.nav.menu}
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
+              <span
+                aria-hidden
+                className="flex size-6 items-center justify-center text-[1.75rem] leading-none"
+              >
+                ×
+              </span>
             ) : (
-              <Menu className="w-6 h-6" />
+              <Menu className="size-6" />
             )}
           </button>
         </div>
