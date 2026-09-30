@@ -5,7 +5,7 @@ import { InfoBody } from "@/components/pages/info-body";
 export const metadata: Metadata = {
   title: "Recrutement — Talker",
   description:
-    "Aucun poste ouvert. Candidatures spontanées : hello@talker.now.",
+    "Aucun poste ouvert. Candidature spontanée : cinq lignes, un CV et un lien, à hello@talker.now.",
 };
 
 export default function RecrutementPage() {
