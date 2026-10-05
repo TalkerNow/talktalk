@@ -117,6 +117,17 @@ export const faqFr: FaqCopy = {
       q: "Comment je reçois les conversations de mes visiteurs ?",
       a: "Par e-mail, toutes les 4 heures, les conversations brutes empilées. S’il n’y en a eu aucune, pas de mail. Ce n’est pas un résumé marketing rédigé à votre place.",
     },
+    {
+      q: "Talker, c’est Intercom, Crisp ou Tidio ?",
+      a: "Non. Intercom, Crisp et Tidio sont des chats live : une personne peut répondre dans la fenêtre. Talker est un plugin WordPress installé en zip. Personne ne répond en direct derrière la bulle publique. Les conversations brutes partent par e-mail, toutes les 4 heures.",
+    },
+    {
+      q: "Quelle différence entre Talker et un chat live (Intercom, Crisp, Tidio) ?",
+      a: [
+        "Talker ne tient pas de chat live. Vous l’installez en zip sur WordPress. Il lit les pages publiques du site et construit un prompt métier. Pas d’upload de fichiers, pas de base documentaire (RAG).",
+        "Démarrage : 100 conversations par installation, sans carte. Agences : 49 € / mois en annuel pour 3 sites, 99 € / mois en annuel pour 10 sites.",
+      ],
+    },
   ],
 };
 
@@ -227,6 +238,17 @@ export const faqEn: FaqCopy = {
     {
       q: "How do I receive my visitors’ conversations?",
       a: "By email, every 4 hours, the raw conversations stacked. If there were none, no email. It is not a marketing summary written for you.",
+    },
+    {
+      q: "Is Talker Intercom, Crisp, or Tidio?",
+      a: "No. Intercom, Crisp, and Tidio are live chats: a person can answer in the window. Talker is a WordPress plugin installed as a zip. Nobody answers live behind the public bubble. Raw conversations go out by email, every 4 hours.",
+    },
+    {
+      q: "What is the difference between Talker and a live chat (Intercom, Crisp, Tidio)?",
+      a: [
+        "Talker does not staff a live chat. You install it as a zip on WordPress. It reads the site’s public pages and builds a trade prompt. No file upload, no document base (RAG).",
+        "To start: 100 conversations per install, no card. Agencies: €49 / month annually for 3 sites, €99 / month annually for 10 sites.",
+      ],
     },
   ],
 };

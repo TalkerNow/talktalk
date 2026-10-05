@@ -1,5 +1,6 @@
 import type { DemoStep } from "@/lib/content/demo";
 import { consentEn } from "@/lib/content/consent-copy";
+import { comparatifEn } from "@/lib/content/comparatif";
 import { faqEn } from "@/lib/content/faq";
 import { methodeEn } from "@/lib/content/methode";
 import { pagesEn } from "@/lib/content/site-pages";
@@ -108,6 +109,7 @@ export const en = {
     ],
   },
   faq: faqEn,
+  comparatif: comparatifEn,
   how: {
     eyebrow: "How it works",
     title: "3 steps. 5 minutes.",
@@ -367,6 +369,7 @@ export const en = {
         links: [
           { name: "FAQ", href: "/faq" },
           { name: "The method", href: "/methode" },
+          { name: "Talker and live chat", href: "/comparatif-talker-live-chat" },
           { name: "Help center", href: "#" },
           { name: "Setup guide", href: "/installer" },
           { name: "Download", href: "/installer" },
