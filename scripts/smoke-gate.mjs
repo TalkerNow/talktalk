@@ -17,6 +17,10 @@ assert(!isPublicPath("/produit"), "produit must be gated");
 assert(!isPublicPath("/api/demo-chat"), "demo chat must be gated");
 assert(!isPublicPath("/recrutement"), "recrutement must stay gated");
 assert(!isPublicPath("/methode"), "methode must stay gated");
+assert(
+  !isPublicPath("/comparatif-talker-live-chat"),
+  "comparatif must stay gated",
+);
 assert(!isPublicPath("/installer"), "installer must stay gated");
 assert(!isPublicPath("/confidentialite"), "privacy must stay gated");
 assert(!isPublicPath("/mentions-legales"), "legal notice must stay gated");
