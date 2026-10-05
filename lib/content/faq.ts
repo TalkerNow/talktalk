@@ -115,7 +115,10 @@ export const faqFr: FaqCopy = {
     },
     {
       q: "Comment je reçois les conversations de mes visiteurs ?",
-      a: "Par e-mail, toutes les 4 heures, les conversations brutes empilées. S’il n’y en a eu aucune, pas de mail. Ce n’est pas un résumé marketing rédigé à votre place.",
+      a: [
+        "Par e-mail, toutes les 4 heures, les conversations brutes empilées. S’il n’y en a eu aucune, pas de mail. Ce n’est pas un résumé marketing rédigé à votre place.",
+        "Vous les retrouvez aussi dans votre espace client Talker (private.talker.now) : vous pouvez les lire, les exporter et les supprimer quand vous le souhaitez.",
+      ],
     },
     {
       q: "Talker, c’est Intercom, Crisp ou Tidio ?",
