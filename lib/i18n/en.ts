@@ -221,6 +221,7 @@ export const en = {
     sites3: "3 sites",
     sites10: "10 sites",
     agencySitesToggle: "Choose number of sites",
+    detailsLink: "See the full pricing",
     plans: [
       {
         key: "starter",
@@ -230,7 +231,7 @@ export const en = {
         cta: "Start for free",
         features: [
           "1 Talker",
-          "100 conversations/month",
+          "100 conversations offered per site",
           "1 channel (website)",
           "Email support",
         ],
@@ -287,7 +288,7 @@ export const en = {
     title: "Install Talker in ~3 minutes",
     subtitle: "Zip, upload in WordPress, scan and questions, agent live.",
     download: "Download the zip",
-    placeholderNote: "talker-now.zip — no card, not on WordPress.org.",
+    placeholderNote: "talker-now.zip — no card. A zip file to upload in WordPress.",
     stepsEyebrow: "In WP-Admin",
     steps: [
       "Download the zip.",
@@ -296,7 +297,7 @@ export const en = {
       "The agent is live.",
     ],
     reassurance:
-      "No card. Not on WordPress.org. Works with the usual themes and builders (Elementor, Divi, etc.).",
+      "No card. A zip file. Works with the usual themes and builders (Elementor, Divi, etc.).",
     vignette: {
       ariaLabel:
         "Demo: a conversation, downloading talker-now.zip, then installing it in WP-Admin.",
@@ -359,7 +360,7 @@ export const en = {
         links: [
           { name: "Features", href: "/produit" },
           { name: "How it works", href: "#how-it-works" },
-          { name: "Pricing", href: "#pricing" },
+          { name: "Pricing", href: "/tarifs" },
           { name: "Integrations", href: "#integrations" },
           { name: "Use cases", href: "#cas-usage" },
         ],

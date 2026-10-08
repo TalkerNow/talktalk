@@ -225,6 +225,7 @@ export const fr = {
     sites3: "3 sites",
     sites10: "10 sites",
     agencySitesToggle: "Choisir le nombre de sites",
+    detailsLink: "Tout comprendre sur les tarifs",
     plans: [
       {
         key: "starter",
@@ -234,7 +235,7 @@ export const fr = {
         cta: "Créer mon agent gratuitement",
         features: [
           "1 Talker",
-          "100 conversations/mois",
+          "100 conversations offertes par site",
           "1 canal (site web)",
           "Support par email",
         ],
@@ -292,7 +293,7 @@ export const fr = {
     subtitle:
       "Zip, upload dans WordPress, scan et questions, agent en ligne.",
     download: "Télécharger le zip",
-    placeholderNote: "talker-now.zip — sans carte, sans WordPress.org.",
+    placeholderNote: "talker-now.zip — sans carte. Fichier zip à déposer dans WordPress.",
     stepsEyebrow: "Dans WP-Admin",
     steps: [
       "Télécharger le zip.",
@@ -301,7 +302,7 @@ export const fr = {
       "L’agent est opérationnel.",
     ],
     reassurance:
-      "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",
+      "Pas de carte. Fichier zip. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",
     vignette: {
       ariaLabel:
         "Démo : une conversation, le téléchargement de talker-now.zip, puis l’installation dans WP-Admin.",
@@ -364,7 +365,7 @@ export const fr = {
         links: [
           { name: "Fonctionnalités", href: "/produit" },
           { name: "Comment ça marche", href: "#how-it-works" },
-          { name: "Tarifs", href: "#pricing" },
+          { name: "Tarifs", href: "/tarifs" },
           { name: "Intégrations", href: "#integrations" },
           { name: "Cas d'usage", href: "#cas-usage" },
         ],

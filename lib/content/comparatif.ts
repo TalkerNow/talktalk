@@ -23,6 +23,7 @@ export type ComparatifCopy = {
   };
   rows: ComparatifRow[];
   also: string;
+  alsoLinks: { href: string; label: string }[];
   faqLabel: string;
   downloadLabel: string;
 };
@@ -79,6 +80,12 @@ export const comparatifFr: ComparatifCopy = {
     },
   ],
   also: "Voir aussi",
+  alsoLinks: [
+    { href: "/tarifs", label: "Tarifs" },
+    { href: "/alternative-tidio-wordpress", label: "Alternative à Tidio" },
+    { href: "/alternative-crisp-wordpress", label: "Alternative à Crisp" },
+    { href: "/alternative-chatbase-wordpress", label: "Alternative à Chatbase" },
+  ],
   faqLabel: "les questions fréquentes",
   downloadLabel: "le zip",
 };
@@ -134,6 +141,12 @@ export const comparatifEn: ComparatifCopy = {
     },
   ],
   also: "See also",
+  alsoLinks: [
+    { href: "/tarifs", label: "Pricing" },
+    { href: "/alternative-tidio-wordpress", label: "Alternative to Tidio" },
+    { href: "/alternative-crisp-wordpress", label: "Alternative to Crisp" },
+    { href: "/alternative-chatbase-wordpress", label: "Alternative to Chatbase" },
+  ],
   faqLabel: "the FAQ",
   downloadLabel: "the zip",
 };

@@ -42,16 +42,11 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const fromQuery = readQueryLocale();
-    if (isLocale(fromQuery)) {
-      setLocaleState(fromQuery);
-      persistLocale(fromQuery);
-      return;
-    }
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (isLocale(stored)) {
-      setLocaleState(stored);
-      persistLocale(stored);
-    }
+    const next = isLocale(fromQuery) ? fromQuery : isLocale(stored) ? stored : null;
+    if (!next) return;
+    persistLocale(next);
+    queueMicrotask(() => setLocaleState(next));
   }, []);
 
   const setLocale = useCallback((next: Locale) => {

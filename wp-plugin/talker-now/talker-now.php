@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Talker
  * Plugin URI: https://talker.now
- * Description: L’agent qui répond sur votre site WordPress. Zip, sans carte, sans WordPress.org.
+ * Description: L’agent qui répond sur votre site WordPress. Zip, sans carte.
  * Version: 0.1.12
  * Author: Talker
  * Author URI: https://talker.now

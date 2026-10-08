@@ -21,7 +21,13 @@ assert(
 for (const path of ["/", "/produit", "/methode", "/installer", "/faq", "/contact"]) {
   assert(llmsTxt.includes(`talker.now${path === "/" ? "/" : path}`), `llms link ${path}`);
 }
-assert(!llmsTxt.includes("/tarifs"), "no /tarifs route");
+assert(llmsTxt.includes("/tarifs"), "tarifs route");
+assert(llmsTxt.includes("/alternative-tidio-wordpress"), "tidio alternative");
+assert(llmsTxt.includes("/alternative-crisp-wordpress"), "crisp alternative");
+assert(llmsTxt.includes("/alternative-chatbase-wordpress"), "chatbase alternative");
+assert(llmsTxt.includes("/comparatif-talker-live-chat"), "comparatif");
+assert(!llmsTxt.includes("/cas-client-agence"), "unpublished case stays out of llms");
+assert(!/wordpress\.org/i.test(llmsTxt), "llms.txt names no public plugin store");
 assert(!/chatbot/i.test(llmsTxt), "llms.txt is not chatbot-first");
 assert(!/noindex|disallow|gate/i.test(llmsTxt), "llms.txt stays product facts");
 

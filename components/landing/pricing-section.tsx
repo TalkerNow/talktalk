@@ -93,7 +93,11 @@ function AgencySitesToggle({
   );
 }
 
-export function PricingSection() {
+export function PricingSection({
+  showTarifsLink = true,
+}: {
+  showTarifsLink?: boolean;
+}) {
   const { t } = useLocale();
   const [isAnnual, setIsAnnual] = useState(true);
   const [agencySites, setAgencySites] = useState<AgencySites>(3);
@@ -141,7 +145,7 @@ export function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="relative py-12 lg:py-16 border-t border-foreground/10">
+    <section id="pricing" className="relative scroll-mt-24 border-t border-foreground/10 py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-10">
           <h2 className="font-display font-semibold text-5xl md:text-6xl lg:text-7xl tracking-tight text-foreground leading-[0.95]">
@@ -268,6 +272,16 @@ export function PricingSection() {
             );
           })}
         </div>
+        {showTarifsLink ? (
+          <p className="mt-10 text-center">
+            <a
+              href="/tarifs"
+              className="text-sm text-[#C43F17] underline decoration-[#E3B49F] underline-offset-2 transition-colors hover:text-[#A8350F]"
+            >
+              {t.pricing.detailsLink}
+            </a>
+          </p>
+        ) : null}
       </div>
     </section>
   );

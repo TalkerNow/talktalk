@@ -6,8 +6,8 @@ const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://talker.now").replac
 
 /**
  * Public /llms.txt body. Product facts only.
- * Live routes: /, /produit, /methode, /installer, /faq, /contact.
- * /tarifs is not a page (pricing is the #pricing anchor on /).
+ * Live routes: /, /produit, /methode, /installer, /faq, /contact,
+ * /tarifs, /comparatif-talker-live-chat, and the three alternative pages.
  */
 export const llmsTxt = `# Talker
 
@@ -19,4 +19,9 @@ export const llmsTxt = `# Talker
 - [Installer](${origin}/installer): téléchargement du plugin zip, à déposer dans WP-Admin.
 - [FAQ](${origin}/faq): questions fréquentes.
 - [Contact](${origin}/contact): écrire à l'équipe.
+- [Tarifs](${origin}/tarifs): 100 conversations offertes par site sans carte ; marque blanche dès le premier plan payant ; 1, 3 ou 10 sites (29 €, 49 €, 99 €/mois en annuel).
+- [Alternative à Tidio pour WordPress](${origin}/alternative-tidio-wordpress): faits et tarifs Talker / Tidio (relevés le 08/10/2026).
+- [Alternative à Crisp pour WordPress](${origin}/alternative-crisp-wordpress): faits et tarifs Talker / Crisp (relevés le 08/10/2026).
+- [Alternative à Chatbase pour WordPress](${origin}/alternative-chatbase-wordpress): faits et tarifs Talker / Chatbase (relevés le 08/10/2026).
+- [Talker et le chat live](${origin}/comparatif-talker-live-chat): différences avec un chat live humain.
 `;
