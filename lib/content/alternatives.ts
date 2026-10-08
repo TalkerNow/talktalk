@@ -376,7 +376,7 @@ export const alternatives: readonly AlternativePage[] = [
         label: "D'où viennent les réponses",
         talker: "Des pages publiques de votre site. Pas d'envoi de fichiers.",
         other:
-          "AI Assist répond à partir de la base de connaissances et de raccourcis FAQ.",
+          "AI Assist lit la base de connaissances, les raccourcis FAQ, des documents, et des pages web : jusqu'à 100 (Hobby), 500 (Growth), 2 000 (Business), 10 000 (Enterprise).",
       },
       {
         label: "Pour démarrer",
@@ -407,7 +407,7 @@ export const alternatives: readonly AlternativePage[] = [
     whenTalkerTitle: "Quand choisir Talker",
     whenTalker: [
       "Personne n'est disponible pour tenir un chat, surtout le soir et le week-end.",
-      "Vous voulez un agent qui lit les pages publiques du site, sans remplir une base de connaissances.",
+      "Vous activez le zip : Talker lit les pages publiques, sans offre IA à configurer à part. AI Assist le fait aussi, dans la limite de pages du plan.",
       "Vous voulez la marque blanche et les conversations illimitées dès Pro (29 €/mois en annuel, 1 site), Pro 3 (49 €, 3 sites) ou Pro Max (99 €, 10 sites).",
     ],
     faq: [
@@ -421,7 +421,7 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         q: "Faut-il remplir une base de connaissances ?",
-        a: "Non pour Talker : il lit les pages publiques du site après l'activation. AI Assist, chez tawk.to, répond à partir de la base de connaissances et de raccourcis FAQ.",
+        a: "Non pour Talker : il lit les pages publiques du site après l'activation. AI Assist, chez tawk.to, lit la base de connaissances et les raccourcis FAQ, et aussi des documents et des pages web : jusqu'à 100 (Hobby), 500 (Growth), 2 000 (Business) et 10 000 (Enterprise). Aide officielle consultée le 08/10/2026.",
       },
       {
         q: "Talker fonctionne-t-il sans WordPress ?",
@@ -431,9 +431,13 @@ export const alternatives: readonly AlternativePage[] = [
     sources: [
       { href: "https://www.tawk.to/pricing/", label: "https://www.tawk.to/pricing/" },
       { href: "https://www.tawk.to/features/", label: "https://www.tawk.to/features/" },
+      {
+        href: "https://help.tawk.to/article/how-to-manage-billing-for-ai-assist",
+        label: "https://help.tawk.to/article/how-to-manage-billing-for-ai-assist",
+      },
     ],
     sourceNote:
-      "Tarifs relevés le 08/10/2026 sur les pages officielles de tawk.to. Prix en dollars US tels qu'affichés.",
+      "Tarifs relevés le 08/10/2026 sur les pages officielles de tawk.to. Pages web et documents d'AI Assist : aide officielle consultée le 08/10/2026. Prix en dollars US tels qu'affichés.",
   },
   {
     id: "smartsupp",
