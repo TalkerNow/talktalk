@@ -10,7 +10,14 @@ export const ALTERNATIVE_ILLUSTRATION = {
   caption: "Illustration produit · conversation fictive",
 } as const;
 
-export type AlternativeId = "tidio" | "crisp" | "chatbase";
+export type AlternativeId =
+  | "tidio"
+  | "crisp"
+  | "chatbase"
+  | "tawkto"
+  | "smartsupp"
+  | "livechat"
+  | "botpress";
 
 export type ComparisonRow = {
   label: string;
@@ -331,6 +338,395 @@ export const alternatives: readonly AlternativePage[] = [
     ],
     sourceNote:
       "Tarifs relevés le 08/10/2026 sur la page officielle de Chatbase. Prix mensuels en dollars US tels qu'affichés.",
+  },
+  {
+    id: "tawkto",
+    slug: "alternative-tawk-to-wordpress",
+    path: "/alternative-tawk-to-wordpress",
+    metaTitle: "Alternative à tawk.to pour WordPress — Talker",
+    metaDescription:
+      "Un agent qui répond seul sur votre site WordPress, à partir des pages publiques. Faits et tarifs comparés avec tawk.to.",
+    h1: "Une alternative à tawk.to pour WordPress",
+    otherName: "tawk.to",
+    shortAnswer:
+      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, sans équipe pour tenir un chat en direct, Talker est une alternative à tawk.to. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. tawk.to convient mieux si votre équipe veut répondre elle-même : le chat en direct est gratuit, et des agents humains peuvent répondre à votre place pour 1 $ de l'heure.",
+    tableTitle: "Talker et tawk.to en bref",
+    rows: [
+      {
+        label: "Ce que c'est",
+        talker:
+          "Un plugin WordPress : un agent IA qui répond seul sur votre site.",
+        other:
+          "Un chat en direct. L'agent IA (AI Assist) et le retrait de la marque sont des options.",
+      },
+      {
+        label: "Qui répond",
+        talker: "L'agent IA. Personne ne répond en direct derrière la bulle.",
+        other:
+          "Votre équipe en direct. AI Assist traite les questions courantes et passe la main à un humain. Vous pouvez aussi engager des agents.",
+      },
+      {
+        label: "Installation",
+        talker: "Fichier zip, puis « Activer ». Aucun réglage obligatoire.",
+        other:
+          "Installeur en un clic pour WordPress, ou un extrait à coller. Sans carte, sans frais d'installation, sans essai limité à 14 jours.",
+      },
+      {
+        label: "D'où viennent les réponses",
+        talker: "Des pages publiques de votre site. Pas d'envoi de fichiers.",
+        other:
+          "AI Assist répond à partir de la base de connaissances et de raccourcis FAQ.",
+      },
+      {
+        label: "Pour démarrer",
+        talker:
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
+        other:
+          "Le chat en direct est gratuit, sans carte. AI Assist a un plan gratuit pour un volume limité, puis à partir de 29 $/mois.",
+      },
+      {
+        label: "Retirer la marque",
+        talker:
+          "Le plan gratuit affiche « Propulsé par Talker » (lien vers talker.now). La mention disparaît dès Pro : 29 €/mois en annuel, conversations illimitées, 1 site.",
+        other:
+          "Retirer « Powered by tawk.to » : 29 $/mois. Sans cette option, le chat en direct reste gratuit.",
+      },
+      {
+        label: "Où arrivent les conversations",
+        talker:
+          "Par e-mail toutes les 4 heures (rien s'il n'y en a pas), et dans votre espace client Talker.",
+        other: "Dans l'interface tawk.to.",
+      },
+    ],
+    whenOtherTitle: "Quand choisir tawk.to",
+    whenOther: [
+      "Votre équipe veut répondre elle-même, dans un chat gratuit.",
+      "Vous voulez des humains qui répondent à votre place, à 1 $ de l'heure.",
+    ],
+    whenTalkerTitle: "Quand choisir Talker",
+    whenTalker: [
+      "Personne n'est disponible pour tenir un chat, surtout le soir et le week-end.",
+      "Vous voulez un agent qui lit les pages publiques du site, sans remplir une base de connaissances.",
+      "Vous voulez la marque blanche et les conversations illimitées dès Pro (29 €/mois en annuel, 1 site), Pro 3 (49 €, 3 sites) ou Pro Max (99 €, 10 sites).",
+    ],
+    faq: [
+      {
+        q: "Talker est-il un chat en direct comme tawk.to ?",
+        a: "Non. Talker est un agent IA : il répond seul. Personne de votre équipe ne répond en direct dans la bulle.",
+      },
+      {
+        q: "Combien coûte l'agent IA ?",
+        a: "Chez Talker, il est là dès le plan gratuit : 100 conversations par mois et par site, sans carte, sans limite de durée. Pro : 29 € par mois en annuel, 1 site, conversations illimitées, marque blanche. Pro 3 : 49 € pour 3 sites. Pro Max : 99 € pour 10 sites (en annuel). Chez tawk.to, le chat en direct est gratuit ; AI Assist part de 29 $ par mois, et retirer la marque coûte aussi 29 $ par mois (tarifs relevés le 08/10/2026).",
+      },
+      {
+        q: "Faut-il remplir une base de connaissances ?",
+        a: "Non pour Talker : il lit les pages publiques du site après l'activation. AI Assist, chez tawk.to, répond à partir de la base de connaissances et de raccourcis FAQ.",
+      },
+      {
+        q: "Talker fonctionne-t-il sans WordPress ?",
+        a: "Non. Talker est un plugin WordPress.",
+      },
+    ],
+    sources: [
+      { href: "https://www.tawk.to/pricing/", label: "https://www.tawk.to/pricing/" },
+      { href: "https://www.tawk.to/features/", label: "https://www.tawk.to/features/" },
+    ],
+    sourceNote:
+      "Tarifs relevés le 08/10/2026 sur les pages officielles de tawk.to. Prix en dollars US tels qu'affichés.",
+  },
+  {
+    id: "smartsupp",
+    slug: "alternative-smartsupp-wordpress",
+    path: "/alternative-smartsupp-wordpress",
+    metaTitle: "Alternative à Smartsupp pour WordPress — Talker",
+    metaDescription:
+      "Un agent qui répond seul sur votre site WordPress, marque blanche dès 29 €/mois. Faits et tarifs comparés avec Smartsupp.",
+    h1: "Une alternative à Smartsupp pour WordPress",
+    otherName: "Smartsupp",
+    shortAnswer:
+      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, Talker est une alternative à Smartsupp. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Smartsupp convient mieux si votre équipe veut répondre en direct : le plan gratuit inclut le chat du site, WhatsApp et Messenger, pour 25 conversations par mois.",
+    tableTitle: "Talker et Smartsupp en bref",
+    rows: [
+      {
+        label: "Ce que c'est",
+        talker:
+          "Un plugin WordPress : un agent IA qui répond seul sur votre site.",
+        other:
+          "Un chat en direct. L'agent autonome Mira est une option, à part des aides à la rédaction.",
+      },
+      {
+        label: "Qui répond",
+        talker: "L'agent IA. Personne ne répond en direct derrière la bulle.",
+        other:
+          "Votre équipe. L'aide à la rédaction ne parle que si un humain est en ligne. Mira peut répondre seule, puis passer la main.",
+      },
+      {
+        label: "Installation",
+        talker: "Fichier zip, puis « Activer ». Aucun réglage obligatoire.",
+        other:
+          "Intégration en un clic pour WordPress, WooCommerce ou PrestaShop.",
+      },
+      {
+        label: "Pour démarrer",
+        talker:
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
+        other:
+          "Plan gratuit : 0 €, 1 opérateur, 25 conversations par mois, historique de 14 jours. Mira à l'essai : 10 conversations, puis 25 après la mise en route, sans carte.",
+      },
+      {
+        label: "Agent qui lit le site",
+        talker:
+          "Dès le départ, à partir des pages publiques du site. Conversations illimitées dès Pro : 29 €/mois en annuel, 1 site.",
+        other:
+          "Mira : 16 € (16 $) par mois en annuel pour 100 conversations, jusqu'à 5 000. 400 conversations : 64 $ par mois. Mira lit jusqu'à 20 pages du site.",
+      },
+      {
+        label: "Chat avec une équipe",
+        talker:
+          "Pas de chat tenu par une équipe. Les conversations partent par e-mail.",
+        other:
+          "Solo : 14 € (17 $), 1 opérateur, conversations illimitées, 50 aides à la rédaction par mois. Un palier à 21 € (25 $) : 3 opérateurs et 250 aides. Un palier à 69 € (83 $) : 5 opérateurs et plus, 3 sites.",
+      },
+      {
+        label: "Où arrivent les conversations",
+        talker:
+          "Par e-mail toutes les 4 heures (rien s'il n'y en a pas), et dans votre espace client Talker.",
+        other: "Dans le tableau de bord Smartsupp.",
+      },
+    ],
+    whenOtherTitle: "Quand choisir Smartsupp",
+    whenOther: [
+      "Votre équipe répond en direct, y compris sur WhatsApp et Messenger.",
+      "Vous voulez une aide à la rédaction pendant qu'un humain est en ligne.",
+    ],
+    whenTalkerTitle: "Quand choisir Talker",
+    whenTalker: [
+      "Personne n'est disponible pour tenir un chat.",
+      "Vous voulez un agent qui lit le site dès l'installation, pas une option à 16 € pour 100 conversations.",
+      "Vous êtes une agence : marque blanche dès Pro (29 €, 1 site), Pro 3 (49 €, 3 sites) ou Pro Max (99 €, 10 sites).",
+    ],
+    faq: [
+      {
+        q: "Le plan gratuit de Smartsupp inclut-il un agent IA ?",
+        a: "Le plan à 0 € compte 25 conversations de chat par mois, sans les aides à la rédaction. Mira s'essaie avec 10 conversations, puis 25 après la mise en route, sans carte. Talker offre 100 conversations IA par mois et par site, gratuites, sans carte, sans limite de durée (tarifs relevés le 08/10/2026).",
+      },
+      {
+        q: "Combien coûte Mira par rapport à Talker ?",
+        a: "Mira coûte 16 € (16 $) par mois en annuel pour 100 conversations, et 64 $ par mois pour 400 conversations. Pro, chez Talker, coûte 29 € par mois en annuel pour 1 site, conversations illimitées, marque blanche. Pro 3 : 49 € pour 3 sites. Pro Max : 99 € pour 10 sites (en annuel).",
+      },
+      {
+        q: "D'où Mira tire-t-elle ses réponses ?",
+        a: "La page tarifs indique que Mira lit jusqu'à 20 pages du site, et que vous pouvez ajouter des consignes ou des documents. Talker lit les pages publiques du site, sans envoi de fichiers.",
+      },
+      {
+        q: "Talker fonctionne-t-il sans WordPress ?",
+        a: "Non. Talker est un plugin WordPress.",
+      },
+    ],
+    sources: [
+      {
+        href: "https://www.smartsupp.com/pricing/",
+        label: "https://www.smartsupp.com/pricing/",
+      },
+    ],
+    sourceNote:
+      "Tarifs relevés le 08/10/2026 sur la page officielle de Smartsupp. Prix en euros et en dollars US tels qu'affichés.",
+  },
+  {
+    id: "livechat",
+    slug: "alternative-livechat-wordpress",
+    path: "/alternative-livechat-wordpress",
+    metaTitle: "Alternative à LiveChat pour WordPress — Talker",
+    metaDescription:
+      "Un agent qui répond seul sur votre site WordPress, sans prix par utilisateur. Faits et tarifs comparés avec LiveChat (Text).",
+    h1: "Une alternative à LiveChat pour WordPress",
+    otherName: "LiveChat",
+    shortAnswer:
+      "Si vous voulez un agent IA qui répond seul sur votre site WordPress, sans payer un siège par personne, Talker est une alternative à LiveChat. Les nouveaux essais sont les plans Text, sur la page tarifs de LiveChat ; les clients LiveChat déjà abonnés gardent leur plan. Talker s'installe avec un fichier zip, lit les pages publiques du site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. LiveChat convient mieux si une équipe répond en direct dans une boîte partagée.",
+    tableTitle: "Talker et LiveChat en bref",
+    rows: [
+      {
+        label: "Ce que c'est",
+        talker:
+          "Un plugin WordPress : un agent IA qui répond seul sur votre site.",
+        other:
+          "Text, le produit actuel pour les nouveaux essais : chat du site, boîte de réception et agent IA. Les abonnés LiveChat gardent leur plan.",
+      },
+      {
+        label: "Qui répond",
+        talker: "L'agent IA. Personne ne répond en direct derrière la bulle.",
+        other: "Votre équipe, et un agent IA dans la limite des résolutions incluses.",
+      },
+      {
+        label: "Installation",
+        talker: "Fichier zip, puis « Activer ». Aucun réglage obligatoire.",
+        other:
+          "Quelques minutes : un extrait de code, ou un plugin pour WordPress, Shopify ou Webflow.",
+      },
+      {
+        label: "Pour démarrer",
+        talker:
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
+        other: "Essai de 14 jours sur Essential ou Growth, sans carte.",
+      },
+      {
+        label: "Premier plan payant",
+        talker:
+          "Pro : 29 €/mois en annuel (35 € au mois), 1 site, conversations illimitées.",
+        other:
+          "Essential : 19 $ par utilisateur et par mois en annuel (25 $ au mois). 1 agent IA, 10 résolutions IA par mois.",
+      },
+      {
+        label: "Au-delà du forfait IA",
+        talker:
+          "Les plans payants n'ont pas de quota de conversations. Au-delà de 100 sur le plan gratuit, passez à un plan payant ou attendez le mois suivant.",
+        other:
+          "Growth : 79 $ par utilisateur et par mois en annuel (99 $ au mois), 10 agents IA, 200 résolutions par mois. Un pack de 50 résolutions en plus : 49,50 $.",
+      },
+      {
+        label: "Marque blanche",
+        talker:
+          "Le plan gratuit affiche « Propulsé par Talker » (lien vers talker.now). La mention disparaît dès Pro.",
+        other: "Widget en marque blanche : plan Enterprise, sur devis.",
+      },
+      {
+        label: "Plusieurs sites",
+        talker: "Pro 3 : 49 €/mois, 3 sites. Pro Max : 99 €/mois, 10 sites (en annuel).",
+        other: "Plusieurs sites inclus sur Essential, Growth et Enterprise.",
+      },
+    ],
+    whenOtherTitle: "Quand choisir LiveChat",
+    whenOther: [
+      "Une équipe répond en direct, et vous payez un siège par personne.",
+      "Vous voulez Messenger et les SMS (Twilio) dans la même boîte : ils sont inclus sur tous les plans Text.",
+    ],
+    whenTalkerTitle: "Quand choisir Talker",
+    whenTalker: [
+      "Personne n'est disponible pour tenir un chat.",
+      "Vous ne voulez pas un prix par utilisateur pour 10 résolutions IA par mois.",
+      "Vous voulez la marque blanche dès Pro (29 €, 1 site), Pro 3 (49 €, 3 sites) ou Pro Max (99 €, 10 sites), pas seulement sur un plan sur devis.",
+    ],
+    faq: [
+      {
+        q: "Talker est-il le même produit que LiveChat ?",
+        a: "Non. Talker est un agent IA sur WordPress : personne ne répond en direct dans la bulle. LiveChat, pour les nouveaux essais, vend les plans Text : une équipe répond, avec un agent IA en plus.",
+      },
+      {
+        q: "Combien coûte le premier plan ?",
+        a: "Pro, chez Talker, coûte 29 € par mois en annuel pour 1 site, conversations illimitées. Essential, chez Text, coûte 19 $ par utilisateur et par mois en annuel (25 $ au mois), avec 10 résolutions IA par mois. Une résolution, c'est une question à laquelle l'IA a répondu directement. Un pack de 50 résolutions en plus coûte 49,50 $ (tarifs relevés le 08/10/2026).",
+      },
+      {
+        q: "Où est la marque blanche ?",
+        a: "Chez Talker, dès Pro (29 € par mois en annuel), ainsi que sur Pro 3 et Pro Max. Chez Text, le widget en marque blanche est sur le plan Enterprise, sur devis.",
+      },
+      {
+        q: "Talker fonctionne-t-il sans WordPress ?",
+        a: "Non. Talker est un plugin WordPress.",
+      },
+    ],
+    sources: [
+      { href: "https://www.livechat.com/pricing/", label: "https://www.livechat.com/pricing/" },
+    ],
+    sourceNote:
+      "Tarifs relevés le 08/10/2026 sur la page officielle de LiveChat (plans Text pour les nouveaux essais). Prix en dollars US tels qu'affichés, hors taxes.",
+  },
+  {
+    id: "botpress",
+    slug: "alternative-botpress-wordpress",
+    path: "/alternative-botpress-wordpress",
+    metaTitle: "Alternative à Botpress pour WordPress — Talker",
+    metaDescription:
+      "Un plugin zip qui lit votre site WordPress, sans studio à configurer. Faits et tarifs comparés avec Botpress.",
+    h1: "Une alternative à Botpress pour WordPress",
+    otherName: "Botpress",
+    shortAnswer:
+      "Si vous voulez un agent IA sur votre site WordPress sans le construire dans un studio, Talker est une alternative à Botpress. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et pose des questions adaptées à votre métier. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Botpress convient mieux si vous voulez dessiner les flux vous-même et ajouter vos propres sources.",
+    tableTitle: "Talker et Botpress en bref",
+    rows: [
+      {
+        label: "Ce que c'est",
+        talker:
+          "Un plugin WordPress : un agent IA qui répond seul sur votre site.",
+        other: "Une plateforme pour créer des agents IA, puis les poser sur un site.",
+      },
+      {
+        label: "Installation sur WordPress",
+        talker: "Fichier zip, puis « Activer ». Aucun réglage obligatoire.",
+        other:
+          "Créer l'agent dans Botpress, ajouter des sources, puis coller le script webchat sur le site WordPress.",
+      },
+      {
+        label: "D'où viennent les réponses",
+        talker: "Des pages publiques de votre site. Pas d'envoi de fichiers.",
+        other: "Des sources que vous ajoutez (site, documents).",
+      },
+      {
+        label: "Pour démarrer",
+        talker:
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
+        other:
+          "Plan gratuit : 0 $, 100 conversations, sans packs ni dépassement, 3 sièges, 3 agents IA, support communautaire.",
+      },
+      {
+        label: "Comptage",
+        talker:
+          "En conversations : un visiteur qui discute (une session). Illimitées sur les plans payants.",
+        other:
+          "Un échange avec au moins deux messages du visiteur dans le mois. Un échange à cheval sur deux mois compte deux fois.",
+      },
+      {
+        label: "Premier plan payant",
+        talker:
+          "Pro : 29 €/mois en annuel (35 € au mois), 1 site, conversations illimitées, marque blanche.",
+        other:
+          "Plus : 150 $/mois en annuel, 250 conversations par mois, puis des packs de 100 à 65 $ (0,65 $ la conversation). Marque blanche du webchat incluse. 3 sièges.",
+      },
+      {
+        label: "Au-delà du quota",
+        talker:
+          "Au-delà de 100 conversations dans le mois, passez à un plan payant ou attendez le mois suivant. Les plans payants sont illimités.",
+        other:
+          "La page indique qu'à 95 % du quota, un pack de 100 conversations est ajouté, et que ce rechargement ne se coupe pas. Le plan gratuit est affiché sans packs ni dépassement. Team : 750 $/mois en annuel, 1 500 conversations, packs de 100 à 50 $.",
+      },
+    ],
+    whenOtherTitle: "Quand choisir Botpress",
+    whenOther: [
+      "Vous voulez dessiner les flux et brancher des documents vous-même.",
+      "Vous voulez aussi WhatsApp : il est inclus sur Plus.",
+    ],
+    whenTalkerTitle: "Quand choisir Talker",
+    whenTalker: [
+      "Vous voulez un agent en place avec un zip, sans rien construire dans un studio.",
+      "Votre site WordPress contient déjà ce qu'il faut savoir.",
+      "Vous voulez la marque blanche et les conversations illimitées dès Pro (29 €, 1 site), pas 150 $ par mois pour 250 conversations.",
+    ],
+    faq: [
+      {
+        q: "Faut-il construire l'agent Talker comme sur Botpress ?",
+        a: "Non. Talker lit les pages publiques de votre site après l'activation, puis vous pose quelques questions sur votre métier dans WordPress.",
+      },
+      {
+        q: "Que se passe-t-il quand le quota est atteint ?",
+        a: "Chez Talker, au-delà de 100 conversations dans le mois, passez à un plan payant ou attendez le mois suivant. Les plans payants n'ont pas de quota. Chez Botpress, le plan gratuit affiche 100 conversations sans packs ni dépassement. La page tarifs indique aussi qu'à 95 % du quota un pack de 100 conversations est ajouté, et que ce rechargement ne se coupe pas (tarifs relevés le 08/10/2026).",
+      },
+      {
+        q: "Combien coûte la marque blanche ?",
+        a: "Chez Talker, elle est incluse dès Pro (29 € par mois en annuel, 1 site), ainsi que sur Pro 3 (49 €, 3 sites) et Pro Max (99 €, 10 sites). Chez Botpress, la marque blanche du webchat est sur Plus : 150 $ par mois en annuel, pour 250 conversations.",
+      },
+      {
+        q: "Talker fonctionne-t-il sans WordPress ?",
+        a: "Non. Talker est un plugin WordPress.",
+      },
+    ],
+    sources: [
+      { href: "https://botpress.com/pricing", label: "https://botpress.com/pricing" },
+      {
+        href: "https://botpress.com/integrations/wordpress",
+        label: "https://botpress.com/integrations/wordpress",
+      },
+    ],
+    sourceNote:
+      "Tarifs relevés le 08/10/2026 sur la page officielle de Botpress. Prix en dollars US tels qu'affichés, offre annuelle pour Plus et Team.",
   },
 ];
 

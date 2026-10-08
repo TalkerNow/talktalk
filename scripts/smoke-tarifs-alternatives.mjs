@@ -56,6 +56,10 @@ const alternativePaths = [
   ["/alternative-tidio-wordpress", "Une alternative à Tidio pour WordPress"],
   ["/alternative-crisp-wordpress", "Une alternative à Crisp pour WordPress"],
   ["/alternative-chatbase-wordpress", "Une alternative à Chatbase pour WordPress"],
+  ["/alternative-tawk-to-wordpress", "Une alternative à tawk.to pour WordPress"],
+  ["/alternative-smartsupp-wordpress", "Une alternative à Smartsupp pour WordPress"],
+  ["/alternative-livechat-wordpress", "Une alternative à LiveChat pour WordPress"],
+  ["/alternative-botpress-wordpress", "Une alternative à Botpress pour WordPress"],
 ];
 
 for (const path of [TARIFS_PATH, ...alternativePaths.map(([href]) => href), CAS_CLIENT_AGENCE_PATH]) {
@@ -159,6 +163,11 @@ assert(!nav.includes('href: "#pricing"'), "menu no longer uses the pricing ancho
 
 assert(llmsTxt.includes("/tarifs"), "llms tarifs");
 assert(llmsTxt.includes("/alternative-crisp-wordpress"), "llms crisp");
+assert(llmsTxt.includes("/alternative-tawk-to-wordpress"), "llms tawk");
+assert(llmsTxt.includes("/alternative-smartsupp-wordpress"), "llms smartsupp");
+assert(llmsTxt.includes("/alternative-livechat-wordpress"), "llms livechat");
+assert(llmsTxt.includes("/alternative-botpress-wordpress"), "llms botpress");
+assert(!/chatbot/i.test(alternativesSource), "alternatives avoid chatbot in copy");
 assert(llmsTxt.includes("/comparatif-talker-live-chat"), "llms comparatif");
 assert(!llmsTxt.includes(CAS_CLIENT_AGENCE_PATH), "llms omits the unpublished case");
 assert(!/\/tarifs is not a page/.test(readFileSync(new URL("../lib/seo/llms.ts", import.meta.url), "utf8")), "old tarifs comment removed");

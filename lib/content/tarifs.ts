@@ -97,5 +97,9 @@ export const tarifsAlso = [
   { href: "/alternative-tidio-wordpress", label: "Alternative à Tidio" },
   { href: "/alternative-crisp-wordpress", label: "Alternative à Crisp" },
   { href: "/alternative-chatbase-wordpress", label: "Alternative à Chatbase" },
+  { href: "/alternative-tawk-to-wordpress", label: "Alternative à tawk.to" },
+  { href: "/alternative-smartsupp-wordpress", label: "Alternative à Smartsupp" },
+  { href: "/alternative-livechat-wordpress", label: "Alternative à LiveChat" },
+  { href: "/alternative-botpress-wordpress", label: "Alternative à Botpress" },
   { href: "/faq", label: "FAQ" },
 ] as const;
