@@ -42,7 +42,7 @@ Faits publics preview Talker 0e81 seulement. Absent = on ne le dit pas.
 
 **Tarifs publiés**
 - **Starter** 0 €/mois — 1 Talker · 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée · 1 canal site · support e-mail · mention « Propulsé par Talker » (lien talker.now)
-- **Pro** 29 €/mois en annuel (35 € au mois) — 1 site · illimité · multi-canaux · capture · alertes SMS · avis Google · marque blanche
+- **Pro** 29 €/mois en annuel (35 € au mois) — 1 site · illimité · capture · alertes SMS · avis Google · marque blanche
 - **Pro 3** 49 €/mois en annuel (69 € au mois) — 3 sites
 - **Pro Max** 99 €/mois en annuel (119 € au mois) — 10 sites
 - Annuel −17 %

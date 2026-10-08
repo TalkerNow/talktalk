@@ -242,7 +242,6 @@ export const en = {
         features: [
           "1 Talker",
           "Unlimited conversations",
-          "All channels (website, WhatsApp, Instagram, Facebook, SMS)",
           "Automatic phone and email capture",
           "SMS alerts (or instantly)",
           "Google review collection",

@@ -97,6 +97,19 @@ assert(
 );
 assert(!enPricing.includes("offered per site"), "EN starter is not one-time");
 assert(!enPricing.includes("per install"), "EN pricing is not per install");
+const outsideChannels = /whatsapp|instagram|messenger|facebook|tous les canaux|all channels/i;
+assert(!outsideChannels.test(frPricing), "FR pricing does not promise outside channels");
+assert(!outsideChannels.test(enPricing), "EN pricing does not promise outside channels");
+assert(!outsideChannels.test(tarifsSource), "tarifs does not promise outside channels");
+const faqSource = readFileSync(new URL("../lib/content/faq.ts", import.meta.url), "utf8");
+const comparatifSource = readFileSync(
+  new URL("../lib/content/comparatif.ts", import.meta.url),
+  "utf8",
+);
+const llmsSource = readFileSync(new URL("../lib/seo/llms.ts", import.meta.url), "utf8");
+assert(!outsideChannels.test(faqSource), "FAQ does not promise outside channels");
+assert(!outsideChannels.test(comparatifSource), "comparatif does not promise outside channels");
+assert(!outsideChannels.test(llmsSource), "llms does not promise outside channels");
 assert(frPricing.includes('title: "Pro 3"'), "FR plan Pro 3");
 assert(frPricing.includes('title: "Pro Max"'), "FR plan Pro Max");
 assert(frPricing.includes('description: "1 site"'), "FR site count");
