@@ -5,40 +5,40 @@ export const TARIFS_PATH = "/tarifs";
 export const RATES_AS_OF = "Tarifs relevés le 08/10/2026";
 
 export const TARIFS_META = {
-  title: "Tarifs Talker — plugin WordPress, 100 conversations offertes",
+  title: "Tarifs Talker — plugin WordPress, 100 conversations par mois",
   description:
-    "100 conversations offertes par site, sans carte. Marque blanche dès le premier plan payant. 1, 3 ou 10 sites.",
+    "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Pro, Pro 3 et Pro Max : marque blanche. 29 €, 49 € ou 99 € par mois en annuel.",
 } as const;
 
 export const TARIFS_H1 = "Tarifs Talker";
 
 export const tarifsSummary = [
-  "100 conversations offertes par site, sans carte bancaire.",
-  "Marque blanche dès le premier plan payant : la mention « Propulsé par talker.now » disparaît.",
-  "1, 3 ou 10 sites : 29 €, 49 € ou 99 € par mois en annuel.",
+  "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
+  "Le plan gratuit affiche « Propulsé par Talker », avec un lien vers talker.now. Dès le premier plan payant, cette mention disparaît (marque blanche).",
+  "Pro (1 site) 29 €, Pro 3 (3 sites) 49 €, Pro Max (10 sites) 99 € par mois en annuel.",
 ] as const;
 
 export const tarifsAfterHundred = {
-  title: "Ce qui se passe à la 100e conversation",
+  title: "Ce qui se passe à la 100e conversation du mois",
   items: [
-    "Vous recevez un e-mail à 50, 75 et 90 conversations.",
-    "À 100, le site ne prend plus de nouvelles conversations tant que vous ne passez pas sur un plan payant.",
+    "Une conversation, c'est un visiteur qui discute (une session).",
+    "Au-delà de 100 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
     "Aucune carte n'a été demandée : rien n'est prélevé automatiquement.",
   ],
 } as const;
 
 export const tarifsWhiteLabel = {
-  title: "Agences : la marque blanche, comparée",
+  title: "Pour les agences : la marque blanche, comparée",
   intro:
     "Vous installez des sites pour vos clients ? Voici où commence la marque blanche chez Talker et chez trois outils connus. On compare seulement ce point : ces outils font aussi d'autres choses (chat en direct, plusieurs canaux, support d'équipe).",
   columns: ["Outil", "Marque blanche à partir de", "Prix relevé", "À savoir"] as const,
   rows: [
     {
       tool: "Talker",
-      from: "Premier plan payant (Pro, 1 site)",
+      from: "Pro (1 site), Pro 3 (3 sites) et Pro Max (10 sites)",
       price:
-        "29 €/mois en annuel (35 € au mois). 3 sites : 49 €/mois. 10 sites : 99 €/mois (en annuel)",
-      note: "Automatique : la mention « Propulsé par talker.now » disparaît. Conversations illimitées sur les plans payants.",
+        "Pro : 29 €/mois en annuel (35 € au mois). Pro 3 : 49 €/mois, 3 sites. Pro Max : 99 €/mois, 10 sites (en annuel)",
+      note: "Le plan gratuit affiche « Propulsé par Talker », avec un lien vers talker.now. Sur les plans payants, la mention disparaît. Conversations illimitées.",
       source: null,
     },
     {
@@ -70,23 +70,23 @@ export const tarifsWhiteLabel = {
 export const tarifsFaq: readonly FaqItem[] = [
   {
     q: "Faut-il une carte bancaire pour commencer ?",
-    a: "Non. Vous installez le zip et les 100 premières conversations sont offertes sur ce site.",
+    a: "Non. Vous installez le zip. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
   },
   {
     q: "Les 100 conversations sont-elles par mois ?",
-    a: "Non. C'est 100 conversations par site, une seule fois, pour juger Talker sur votre vrai site.",
+    a: "Oui. C'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Le compteur repart chaque mois. Une conversation, c'est un visiteur qui discute (une session).",
   },
   {
     q: "Que se passe-t-il après 100 conversations ?",
-    a: "Le site ne prend plus de nouvelles conversations. Vous passez en Pro (1 site) ou sur une offre agence (3 ou 10 sites) pour continuer.",
+    a: "Au-delà de 100 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
   },
   {
     q: "C'est quoi, la marque blanche ?",
-    a: "Sur les plans payants, la mention « Propulsé par talker.now » disparaît de la fenêtre de conversation. Rien à régler.",
+    a: "Le plan gratuit affiche « Propulsé par Talker », avec un lien vers talker.now, sous le widget. Sur les plans payants, cette mention disparaît. Rien à régler.",
   },
   {
     q: "Peut-on payer au mois ?",
-    a: "Oui : 35 € par mois pour 1 site, 69 € pour 3 sites, 119 € pour 10 sites. En annuel : 29 €, 49 € et 99 € par mois.",
+    a: "Oui. Pro : 35 € par mois (1 site). Pro 3 : 69 € (3 sites). Pro Max : 119 € (10 sites). En annuel : 29 €, 49 € et 99 € par mois.",
   },
 ];
 

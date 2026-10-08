@@ -74,7 +74,7 @@ export const comparatifFr: ComparatifCopy = {
     {
       criterion: "Prix Talker",
       talker:
-        "Starter — 0 €, 100 conversations par installation, sans carte. Pro — 29 € / mois en annuel (35 € au mois), un site. Agences — 49 € / mois en annuel pour 3 sites ; 99 € / mois en annuel pour 10 sites.",
+        "Starter — 0 €, 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Pro — 29 € / mois en annuel (35 € au mois), 1 site. Pro 3 — 49 € / mois en annuel pour 3 sites. Pro Max — 99 € / mois en annuel pour 10 sites.",
       live: "Prix non cités.",
       engine: "Prix non cités.",
     },
@@ -135,7 +135,7 @@ export const comparatifEn: ComparatifCopy = {
     {
       criterion: "Talker prices",
       talker:
-        "Starter — €0, 100 conversations per install, no card. Pro — €29 / month billed annually (€35 month to month), one site. Agencies — €49 / month annually for 3 sites; €99 / month annually for 10 sites.",
+        "Starter — €0, 100 conversations per month per site, free, no card, no time limit. Pro — €29 / month billed annually (€35 month to month), 1 site. Pro 3 — €49 / month annually for 3 sites. Pro Max — €99 / month annually for 10 sites.",
       live: "Prices not stated.",
       engine: "Prices not stated.",
     },

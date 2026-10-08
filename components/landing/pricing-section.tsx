@@ -8,17 +8,22 @@ import { useLocale } from "@/components/i18n/locale-context";
 import type { Messages } from "@/lib/i18n";
 
 type PlanCopy = Messages["pricing"]["plans"][number];
-type AgencySites = 3 | 10;
+type PlanKey = "starter" | "pro" | "pro3" | "proMax";
 
-/** Published grid. Agency 3-site annual is 49 € (HARD 2026-09-26). Agency monthly stays as last published — HARD did not set a new monthly. */
-const PLAN_PRICES = {
+/** Published grid. Pro 3 annual is 49 € (HARD 2026-09-26). Monthly stays as last published. */
+const PLAN_PRICES: Record<
+  PlanKey,
+  { monthly: number; annual: number; popular: boolean }
+> = {
   starter: { monthly: 0, annual: 0, popular: false },
   pro: { monthly: 35, annual: 29, popular: true },
-  agency3: { monthly: 69, annual: 49, popular: false },
-  agency10: { monthly: 119, annual: 99, popular: false },
-} as const;
+  pro3: { monthly: 69, annual: 49, popular: false },
+  proMax: { monthly: 119, annual: 99, popular: false },
+};
 
-const SHINE_KEYS = new Set(["starter", "agency"]);
+const PLAN_ORDER: readonly PlanKey[] = ["starter", "pro", "pro3", "proMax"];
+
+const SHINE_KEYS = new Set<PlanKey>(["starter"]);
 
 function copyByKey(plans: Messages["pricing"]["plans"], key: string): PlanCopy {
   const found = plans.find((plan) => plan.key === key);
@@ -28,71 +33,6 @@ function copyByKey(plans: Messages["pricing"]["plans"], key: string): PlanCopy {
   return found;
 }
 
-function packDiscountPercent(threePrice: number, tenPrice: number) {
-  const tenAtThreeSiteRate = (threePrice / 3) * 10;
-  return Math.round((1 - tenPrice / tenAtThreeSiteRate) * 100);
-}
-
-function AgencySitesToggle({
-  value,
-  onChange,
-  sites3,
-  sites10,
-  discountPercent,
-  ariaLabel,
-}: {
-  value: AgencySites;
-  onChange: (value: AgencySites) => void;
-  sites3: string;
-  sites10: string;
-  discountPercent: number;
-  ariaLabel: string;
-}) {
-  const isTen = value === 10;
-
-  return (
-    <div className="mt-2 flex flex-wrap items-center gap-3">
-      <button
-        type="button"
-        onClick={() => onChange(3)}
-        className={`cursor-pointer text-sm transition-colors ${
-          !isTen ? "text-foreground" : "text-muted-foreground"
-        }`}
-      >
-        {sites3}
-      </button>
-      <button
-        type="button"
-        role="switch"
-        aria-checked={isTen}
-        aria-label={ariaLabel}
-        onClick={() => onChange(isTen ? 3 : 10)}
-        className="relative h-6 w-12 cursor-pointer rounded-full bg-foreground/12 p-0.5 transition-colors"
-      >
-        <div
-          className={`h-5 w-5 rounded-full bg-black transition-transform duration-300 ${
-            isTen ? "translate-x-6" : "translate-x-0"
-          }`}
-        />
-      </button>
-      <button
-        type="button"
-        onClick={() => onChange(10)}
-        className={`cursor-pointer text-sm transition-colors ${
-          isTen ? "text-foreground" : "text-muted-foreground"
-        }`}
-      >
-        {sites10}
-      </button>
-      {isTen ? (
-        <span className="px-2 py-0.5 bg-black text-white text-[10px] font-mono uppercase tracking-wider">
-          -{discountPercent}%
-        </span>
-      ) : null}
-    </div>
-  );
-}
-
 export function PricingSection({
   showTarifsLink = true,
 }: {
@@ -100,49 +40,13 @@ export function PricingSection({
 }) {
   const { t } = useLocale();
   const [isAnnual, setIsAnnual] = useState(true);
-  const [agencySites, setAgencySites] = useState<AgencySites>(3);
 
-  const starterCopy = copyByKey(t.pricing.plans, "starter");
-  const proCopy = copyByKey(t.pricing.plans, "pro");
-  const agency3Copy = copyByKey(t.pricing.plans, "agency3");
-  const agency10Copy = copyByKey(t.pricing.plans, "agency10");
-  const agencyCopy = agencySites === 10 ? agency10Copy : agency3Copy;
-  const agencyPrices =
-    agencySites === 10 ? PLAN_PRICES.agency10 : PLAN_PRICES.agency3;
-  const threePrice = isAnnual
-    ? PLAN_PRICES.agency3.annual
-    : PLAN_PRICES.agency3.monthly;
-  const tenPrice = isAnnual
-    ? PLAN_PRICES.agency10.annual
-    : PLAN_PRICES.agency10.monthly;
-  const agencyDiscount = packDiscountPercent(threePrice, tenPrice);
-
-  const cards = [
-    {
-      key: "starter" as const,
-      index: 0,
-      popular: PLAN_PRICES.starter.popular,
-      monthly: PLAN_PRICES.starter.monthly,
-      annual: PLAN_PRICES.starter.annual,
-      copy: starterCopy,
-    },
-    {
-      key: "pro" as const,
-      index: 1,
-      popular: PLAN_PRICES.pro.popular,
-      monthly: PLAN_PRICES.pro.monthly,
-      annual: PLAN_PRICES.pro.annual,
-      copy: proCopy,
-    },
-    {
-      key: "agency" as const,
-      index: 2,
-      popular: false,
-      monthly: agencyPrices.monthly,
-      annual: agencyPrices.annual,
-      copy: agencyCopy,
-    },
-  ];
+  const cards = PLAN_ORDER.map((key, index) => ({
+    key,
+    index,
+    ...PLAN_PRICES[key],
+    copy: copyByKey(t.pricing.plans, key),
+  }));
 
   return (
     <section id="pricing" className="relative scroll-mt-24 border-t border-foreground/10 py-12 lg:py-16">
@@ -187,14 +91,13 @@ export function PricingSection({
           )}
         </div>
 
-        <div className="mt-3 grid items-stretch gap-6 lg:grid-cols-3">
+        <div className="mt-3 grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
           {cards.map((plan) => {
             const shine = SHINE_KEYS.has(plan.key);
-            const isAgency = plan.key === "agency";
             return (
               <div
                 key={plan.key}
-                className={`pricing-card relative flex cursor-default flex-col p-8 lg:p-10 ${
+                className={`pricing-card relative flex cursor-default flex-col p-6 lg:p-8 ${
                   plan.popular
                     ? "pricing-card-popular overflow-visible border border-black bg-background"
                     : shine
@@ -216,31 +119,19 @@ export function PricingSection({
                   </span>
                 )}
 
-                <div className="relative z-10 mb-8 grid min-h-[17rem] grid-rows-[auto_minmax(2.5em,auto)_auto_1fr_auto]">
+                <div className="relative z-10 mb-8">
                   <span className="font-mono text-xs text-muted-foreground">
                     {String(plan.index + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-2 min-h-[2.5em] font-display font-semibold text-3xl leading-tight text-foreground">
+                  <h3 className="mt-2 font-display font-semibold text-3xl leading-tight text-foreground">
                     {plan.copy.title}
                   </h3>
-                  {isAgency ? (
-                    <AgencySitesToggle
-                      value={agencySites}
-                      onChange={setAgencySites}
-                      sites3={t.pricing.sites3}
-                      sites10={t.pricing.sites10}
-                      discountPercent={agencyDiscount}
-                      ariaLabel={t.pricing.agencySitesToggle}
-                    />
-                  ) : (
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {plan.copy.description}
-                    </p>
-                  )}
-                  <div aria-hidden="true" className="min-h-0" />
-                  <div className="shrink-0 border-b border-foreground/10 pb-8">
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {plan.copy.description}
+                  </p>
+                  <div className="mt-6 border-b border-foreground/10 pb-8">
                     <div className="flex items-end gap-2">
-                      <span className="font-display font-semibold text-5xl lg:text-6xl leading-none tabular-nums text-foreground">
+                      <span className="font-display font-semibold text-5xl leading-none tabular-nums text-foreground">
                         {isAnnual ? plan.annual : plan.monthly}€
                       </span>
                       <span className="pb-1 text-muted-foreground">{t.pricing.perMonth}</span>

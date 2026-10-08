@@ -59,7 +59,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à Tidio pour WordPress",
     otherName: "Tidio",
     shortAnswer:
-      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, sans équipe pour tenir un chat en direct, Talker est une alternative à Tidio. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Les 100 premières conversations sont offertes, sans carte. Tidio convient mieux si votre équipe veut répondre elle-même en direct, ou gérer plusieurs canaux de messagerie au même endroit.",
+      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, sans équipe pour tenir un chat en direct, Talker est une alternative à Tidio. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Tidio convient mieux si votre équipe veut répondre elle-même en direct, ou gérer plusieurs canaux de messagerie au même endroit.",
     tableTitle: "Talker et Tidio en bref",
     rows: [
       {
@@ -81,7 +81,8 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         label: "Pour démarrer",
-        talker: "100 conversations offertes par site, sans carte.",
+        talker:
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
         other:
           "Plan gratuit : 50 conversations où un humain répond. Lyro : 50 conversations IA au départ, rechargées chaque mois seulement avec l'offre Lyro. Essai 7 jours sans carte.",
       },
@@ -94,14 +95,15 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         label: "Retirer la marque",
-        talker: "Automatique dès Pro.",
+        talker:
+          "Le plan gratuit affiche « Propulsé par Talker » (lien vers talker.now). La mention disparaît dès Pro.",
         other:
           "Option à 16,67 $/mois sur Growth (à partir de 49,17 $/mois), incluse sur Plus (à partir de 300 $/mois).",
       },
       {
         label: "Plusieurs sites",
         talker:
-          "3 sites : 49 €/mois. 10 sites : 99 €/mois (en annuel). Un agent par site.",
+          "Pro 3 : 49 €/mois, 3 sites. Pro Max : 99 €/mois, 10 sites (en annuel). Un agent par site.",
         other:
           "Possible, mais le widget garde les mêmes réglages (couleurs, horaires, messages) sur tous les sites.",
       },
@@ -130,7 +132,7 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         q: "Combien coûte Talker par rapport à Tidio ?",
-        a: "Talker offre 100 conversations par site, sans carte. Ensuite, Pro coûte 29 € par mois en annuel pour un site, conversations illimitées. Chez Tidio, Starter est à 24,17 $ par mois et l'agent IA Lyro s'ajoute à partir de 32,50 $ par mois (tarifs relevés le 08/10/2026).",
+        a: "Le plan gratuit de Talker, c'est 100 conversations par mois et par site, sans carte, sans limite de durée. Une conversation, c'est un visiteur qui discute (une session). Au-delà, passez à un plan payant ou attendez le mois suivant. Pro coûte 29 € par mois en annuel pour 1 site, conversations illimitées. Pro 3 : 49 € pour 3 sites. Pro Max : 99 € pour 10 sites (en annuel). Chez Tidio, Starter est à 24,17 $ par mois et l'agent IA Lyro s'ajoute à partir de 32,50 $ par mois (tarifs relevés le 08/10/2026).",
       },
       {
         q: "Faut-il régler quelque chose à l'installation ?",
@@ -155,7 +157,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à Crisp pour WordPress",
     otherName: "Crisp",
     shortAnswer:
-      "Si vous cherchez un agent IA qui répond seul aux visiteurs de votre site WordPress, Talker est une alternative à Crisp. Talker s'installe avec un fichier zip, sans réglage, et vous envoie les conversations par e-mail. Les 100 premières conversations sont offertes, sans carte, et la marque blanche arrive dès le premier plan payant. Crisp convient mieux si votre équipe répond en direct sur plusieurs canaux et a besoin d'une boîte de réception partagée.",
+      "Si vous cherchez un agent IA qui répond seul aux visiteurs de votre site WordPress, Talker est une alternative à Crisp. Talker s'installe avec un fichier zip, sans réglage, et vous envoie les conversations par e-mail. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée ; il affiche « Propulsé par Talker » (lien vers talker.now). La marque blanche arrive dès le premier plan payant. Crisp convient mieux si votre équipe répond en direct sur plusieurs canaux et a besoin d'une boîte de réception partagée.",
     tableTitle: "Talker et Crisp en bref",
     rows: [
       {
@@ -172,7 +174,8 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         label: "Pour démarrer",
-        talker: "100 conversations offertes par site, sans carte.",
+        talker:
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
         other: "Plan gratuit : chat du site, 2 sièges, aucun crédit IA.",
       },
       {
@@ -183,12 +186,13 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         label: "Marque blanche",
-        talker: "Automatique dès Pro : 29 €/mois en annuel.",
+        talker:
+          "Le plan gratuit affiche « Propulsé par Talker » (lien vers talker.now). Marque blanche dès Pro : 29 €/mois en annuel.",
         other: "Plan Plus : 295 $/mois. Retire la mention « We run on Crisp ».",
       },
       {
         label: "Plusieurs sites",
-        talker: "3 sites : 49 €/mois. 10 sites : 99 €/mois (en annuel).",
+        talker: "Pro 3 : 49 €/mois, 3 sites. Pro Max : 99 €/mois, 10 sites (en annuel).",
         other:
           "Tarif par workspace. 20 % de remise pour 3 workspaces supplémentaires (Essentials et Plus).",
       },
@@ -208,7 +212,7 @@ export const alternatives: readonly AlternativePage[] = [
     whenTalker: [
       "Personne n'est disponible pour tenir un chat.",
       "Vous voulez un agent qui connaît votre métier et garde le contact du visiteur, sans rien configurer.",
-      "Vous êtes une agence : marque blanche à 29 €, 49 € ou 99 € par mois selon le nombre de sites.",
+      "Vous êtes une agence : marque blanche dès Pro (29 €, 1 site), Pro 3 (49 €, 3 sites) ou Pro Max (99 €, 10 sites).",
     ],
     faq: [
       {
@@ -217,11 +221,11 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         q: "Où commence la marque blanche ?",
-        a: "Chez Talker, dès Pro (29 € par mois en annuel). Chez Crisp, sur le plan Plus (295 $ par mois, tarif relevé le 08/10/2026).",
+        a: "Chez Talker, dès Pro (29 € par mois en annuel, 1 site), ainsi que sur Pro 3 et Pro Max. Chez Crisp, sur le plan Plus (295 $ par mois, tarif relevé le 08/10/2026).",
       },
       {
         q: "Le plan gratuit de Crisp inclut-il l'IA ?",
-        a: "Non. Le plan gratuit de Crisp n'inclut aucun crédit IA (page tarifs relevée le 08/10/2026). Talker offre 100 conversations IA par site.",
+        a: "Non. Le plan gratuit de Crisp n'inclut aucun crédit IA (page tarifs relevée le 08/10/2026). Talker offre 100 conversations IA par mois et par site, gratuites, sans carte, sans limite de durée.",
       },
       {
         q: "Talker fonctionne-t-il sans WordPress ?",
@@ -242,7 +246,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à Chatbase pour WordPress",
     otherName: "Chatbase",
     shortAnswer:
-      "Si vous voulez un agent IA sur votre site WordPress sans créer ni entraîner un agent dans un autre outil, Talker est une alternative à Chatbase. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et pose des questions adaptées à votre métier. Les 100 premières conversations sont offertes, sans carte. Chatbase convient mieux si vous devez nourrir l'agent avec des documents internes ou le brancher sur d'autres canaux.",
+      "Si vous voulez un agent IA sur votre site WordPress sans créer ni entraîner un agent dans un autre outil, Talker est une alternative à Chatbase. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et pose des questions adaptées à votre métier. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Chatbase convient mieux si vous devez nourrir l'agent avec des documents internes ou le brancher sur d'autres canaux.",
     tableTitle: "Talker et Chatbase en bref",
     rows: [
       {
@@ -265,7 +269,8 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         label: "Pour démarrer",
-        talker: "100 conversations offertes par site, sans carte.",
+        talker:
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
         other:
           "50 crédits de message par mois. Les agents du plan gratuit sont supprimés après 14 jours d'inactivité.",
       },
@@ -277,13 +282,14 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         label: "Retirer la marque",
-        talker: "Automatique dès Pro : 29 €/mois en annuel.",
+        talker:
+          "Le plan gratuit affiche « Propulsé par Talker » (lien vers talker.now). La mention disparaît dès Pro : 29 €/mois en annuel.",
         other:
           "Option « Remove Powered By Chatbase » à 99 $/mois. Marque blanche complète en Enterprise, sur devis.",
       },
       {
         label: "Plusieurs sites",
-        talker: "3 sites : 49 €/mois. 10 sites : 99 €/mois (en annuel).",
+        talker: "Pro 3 : 49 €/mois, 3 sites. Pro Max : 99 €/mois, 10 sites (en annuel).",
         other: "Selon le plan et les agents ajoutés.",
       },
     ],
@@ -309,7 +315,7 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         q: "Combien coûte la marque blanche ?",
-        a: "Chez Talker, elle est incluse dès Pro (29 € par mois en annuel). Chez Chatbase, retirer « Powered by Chatbase » est une option à 99 $ par mois, et la marque blanche complète est en Enterprise (tarifs relevés le 08/10/2026).",
+        a: "Chez Talker, elle est incluse dès Pro (29 € par mois en annuel, 1 site), ainsi que sur Pro 3 et Pro Max. Chez Chatbase, retirer « Powered by Chatbase » est une option à 99 $ par mois, et la marque blanche complète est en Enterprise (tarifs relevés le 08/10/2026).",
       },
       {
         q: "Talker fonctionne-t-il sans WordPress ?",

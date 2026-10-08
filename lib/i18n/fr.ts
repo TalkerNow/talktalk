@@ -118,7 +118,7 @@ export const fr = {
     assistantRole: "Mon entreprise",
     close: "Fermer",
     placeholder: "Posez votre question...",
-    poweredBy: "Propulsé par talker.now",
+    poweredBy: "Propulsé par Talker",
     steps: [
       {
         number: "1",
@@ -222,20 +222,17 @@ export const fr = {
     toggle: "Basculer facturation annuelle",
     perMonth: "/mois",
     popular: "Le plus choisi",
-    sites3: "3 sites",
-    sites10: "10 sites",
-    agencySitesToggle: "Choisir le nombre de sites",
     detailsLink: "Tout comprendre sur les tarifs",
     plans: [
       {
         key: "starter",
         name: "Starter",
         title: "Starter",
-        description: "Pour tester sans engagement",
+        description: "1 site",
         cta: "Créer mon agent gratuitement",
         features: [
           "1 Talker",
-          "100 conversations offertes par site",
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée",
           "1 canal (site web)",
           "Support par email",
         ],
@@ -244,7 +241,7 @@ export const fr = {
         key: "pro",
         name: "Pro",
         title: "Pro",
-        description: "Pour les TPE et PME qui veulent convertir",
+        description: "1 site",
         cta: "Installer",
         features: [
           "1 Talker",
@@ -257,17 +254,17 @@ export const fr = {
         ],
       },
       {
-        key: "agency3",
-        name: "Agence · 3",
-        title: "Agences & Entreprises",
+        key: "pro3",
+        name: "Pro 3",
+        title: "Pro 3",
         description: "3 sites",
         cta: "Installer",
         features: ["3 sites", "Tout Pro inclus", "Marque blanche"],
       },
       {
-        key: "agency10",
-        name: "Agence · 10",
-        title: "Agences & Entreprises",
+        key: "proMax",
+        name: "Pro Max",
+        title: "Pro Max",
         description: "10 sites",
         cta: "Installer",
         features: [
@@ -308,7 +305,7 @@ export const fr = {
         "Démo : une conversation, le téléchargement de talker-now.zip, puis l’installation dans WP-Admin.",
       assistantName: "Marie",
       assistantRole: "Mon entreprise",
-      poweredBy: "Propulsé par talker.now",
+      poweredBy: "Propulsé par Talker",
       greeting: "Bonjour, une question sur Talker Now ?",
       chipTalker: "Talker Now",
       chipQuestion: "Poser une question",
@@ -426,7 +423,7 @@ export const fr = {
     placeholder: "Écrivez-moi…",
     send: "Envoyer",
     writing: "Talker écrit",
-    poweredBy: "Propulsé par talker.now",
+    poweredBy: "Propulsé par Talker",
     opener:
       "Bonjour — je suis là pour votre site. Dites-moi ce que vous cherchez, je vous oriente.",
     fallback:

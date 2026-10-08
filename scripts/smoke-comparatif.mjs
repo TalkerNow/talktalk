@@ -30,7 +30,7 @@ for (const fact of [
   "pages publiques",
   "prompt métier",
   "toutes les 4 heures",
-  "100 conversations par installation",
+  "100 conversations par mois et par site",
   "49 € / mois en annuel pour 3 sites",
   "99 € / mois en annuel pour 10 sites",
 ]) {

@@ -81,9 +81,45 @@ for (const [, h1] of alternativePaths) {
 
 const frPricing = readFileSync(new URL("../lib/i18n/fr.ts", import.meta.url), "utf8");
 const enPricing = readFileSync(new URL("../lib/i18n/en.ts", import.meta.url), "utf8");
-assert(frPricing.includes('"100 conversations offertes par site"'), "FR starter card");
-assert(!frPricing.includes("100 conversations/mois"), "FR starter is not monthly");
-assert(enPricing.includes('"100 conversations offered per site"'), "EN starter card");
+assert(
+  frPricing.includes(
+    '"100 conversations par mois et par site, gratuites, sans carte, sans limite de durée"',
+  ),
+  "FR starter card",
+);
+assert(!frPricing.includes("100 conversations offertes par site"), "FR starter is not one-time");
+assert(!frPricing.includes("par installation"), "FR pricing is not per install");
+assert(
+  enPricing.includes(
+    '"100 conversations per month per site, free, no card, no time limit"',
+  ),
+  "EN starter card",
+);
+assert(!enPricing.includes("offered per site"), "EN starter is not one-time");
+assert(!enPricing.includes("per install"), "EN pricing is not per install");
+assert(frPricing.includes('title: "Pro 3"'), "FR plan Pro 3");
+assert(frPricing.includes('title: "Pro Max"'), "FR plan Pro Max");
+assert(frPricing.includes('description: "1 site"'), "FR site count");
+assert(frPricing.includes('description: "3 sites"'), "FR 3 sites");
+assert(frPricing.includes('description: "10 sites"'), "FR 10 sites");
+assert(!frPricing.includes("Agences & Entreprises"), "FR plan name is not Agences");
+assert(!frPricing.includes("Agence ·"), "FR plan name is not Agence");
+assert(!enPricing.includes("Agencies &"), "EN plan name is not Agencies");
+assert(tarifsSource.includes("Pro 3"), "tarifs names Pro 3");
+assert(tarifsSource.includes("Pro Max"), "tarifs names Pro Max");
+assert(!/Agences & Entreprises|Agence ·/.test(tarifsSource), "tarifs has no Agence plan name");
+assert(
+  tarifsSource.includes(
+    "Au-delà de 100 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
+  ),
+  "neutral monthly cap",
+);
+assert(tarifsSource.includes("Propulsé par Talker"), "powered by Talker");
+assert(!tarifsSource.includes("une seule fois"), "tarifs is not once");
+assert(!tarifsSource.includes("offertes par site"), "tarifs is not a one-time gift");
+assert(!/50, 75 et 90/.test(tarifsSource), "no 50/75/90 emails");
+assert(!alternativesSource.includes("offertes par site"), "alternatives are not one-time");
+assert(!alternativesSource.includes("100 premières"), "alternatives are not the first 100");
 assert(frPricing.includes('detailsLink: "Tout comprendre sur les tarifs"'), "home link FR");
 assert(frPricing.includes('{ name: "Tarifs", href: "/tarifs" }'), "footer Tarifs");
 assert(enPricing.includes('{ name: "Pricing", href: "/tarifs" }'), "footer Pricing");
