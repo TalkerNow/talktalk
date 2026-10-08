@@ -29,6 +29,7 @@ assert(llmsTxt.includes("/alternative-tawk-to-wordpress"), "tawk alternative");
 assert(llmsTxt.includes("/alternative-smartsupp-wordpress"), "smartsupp alternative");
 assert(llmsTxt.includes("/alternative-livechat-wordpress"), "livechat alternative");
 assert(llmsTxt.includes("/alternative-botpress-wordpress"), "botpress alternative");
+assert(llmsTxt.includes("/alternative-ai-engine-wordpress"), "ai engine alternative");
 assert(llmsTxt.includes("/comparatif-talker-live-chat"), "comparatif");
 assert(!llmsTxt.includes("/cas-client-agence"), "unpublished case stays out of llms");
 assert(!/wordpress\.org/i.test(llmsTxt), "llms.txt names no public plugin store");

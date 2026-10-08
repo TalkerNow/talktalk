@@ -101,5 +101,6 @@ export const tarifsAlso = [
   { href: "/alternative-smartsupp-wordpress", label: "Alternative à Smartsupp" },
   { href: "/alternative-livechat-wordpress", label: "Alternative à LiveChat" },
   { href: "/alternative-botpress-wordpress", label: "Alternative à Botpress" },
+  { href: "/alternative-ai-engine-wordpress", label: "Alternative à AI Engine" },
   { href: "/faq", label: "FAQ" },
 ] as const;

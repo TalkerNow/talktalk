@@ -60,6 +60,7 @@ const alternativePaths = [
   ["/alternative-smartsupp-wordpress", "Une alternative à Smartsupp pour WordPress"],
   ["/alternative-livechat-wordpress", "Une alternative à LiveChat pour WordPress"],
   ["/alternative-botpress-wordpress", "Une alternative à Botpress pour WordPress"],
+  ["/alternative-ai-engine-wordpress", "Une alternative à AI Engine pour WordPress"],
 ];
 
 for (const path of [TARIFS_PATH, ...alternativePaths.map(([href]) => href), CAS_CLIENT_AGENCE_PATH]) {
@@ -167,7 +168,16 @@ assert(llmsTxt.includes("/alternative-tawk-to-wordpress"), "llms tawk");
 assert(llmsTxt.includes("/alternative-smartsupp-wordpress"), "llms smartsupp");
 assert(llmsTxt.includes("/alternative-livechat-wordpress"), "llms livechat");
 assert(llmsTxt.includes("/alternative-botpress-wordpress"), "llms botpress");
-assert(!/chatbot/i.test(alternativesSource), "alternatives avoid chatbot in copy");
+assert(llmsTxt.includes("/alternative-ai-engine-wordpress"), "llms ai engine");
+const alternativesVisible = alternativesSource
+  .replace(/metaTitle:\s*"[^"]*"/g, "")
+  .replace(/metaDescription:\s*\n?\s*"[^"]*"/g, "");
+assert(!/chatbot/i.test(alternativesVisible), "chatbot stays in alternative meta");
+assert(alternativesSource.includes("28 951 octets"), "measured zip size");
+assert(alternativesSource.includes("10 fichiers"), "measured zip file count");
+assert(alternativesSource.includes("19 768 octets"), "measured public script size");
+assert(alternativesSource.includes("pied de page"), "public script is in the footer");
+assert(!/ralentit/i.test(alternativesSource), "no unmeasured speed claim");
 assert(llmsTxt.includes("/comparatif-talker-live-chat"), "llms comparatif");
 assert(!llmsTxt.includes(CAS_CLIENT_AGENCE_PATH), "llms omits the unpublished case");
 assert(!/\/tarifs is not a page/.test(readFileSync(new URL("../lib/seo/llms.ts", import.meta.url), "utf8")), "old tarifs comment removed");

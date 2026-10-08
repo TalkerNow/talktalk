@@ -7,7 +7,7 @@ const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://talker.now").replac
 /**
  * Public /llms.txt body. Product facts only.
  * Live routes: /, /produit, /methode, /installer, /faq, /contact,
- * /tarifs, /comparatif-talker-live-chat, and the seven alternative pages.
+ * /tarifs, /comparatif-talker-live-chat, and the eight alternative pages.
  */
 export const llmsTxt = `# Talker
 
@@ -27,5 +27,6 @@ export const llmsTxt = `# Talker
 - [Alternative à Smartsupp pour WordPress](${origin}/alternative-smartsupp-wordpress): faits et tarifs Talker / Smartsupp (relevés le 08/10/2026).
 - [Alternative à LiveChat pour WordPress](${origin}/alternative-livechat-wordpress): faits et tarifs Talker / LiveChat (relevés le 08/10/2026).
 - [Alternative à Botpress pour WordPress](${origin}/alternative-botpress-wordpress): faits et tarifs Talker / Botpress (relevés le 08/10/2026).
+- [Alternative à AI Engine pour WordPress](${origin}/alternative-ai-engine-wordpress): faits Talker / AI Engine, Meow Apps (relevés le 08/10/2026).
 - [Talker et le chat live](${origin}/comparatif-talker-live-chat): différences avec un chat live humain.
 `;

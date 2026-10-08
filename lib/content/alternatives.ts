@@ -17,7 +17,8 @@ export type AlternativeId =
   | "tawkto"
   | "smartsupp"
   | "livechat"
-  | "botpress";
+  | "botpress"
+  | "aiengine";
 
 export type ComparisonRow = {
   label: string;
@@ -727,6 +728,108 @@ export const alternatives: readonly AlternativePage[] = [
     ],
     sourceNote:
       "Tarifs relevés le 08/10/2026 sur la page officielle de Botpress. Prix en dollars US tels qu'affichés, offre annuelle pour Plus et Team.",
+  },
+  {
+    id: "aiengine",
+    slug: "alternative-ai-engine-wordpress",
+    path: "/alternative-ai-engine-wordpress",
+    metaTitle: "Alternative à AI Engine pour WordPress — Talker",
+    metaDescription:
+      "Talker est un agent conversationnel WordPress : un zip, sans clé API. Alternative à AI Engine, la boîte à outils IA de Meow Apps. Chatbot léger, un seul rôle.",
+    h1: "Une alternative à AI Engine pour WordPress",
+    otherName: "AI Engine",
+    shortAnswer:
+      "Si vous voulez un agent qui répond aux visiteurs de votre site, et rien d'autre, Talker est une alternative à AI Engine. AI Engine (Meow Apps) est une boîte à outils IA complète : génération de contenu, images, formulaires, agent sur le site, base de connaissances, et d'autres modules. Elle est pensée pour ceux qui veulent tout régler, avec leur propre clé API. Talker fait une seule chose. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
+    tableTitle: "Talker et AI Engine en bref",
+    rows: [
+      {
+        label: "Ce que c'est",
+        talker: "Un plugin WordPress : un agent qui répond seul sur votre site.",
+        other:
+          "Une boîte à outils IA pour WordPress (Meow Apps) : contenu, images, formulaires, agent, base de connaissances, copilot dans l'éditeur, serveur MCP.",
+      },
+      {
+        label: "Pour qui",
+        talker: "Quelqu'un qui veut un agent sur le site, sans suite d'outils à configurer.",
+        other: "Quelqu'un qui veut brancher plusieurs usages de l'IA et choisir les modèles.",
+      },
+      {
+        label: "Installation",
+        talker:
+          "Fichier zip, puis « Activer ». Aucun réglage obligatoire. Le zip pèse 28 951 octets et contient 10 fichiers.",
+        other: "Extension à activer, puis réglages des modules et du fournisseur d'IA.",
+      },
+      {
+        label: "Ce que le site charge",
+        talker:
+          "Une feuille de style et un script (widget.js, 19 768 octets), imprimé en pied de page. Pas d'autre script public.",
+        other:
+          "Plus une extension fait de choses, plus il y a de code et de réglages. Le détail du chargement n'est pas chiffré ici.",
+      },
+      {
+        label: "Clé API",
+        talker: "Aucune clé à fournir. Le plugin n'a pas de formulaire pour en coller une.",
+        other:
+          "Vos propres clés (OpenAI, Claude, Gemini, Mistral, Perplexity ou OpenRouter). Vous payez le fournisseur, sans marge sur les tokens.",
+      },
+      {
+        label: "Contact du visiteur",
+        talker: "Le visiteur peut laisser un e-mail ou un téléphone. Les conversations partent par e-mail.",
+        other: "Selon les modules que vous activez.",
+      },
+      {
+        label: "Pour démarrer",
+        talker:
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
+        other:
+          "Version gratuite. Plus de 90 000 installations actives. Pas d'essai sur Pro : remboursement sur demande sous 2 semaines.",
+      },
+      {
+        label: "Premier plan payant",
+        talker:
+          "Pro : 29 €/mois en annuel (35 € au mois), 1 site, conversations illimitées, marque blanche.",
+        other:
+          "Pro Starter : 79 $ par an, 1 site, un an de support. Standard : 99 $ par an, 5 sites. Professional : 179 $ par an, 20 sites. Licences à vie à partir de 499 $ (5 sites).",
+      },
+    ],
+    whenOtherTitle: "Quand choisir AI Engine",
+    whenOther: [
+      "Vous voulez générer du contenu, des images ou des formulaires, et pas seulement répondre aux visiteurs.",
+      "Vous avez un compte chez un fournisseur d'IA et vous voulez utiliser votre clé, sans intermédiaire.",
+    ],
+    whenTalkerTitle: "Quand choisir Talker",
+    whenTalker: [
+      "Vous voulez un agent sur le site, et vous n'avez pas besoin du reste.",
+      "Vous ne voulez pas créer de clé API ni suivre une facture de tokens.",
+      "Le visiteur laisse un e-mail ou un téléphone, et vous recevez les conversations toutes les 4 heures.",
+    ],
+    faq: [
+      {
+        q: "Talker demande-t-il une clé API ?",
+        a: "Non. Le plugin Talker n'a pas de formulaire pour coller une clé. AI Engine utilise vos propres clés (OpenAI ou un autre fournisseur). La page Meow Apps indique qu'il n'y a pas de marge sur les tokens : vous payez le fournisseur (relevé le 08/10/2026).",
+      },
+      {
+        q: "Talker remplace-t-il toute la boîte à outils ?",
+        a: "Non. Talker répond aux visiteurs du site. Il ne génère pas d'articles, d'images ni de formulaires. AI Engine couvre ces usages, dans la version gratuite ou en Pro.",
+      },
+      {
+        q: "Que pèse le plugin Talker ?",
+        a: "Le zip pèse 28 951 octets et contient 10 fichiers. Sur le site public, Talker charge une feuille de style et un script de 19 768 octets, imprimé en pied de page. Plus une extension fait de choses, plus il y a de code et de réglages : ce n'est pas une mesure de la vitesse d'AI Engine.",
+      },
+      {
+        q: "Combien coûte AI Engine Pro ?",
+        a: "Starter : 79 $ par an pour 1 site. Standard : 99 $ par an pour 5 sites. Professional : 179 $ par an pour 20 sites. Des licences à vie commencent à 499 $ pour 5 sites. Talker Pro : 29 € par mois en annuel pour 1 site, conversations illimitées. Pro 3 : 49 € pour 3 sites. Pro Max : 99 € pour 10 sites (tarifs relevés le 08/10/2026).",
+      },
+    ],
+    sources: [
+      { href: "https://meowapps.com/ai-engine/", label: "https://meowapps.com/ai-engine/" },
+      {
+        href: "https://meowapps.com/products/ai-engine-pro/",
+        label: "https://meowapps.com/products/ai-engine-pro/",
+      },
+    ],
+    sourceNote:
+      "Faits relevés le 08/10/2026 sur les pages officielles de Meow Apps. Prix AI Engine Pro en dollars US, licence annuelle sauf mention d'une licence à vie. Le poids du zip Talker est celui du fichier livré avec le site.",
   },
 ];
 
