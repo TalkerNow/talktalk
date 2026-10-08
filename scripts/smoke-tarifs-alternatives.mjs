@@ -110,6 +110,22 @@ const llmsSource = readFileSync(new URL("../lib/seo/llms.ts", import.meta.url), 
 assert(!outsideChannels.test(faqSource), "FAQ does not promise outside channels");
 assert(!outsideChannels.test(comparatifSource), "comparatif does not promise outside channels");
 assert(!outsideChannels.test(llmsSource), "llms does not promise outside channels");
+const pricingSection = readFileSync(
+  new URL("../components/landing/pricing-section.tsx", import.meta.url),
+  "utf8",
+);
+assert(pricingSection.includes("lg:grid-cols-3"), "three pricing cards");
+assert(!pricingSection.includes("grid-cols-4"), "pricing is not four cards");
+assert(pricingSection.includes("function AgencySitesToggle"), "site count radio");
+assert(pricingSection.includes("ShineBorder"), "shine border kept");
+assert(pricingSection.includes("pricing-card-popular"), "popular badge kept");
+assert(pricingSection.includes("transition-transform duration-300"), "radio animation kept");
+assert(
+  pricingSection.includes('SHINE_KEYS = new Set(["starter", "agency"])'),
+  "shine on starter and third card",
+);
+assert(pricingSection.includes("min-h-[17rem]"), "card header frame kept");
+assert(pricingSection.includes("lg:text-6xl"), "price size kept");
 assert(frPricing.includes('title: "Pro 3"'), "FR plan Pro 3");
 assert(frPricing.includes('title: "Pro Max"'), "FR plan Pro Max");
 assert(frPricing.includes('description: "1 site"'), "FR site count");

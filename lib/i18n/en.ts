@@ -218,6 +218,9 @@ export const en = {
     toggle: "Toggle yearly billing",
     perMonth: "/mo",
     popular: "Most popular",
+    sites3: "3 sites",
+    sites10: "10 sites",
+    agencySitesToggle: "Choose number of sites",
     detailsLink: "See the full pricing",
     plans: [
       {
@@ -229,6 +232,7 @@ export const en = {
         features: [
           "1 Talker",
           "100 conversations per month per site, free, no card, no time limit",
+          "Powered by Talker",
           "1 channel (website)",
           "Email support",
         ],
@@ -249,7 +253,7 @@ export const en = {
         ],
       },
       {
-        key: "pro3",
+        key: "agency3",
         name: "Pro 3",
         title: "Pro 3",
         description: "3 sites",
@@ -257,7 +261,7 @@ export const en = {
         features: ["3 sites", "Everything in Pro", "White-label"],
       },
       {
-        key: "proMax",
+        key: "agency10",
         name: "Pro Max",
         title: "Pro Max",
         description: "10 sites",
