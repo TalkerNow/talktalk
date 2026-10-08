@@ -829,7 +829,7 @@ export const alternatives: readonly AlternativePage[] = [
       },
     ],
     sourceNote:
-      "Faits relevés le 08/10/2026 sur les pages officielles de Meow Apps. Prix AI Engine Pro en dollars US, licence annuelle sauf mention d'une licence à vie. Le poids du zip Talker est celui du fichier livré avec le site.",
+      "Tarifs relevés le 08/10/2026 sur les pages officielles de Meow Apps. Prix AI Engine Pro en dollars US, licence annuelle sauf mention d'une licence à vie. Le poids du zip Talker est celui du fichier livré avec le site.",
   },
 ];
 
