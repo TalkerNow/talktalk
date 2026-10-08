@@ -12,6 +12,7 @@
     "smoke:seo": "node --experimental-strip-types scripts/smoke-seo-prep.mjs",
     "smoke:methode": "node --experimental-strip-types scripts/smoke-methode.mjs",
     "smoke:comparatif": "node --experimental-strip-types scripts/smoke-comparatif.mjs",
+    "smoke:tarifs": "node --experimental-strip-types scripts/smoke-tarifs-alternatives.mjs",
     "smoke:talker": "node --experimental-strip-types scripts/smoke-talker-session.mjs"
   },
   "dependencies": {

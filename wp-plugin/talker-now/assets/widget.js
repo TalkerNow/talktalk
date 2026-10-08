@@ -155,7 +155,7 @@
         href: "https://talker.now",
         target: "_blank",
         rel: "noopener noreferrer",
-        text: i18n.poweredBy || "Propulsé par talker.now",
+        text: i18n.poweredBy || "Propulsé par Talker",
       })
     );
     panel.appendChild(powered);

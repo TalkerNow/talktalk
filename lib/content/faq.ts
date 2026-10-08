@@ -98,18 +98,19 @@ export const faqFr: FaqCopy = {
     {
       q: "Pourquoi Talker est-il entièrement gratuit ? À partir de quand devient-il payant ?",
       a: [
-        "Talker est entièrement gratuit au départ : 100 conversations par installation, sans carte bancaire, pour que vous puissiez juger la qualité sur votre vrai site.",
-        "Il devient payant quand vous avez utilisé ces 100 conversations : le site ne prend plus de nouvelles conversations tant que vous ne passez pas en Pro (ou en offre agence).",
-        "Starter — 0 €, 100 conversations.",
-        "Pro — 29 € / mois en annuel (35 € au mois), un site.",
+        "Talker reste gratuit dans le temps : 100 conversations par mois et par site, sans carte bancaire, sans limite de durée. Le compteur repart chaque mois. Une conversation, c'est un visiteur qui discute (une session).",
+        "Au-delà de 100 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
+        "Le plan gratuit affiche « Propulsé par Talker », avec un lien vers talker.now. Sur les plans payants, cette mention disparaît.",
+        "Starter — 0 €, 100 conversations par mois et par site.",
+        "Pro — 29 € / mois en annuel (35 € au mois), 1 site. Pro 3 — 49 € / mois en annuel, 3 sites. Pro Max — 99 € / mois en annuel, 10 sites.",
       ],
     },
     {
       q: "Combien coûte Talker pour une agence (plusieurs sites) ?",
       a: [
-        "Agences & Entreprises :",
-        "49 € / mois (annuel) — 3 sites.",
-        "99 € / mois (annuel) — 10 sites.",
+        "Pour une agence, les plans sont Pro 3 et Pro Max.",
+        "Pro 3 — 49 € / mois (annuel) — 3 sites.",
+        "Pro Max — 99 € / mois (annuel) — 10 sites.",
         "Chaque site a son install et son prompt métier. Voir aussi la grille tarifaire sur le site.",
       ],
     },
@@ -128,7 +129,7 @@ export const faqFr: FaqCopy = {
       q: "Quelle différence entre Talker et un chat live (Intercom, Crisp, Tidio) ?",
       a: [
         "Talker ne tient pas de chat live. Vous l’installez en zip sur WordPress. Il lit les pages publiques du site et construit un prompt métier. Pas d’upload de fichiers, pas de base documentaire (RAG).",
-        "Démarrage : 100 conversations par installation, sans carte. Agences : 49 € / mois en annuel pour 3 sites, 99 € / mois en annuel pour 10 sites.",
+        "Démarrage : 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Pro 3 : 49 € / mois en annuel pour 3 sites. Pro Max : 99 € / mois en annuel pour 10 sites.",
       ],
     },
   ],
@@ -223,18 +224,19 @@ export const faqEn: FaqCopy = {
     {
       q: "Why is Talker entirely free? When does it become paid?",
       a: [
-        "Talker is entirely free at the start: 100 conversations per install, no credit card, so you can judge the quality on your real site.",
-        "It becomes paid once you have used those 100 conversations: the site stops taking new conversations until you move to Pro (or an agency plan).",
-        "Starter — €0, 100 conversations.",
-        "Pro — €29 / month billed annually (€35 month to month), one site.",
+        "Talker stays free over time: 100 conversations per month per site, no credit card, no time limit. The counter resets each month. A conversation is one visitor chatting (one session).",
+        "Beyond 100 conversations in the month, move to a paid plan or wait for the next month.",
+        "The free plan shows “Powered by Talker”, with a link to talker.now. Paid plans remove it.",
+        "Starter — €0, 100 conversations per month per site.",
+        "Pro — €29 / month billed annually (€35 month to month), 1 site. Pro 3 — €49 / month annually, 3 sites. Pro Max — €99 / month annually, 10 sites.",
       ],
     },
     {
       q: "How much does Talker cost for an agency (several sites)?",
       a: [
-        "Agencies & companies:",
-        "€49 / month (annual) — 3 sites.",
-        "€99 / month (annual) — 10 sites.",
+        "For an agency, the plans are Pro 3 and Pro Max.",
+        "Pro 3 — €49 / month (annual) — 3 sites.",
+        "Pro Max — €99 / month (annual) — 10 sites.",
         "Each site has its own install and its own trade prompt. See also the pricing grid on the site.",
       ],
     },
@@ -250,7 +252,7 @@ export const faqEn: FaqCopy = {
       q: "What is the difference between Talker and a live chat (Intercom, Crisp, Tidio)?",
       a: [
         "Talker does not staff a live chat. You install it as a zip on WordPress. It reads the site’s public pages and builds a trade prompt. No file upload, no document base (RAG).",
-        "To start: 100 conversations per install, no card. Agencies: €49 / month annually for 3 sites, €99 / month annually for 10 sites.",
+        "To start: 100 conversations per month per site, free, no card, no time limit. Pro 3: €49 / month annually for 3 sites. Pro Max: €99 / month annually for 10 sites.",
       ],
     },
   ],

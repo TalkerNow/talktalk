@@ -118,7 +118,7 @@ export const fr = {
     assistantRole: "Mon entreprise",
     close: "Fermer",
     placeholder: "Posez votre question...",
-    poweredBy: "Propulsé par talker.now",
+    poweredBy: "Propulsé par Talker",
     steps: [
       {
         number: "1",
@@ -225,16 +225,18 @@ export const fr = {
     sites3: "3 sites",
     sites10: "10 sites",
     agencySitesToggle: "Choisir le nombre de sites",
+    detailsLink: "Tout comprendre sur les tarifs",
     plans: [
       {
         key: "starter",
         name: "Starter",
         title: "Starter",
-        description: "Pour tester sans engagement",
+        description: "1 site",
         cta: "Créer mon agent gratuitement",
         features: [
           "1 Talker",
-          "100 conversations/mois",
+          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée",
+          "Propulsé par Talker",
           "1 canal (site web)",
           "Support par email",
         ],
@@ -243,12 +245,11 @@ export const fr = {
         key: "pro",
         name: "Pro",
         title: "Pro",
-        description: "Pour les TPE et PME qui veulent convertir",
+        description: "1 site",
         cta: "Installer",
         features: [
           "1 Talker",
           "Conversations illimitées",
-          "Tous les canaux (site, WhatsApp, Instagram, Facebook, SMS)",
           "Capture automatique téléphone / email",
           "Alertes par SMS (ou tout de suite)",
           "Collecte d'avis Google",
@@ -257,16 +258,16 @@ export const fr = {
       },
       {
         key: "agency3",
-        name: "Agence · 3",
-        title: "Agences & Entreprises",
+        name: "Pro 3",
+        title: "Pro 3",
         description: "3 sites",
         cta: "Installer",
         features: ["3 sites", "Tout Pro inclus", "Marque blanche"],
       },
       {
         key: "agency10",
-        name: "Agence · 10",
-        title: "Agences & Entreprises",
+        name: "Pro Max",
+        title: "Pro Max",
         description: "10 sites",
         cta: "Installer",
         features: [
@@ -292,7 +293,7 @@ export const fr = {
     subtitle:
       "Zip, upload dans WordPress, scan et questions, agent en ligne.",
     download: "Télécharger le zip",
-    placeholderNote: "talker-now.zip — sans carte, sans WordPress.org.",
+    placeholderNote: "talker-now.zip — sans carte. Fichier zip à déposer dans WordPress.",
     stepsEyebrow: "Dans WP-Admin",
     steps: [
       "Télécharger le zip.",
@@ -301,13 +302,13 @@ export const fr = {
       "L’agent est opérationnel.",
     ],
     reassurance:
-      "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",
+      "Pas de carte. Fichier zip. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",
     vignette: {
       ariaLabel:
         "Démo : une conversation, le téléchargement de talker-now.zip, puis l’installation dans WP-Admin.",
       assistantName: "Marie",
       assistantRole: "Mon entreprise",
-      poweredBy: "Propulsé par talker.now",
+      poweredBy: "Propulsé par Talker",
       greeting: "Bonjour, une question sur Talker Now ?",
       chipTalker: "Talker Now",
       chipQuestion: "Poser une question",
@@ -364,7 +365,7 @@ export const fr = {
         links: [
           { name: "Fonctionnalités", href: "/produit" },
           { name: "Comment ça marche", href: "#how-it-works" },
-          { name: "Tarifs", href: "#pricing" },
+          { name: "Tarifs", href: "/tarifs" },
           { name: "Intégrations", href: "#integrations" },
           { name: "Cas d'usage", href: "#cas-usage" },
         ],
@@ -425,7 +426,7 @@ export const fr = {
     placeholder: "Écrivez-moi…",
     send: "Envoyer",
     writing: "Talker écrit",
-    poweredBy: "Propulsé par talker.now",
+    poweredBy: "Propulsé par Talker",
     opener:
       "Bonjour — je suis là pour votre site. Dites-moi ce que vous cherchez, je vous oriente.",
     fallback:

@@ -93,7 +93,11 @@ function AgencySitesToggle({
   );
 }
 
-export function PricingSection() {
+export function PricingSection({
+  showTarifsLink = true,
+}: {
+  showTarifsLink?: boolean;
+} = {}) {
   const { t } = useLocale();
   const [isAnnual, setIsAnnual] = useState(true);
   const [agencySites, setAgencySites] = useState<AgencySites>(3);
@@ -268,6 +272,16 @@ export function PricingSection() {
             );
           })}
         </div>
+        {showTarifsLink ? (
+          <p className="mt-10 text-center">
+            <a
+              href="/tarifs"
+              className="text-sm text-[#C43F17] underline decoration-[#E3B49F] underline-offset-2 transition-colors hover:text-[#A8350F]"
+            >
+              {t.pricing.detailsLink}
+            </a>
+          </p>
+        ) : null}
       </div>
     </section>
   );

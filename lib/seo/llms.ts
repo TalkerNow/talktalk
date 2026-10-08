@@ -6,8 +6,8 @@ const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://talker.now").replac
 
 /**
  * Public /llms.txt body. Product facts only.
- * Live routes: /, /produit, /methode, /installer, /faq, /contact.
- * /tarifs is not a page (pricing is the #pricing anchor on /).
+ * Live routes: /, /produit, /methode, /installer, /faq, /contact,
+ * /tarifs, /comparatif-talker-live-chat, and the eight alternative pages.
  */
 export const llmsTxt = `# Talker
 
@@ -19,4 +19,14 @@ export const llmsTxt = `# Talker
 - [Installer](${origin}/installer): téléchargement du plugin zip, à déposer dans WP-Admin.
 - [FAQ](${origin}/faq): questions fréquentes.
 - [Contact](${origin}/contact): écrire à l'équipe.
+- [Tarifs](${origin}/tarifs): 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée ; « Propulsé par Talker » (lien vers talker.now) sur Starter, marque blanche dès Pro ; Pro 29 € (1 site), Pro 3 49 € (3 sites), Pro Max 99 € (10 sites), en annuel.
+- [Alternative à Tidio pour WordPress](${origin}/alternative-tidio-wordpress): faits et tarifs Talker / Tidio (relevés le 08/10/2026).
+- [Alternative à Crisp pour WordPress](${origin}/alternative-crisp-wordpress): faits et tarifs Talker / Crisp (relevés le 08/10/2026).
+- [Alternative à Chatbase pour WordPress](${origin}/alternative-chatbase-wordpress): faits et tarifs Talker / Chatbase (relevés le 08/10/2026).
+- [Alternative à tawk.to pour WordPress](${origin}/alternative-tawk-to-wordpress): faits et tarifs Talker / tawk.to (relevés le 08/10/2026).
+- [Alternative à Smartsupp pour WordPress](${origin}/alternative-smartsupp-wordpress): faits et tarifs Talker / Smartsupp (relevés le 08/10/2026).
+- [Alternative à LiveChat pour WordPress](${origin}/alternative-livechat-wordpress): faits et tarifs Talker / LiveChat (relevés le 08/10/2026).
+- [Alternative à Botpress pour WordPress](${origin}/alternative-botpress-wordpress): faits et tarifs Talker / Botpress (relevés le 08/10/2026).
+- [Alternative à AI Engine pour WordPress](${origin}/alternative-ai-engine-wordpress): faits Talker / AI Engine, Meow Apps (relevés le 08/10/2026).
+- [Talker et le chat live](${origin}/comparatif-talker-live-chat): différences avec un chat live humain.
 `;
