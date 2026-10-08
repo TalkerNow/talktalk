@@ -171,8 +171,14 @@ assert(llmsTxt.includes("/alternative-botpress-wordpress"), "llms botpress");
 assert(llmsTxt.includes("/alternative-ai-engine-wordpress"), "llms ai engine");
 const alternativesVisible = alternativesSource
   .replace(/metaTitle:\s*"[^"]*"/g, "")
-  .replace(/metaDescription:\s*\n?\s*"[^"]*"/g, "");
+  .replace(/metaDescription:\s*\n?\s*"[^"]*"/g, "")
+  .replace(/https?:\/\/[^\s"']+/g, "");
 assert(!/chatbot/i.test(alternativesVisible), "chatbot stays in alternative meta");
+assert(alternativesSource.includes("4,9/5 sur 870 avis"), "AI Engine rating");
+assert(alternativesSource.includes("version 3.8.4"), "AI Engine version");
+assert(alternativesSource.includes("9 $ par an pour 1 site"), "Visitor Form price");
+const aiEngineBlock = alternativesSource.slice(alternativesSource.indexOf('id: "aiengine"'));
+assert(!/powered by|propulsé par|marque blanche/i.test(aiEngineBlock), "AI Engine page skips branding claims");
 assert(alternativesSource.includes("28 951 octets"), "measured zip size");
 assert(alternativesSource.includes("10 fichiers"), "measured zip file count");
 assert(alternativesSource.includes("19 768 octets"), "measured public script size");
