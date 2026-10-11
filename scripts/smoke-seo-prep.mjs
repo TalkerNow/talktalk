@@ -14,7 +14,7 @@ function assert(condition, message) {
 assert(llmsTxt.startsWith("# Talker\n"), "llms.txt starts with # Talker");
 assert(
   llmsTxt.includes(
-    "Agent conversationnel WordPress (plugin zip ~3 min) pour sites d'activité + agences.",
+    "Agent conversationnel WordPress (plugin zip, installé en 2 min) pour sites d'activité + agences.",
   ),
   "llms.txt one-liner",
 );
