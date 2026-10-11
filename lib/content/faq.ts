@@ -37,9 +37,9 @@ export const faqFr: FaqCopy = {
       c: "Les grands modèles et les aperçus IA (ChatGPT d’OpenAI, Gemini de Google, Claude d’Anthropic) répondent de plus en plus aux questions que les sites traitaient dans leurs pages. Résultat fréquent : moins de clics organiques vers votre site, alors que le besoin de transformer un visiteur en contact reste le même. Talker place un agent conversationnel IA sur votre site WordPress pour maintenir ou augmenter la transformation avec moins de trafic : questions métier, ton de votre entreprise, captation e-mail ou téléphone. Ce n’est pas « remplacer Google », c’est convertir les visites qui restent. L’action attendue : installer le zip, pas réserver une démo.",
     },
     {
-      q: "Comment installer Talker en environ 3 minutes ?",
+      q: "Comment installer Talker en 2 minutes ?",
       a: [
-        "Vous téléchargez le zip, vous l’ajoutez dans WordPress, vous activez. Puis Talker vous pose quelques questions (comme un chatbot) ; l’IA scanne votre site ; la bulle est opérationnelle en environ 3 minutes.",
+        "Vous téléchargez le zip, vous l’ajoutez dans WordPress, vous activez. Puis Talker vous pose quelques questions (comme un chatbot) ; l’IA scanne votre site ; la bulle est opérationnelle en 2 minutes.",
         "Pas de parcours « réserver une démo » pour voir le produit.",
       ],
     },
@@ -162,9 +162,9 @@ export const faqEn: FaqCopy = {
       c: "Large models and AI overviews (OpenAI’s ChatGPT, Google’s Gemini, Anthropic’s Claude) increasingly answer questions that sites used to answer on their pages. A common result: fewer organic clicks to your site, while the need to turn a visitor into a contact stays the same. Talker places a conversational AI agent on your WordPress site to keep or raise conversion with less traffic: trade questions, your company’s tone, email or phone capture. This is not “replacing Google”. It converts the visits that remain. The expected action is to install the zip, not to book a demo.",
     },
     {
-      q: "How do I install Talker in about 3 minutes?",
+      q: "How do I install Talker in 2 minutes?",
       a: [
-        "You download the zip, add it in WordPress, and activate it. Talker then asks you a few questions (like a chatbot); the AI scans your site; the bubble is working in about 3 minutes.",
+        "You download the zip, add it in WordPress, and activate it. Talker then asks you a few questions (like a chatbot); the AI scans your site; the bubble is working in 2 minutes.",
         "There is no “book a demo” path to see the product.",
       ],
     },
