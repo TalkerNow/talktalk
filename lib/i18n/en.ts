@@ -32,7 +32,7 @@ export const en = {
       "asks for Google reviews",
     ],
     subtitle:
-      "AI chatbots have become real conversational agents that know your business, capture your prospects' phone number or email, answer pricing on their own, route existing customers, and collect Google reviews. Live in 10 minutes. No code.",
+      "AI chatbots have become real conversational agents that know your business, capture your prospects' phone number or email, answer pricing on their own, route existing customers, and collect Google reviews. Live in 2 minutes. No code.",
     createAgent: "Create my chatbot",
     seeDemo: "View demo",
     wordpress: "Free, no credit card, two-minute install.",
@@ -112,7 +112,7 @@ export const en = {
   comparatif: comparatifEn,
   how: {
     eyebrow: "How it works",
-    title: "3 steps. 5 minutes.",
+    title: "3 steps. 2 minutes.",
     titleMuted: "Your site, live with AI.",
     createAgent: "Start for free",
     assistantName: "Marie",
@@ -285,7 +285,7 @@ export const en = {
     noCard: "No credit card required",
   },
   installer: {
-    title: "Install Talker in ~3 minutes",
+    title: "Install Talker in 2 minutes",
     subtitle: "Zip, upload in WordPress, scan and questions, agent live.",
     download: "Download the zip",
     placeholderNote: "talker-now.zip — no card. A zip file to upload in WordPress.",

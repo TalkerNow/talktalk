@@ -4,7 +4,7 @@ import { FooterSection } from "@/components/landing/footer-section";
 import { InstallerPanel } from "@/components/landing/installer-panel";
 
 export const metadata: Metadata = {
-  title: "Installer Talker en ~3 minutes — chatbot WordPress (zip)",
+  title: "Installer Talker en 2 minutes — chatbot WordPress (zip)",
   description:
     "Téléchargez le zip, uploadez-le dans Extensions WordPress, scan et questions, agent en ligne.",
 };

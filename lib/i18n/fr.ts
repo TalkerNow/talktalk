@@ -31,7 +31,7 @@ export const fr = {
       "demande des avis Google",
     ],
     subtitle:
-      "Les chatbots IA sont devenus de vrais agents conversationnels qui connaissent votre métier, captent le numéro ou l'email de vos prospects, répondent aux tarifs sans que vous leviez le petit doigt, trient les demandes de vos clients existants, et récupèrent vos avis Google. Installé en 10 minutes, sans code.",
+      "Les chatbots IA sont devenus de vrais agents conversationnels qui connaissent votre métier, captent le numéro ou l'email de vos prospects, répondent aux tarifs sans que vous leviez le petit doigt, trient les demandes de vos clients existants, et récupèrent vos avis Google. Installé en 2 minutes, sans code.",
     createAgent: "Créer mon chatbot",
     seeDemo: "Voir une démo",
     wordpress: "Gratuit, sans carte bancaire, installation en deux minutes.",
@@ -111,7 +111,7 @@ export const fr = {
   comparatif: comparatifFr,
   how: {
     eyebrow: "Comment ça marche",
-    title: "3 étapes. 5 minutes.",
+    title: "3 étapes. 2 minutes.",
     titleMuted: "Votre site passe à l'IA.",
     createAgent: "Créer mon agent gratuitement",
     assistantName: "Marie",
@@ -289,7 +289,7 @@ export const fr = {
     noCard: "Sans carte bancaire",
   },
   installer: {
-    title: "Installer Talker en ~3 minutes",
+    title: "Installer Talker en 2 minutes",
     subtitle:
       "Zip, upload dans WordPress, scan et questions, agent en ligne.",
     download: "Télécharger le zip",
@@ -356,7 +356,7 @@ export const fr = {
   },
   footer: {
     blurb:
-      "L'agent conversationnel qui répond, capte et vend à la place de votre standard. Installé en 5 minutes, actif 24h/24.",
+      "L'agent conversationnel qui répond, capte et vend à la place de votre standard. Installé en 2 minutes, actif 24h/24.",
     copyright: "© 2026 Talker. Tous droits réservés.",
     systems: "Tous les systèmes opérationnels",
     columns: [

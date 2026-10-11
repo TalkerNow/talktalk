@@ -308,7 +308,7 @@ export const alternatives: readonly AlternativePage[] = [
     ],
     whenTalkerTitle: "Quand choisir Talker",
     whenTalker: [
-      "Vous voulez un agent en place en quelques minutes, sans rien entraîner.",
+      "Vous voulez un agent en place en 2 minutes, sans rien entraîner.",
       "Votre site WordPress contient déjà ce qu'il faut savoir.",
       "Vous installez des sites pour des clients et voulez la marque blanche incluse.",
     ],

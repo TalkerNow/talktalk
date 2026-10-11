@@ -11,7 +11,7 @@ const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://talker.now").replac
  */
 export const llmsTxt = `# Talker
 
-> Agent conversationnel WordPress (plugin zip ~3 min) pour sites d'activité + agences.
+> Agent conversationnel WordPress (plugin zip, installé en 2 min) pour sites d'activité + agences.
 
 - [Accueil](${origin}/): vitrine Talker.
 - [Produit](${origin}/produit): fonctionnalités de l'agent sur WordPress.
