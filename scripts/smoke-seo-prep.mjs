@@ -22,6 +22,11 @@ for (const path of ["/", "/produit", "/methode", "/installer", "/faq", "/contact
   assert(llmsTxt.includes(`talker.now${path === "/" ? "/" : path}`), `llms link ${path}`);
 }
 assert(!llmsTxt.includes("/tarifs"), "no /tarifs route");
+assert(llmsTxt.includes("9,99"), "llms option annual price");
+assert(llmsTxt.includes("12,99"), "llms option monthly price");
+assert(llmsTxt.includes("50 conversations"), "llms starter cap");
+assert(llmsTxt.includes("25, 38 et 45"), "llms alert steps");
+assert(!llmsTxt.includes("100 conversation"), "llms free cap is not 100");
 assert(!/chatbot/i.test(llmsTxt), "llms.txt is not chatbot-first");
 assert(!/noindex|disallow|gate/i.test(llmsTxt), "llms.txt stays product facts");
 
