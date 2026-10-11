@@ -5,24 +5,25 @@ export const TARIFS_PATH = "/tarifs";
 export const RATES_AS_OF = "Tarifs relevés le 08/10/2026";
 
 export const TARIFS_META = {
-  title: "Tarifs Talker — plugin WordPress, 100 conversations par mois",
+  title: "Tarifs Talker — plugin WordPress, 50 conversations par mois",
   description:
-    "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Pro, Pro 3 et Pro Max : marque blanche. 29 €, 49 € ou 99 € par mois en annuel.",
+    "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Option Sans badge : 9,99 € ou 12,99 €. Pro, Pro 3 et Pro Max : marque blanche. 29 €, 49 € ou 99 € par mois en annuel.",
 } as const;
 
 export const TARIFS_H1 = "Tarifs Talker";
 
 export const tarifsSummary = [
-  "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
-  "Le plan gratuit affiche « Propulsé par Talker », avec un lien vers talker.now. Dès le premier plan payant, cette mention disparaît (marque blanche).",
-  "Pro (1 site) 29 €, Pro 3 (3 sites) 49 €, Pro Max (10 sites) 99 € par mois en annuel.",
+  "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Alertes à 25, 38 et 45 conversations.",
+  "Le plan gratuit affiche « Powered by Talker · Créez le vôtre », avec un lien vers talker.now, et une puce « Talker Now ».",
+  "Option Sans badge, sur le Starter : 9,99 €/mois en paiement annuel, 12,99 €/mois en paiement mensuel. Elle retire le badge et la puce. Elle ne lève pas la limite de conversations.",
+  "Pro (1 site) 29 €, Pro 3 (3 sites) 49 €, Pro Max (10 sites) 99 € par mois en annuel. Marque blanche : pas de badge.",
 ] as const;
 
 export const tarifsAfterHundred = {
-  title: "Ce qui se passe à la 100e conversation du mois",
+  title: "Ce qui se passe à la 50e conversation du mois",
   items: [
     "Une conversation, c'est un visiteur qui discute (une session).",
-    "Au-delà de 100 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
+    "Au-delà de 50 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
     "Aucune carte n'a été demandée : rien n'est prélevé automatiquement.",
   ],
 } as const;
@@ -35,10 +36,10 @@ export const tarifsWhiteLabel = {
   rows: [
     {
       tool: "Talker",
-      from: "Pro (1 site), Pro 3 (3 sites) et Pro Max (10 sites)",
+      from: "Option Sans badge sur Starter ; incluse sur Pro, Pro 3 et Pro Max",
       price:
-        "Pro : 29 €/mois en annuel (35 € au mois). Pro 3 : 49 €/mois, 3 sites. Pro Max : 99 €/mois, 10 sites (en annuel)",
-      note: "Le plan gratuit affiche « Propulsé par Talker », avec un lien vers talker.now. Sur les plans payants, la mention disparaît. Conversations illimitées.",
+        "Option Sans badge : 9,99 €/mois en annuel (12,99 € au mois). Pro : 29 €/mois en annuel (35 € au mois). Pro 3 : 49 €/mois, 3 sites. Pro Max : 99 €/mois, 10 sites (en annuel)",
+      note: "Le Starter affiche « Powered by Talker · Créez le vôtre » (lien vers talker.now) et une puce « Talker Now ». L'option retire le badge et la puce, sans lever la limite de 50 conversations. Sur les plans payants, la mention disparaît. Conversations illimitées.",
       source: null,
     },
     {
@@ -70,19 +71,19 @@ export const tarifsWhiteLabel = {
 export const tarifsFaq: readonly FaqItem[] = [
   {
     q: "Faut-il une carte bancaire pour commencer ?",
-    a: "Non. Vous installez le zip. Le plan gratuit, c'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.",
+    a: "Non. Vous installez le zip. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
   },
   {
-    q: "Les 100 conversations sont-elles par mois ?",
-    a: "Oui. C'est 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée. Le compteur repart chaque mois. Une conversation, c'est un visiteur qui discute (une session).",
+    q: "Les 50 conversations sont-elles par mois ?",
+    a: "Oui. C'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Le compteur repart chaque mois. Une conversation, c'est un visiteur qui discute (une session). Alertes à 25, 38 et 45 conversations.",
   },
   {
-    q: "Que se passe-t-il après 100 conversations ?",
-    a: "Au-delà de 100 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
+    q: "Que se passe-t-il après 50 conversations ?",
+    a: "Au-delà de 50 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
   },
   {
     q: "C'est quoi, la marque blanche ?",
-    a: "Le plan gratuit affiche « Propulsé par Talker », avec un lien vers talker.now, sous le widget. Sur les plans payants, cette mention disparaît. Rien à régler.",
+    a: "Le Starter affiche « Powered by Talker · Créez le vôtre », avec un lien vers talker.now, et une puce « Talker Now ». L'Option Sans badge (9,99 €/mois en annuel, 12,99 € au mois) retire le badge et la puce, sans lever la limite. Sur Pro, Pro 3 et Pro Max, la mention disparaît.",
   },
   {
     q: "Peut-on payer au mois ?",

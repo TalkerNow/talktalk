@@ -1,4 +1,5 @@
 import type { DemoStep } from "@/lib/content/demo";
+import { site } from "@/lib/site";
 import { consentFr } from "@/lib/content/consent-copy";
 import { comparatifFr } from "@/lib/content/comparatif";
 import { faqFr } from "@/lib/content/faq";
@@ -118,7 +119,7 @@ export const fr = {
     assistantRole: "Mon entreprise",
     close: "Fermer",
     placeholder: "Posez votre question...",
-    poweredBy: "Propulsé par Talker",
+    poweredBy: site.poweredByLabel,
     steps: [
       {
         number: "1",
@@ -226,6 +227,13 @@ export const fr = {
     sites10: "10 sites",
     agencySitesToggle: "Choisir le nombre de sites",
     detailsLink: "Tout comprendre sur les tarifs",
+    badgeOption: {
+      name: "Option Sans badge",
+      subtitle:
+        "Retire le badge « Powered by Talker · Créez le vôtre » et la puce « Talker Now »",
+      limitNote:
+        "Ne lève pas la limite du Starter : 50 conversations par mois et par site, remises à zéro chaque mois. Pro, Pro 3 et Pro Max n’affichent déjà pas ce badge.",
+    },
     plans: [
       {
         key: "starter",
@@ -235,8 +243,8 @@ export const fr = {
         cta: "Créer mon agent gratuitement",
         features: [
           "1 Talker",
-          "100 conversations par mois et par site, gratuites, sans carte, sans limite de durée",
-          "Propulsé par Talker",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée",
+          "Alertes à 25, 38 et 45 conversations (50 %, 75 %, 90 %)",
           "1 canal (site web)",
           "Support par email",
         ],
@@ -308,7 +316,7 @@ export const fr = {
         "Démo : une conversation, le téléchargement de talker-now.zip, puis l’installation dans WP-Admin.",
       assistantName: "Marie",
       assistantRole: "Mon entreprise",
-      poweredBy: "Propulsé par Talker",
+      poweredBy: site.poweredByLabel,
       greeting: "Bonjour, une question sur Talker Now ?",
       chipTalker: "Talker Now",
       chipQuestion: "Poser une question",
@@ -426,7 +434,7 @@ export const fr = {
     placeholder: "Écrivez-moi…",
     send: "Envoyer",
     writing: "Talker écrit",
-    poweredBy: "Propulsé par Talker",
+    poweredBy: site.poweredByLabel,
     opener:
       "Bonjour — je suis là pour votre site. Dites-moi ce que vous cherchez, je vous oriente.",
     fallback:

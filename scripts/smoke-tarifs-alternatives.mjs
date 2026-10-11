@@ -88,7 +88,7 @@ const frPricing = readFileSync(new URL("../lib/i18n/fr.ts", import.meta.url), "u
 const enPricing = readFileSync(new URL("../lib/i18n/en.ts", import.meta.url), "utf8");
 assert(
   frPricing.includes(
-    '"100 conversations par mois et par site, gratuites, sans carte, sans limite de durée"',
+    '"50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée"',
   ),
   "FR starter card",
 );
@@ -96,7 +96,7 @@ assert(!frPricing.includes("100 conversations offertes par site"), "FR starter i
 assert(!frPricing.includes("par installation"), "FR pricing is not per install");
 assert(
   enPricing.includes(
-    '"100 conversations per month per site, free, no card, no time limit"',
+    '"50 conversations per month per site, reset each month, no card, no time limit"',
   ),
   "EN starter card",
 );
@@ -144,11 +144,15 @@ assert(tarifsSource.includes("Pro Max"), "tarifs names Pro Max");
 assert(!/Agences & Entreprises|Agence ·/.test(tarifsSource), "tarifs has no Agence plan name");
 assert(
   tarifsSource.includes(
-    "Au-delà de 100 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
+    "Au-delà de 50 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
   ),
   "neutral monthly cap",
 );
-assert(tarifsSource.includes("Propulsé par Talker"), "powered by Talker");
+assert(tarifsSource.includes("Powered by Talker · Créez le vôtre"), "official badge label");
+assert(tarifsSource.includes("9,99"), "tarifs option annual price");
+assert(tarifsSource.includes("12,99"), "tarifs option monthly price");
+assert(!tarifsSource.includes("100 conversation"), "tarifs free cap is not 100");
+assert(!/choix de modèle|économique \/ recommandé/.test(tarifsSource), "no model choice");
 assert(!tarifsSource.includes("une seule fois"), "tarifs is not once");
 assert(!tarifsSource.includes("offertes par site"), "tarifs is not a one-time gift");
 assert(!/50, 75 et 90/.test(tarifsSource), "no 50/75/90 emails");

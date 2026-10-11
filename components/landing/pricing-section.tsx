@@ -18,6 +18,9 @@ const PLAN_PRICES = {
   agency10: { monthly: 119, annual: 99, popular: false },
 } as const;
 
+/** Option Sans badge — JF 2026-10-12. Annual billing 9,99 €/mo, monthly billing 12,99 €/mo. Does not raise the Starter cap. */
+const BADGE_OPTION = { monthly: "12,99", annual: "9,99" } as const;
+
 const SHINE_KEYS = new Set(["starter", "agency"]);
 
 function copyByKey(plans: Messages["pricing"]["plans"], key: string): PlanCopy {
@@ -268,9 +271,31 @@ export function PricingSection({
                 >
                   <a href="/installer">{plan.copy.cta}</a>
                 </Button>
-              </div>
-            );
+            </div>
+          );
           })}
+        </div>
+        <div className="mt-6 border border-foreground/12 bg-background px-8 py-8 lg:px-10">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="font-mono text-xs text-muted-foreground">Starter</p>
+              <h3 className="mt-2 font-display text-3xl font-semibold leading-tight text-foreground">
+                {t.pricing.badgeOption.name}
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {t.pricing.badgeOption.subtitle}
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {t.pricing.badgeOption.limitNote}
+              </p>
+            </div>
+            <div className="flex shrink-0 items-end gap-2">
+              <span className="font-display text-5xl font-semibold leading-none tabular-nums text-foreground lg:text-6xl">
+                {isAnnual ? BADGE_OPTION.annual : BADGE_OPTION.monthly}€
+              </span>
+              <span className="pb-1 text-muted-foreground">{t.pricing.perMonth}</span>
+            </div>
+          </div>
         </div>
         {showTarifsLink ? (
           <p className="mt-10 text-center">

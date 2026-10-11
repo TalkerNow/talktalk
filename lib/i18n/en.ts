@@ -1,4 +1,5 @@
 import type { DemoStep } from "@/lib/content/demo";
+import { site } from "@/lib/site";
 import { consentEn } from "@/lib/content/consent-copy";
 import { comparatifEn } from "@/lib/content/comparatif";
 import { faqEn } from "@/lib/content/faq";
@@ -119,7 +120,7 @@ export const en = {
     assistantRole: "Mon entreprise",
     close: "Close",
     placeholder: "Type a message...",
-    poweredBy: "Powered by Talker",
+    poweredBy: site.poweredByLabel,
     steps: [
       {
         number: "1",
@@ -222,6 +223,13 @@ export const en = {
     sites10: "10 sites",
     agencySitesToggle: "Choose number of sites",
     detailsLink: "See the full pricing",
+    badgeOption: {
+      name: "Option Sans badge",
+      subtitle:
+        "Removes the “Powered by Talker · Créez le vôtre” badge and the “Talker Now” chip",
+      limitNote:
+        "Does not raise the Starter limit: 50 conversations per month per site, reset each month. Pro, Pro 3, and Pro Max already hide this badge.",
+    },
     plans: [
       {
         key: "starter",
@@ -231,8 +239,8 @@ export const en = {
         cta: "Start for free",
         features: [
           "1 Talker",
-          "100 conversations per month per site, free, no card, no time limit",
-          "Powered by Talker",
+          "50 conversations per month per site, reset each month, no card, no time limit",
+          "Alerts at 25, 38 and 45 conversations (50%, 75%, 90%)",
           "1 channel (website)",
           "Email support",
         ],
@@ -303,7 +311,7 @@ export const en = {
         "Demo: a conversation, downloading talker-now.zip, then installing it in WP-Admin.",
       assistantName: "Marie",
       assistantRole: "Mon entreprise",
-      poweredBy: "Powered by Talker",
+      poweredBy: site.poweredByLabel,
       greeting: "Bonjour, une question sur Talker Now ?",
       chipTalker: "Talker Now",
       chipQuestion: "Ask a question",
@@ -421,7 +429,7 @@ export const en = {
     placeholder: "Write to me…",
     send: "Send",
     writing: "Talker is typing",
-    poweredBy: "Powered by Talker",
+    poweredBy: site.poweredByLabel,
     opener:
       "Hello — I'm here for your site. Tell me what you need, I'll point you the right way.",
     fallback:

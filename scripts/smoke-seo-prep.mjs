@@ -33,6 +33,11 @@ assert(llmsTxt.includes("/alternative-ai-engine-wordpress"), "ai engine alternat
 assert(llmsTxt.includes("/comparatif-talker-live-chat"), "comparatif");
 assert(!llmsTxt.includes("/cas-client-agence"), "unpublished case stays out of llms");
 assert(!/wordpress\.org/i.test(llmsTxt), "llms.txt names no public plugin store");
+assert(llmsTxt.includes("9,99"), "llms option annual price");
+assert(llmsTxt.includes("12,99"), "llms option monthly price");
+assert(llmsTxt.includes("50 conversations"), "llms starter cap");
+assert(llmsTxt.includes("25, 38 et 45"), "llms alert steps");
+assert(!llmsTxt.includes("100 conversation"), "llms free cap is not 100");
 assert(!/chatbot/i.test(llmsTxt), "llms.txt is not chatbot-first");
 assert(!/noindex|disallow|gate/i.test(llmsTxt), "llms.txt stays product facts");
 

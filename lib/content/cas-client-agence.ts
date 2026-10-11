@@ -57,7 +57,7 @@ export const casClientQuote = {
 } as const;
 
 export const casClientCta =
-  "Vous êtes une agence ? Installez Talker sur un premier site : 100 conversations par mois et par site, gratuites, sans carte, sans limite de durée.";
+  "Vous êtes une agence ? Installez Talker sur un premier site : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.";
 
 export const casClientAsk = [
   "Nom de l'agence, logo, site, ville/pays, nombre de personnes.",
