@@ -67,7 +67,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à Tidio pour WordPress",
     otherName: "Tidio",
     shortAnswer:
-      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, sans équipe pour tenir un chat en direct, Talker est une alternative à Tidio. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Tidio convient mieux si votre équipe veut répondre elle-même en direct, ou gérer plusieurs canaux de messagerie au même endroit.",
+      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, sans équipe pour tenir un chat en direct, Talker est une alternative à Tidio. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations. Tidio convient mieux si votre équipe veut répondre elle-même en direct, ou gérer plusieurs canaux de messagerie au même endroit.",
     tableTitle: "Talker et Tidio en bref",
     rows: [
       {
@@ -90,7 +90,7 @@ export const alternatives: readonly AlternativePage[] = [
       {
         label: "Pour démarrer",
         talker:
-          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
         other:
           "Plan gratuit : 50 conversations où un humain répond. Lyro : 50 conversations IA au départ, rechargées chaque mois seulement avec l'offre Lyro. Essai 7 jours sans carte.",
       },
@@ -140,7 +140,7 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         q: "Combien coûte Talker par rapport à Tidio ?",
-        a: "Le plan gratuit de Talker, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Une conversation, c'est un visiteur qui discute (une session). Au-delà, passez à un plan payant ou attendez le mois suivant. Pro coûte 29 € par mois en annuel pour 1 site, conversations illimitées. Pro 3 : 49 € pour 3 sites. Pro Max : 99 € pour 10 sites (en annuel). Chez Tidio, Starter est à 24,17 $ par mois et l'agent IA Lyro s'ajoute à partir de 32,50 $ par mois (tarifs relevés le 08/10/2026).",
+        a: "Le plan gratuit de Talker, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations. Une conversation, c'est un visiteur qui discute (une session). Au-delà, passez à un plan payant ou attendez le mois suivant. Pro coûte 29 € par mois en annuel pour 1 site, conversations illimitées. Pro 3 : 49 € pour 3 sites. Pro Max : 99 € pour 10 sites (en annuel). Chez Tidio, Starter est à 24,17 $ par mois et l'agent IA Lyro s'ajoute à partir de 32,50 $ par mois (tarifs relevés le 08/10/2026).",
       },
       {
         q: "Faut-il régler quelque chose à l'installation ?",
@@ -165,7 +165,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à Crisp pour WordPress",
     otherName: "Crisp",
     shortAnswer:
-      "Si vous cherchez un agent IA qui répond seul aux visiteurs de votre site WordPress, Talker est une alternative à Crisp. Talker s'installe avec un fichier zip, sans réglage, et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée ; il affiche « Powered by Talker · Créez le vôtre » (lien vers talker.now) et une puce « Talker Now ». L'Option Sans badge (9,99 €/mois en annuel, 12,99 € au mois) retire le badge et la puce sans lever la limite. La marque blanche arrive dès le premier plan payant. Crisp convient mieux si votre équipe répond en direct sur plusieurs canaux et a besoin d'une boîte de réception partagée.",
+      "Si vous cherchez un agent IA qui répond seul aux visiteurs de votre site WordPress, Talker est une alternative à Crisp. Talker s'installe avec un fichier zip, sans réglage, et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations ; il affiche « Powered by Talker · Créez le vôtre » (lien vers talker.now) et une puce « Talker Now ». L'Option Sans badge (9,99 €/mois en annuel, 12,99 € au mois) retire le badge et la puce sans lever la limite. La marque blanche arrive dès le premier plan payant. Crisp convient mieux si votre équipe répond en direct sur plusieurs canaux et a besoin d'une boîte de réception partagée.",
     tableTitle: "Talker et Crisp en bref",
     rows: [
       {
@@ -183,7 +183,7 @@ export const alternatives: readonly AlternativePage[] = [
       {
         label: "Pour démarrer",
         talker:
-          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
         other: "Plan gratuit : chat du site, 2 sièges, aucun crédit IA.",
       },
       {
@@ -233,7 +233,7 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         q: "Le plan gratuit de Crisp inclut-il l'IA ?",
-        a: "Non. Le plan gratuit de Crisp n'inclut aucun crédit IA (page tarifs relevée le 08/10/2026). Talker offre 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+        a: "Non. Le plan gratuit de Crisp n'inclut aucun crédit IA (page tarifs relevée le 08/10/2026). Talker offre 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
       },
       {
         q: "Talker fonctionne-t-il sans WordPress ?",
@@ -254,7 +254,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à Chatbase pour WordPress",
     otherName: "Chatbase",
     shortAnswer:
-      "Si vous voulez un agent IA sur votre site WordPress sans créer ni entraîner un agent dans un autre outil, Talker est une alternative à Chatbase. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et pose des questions adaptées à votre métier. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Chatbase convient mieux si vous devez nourrir l'agent avec des documents internes ou le brancher sur d'autres canaux.",
+      "Si vous voulez un agent IA sur votre site WordPress sans créer ni entraîner un agent dans un autre outil, Talker est une alternative à Chatbase. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et pose des questions adaptées à votre métier. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations. Chatbase convient mieux si vous devez nourrir l'agent avec des documents internes ou le brancher sur d'autres canaux.",
     tableTitle: "Talker et Chatbase en bref",
     rows: [
       {
@@ -278,7 +278,7 @@ export const alternatives: readonly AlternativePage[] = [
       {
         label: "Pour démarrer",
         talker:
-          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
         other:
           "50 crédits de message par mois. Les agents du plan gratuit sont supprimés après 14 jours d'inactivité.",
       },
@@ -350,7 +350,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à tawk.to pour WordPress",
     otherName: "tawk.to",
     shortAnswer:
-      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, sans équipe pour tenir un chat en direct, Talker est une alternative à tawk.to. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. tawk.to convient mieux si votre équipe veut répondre elle-même : le chat en direct est gratuit, et des agents humains peuvent répondre à votre place pour 1 $ de l'heure.",
+      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, sans équipe pour tenir un chat en direct, Talker est une alternative à tawk.to. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations. tawk.to convient mieux si votre équipe veut répondre elle-même : le chat en direct est gratuit, et des agents humains peuvent répondre à votre place pour 1 $ de l'heure.",
     tableTitle: "Talker et tawk.to en bref",
     rows: [
       {
@@ -381,7 +381,7 @@ export const alternatives: readonly AlternativePage[] = [
       {
         label: "Pour démarrer",
         talker:
-          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
         other:
           "Le chat en direct est gratuit, sans carte. AI Assist a un plan gratuit pour un volume limité, puis à partir de 29 $/mois.",
       },
@@ -417,7 +417,7 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         q: "Combien coûte l'agent IA ?",
-        a: "Chez Talker, il est là dès le plan gratuit : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Pro : 29 € par mois en annuel, 1 site, conversations illimitées, marque blanche. Pro 3 : 49 € pour 3 sites. Pro Max : 99 € pour 10 sites (en annuel). Chez tawk.to, le chat en direct est gratuit ; AI Assist part de 29 $ par mois, et retirer la marque coûte aussi 29 $ par mois (tarifs relevés le 08/10/2026).",
+        a: "Chez Talker, il est là dès le plan gratuit : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations. Pro : 29 € par mois en annuel, 1 site, conversations illimitées, marque blanche. Pro 3 : 49 € pour 3 sites. Pro Max : 99 € pour 10 sites (en annuel). Chez tawk.to, le chat en direct est gratuit ; AI Assist part de 29 $ par mois, et retirer la marque coûte aussi 29 $ par mois (tarifs relevés le 08/10/2026).",
       },
       {
         q: "Faut-il remplir une base de connaissances ?",
@@ -449,7 +449,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à Smartsupp pour WordPress",
     otherName: "Smartsupp",
     shortAnswer:
-      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, Talker est une alternative à Smartsupp. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Smartsupp convient mieux si votre équipe veut répondre en direct : le plan gratuit inclut le chat du site, WhatsApp et Messenger, pour 25 conversations par mois.",
+      "Si vous voulez un agent IA qui répond seul aux visiteurs de votre site WordPress, Talker est une alternative à Smartsupp. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations. Smartsupp convient mieux si votre équipe veut répondre en direct : le plan gratuit inclut le chat du site, WhatsApp et Messenger, pour 25 conversations par mois.",
     tableTitle: "Talker et Smartsupp en bref",
     rows: [
       {
@@ -474,7 +474,7 @@ export const alternatives: readonly AlternativePage[] = [
       {
         label: "Pour démarrer",
         talker:
-          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Le plan gratuit affiche « Powered by Talker · Créez le vôtre » (lien vers talker.now) et une puce « Talker Now ». L'Option Sans badge (9,99 €/mois en annuel, 12,99 € au mois) retire le badge et la puce sans lever la limite.",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations. Le plan gratuit affiche « Powered by Talker · Créez le vôtre » (lien vers talker.now) et une puce « Talker Now ». L'Option Sans badge (9,99 €/mois en annuel, 12,99 € au mois) retire le badge et la puce sans lever la limite.",
         other:
           "Plan gratuit : 0 €, 1 opérateur, 25 conversations par mois, historique de 14 jours. Mira à l'essai : 10 conversations, puis 25 après la mise en route, sans carte.",
       },
@@ -513,7 +513,7 @@ export const alternatives: readonly AlternativePage[] = [
     faq: [
       {
         q: "Le plan gratuit de Smartsupp inclut-il un agent IA ?",
-        a: "Le plan à 0 € compte 25 conversations de chat par mois, sans les aides à la rédaction. Mira s'essaie avec 10 conversations, puis 25 après la mise en route, sans carte. Talker offre 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée (tarifs relevés le 08/10/2026).",
+        a: "Le plan à 0 € compte 25 conversations de chat par mois, sans les aides à la rédaction. Mira s'essaie avec 10 conversations, puis 25 après la mise en route, sans carte. Talker offre 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations (tarifs relevés le 08/10/2026).",
       },
       {
         q: "Combien coûte Mira par rapport à Talker ?",
@@ -547,7 +547,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à LiveChat pour WordPress",
     otherName: "LiveChat",
     shortAnswer:
-      "Si vous voulez un agent IA qui répond seul sur votre site WordPress, sans payer un siège par personne, Talker est une alternative à LiveChat. Les nouveaux essais sont les plans Text, sur la page tarifs de LiveChat ; les clients LiveChat déjà abonnés gardent leur plan. Talker s'installe avec un fichier zip, lit les pages publiques du site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. LiveChat convient mieux si une équipe répond en direct dans une boîte partagée.",
+      "Si vous voulez un agent IA qui répond seul sur votre site WordPress, sans payer un siège par personne, Talker est une alternative à LiveChat. Les nouveaux essais sont les plans Text, sur la page tarifs de LiveChat ; les clients LiveChat déjà abonnés gardent leur plan. Talker s'installe avec un fichier zip, lit les pages publiques du site et vous envoie les conversations par e-mail. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations. LiveChat convient mieux si une équipe répond en direct dans une boîte partagée.",
     tableTitle: "Talker et LiveChat en bref",
     rows: [
       {
@@ -571,7 +571,7 @@ export const alternatives: readonly AlternativePage[] = [
       {
         label: "Pour démarrer",
         talker:
-          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
         other: "Essai de 14 jours sur Essential ou Growth, sans carte.",
       },
       {
@@ -645,7 +645,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à Botpress pour WordPress",
     otherName: "Botpress",
     shortAnswer:
-      "Si vous voulez un agent IA sur votre site WordPress sans le construire dans un studio, Talker est une alternative à Botpress. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et pose des questions adaptées à votre métier. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Botpress convient mieux si vous voulez dessiner les flux vous-même et ajouter vos propres sources.",
+      "Si vous voulez un agent IA sur votre site WordPress sans le construire dans un studio, Talker est une alternative à Botpress. Talker s'installe avec un fichier zip, lit les pages publiques de votre site et pose des questions adaptées à votre métier. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations. Botpress convient mieux si vous voulez dessiner les flux vous-même et ajouter vos propres sources.",
     tableTitle: "Talker et Botpress en bref",
     rows: [
       {
@@ -668,7 +668,7 @@ export const alternatives: readonly AlternativePage[] = [
       {
         label: "Pour démarrer",
         talker:
-          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
         other:
           "Plan gratuit : 0 $, 100 conversations, sans packs ni dépassement, 3 sièges, 3 agents IA, support communautaire.",
       },
@@ -743,7 +743,7 @@ export const alternatives: readonly AlternativePage[] = [
     h1: "Une alternative à AI Engine pour WordPress",
     otherName: "AI Engine",
     shortAnswer:
-      "Si vous voulez un agent qui répond aux visiteurs à partir de votre site, sans clé API et sans facture de tokens, Talker est une alternative à AI Engine. AI Engine (Meow Apps) fait beaucoup plus : rédaction, images, voix, et plusieurs fournisseurs d'IA. C'est une boîte à outils, version 3.8.4, notée 4,9/5 sur 870 avis, avec plus de 90 000 installations actives. En gratuit, l'agent ne répond pas depuis le contenu du site : la base de connaissances est en Pro. Talker fait une seule chose, dès le plan gratuit : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+      "Si vous voulez un agent qui répond aux visiteurs à partir de votre site, sans clé API et sans facture de tokens, Talker est une alternative à AI Engine. AI Engine (Meow Apps) fait beaucoup plus : rédaction, images, voix, et plusieurs fournisseurs d'IA. C'est une boîte à outils, version 3.8.4, notée 4,9/5 sur 870 avis, avec plus de 90 000 installations actives. En gratuit, l'agent ne répond pas depuis le contenu du site : la base de connaissances est en Pro. Talker fait une seule chose, dès le plan gratuit : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
     tableTitle: "Talker et AI Engine en bref",
     rows: [
       {
@@ -785,7 +785,7 @@ export const alternatives: readonly AlternativePage[] = [
       {
         label: "Pour démarrer",
         talker:
-          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
         other:
           "Version gratuite. Une clé API, et une carte chez le fournisseur pour payer l'usage. Pas d'essai sur Pro.",
       },
@@ -815,7 +815,7 @@ export const alternatives: readonly AlternativePage[] = [
       },
       {
         q: "L'agent gratuit d'AI Engine répond-il depuis le site ?",
-        a: "Non. Sans la base de connaissances, il s'appuie sur ce que le modèle sait. Cette base (articles, pages, PDF) est une fonction Pro. Talker lit les pages publiques du site dès le plan gratuit : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+        a: "Non. Sans la base de connaissances, il s'appuie sur ce que le modèle sait. Cette base (articles, pages, PDF) est une fonction Pro. Talker lit les pages publiques du site dès le plan gratuit : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée, alertes à 25, 38 et 45 conversations.",
       },
       {
         q: "Comment récupérer le téléphone et l'e-mail ?",
