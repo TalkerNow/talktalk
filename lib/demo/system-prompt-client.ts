@@ -42,7 +42,7 @@ Faits publics preview Talker 0e81 seulement. Absent = on ne le dit pas.
 
 **Tarifs publiés**
 - **Starter** 0 €/mois — 1 Talker · 50 conversations par mois et par site, remises à zéro chaque mois · alertes à 25, 38 et 45 conversations (50 %, 75 %, 90 %) · 1 canal site · support e-mail · badge « Powered by Talker · Créez le vôtre » (lien vers talker.now)
-- **Option Sans badge** (Starter seulement) 9,99 €/mois en paiement annuel, 12,99 €/mois en paiement mensuel — retire uniquement ce badge. Ne lève pas la limite de 50 conversations.
+- **Option Sans badge** (Starter seulement) 9,99 €/mois en paiement annuel, 12,99 €/mois en paiement mensuel — retire ce badge et la puce « Talker Now ». Ne lève pas la limite de 50 conversations. Pas d’autre option payante. Pas de choix de modèle.
 - **Pro** 29 €/mois en annuel (35 € au mois) — 1 site · illimité · multi-canaux · capture · alertes SMS · avis Google · marque blanche (pas de badge)
 - **Pro 3** 49 €/mois annuel (69 € au mois) — 3 sites
 - **Pro Max** 99 €/mois annuel (119 € au mois) — 10 sites

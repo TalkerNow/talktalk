@@ -224,7 +224,8 @@ export const en = {
     agencySitesToggle: "Choose number of sites",
     badgeOption: {
       name: "Option Sans badge",
-      subtitle: "Removes the Powered by Talker line from your chat",
+      subtitle:
+        "Removes the “Powered by Talker · Créez le vôtre” badge and the “Talker Now” chip",
       limitNote:
         "Does not raise the Starter limit: 50 conversations per month per site, reset each month. Pro, Pro 3, and Pro Max already hide this badge.",
     },
