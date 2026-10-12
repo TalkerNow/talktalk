@@ -73,7 +73,7 @@ export const comparatifFr: ComparatifCopy = {
     {
       criterion: "Prix Talker",
       talker:
-        "Starter — 0 €, 100 conversations par installation, sans carte. Pro — 29 € / mois en annuel (35 € au mois), un site. Agences — 49 € / mois en annuel pour 3 sites ; 99 € / mois en annuel pour 10 sites.",
+        "Starter — 0 €, 50 conversations par mois et par site, remises à zéro chaque mois, sans carte. Alertes à 25, 38 et 45 conversations. Badge « Powered by Talker · Créez le vôtre », lien vers talker.now. Option Sans badge — 9,99 € / mois en annuel (12,99 € au mois) : retire le badge et la puce « Talker Now », sans lever la limite. Pro — 29 € / mois en annuel (35 € au mois), un site. Pro 3 — 49 € / mois en annuel pour 3 sites. Pro Max — 99 € / mois en annuel pour 10 sites.",
       live: "Prix non cités.",
       engine: "Prix non cités.",
     },
@@ -128,7 +128,7 @@ export const comparatifEn: ComparatifCopy = {
     {
       criterion: "Talker prices",
       talker:
-        "Starter — €0, 100 conversations per install, no card. Pro — €29 / month billed annually (€35 month to month), one site. Agencies — €49 / month annually for 3 sites; €99 / month annually for 10 sites.",
+        "Starter — €0, 50 conversations per month per site, reset each month, no card. Alerts at 25, 38 and 45 conversations. Badge “Powered by Talker · Créez le vôtre”, link to talker.now. Option Sans badge — €9,99 / month billed annually (€12,99 month to month): removes the badge and the “Talker Now” chip, without raising the limit. Pro — €29 / month billed annually (€35 month to month), one site. Pro 3 — €49 / month annually for 3 sites. Pro Max — €99 / month annually for 10 sites.",
       live: "Prices not stated.",
       engine: "Prices not stated.",
     },

@@ -30,13 +30,20 @@ for (const fact of [
   "pages publiques",
   "prompt métier",
   "toutes les 4 heures",
-  "100 conversations par installation",
+  "50 conversations par mois et par site",
+  "9,99",
+  "12,99",
+  "25, 38 et 45",
+  "Pro 3",
+  "Pro Max",
   "49 € / mois en annuel pour 3 sites",
   "99 € / mois en annuel pour 10 sites",
 ]) {
   assert(talkerFacts.includes(fact), `missing fact: ${fact}`);
 }
 
+assert(!talkerFacts.includes("100 conversation"), "free cap is not 100");
+assert(!talkerFacts.includes("Agences"), "old agency plan name is gone");
 assert(!/Shopify|WooCommerce/i.test(talkerFacts), "no Shopify or Woo");
 assert(!banned.test(talkerFacts), "facts must not say meilleur or chatbot");
 
@@ -56,5 +63,10 @@ assert(
   !faqFr.items.some((item) => /Ancien chiffre|HARD JF/.test(JSON.stringify(item))),
   "no draft notes in FAQ",
 );
+const faqBlob = JSON.stringify(faqFr);
+assert(!faqBlob.includes("100 conversation"), "faq free cap is not 100");
+assert(faqBlob.includes("9,99") && faqBlob.includes("12,99"), "faq lists both option prices");
+assert(faqBlob.includes("25, 38 et 45"), "faq alert steps");
+assert(!faqBlob.includes("Agences & Entreprises"), "faq drops the old agency name");
 
 console.log("smoke-comparatif: ok");
