@@ -103,7 +103,7 @@ class Talker_Now_Widget {
 					'scanning'       => __( 'Je parcours votre site.', 'talker-now' ),
 					'scanningShort'  => __( 'Je parcours votre site…', 'talker-now' ),
 					'scanned'        => __( 'J’ai parcouru votre site, on peut commencer le QCM.', 'talker-now' ),
-					'poweredBy'      => __( 'Propulsé par talker.now', 'talker-now' ),
+					'poweredBy'      => __( 'Propulsé par Talker', 'talker-now' ),
 				),
 			)
 		);

@@ -154,8 +154,7 @@ export const landingContent: LandingContent = {
     "Une offre Pro sera proposée. Le tarif n’est pas encore confirmé — nous l’écrirons ici quand il le sera, pas avant.",
   contactTitle: "Laisser une adresse",
   contactBody:
-    "Email et adresse du site suffisent pour la liste d’attente. Un identifiant WordPress.org sera demandé plus tard, à l’installation.",
-  contactNote:
-    "Un identifiant WordPress.org sera demandé plus tard, à l’installation. Pas d’autre champ pour l’instant.",
+    "Email et adresse du site suffisent pour la liste d’attente.",
+  contactNote: "Pas d’autre champ pour l’instant.",
   footerLine: "Talker — un plugin WordPress pour les petites équipes.",
 };

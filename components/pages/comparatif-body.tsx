@@ -48,6 +48,15 @@ export function ComparatifBody() {
 
       <p className="mt-12 border-t border-[#DCD9CE] pt-8 text-base leading-relaxed text-[#52525B]">
         {copy.also}{" "}
+        {copy.alsoLinks.map((link, index) => (
+          <span key={link.href}>
+            {index > 0 ? " · " : null}
+            <a href={link.href} className={linkClass}>
+              {link.label}
+            </a>
+          </span>
+        ))}
+        {" · "}
         <a href="/faq" className={linkClass}>
           {copy.faqLabel}
         </a>

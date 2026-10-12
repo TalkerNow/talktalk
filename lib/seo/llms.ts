@@ -6,8 +6,8 @@ const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://talker.now").replac
 
 /**
  * Public /llms.txt body. Product facts only.
- * Live routes: /, /produit, /methode, /installer, /faq, /contact.
- * /tarifs is not a page (pricing is the #pricing anchor on /).
+ * Live routes: /, /produit, /methode, /installer, /faq, /contact,
+ * /tarifs, /comparatif-talker-live-chat, and the eight alternative pages.
  */
 export const llmsTxt = `# Talker
 
@@ -19,6 +19,14 @@ export const llmsTxt = `# Talker
 - [Installer](${origin}/installer): téléchargement du plugin zip, à déposer dans WP-Admin.
 - [FAQ](${origin}/faq): questions fréquentes.
 - [Contact](${origin}/contact): écrire à l'équipe.
-
-Tarifs publiés, ancre #pricing sur l’accueil. Starter : 0 €, 50 conversations par mois et par site, remises à zéro chaque mois. Alertes à 25, 38 et 45 conversations (50 %, 75 %, 90 %). Le badge du gratuit est « Powered by Talker · Créez le vôtre », lien vers talker.now. Option Sans badge, sur Starter seulement : 9,99 €/mois en paiement annuel, 12,99 €/mois en paiement mensuel. Elle retire ce badge et la puce « Talker Now », et ne lève pas la limite de conversations. Pro : 29 €/mois en annuel (35 € au mois), 1 site, marque blanche. Pro 3 : 49 €/mois en annuel (69 € au mois), 3 sites. Pro Max : 99 €/mois en annuel (119 € au mois), 10 sites.
+- [Tarifs](${origin}/tarifs): Starter 0 €, 50 conversations par mois et par site, remises à zéro chaque mois, alertes à 25, 38 et 45. Badge « Powered by Talker · Créez le vôtre » (lien vers talker.now) et puce « Talker Now ». Option Sans badge : 9,99 €/mois en annuel, 12,99 €/mois en mensuel — retire le badge et la puce, sans lever la limite. Pro 29 € (1 site), Pro 3 49 € (3 sites), Pro Max 99 € (10 sites), en annuel, marque blanche.
+- [Alternative à Tidio pour WordPress](${origin}/alternative-tidio-wordpress): faits et tarifs Talker / Tidio (relevés le 08/10/2026).
+- [Alternative à Crisp pour WordPress](${origin}/alternative-crisp-wordpress): faits et tarifs Talker / Crisp (relevés le 08/10/2026).
+- [Alternative à Chatbase pour WordPress](${origin}/alternative-chatbase-wordpress): faits et tarifs Talker / Chatbase (relevés le 08/10/2026).
+- [Alternative à tawk.to pour WordPress](${origin}/alternative-tawk-to-wordpress): faits et tarifs Talker / tawk.to (relevés le 08/10/2026).
+- [Alternative à Smartsupp pour WordPress](${origin}/alternative-smartsupp-wordpress): faits et tarifs Talker / Smartsupp (relevés le 08/10/2026).
+- [Alternative à LiveChat pour WordPress](${origin}/alternative-livechat-wordpress): faits et tarifs Talker / LiveChat (relevés le 08/10/2026).
+- [Alternative à Botpress pour WordPress](${origin}/alternative-botpress-wordpress): faits et tarifs Talker / Botpress (relevés le 08/10/2026).
+- [Alternative à AI Engine pour WordPress](${origin}/alternative-ai-engine-wordpress): faits Talker / AI Engine, Meow Apps (relevés le 08/10/2026).
+- [Talker et le chat live](${origin}/comparatif-talker-live-chat): différences avec un chat live humain.
 `;

@@ -35,7 +35,6 @@ export function HeroSection() {
   }, []);
 
   useEffect(() => {
-    setWordIndex(0);
     const interval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % phrases.length);
     }, 2500);

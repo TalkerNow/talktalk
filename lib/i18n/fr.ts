@@ -226,6 +226,7 @@ export const fr = {
     sites3: "3 sites",
     sites10: "10 sites",
     agencySitesToggle: "Choisir le nombre de sites",
+    detailsLink: "Tout comprendre sur les tarifs",
     badgeOption: {
       name: "Option Sans badge",
       subtitle:
@@ -238,11 +239,11 @@ export const fr = {
         key: "starter",
         name: "Starter",
         title: "Starter",
-        description: "Pour tester sans engagement",
+        description: "1 site",
         cta: "Créer mon agent gratuitement",
         features: [
           "1 Talker",
-          "50 conversations par mois et par site, remises à zéro chaque mois",
+          "50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée",
           "Alertes à 25, 38 et 45 conversations (50 %, 75 %, 90 %)",
           "1 canal (site web)",
           "Support par email",
@@ -252,12 +253,11 @@ export const fr = {
         key: "pro",
         name: "Pro",
         title: "Pro",
-        description: "Pour les TPE et PME qui veulent convertir",
+        description: "1 site",
         cta: "Installer",
         features: [
           "1 Talker",
           "Conversations illimitées",
-          "Tous les canaux (site, WhatsApp, Instagram, Facebook, SMS)",
           "Capture automatique téléphone / email",
           "Alertes par SMS (ou tout de suite)",
           "Collecte d'avis Google",
@@ -301,7 +301,7 @@ export const fr = {
     subtitle:
       "Zip, upload dans WordPress, scan et questions, agent en ligne.",
     download: "Télécharger le zip",
-    placeholderNote: "talker-now.zip — sans carte, sans WordPress.org.",
+    placeholderNote: "talker-now.zip — sans carte. Fichier zip à déposer dans WordPress.",
     stepsEyebrow: "Dans WP-Admin",
     steps: [
       "Télécharger le zip.",
@@ -310,7 +310,7 @@ export const fr = {
       "L’agent est opérationnel.",
     ],
     reassurance:
-      "Pas de carte. Pas de store WordPress.org. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",
+      "Pas de carte. Fichier zip. Fonctionne avec les thèmes et constructeurs habituels (Elementor, Divi, etc.).",
     vignette: {
       ariaLabel:
         "Démo : une conversation, le téléchargement de talker-now.zip, puis l’installation dans WP-Admin.",
@@ -373,7 +373,7 @@ export const fr = {
         links: [
           { name: "Fonctionnalités", href: "/produit" },
           { name: "Comment ça marche", href: "#how-it-works" },
-          { name: "Tarifs", href: "#pricing" },
+          { name: "Tarifs", href: "/tarifs" },
           { name: "Intégrations", href: "#integrations" },
           { name: "Cas d'usage", href: "#cas-usage" },
         ],

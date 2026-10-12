@@ -222,6 +222,7 @@ export const en = {
     sites3: "3 sites",
     sites10: "10 sites",
     agencySitesToggle: "Choose number of sites",
+    detailsLink: "See the full pricing",
     badgeOption: {
       name: "Option Sans badge",
       subtitle:
@@ -234,11 +235,11 @@ export const en = {
         key: "starter",
         name: "Starter",
         title: "Starter",
-        description: "Try it free",
+        description: "1 site",
         cta: "Start for free",
         features: [
           "1 Talker",
-          "50 conversations per month per site, reset each month",
+          "50 conversations per month per site, reset each month, no card, no time limit",
           "Alerts at 25, 38 and 45 conversations (50%, 75%, 90%)",
           "1 channel (website)",
           "Email support",
@@ -248,12 +249,11 @@ export const en = {
         key: "pro",
         name: "Pro",
         title: "Pro",
-        description: "For small businesses ready to convert more visitors",
+        description: "1 site",
         cta: "Get started",
         features: [
           "1 Talker",
           "Unlimited conversations",
-          "All channels (website, WhatsApp, Instagram, Facebook, SMS)",
           "Automatic phone and email capture",
           "SMS alerts (or instantly)",
           "Google review collection",
@@ -296,7 +296,7 @@ export const en = {
     title: "Install Talker in 2 minutes",
     subtitle: "Zip, upload in WordPress, scan and questions, agent live.",
     download: "Download the zip",
-    placeholderNote: "talker-now.zip — no card, not on WordPress.org.",
+    placeholderNote: "talker-now.zip — no card. A zip file to upload in WordPress.",
     stepsEyebrow: "In WP-Admin",
     steps: [
       "Download the zip.",
@@ -305,7 +305,7 @@ export const en = {
       "The agent is live.",
     ],
     reassurance:
-      "No card. Not on WordPress.org. Works with the usual themes and builders (Elementor, Divi, etc.).",
+      "No card. A zip file. Works with the usual themes and builders (Elementor, Divi, etc.).",
     vignette: {
       ariaLabel:
         "Demo: a conversation, downloading talker-now.zip, then installing it in WP-Admin.",
@@ -368,7 +368,7 @@ export const en = {
         links: [
           { name: "Features", href: "/produit" },
           { name: "How it works", href: "#how-it-works" },
-          { name: "Pricing", href: "#pricing" },
+          { name: "Pricing", href: "/tarifs" },
           { name: "Integrations", href: "#integrations" },
           { name: "Use cases", href: "#cas-usage" },
         ],

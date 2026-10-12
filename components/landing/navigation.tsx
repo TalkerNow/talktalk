@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, type ReactNode } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { Button } from "@/components/ui/button";
@@ -39,7 +40,7 @@ export function Navigation() {
   const navLinks = [
     { name: t.nav.features, href: "/produit" },
     { name: t.nav.howItWorks, href: "#how-it-works" },
-    { name: t.nav.pricing, href: "#pricing" },
+    { name: t.nav.pricing, href: "/tarifs" },
     { name: t.nav.faq, href: "/faq" },
     { name: t.nav.contact, href: "/contact" },
   ];
@@ -77,9 +78,9 @@ export function Navigation() {
               isScrolled ? "gap-8" : "gap-10 lg:gap-12"
             }`}
           >
-            <a href="/" className="flex shrink-0 items-center">
+            <Link href="/" className="flex shrink-0 items-center">
               <TalkerWordmark compact={isScrolled} />
-            </a>
+            </Link>
 
             <div
               className={`hidden items-center md:flex ${

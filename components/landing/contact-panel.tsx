@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { AnimatedWave } from "./animated-wave";
 import { ContactForm } from "./contact-form";
@@ -34,9 +35,9 @@ export function ContactPanel() {
       />
 
       <div className="relative z-10 overflow-visible px-8 py-12 lg:px-16 lg:py-16">
-        <a href="/" className="mb-12 inline-flex">
+        <Link href="/" className="mb-12 inline-flex">
           <TalkerWordmark className="text-[30px]" />
-        </a>
+        </Link>
 
         <div className="grid items-start gap-12 overflow-visible lg:grid-cols-2 lg:gap-16">
           <div>

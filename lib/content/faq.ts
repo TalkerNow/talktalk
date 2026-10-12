@@ -98,20 +98,21 @@ export const faqFr: FaqCopy = {
     {
       q: "Pourquoi Talker est-il entièrement gratuit ? À partir de quand devient-il payant ?",
       a: [
-        "Talker est gratuit sur Starter : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte bancaire.",
-        "Passé ce nombre dans le mois, le site ne prend plus de nouvelles conversations jusqu’à la remise à zéro, ou jusqu’au passage en Pro, Pro 3 ou Pro Max.",
+        "Talker reste gratuit sur Starter : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte bancaire, sans limite de durée. Une conversation, c'est un visiteur qui discute (une session).",
+        "Au-delà de 50 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
         "Alertes à 25, 38 et 45 conversations (50 %, 75 % et 90 % de la limite).",
-        "Le Starter affiche « Powered by Talker · Créez le vôtre », avec un lien vers talker.now.",
+        "Le Starter affiche « Powered by Talker · Créez le vôtre », avec un lien vers talker.now, et une puce « Talker Now ». Sur Pro, Pro 3 et Pro Max, cette mention disparaît.",
         "Starter — 0 €, 50 conversations par mois et par site.",
-        "Pro — 29 € / mois en annuel (35 € au mois), un site.",
+        "Pro — 29 € / mois en annuel (35 € au mois), 1 site. Pro 3 — 49 € / mois en annuel, 3 sites. Pro Max — 99 € / mois en annuel, 10 sites.",
         "Option Sans badge, sur le Starter — 9,99 € / mois en annuel (12,99 € au mois). Retire le badge « Powered by Talker · Créez le vôtre » et la puce « Talker Now ». Ne lève pas la limite de conversations.",
       ],
     },
     {
       q: "Combien coûte Talker pour une agence (plusieurs sites) ?",
       a: [
-        "Pro 3 — 49 € / mois (annuel), 3 sites.",
-        "Pro Max — 99 € / mois (annuel), 10 sites.",
+        "Pour une agence, les plans sont Pro 3 et Pro Max.",
+        "Pro 3 — 49 € / mois (annuel) — 3 sites.",
+        "Pro Max — 99 € / mois (annuel) — 10 sites.",
         "Chaque site a son install et son prompt métier. Voir aussi la grille tarifaire sur le site.",
       ],
     },
@@ -130,7 +131,7 @@ export const faqFr: FaqCopy = {
       q: "Quelle différence entre Talker et un chat live (Intercom, Crisp, Tidio) ?",
       a: [
         "Talker ne tient pas de chat live. Vous l’installez en zip sur WordPress. Il lit les pages publiques du site et construit un prompt métier. Pas d’upload de fichiers, pas de base documentaire (RAG).",
-        "Démarrage : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte. Alertes à 25, 38 et 45 conversations. Option Sans badge : 9,99 € / mois en annuel (12,99 € au mois) — retire le badge et la puce « Talker Now », sans lever cette limite. Pro 3 : 49 € / mois en annuel pour 3 sites. Pro Max : 99 € / mois en annuel pour 10 sites.",
+        "Démarrage : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Alertes à 25, 38 et 45 conversations. Option Sans badge : 9,99 € / mois en annuel (12,99 € au mois) — retire le badge et la puce « Talker Now », sans lever cette limite. Pro 3 : 49 € / mois en annuel pour 3 sites. Pro Max : 99 € / mois en annuel pour 10 sites.",
       ],
     },
   ],
@@ -225,20 +226,21 @@ export const faqEn: FaqCopy = {
     {
       q: "Why is Talker entirely free? When does it become paid?",
       a: [
-        "Talker is free on Starter: 50 conversations per month per site, reset each month, no credit card.",
-        "Past that number in the month, the site stops taking new conversations until the reset, or until you move to Pro, Pro 3, or Pro Max.",
+        "Talker stays free on Starter: 50 conversations per month per site, reset each month, no credit card, no time limit. A conversation is one visitor chatting (one session).",
+        "Beyond 50 conversations in the month, move to a paid plan or wait for the next month.",
         "Alerts at 25, 38 and 45 conversations (50%, 75% and 90% of the limit).",
-        "Starter shows “Powered by Talker · Créez le vôtre”, with a link to talker.now.",
+        "Starter shows “Powered by Talker · Créez le vôtre”, with a link to talker.now, and a “Talker Now” chip. Pro, Pro 3, and Pro Max remove that line.",
         "Starter — €0, 50 conversations per month per site.",
-        "Pro — €29 / month billed annually (€35 month to month), one site.",
+        "Pro — €29 / month billed annually (€35 month to month), 1 site. Pro 3 — €49 / month annually, 3 sites. Pro Max — €99 / month annually, 10 sites.",
         "Option Sans badge, on Starter — €9,99 / month billed annually (€12,99 month to month). Removes the “Powered by Talker · Créez le vôtre” badge and the “Talker Now” chip. Does not raise the conversation limit.",
       ],
     },
     {
       q: "How much does Talker cost for an agency (several sites)?",
       a: [
-        "Pro 3 — €49 / month (annual), 3 sites.",
-        "Pro Max — €99 / month (annual), 10 sites.",
+        "For an agency, the plans are Pro 3 and Pro Max.",
+        "Pro 3 — €49 / month (annual) — 3 sites.",
+        "Pro Max — €99 / month (annual) — 10 sites.",
         "Each site has its own install and its own trade prompt. See also the pricing grid on the site.",
       ],
     },
@@ -254,7 +256,7 @@ export const faqEn: FaqCopy = {
       q: "What is the difference between Talker and a live chat (Intercom, Crisp, Tidio)?",
       a: [
         "Talker does not staff a live chat. You install it as a zip on WordPress. It reads the site’s public pages and builds a trade prompt. No file upload, no document base (RAG).",
-        "To start: 50 conversations per month per site, reset each month, no card. Alerts at 25, 38 and 45 conversations. Option Sans badge: €9,99 / month billed annually (€12,99 month to month) — removes the badge and the “Talker Now” chip, without raising that limit. Pro 3: €49 / month annually for 3 sites. Pro Max: €99 / month annually for 10 sites.",
+        "To start: 50 conversations per month per site, reset each month, no card, no time limit. Alerts at 25, 38 and 45 conversations. Option Sans badge: €9,99 / month billed annually (€12,99 month to month) — removes the badge and the “Talker Now” chip, without raising that limit. Pro 3: €49 / month annually for 3 sites. Pro Max: €99 / month annually for 10 sites.",
       ],
     },
   ],
