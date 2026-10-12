@@ -29,6 +29,8 @@ require_once TALKER_NOW_DIR . 'includes/class-widget.php';
 /**
  * Defaults. Widget is on at activate. No admin form.
  * Plan stays free until a licence writes otherwise. Webhook is Talker-side later.
+ * hide_badge is per site and does not change the plan: it hides the free badge
+ * and the "Talker Now" chip only. privacy_url overrides the WP policy URL when set.
  *
  * @return array<string, string>
  */
@@ -36,6 +38,8 @@ function talker_now_defaults() {
 	return array(
 		'webhook_url' => '',
 		'plan'        => 'free',
+		'hide_badge'  => '0',
+		'privacy_url' => '',
 		'invite_1'    => 'Talker Now',
 		'invite_2'    => 'Poser une question',
 		'invite_3'    => 'Prendre rendez-vous',
@@ -55,7 +59,42 @@ function talker_now_get_settings() {
 	if ( 'paid' !== $settings['plan'] ) {
 		$settings['plan'] = 'free';
 	}
+	$settings['hide_badge']  = talker_now_flag_on( $settings['hide_badge'] ) ? '1' : '0';
+	$settings['privacy_url'] = esc_url_raw( (string) $settings['privacy_url'] );
 	return $settings;
+}
+
+/**
+ * Truthy option values. Does not touch plan.
+ *
+ * @param mixed $value
+ * @return bool
+ */
+function talker_now_flag_on( $value ) {
+	return in_array( strtolower( trim( (string) $value ) ), array( '1', 'true', 'yes', 'on' ), true );
+}
+
+/**
+ * Privacy policy link for the widget footer.
+ * Site setting, then the WordPress policy page, then talker.now.
+ *
+ * @param array<string, string>|null $settings
+ * @return string
+ */
+function talker_now_privacy_policy_url( $settings = null ) {
+	if ( ! is_array( $settings ) ) {
+		$settings = talker_now_get_settings();
+	}
+	$custom = isset( $settings['privacy_url'] ) ? (string) $settings['privacy_url'] : '';
+	if ( '' !== $custom ) {
+		return $custom;
+	}
+	$wp = function_exists( 'get_privacy_policy_url' ) ? (string) get_privacy_policy_url() : '';
+	$wp = esc_url_raw( $wp );
+	if ( '' !== $wp ) {
+		return $wp;
+	}
+	return 'https://talker.now/confidentialite';
 }
 
 /**

@@ -32,9 +32,10 @@ class Talker_Now_Widget {
 	 * @param string $surface public|admin
 	 */
 	private static function enqueue( $surface ) {
-		$settings = talker_now_get_settings();
-		$plan     = ( 'paid' === $settings['plan'] ) ? 'paid' : 'free';
-		$admin    = ( 'admin' === $surface );
+		$settings   = talker_now_get_settings();
+		$plan       = ( 'paid' === $settings['plan'] ) ? 'paid' : 'free';
+		$admin      = ( 'admin' === $surface );
+		$hide_badge = ( '1' === $settings['hide_badge'] );
 
 		wp_enqueue_style(
 			'talker-now-widget',
@@ -51,19 +52,20 @@ class Talker_Now_Widget {
 			true
 		);
 
-		$invites = array(
-			array(
+		$invites = array();
+		if ( ! ( $hide_badge && 'free' === $plan ) ) {
+			$invites[] = array(
 				'id'    => ( 'free' === $plan ) ? 'talker' : 'one',
 				'label' => $settings['invite_1'],
-			),
-			array(
-				'id'    => 'question',
-				'label' => $settings['invite_2'],
-			),
-			array(
-				'id'    => 'rdv',
-				'label' => $settings['invite_3'],
-			),
+			);
+		}
+		$invites[] = array(
+			'id'    => 'question',
+			'label' => $settings['invite_2'],
+		);
+		$invites[] = array(
+			'id'    => 'rdv',
+			'label' => $settings['invite_3'],
 		);
 		if ( $admin ) {
 			$invites = array(
@@ -78,18 +80,21 @@ class Talker_Now_Widget {
 			'talker-now-widget',
 			'talkerNow',
 			array(
-				'restUrl'   => esc_url_raw( rest_url( 'talker/v1/message' ) ),
-				'nonce'     => wp_create_nonce( 'wp_rest' ),
-				'plan'      => $plan,
-				'surface'   => $admin ? 'admin' : 'public',
-				'manager'   => $admin,
-				'siteName'  => wp_strip_all_tags( get_bloginfo( 'name' ) ),
-				'greeting'  => $admin ? '' : $settings['greeting'],
-				'poweredBy' => ( ! $admin && 'free' === $plan ),
+				'restUrl'     => esc_url_raw( rest_url( 'talker/v1/message' ) ),
+				'nonce'       => wp_create_nonce( 'wp_rest' ),
+				'plan'        => $plan,
+				'surface'     => $admin ? 'admin' : 'public',
+				'manager'     => $admin,
+				'siteName'    => wp_strip_all_tags( get_bloginfo( 'name' ) ),
+				'greeting'    => $admin ? '' : $settings['greeting'],
+				'poweredBy'   => ( ! $admin && 'free' === $plan && ! $hide_badge ),
+				'hideBadge'   => $hide_badge,
+				'privacyUrl'  => talker_now_privacy_policy_url( $settings ),
 				'showContact' => ! $admin,
-				'invites'   => $invites,
+				'invites'     => $invites,
 				'i18n'      => array(
 					'title'         => wp_strip_all_tags( get_bloginfo( 'name' ) ),
+					'agentLabel'    => __( 'Agent IA', 'talker-now' ),
 					'placeholder'   => __( 'Écrivez votre message…', 'talker-now' ),
 					'send'          => __( 'Envoyer', 'talker-now' ),
 					'close'         => __( 'Fermer', 'talker-now' ),
@@ -103,7 +108,10 @@ class Talker_Now_Widget {
 					'scanning'       => __( 'Je parcours votre site.', 'talker-now' ),
 					'scanningShort'  => __( 'Je parcours votre site…', 'talker-now' ),
 					'scanned'        => __( 'J’ai parcouru votre site, on peut commencer le QCM.', 'talker-now' ),
-					'poweredBy'      => __( 'Propulsé par Talker', 'talker-now' ),
+					'poweredBy'      => __( 'Powered by Talker · Créez le vôtre', 'talker-now' ),
+					'connected'      => __( 'connecté', 'talker-now' ),
+					'privacyLead'    => __( 'En discutant, vous acceptez la', 'talker-now' ),
+					'privacyLink'    => __( 'politique de confidentialité', 'talker-now' ),
 				),
 			)
 		);

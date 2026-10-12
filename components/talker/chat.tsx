@@ -44,6 +44,17 @@ export function TalkerChat({
   );
 }
 
+function useShowFreeBadge() {
+  const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    const widget = new URLSearchParams(window.location.search).get("widget");
+    setShow(widget !== "paid");
+  }, []);
+
+  return show;
+}
+
 function ChatShell({
   onClose,
   children,
@@ -54,11 +65,17 @@ function ChatShell({
 }) {
   const { t } = useLocale();
   const { newChat } = useTalker();
+  const showBadge = useShowFreeBadge();
   const chrome = useMemo(
     () => (
-      <div className="flex items-center justify-between border-b border-line px-4 py-3">
-        <TalkerWordmark className="text-[16px]" />
-        <div className="flex items-center gap-1">
+      <div className="flex items-center justify-between gap-2 border-b border-line px-3 py-3 sm:px-4">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+          <TalkerWordmark className="text-[16px]" />
+          <span className="shrink-0 rounded-full bg-[#EDEBE3] px-2 py-1 text-[11px] font-medium leading-none text-[#52525B]">
+            {t.bubble.agentLabel}
+          </span>
+        </div>
+        <div className="flex shrink-0 items-center gap-1">
           <button
             type="button"
             onClick={() => newChat()}
@@ -80,13 +97,21 @@ function ChatShell({
         </div>
       </div>
     ),
-    [newChat, onClose, t.bubble.close, t.bubble.newChat, t.bubble.newChatAria],
+    [
+      newChat,
+      onClose,
+      t.bubble.agentLabel,
+      t.bubble.close,
+      t.bubble.newChat,
+      t.bubble.newChatAria,
+    ],
   );
 
   return (
     <div className="flex h-full flex-col bg-paper">
       {chrome}
       {children}
+      <ChatFoot showBadge={showBadge} />
     </div>
   );
 }
@@ -476,25 +501,44 @@ function Compose({
           </button>
         </div>
       </form>
-      <PoweredBy />
     </>
   );
 }
 
-function PoweredBy() {
+function ChatFoot({ showBadge }: { showBadge: boolean }) {
   const { t } = useLocale();
   return (
-    <p className="inline-flex w-full shrink-0 items-center justify-center gap-2 border-t border-foreground/8 bg-[#F7F6F4] px-3 py-2 font-mono text-[10px] tracking-wide text-[#6B6B73]">
-      <span className="h-2 w-2 rounded-full bg-green-500" />
-      <a
-        href={site.homepage}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-inherit underline-offset-2 hover:underline"
+    <div className="shrink-0 border-t border-foreground/8 bg-[#F7F6F4]">
+      {showBadge ? (
+        <p className="inline-flex w-full items-center justify-center gap-1.5 px-3 pt-2 font-mono text-[10px] tracking-wide text-[#6B6B73]">
+          <span
+            role="img"
+            aria-label={t.bubble.connected}
+            className="size-1.5 shrink-0 rounded-full bg-[#22c55e]"
+          />
+          <a
+            href={site.homepage}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-inherit underline-offset-2 hover:underline"
+          >
+            {t.bubble.poweredBy}
+          </a>
+        </p>
+      ) : null}
+      <p
+        className={
+          showBadge
+            ? "px-3 pt-1.5 pb-2 text-center text-[11px] leading-snug text-[#6B6B73]"
+            : "px-3 py-2 text-center text-[11px] leading-snug text-[#6B6B73]"
+        }
       >
-        {t.bubble.poweredBy}
-      </a>
-    </p>
+        {t.bubble.privacyLead}{" "}
+        <a href="/confidentialite" className="underline underline-offset-2 hover:text-[#111111]">
+          {t.bubble.privacyLink}
+        </a>
+      </p>
+    </div>
   );
 }
 
