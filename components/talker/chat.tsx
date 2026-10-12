@@ -48,8 +48,12 @@ function useShowFreeBadge() {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
-    const widget = new URLSearchParams(window.location.search).get("widget");
-    setShow(widget !== "paid");
+    const paid = new URLSearchParams(window.location.search).get("widget") === "paid";
+    if (!paid) return;
+    // The static page is the free window. The paid preview query is applied
+    // after hydration so the server markup still matches.
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only preview query
+    setShow(false);
   }, []);
 
   return show;
