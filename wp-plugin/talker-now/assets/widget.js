@@ -55,6 +55,7 @@
 
   var i18n = cfg.i18n || {};
   var isManager = Boolean(cfg.manager && cfg.surface === "admin");
+  var hideBadge = Boolean(cfg.hideBadge);
   var root = el("div", "talker-now-root is-beat-a");
   if (isManager) {
     root.classList.add("is-admin");
@@ -90,7 +91,14 @@
   panel.setAttribute("aria-label", i18n.title || cfg.siteName || "Discussion");
 
   var head = el("div", "talker-now-panel-head");
-  head.appendChild(el("h2", "", { text: i18n.title || cfg.siteName || "" }));
+  var title = el("div", "talker-now-title");
+  title.appendChild(el("h2", "", { text: i18n.title || cfg.siteName || "" }));
+  title.appendChild(
+    el("span", "talker-now-agent", {
+      text: i18n.agentLabel || "Agent IA",
+    })
+  );
+  head.appendChild(title);
   var closeBtn = el("button", "talker-now-close", {
     type: "button",
     "aria-label": i18n.close || "Fermer",
@@ -148,18 +156,40 @@
     panel.appendChild(contact);
   }
   panel.appendChild(composer);
+  var foot = el("div", "talker-now-foot");
   if (cfg.poweredBy) {
     var powered = el("p", "talker-now-powered");
+    powered.appendChild(
+      el("span", "talker-now-live", {
+        role: "img",
+        "aria-label": i18n.connected || "connecté",
+      })
+    );
     powered.appendChild(
       el("a", null, {
         href: "https://talker.now",
         target: "_blank",
         rel: "noopener noreferrer",
-        text: i18n.poweredBy || "Propulsé par Talker",
+        text: i18n.poweredBy || "Powered by Talker · Créez le vôtre",
       })
     );
-    panel.appendChild(powered);
+    foot.appendChild(powered);
   }
+  var privacy = el("p", "talker-now-privacy");
+  var privacyLead = String(
+    i18n.privacyLead || "En discutant, vous acceptez la"
+  ).replace(/\s+$/, "");
+  privacy.appendChild(document.createTextNode(privacyLead + " "));
+  privacy.appendChild(
+    el("a", null, {
+      href: cfg.privacyUrl || "https://talker.now/confidentialite",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      text: i18n.privacyLink || "politique de confidentialité",
+    })
+  );
+  foot.appendChild(privacy);
+  panel.appendChild(foot);
 
   launcherWrap.appendChild(halo);
   launcherWrap.appendChild(badge);
@@ -235,7 +265,7 @@
   function syncChrome() {
     var show = chipsWanted();
     invites.classList.toggle("is-open", show && anyChipIn());
-    ad.classList.toggle("is-on", show && !isManager && anyChipIn());
+    ad.classList.toggle("is-on", show && !isManager && !hideBadge && anyChipIn());
     launcher.setAttribute("aria-expanded", panelOpen || show ? "true" : "false");
   }
 
@@ -321,7 +351,7 @@
       }
       chipNodes[i].classList.add("is-in");
       invites.classList.add("is-open");
-      if (!isManager && i === 0) {
+      if (!isManager && !hideBadge && i === 0) {
         ad.classList.add("is-on");
       }
       i += 1;

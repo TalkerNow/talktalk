@@ -426,10 +426,14 @@ export const en = {
     newChat: "New",
     newChatAria: "New conversation",
     assistant: "Talker.now",
+    agentLabel: "AI Agent",
     placeholder: "Write to me…",
     send: "Send",
     writing: "Talker is typing",
-    poweredBy: site.poweredByLabel,
+    poweredBy: "Powered by Talker · Create yours",
+    connected: "connected",
+    privacyLead: "By chatting, you accept the",
+    privacyLink: "privacy policy",
     opener:
       "Hello — I'm here for your site. Tell me what you need, I'll point you the right way.",
     fallback:

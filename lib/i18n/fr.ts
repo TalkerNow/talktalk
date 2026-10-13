@@ -431,10 +431,14 @@ export const fr = {
     newChat: "Nouveau",
     newChatAria: "Nouvelle conversation",
     assistant: "Talker.now",
+    agentLabel: "Agent IA",
     placeholder: "Écrivez-moi…",
     send: "Envoyer",
     writing: "Talker écrit",
-    poweredBy: site.poweredByLabel,
+    poweredBy: "Powered by Talker · Créez le vôtre",
+    connected: "connecté",
+    privacyLead: "En discutant, vous acceptez la",
+    privacyLink: "politique de confidentialité",
     opener:
       "Bonjour — je suis là pour votre site. Dites-moi ce que vous cherchez, je vous oriente.",
     fallback:
