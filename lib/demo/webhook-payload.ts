@@ -56,7 +56,6 @@ export function collectTurns(body: unknown): ChatTurn[] {
   return messages;
 }
 
-/** Full conversation for n8n — never last-turn-only. */
 export function buildWebhookPayload(session: string, messages: ChatTurn[]) {
   const lastUser = [...messages].reverse().find((turn) => turn.role === "user");
   return {

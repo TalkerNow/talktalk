@@ -40,7 +40,6 @@ export function ChatPanel({
         >
           {copy.greeting}
         </p>
-        {/* Hidden hooks kept for the GSAP timeline (no invite chips in this demo). */}
         <div data-v="chat-chips" className="hidden" aria-hidden>
           <span data-v="chip-talker">{copy.chipTalker}</span>
           <span>{copy.chipQuestion}</span>

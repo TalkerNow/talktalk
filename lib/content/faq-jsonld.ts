@@ -3,7 +3,6 @@ export type FaqItem = {
   a: string;
 };
 
-/** Visible FAQ and JSON-LD share this object. No Offer. */
 export function faqPageJsonLd(items: readonly FaqItem[]) {
   return {
     "@context": "https://schema.org",

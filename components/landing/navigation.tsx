@@ -133,7 +133,6 @@ export function Navigation() {
 
       </nav>
       
-      {/* Mobile Menu - Full Screen Overlay */}
       <div
         className={`md:hidden fixed inset-0 bg-background z-40 transition-all duration-500 ${
           isMobileMenuOpen 
@@ -143,7 +142,6 @@ export function Navigation() {
         style={{ top: 0 }}
       >
         <div className="flex flex-col h-full px-8 pt-28 pb-8">
-          {/* Navigation Links */}
           <div className="flex-1 flex flex-col justify-center gap-8">
             {navLinks.map((link, i) => (
               <a

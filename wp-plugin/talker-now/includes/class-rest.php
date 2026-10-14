@@ -128,9 +128,6 @@ class Talker_Now_REST {
 	}
 
 	/**
-	 * Gérant path: scan visual while crawling, then a fact-based QCM.
-	 * Never the visitor contact stub.
-	 *
 	 * @param string $intent
 	 * @param string $message
 	 * @param string $session
@@ -165,8 +162,6 @@ class Talker_Now_REST {
 	}
 
 	/**
-	 * Visitor-facing copy: vouvoiement, no product name, no quota, no backstage.
-	 *
 	 * @param array<string, string> $contact
 	 */
 	private static function stub_reply( $contact, $message ) {

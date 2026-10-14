@@ -1,5 +1,3 @@
-/* talker.now front widget — locked look. Prefix: .talker-now- */
-
 .talker-now-root {
   --talker-rust: #c43f17;
   --talker-ink: #111111;
@@ -216,7 +214,6 @@
   }
 }
 
-/* A: bubble only. B: rings, no 1, no chips. C: red 1 alone. D: chips one by one. */
 .talker-now-root.is-beat-a .talker-now-badge,
 .talker-now-root.is-beat-b .talker-now-badge,
 .talker-now-root.is-beat-a .talker-now-invites,

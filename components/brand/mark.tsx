@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/** Tight crop around the rust bubble + tail (not the padded source artboard). */
 const BUBBLE_VIEWBOX = "-520 -470 1040 1080";
 
 type MarkProps = {

@@ -1,10 +1,4 @@
 <?php
-/**
- * Public site: visitor bubble only. WP-Admin: gérant bubble (not a form).
- * The n8n webhook URL is never exposed to the browser.
- *
- * @package TalkerNow
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

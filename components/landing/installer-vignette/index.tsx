@@ -375,7 +375,6 @@ export function InstallerVignette() {
           }, undefined, "download+=9.0");
           tl.to(pageTalker, { autoAlpha: 0, duration: 0.35 }, "download+=9.05");
           tl.to(pageLive, { autoAlpha: 1, duration: 0.35 }, "download+=9.05");
-          // Site is readable first; bubble hops in after a beat.
           tl.to(
             liveBubble,
             { autoAlpha: 1, scale: 1, duration: 0.55, ease: "back.out(1.6)" },

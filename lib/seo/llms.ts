@@ -1,14 +1,8 @@
-// Same default as lib/site.ts `url`.
 const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://talker.now").replace(
   /\/$/,
   "",
 );
 
-/**
- * Public /llms.txt body. Product facts only.
- * Live routes: /, /produit, /methode, /installer, /faq, /contact,
- * /tarifs, /comparatif-talker-live-chat, and the eight alternative pages.
- */
 export const llmsTxt = `# Talker
 
 > Agent conversationnel WordPress (plugin zip, installé en 2 min) pour sites d'activité + agences.

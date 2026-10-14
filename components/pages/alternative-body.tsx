@@ -90,7 +90,6 @@ export function AlternativeBody({ id }: { id: AlternativeId }) {
         </section>
 
         <figure className="mt-14">
-          {/* Plain img: /_next/image is outside the site gate, this file is not. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={ALTERNATIVE_ILLUSTRATION.src}

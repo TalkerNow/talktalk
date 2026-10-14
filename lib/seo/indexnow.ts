@@ -1,11 +1,3 @@
-/**
- * IndexNow readiness. The key file is public (not a secret):
- * `public/<INDEXNOW_PUBLIC_KEY>.txt` is served at `/<key>.txt`.
- *
- * Submit stays off unless INDEXNOW_SUBMIT=true.
- * Enable submit only after Cap'tain gate-off GO (robots no longer Disallow: /).
- * Do not call this from CI while the site is gated.
- */
 export const INDEXNOW_PUBLIC_KEY = "0cb96670f134d3ad83d2dfa0fa98e432";
 
 export const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
@@ -34,10 +26,6 @@ export type IndexNowResult =
   | { submitted: false; reason: IndexNowSkipReason }
   | { submitted: true; status: number };
 
-/**
- * POST a url list to IndexNow. No-ops unless INDEXNOW_SUBMIT=true and
- * INDEXNOW_KEY matches the hosted key file. Never called from the build.
- */
 export async function submitIndexNow(urls: string[]): Promise<IndexNowResult> {
   if (!isIndexNowSubmitEnabled()) {
     return { submitted: false, reason: "disabled" };

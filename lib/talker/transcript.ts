@@ -104,7 +104,6 @@ export function clearTalkerSession(): void {
     remember(null, null);
     notify();
   } catch {
-    /* ignore */
   }
 }
 

@@ -9,18 +9,15 @@ type FeatureItem = Messages["features"]["items"][number];
 function AIVisual() {
   return (
     <svg viewBox="0 0 200 160" className="w-full h-full">
-      {/* Central node */}
       <circle cx="100" cy="80" r="12" fill="currentColor">
         <animate attributeName="r" values="12;14;12" dur="2s" repeatCount="indefinite" />
       </circle>
       
-      {/* Orbiting nodes */}
       {[0, 1, 2, 3, 4, 5].map((i) => {
         const angle = (i * 60) * (Math.PI / 180);
         const radius = 50;
         return (
           <g key={i}>
-            {/* Connection line */}
             <line
               x1="100"
               y1="80"
@@ -39,7 +36,6 @@ function AIVisual() {
               />
             </line>
             
-            {/* Outer node */}
             <circle
               cx={100 + Math.cos(angle) * radius}
               cy={80 + Math.sin(angle) * radius}
@@ -132,12 +128,10 @@ function FeatureCard({ feature, index }: { feature: FeatureItem; index: number }
       style={{ transitionDelay: `${index * 100}ms` }}
     >
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 py-8 lg:py-10 border-b border-foreground/10">
-        {/* Number */}
         <div className="shrink-0">
           <span className="font-mono text-sm text-muted-foreground">{feature.number}</span>
         </div>
         
-        {/* Content */}
         <div className="flex-1 grid lg:grid-cols-2 gap-8 items-start">
           <div>
             <h3 className="text-3xl lg:text-4xl font-display mb-4 group-hover:translate-x-2 transition-transform duration-500">
@@ -159,7 +153,6 @@ function FeatureCard({ feature, index }: { feature: FeatureItem; index: number }
             </ul>
           </div>
           
-          {/* Visual */}
           <div className="flex justify-center lg:justify-end">
             <div className="w-48 h-40 text-foreground">
               <AnimatedVisual type={feature.visual} />
@@ -206,7 +199,6 @@ export function FeaturesSection({
       }
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        {/* Header */}
         <div className={isPage ? "mb-12 lg:mb-16" : "mb-8 lg:mb-10"}>
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
             <span className="w-8 h-px bg-foreground/30" />
@@ -249,7 +241,6 @@ export function FeaturesSection({
           ) : null}
         </div>
 
-        {/* Liste */}
         <div>
           {features.map((feature, index) => (
             <FeatureCard key={feature.number} feature={feature} index={index} />

@@ -1,6 +1,5 @@
 "use client";
 
-// Parked: same-avatar round-trip beam. Not mounted on the public landing.
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { motion } from "motion/react";
 import { IdleTalkerBubble } from "@/components/landing/idle-talker-bubble";

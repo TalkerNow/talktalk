@@ -43,7 +43,6 @@ export function AnimatedWave() {
           const px = (x + 0.5) * (rect.width / cols);
           const py = (y + 0.5) * (rect.height / rows);
 
-          // Multiple wave interference
           const wave1 = Math.sin(x * 0.2 + time * 2) * Math.cos(y * 0.15 + time);
           const wave2 = Math.sin((x + y) * 0.1 + time * 1.5);
           const wave3 = Math.cos(x * 0.1 - y * 0.1 + time * 0.8);

@@ -1,4 +1,3 @@
-/** Locked X/Twitter handle. Always emitted. A valid NEXT_PUBLIC_TWITTER_SITE may override it. */
 export const DEFAULT_TWITTER_SITE = "@TalkerNow";
 
 export function twitterSiteFromEnv(

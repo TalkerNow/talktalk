@@ -14,11 +14,6 @@ export function resetChatDialogue(els: ChatEls) {
   gsap.set([els.user, els.typing, els.reply], { autoAlpha: 0, y: 10 });
 }
 
-/**
- * Greeting is already on screen. Holds each line long enough to read,
- * then returns the absolute time when the reply has had air.
- * Sequence: greeting → visitor → typing → Talker reply (no invite chips).
- */
 export function addChatDialogue(
   tl: gsap.core.Timeline,
   els: ChatEls,
@@ -47,7 +42,6 @@ export function addChatDialogue(
   tl.to(typing, { autoAlpha: 0, duration: 0.2 }, t);
   t += 0.15;
   tl.to(reply, { autoAlpha: 1, y: 0, duration: 0.4 }, t);
-  // Longer hold: install instructions need time to read.
   t += 6.8;
 
   return t;

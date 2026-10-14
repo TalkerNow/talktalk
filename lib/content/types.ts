@@ -1,7 +1,3 @@
-/**
- * Landing fields for v1 (in code) and the same shape to fetch from Sanity later.
- * Expected Sanity type: `landingPage` (singleton).
- */
 export type NavProductItem = {
   title: string;
   subtitle: string;

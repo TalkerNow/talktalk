@@ -50,9 +50,6 @@ function useShowFreeBadge() {
   useEffect(() => {
     const paid = new URLSearchParams(window.location.search).get("widget") === "paid";
     if (!paid) return;
-    // The static page is the free window. The paid preview query is applied
-    // after hydration so the server markup still matches.
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only preview query
     setShow(false);
   }, []);
 
@@ -205,7 +202,6 @@ function DemoLlmChat({
       try {
         data = (await response.json()) as typeof data;
       } catch {
-        /* keep empty */
       }
       const reply = (data.reply || data.message || data.text || "").trim();
       applyBot(reply || t.bubble.fallback);

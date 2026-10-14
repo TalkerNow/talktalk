@@ -1,8 +1,4 @@
 <?php
-/**
- * CLI checks for crawl facts, five families, confirm-first QCM, and scan payload.
- * No WordPress bootstrap: mocks the few WP helpers the crawl class uses.
- */
 
 define( 'ABSPATH', sys_get_temp_dir() . '/' );
 
