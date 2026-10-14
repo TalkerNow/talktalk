@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { useTalker } from "./provider";
 import { useTalkerTranscript } from "./use-transcript";
@@ -44,19 +44,24 @@ export function TalkerChat({
   );
 }
 
+function subscribePaidPreview() {
+  return () => {};
+}
+
+function freeBadgeFromLocation() {
+  return new URLSearchParams(window.location.search).get("widget") !== "paid";
+}
+
+function freeBadgeDuringRender() {
+  return true;
+}
+
 function useShowFreeBadge() {
-  const [show, setShow] = useState(true);
-
-  useEffect(() => {
-    const paid = new URLSearchParams(window.location.search).get("widget") === "paid";
-    if (!paid) return;
-    // The static page is the free window. The paid preview query is applied
-    // after hydration so the server markup still matches.
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only preview query
-    setShow(false);
-  }, []);
-
-  return show;
+  return useSyncExternalStore(
+    subscribePaidPreview,
+    freeBadgeFromLocation,
+    freeBadgeDuringRender,
+  );
 }
 
 function ChatShell({
@@ -205,7 +210,6 @@ function DemoLlmChat({
       try {
         data = (await response.json()) as typeof data;
       } catch {
-        /* keep empty */
       }
       const reply = (data.reply || data.message || data.text || "").trim();
       applyBot(reply || t.bubble.fallback);

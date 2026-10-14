@@ -1,10 +1,4 @@
 <?php
-/**
- * Public site: visitor bubble only. WP-Admin: gérant bubble (not a form).
- * The n8n webhook URL is never exposed to the browser.
- *
- * @package TalkerNow
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,7 +16,7 @@ class Talker_Now_Widget {
 	}
 
 	public static function enqueue_admin() {
-		if ( ! talker_now_is_manager() ) {
+		if ( ! talker_now_can_manage_options() ) {
 			return;
 		}
 		self::enqueue( 'admin' );

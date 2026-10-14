@@ -10,7 +10,6 @@ import type { Messages } from "@/lib/i18n";
 type PlanCopy = Messages["pricing"]["plans"][number];
 type AgencySites = 3 | 10;
 
-/** Published grid. Agency 3-site annual is 49 € (HARD 2026-09-26). Agency monthly stays as last published — HARD did not set a new monthly. */
 const PLAN_PRICES = {
   starter: { monthly: 0, annual: 0, popular: false },
   pro: { monthly: 35, annual: 29, popular: true },
@@ -18,7 +17,6 @@ const PLAN_PRICES = {
   agency10: { monthly: 119, annual: 99, popular: false },
 } as const;
 
-/** Option Sans badge — JF 2026-10-12. Annual billing 9,99 €/mo, monthly billing 12,99 €/mo. Does not raise the Starter cap. */
 const BADGE_OPTION = { monthly: "12,99", annual: "9,99" } as const;
 
 const SHINE_KEYS = new Set(["starter", "agency"]);

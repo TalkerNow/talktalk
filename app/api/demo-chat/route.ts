@@ -14,7 +14,6 @@ function fallbackResponse(status = 503) {
   );
 }
 
-/** Preview-only fallback so this branch works before DEMO_CHAT_WEBHOOK is set on Vercel. Never used in production. */
 const PREVIEW_WEBHOOK =
   "https://static.58.65.28.2.clients.your-server.de/webhook/talker-demo-0e81";
 
@@ -119,7 +118,6 @@ export async function POST(request: Request) {
     try {
       data = raw ? JSON.parse(raw) : null;
     } catch {
-      /* keep raw string */
     }
 
     if (!response.ok) {
@@ -127,7 +125,6 @@ export async function POST(request: Request) {
       return fallbackResponse(response.status === 400 ? 400 : 503);
     }
 
-    // {"text":""} is success until Gemini is keyed — do not invent a reply.
     const reply = stripTags(extractReply(data));
     return Response.json(
       { reply, text: reply, message: reply },

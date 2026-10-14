@@ -6,7 +6,7 @@ import {
   CONSENT_EVENT,
   GA_MEASUREMENT_ID,
   disableAnalytics,
-  enableAnalytics,
+  queueAnalytics,
   readConsent,
 } from "@/lib/consent";
 
@@ -17,7 +17,7 @@ export function GoogleAnalytics() {
     const apply = () => {
       const analytics = readConsent()?.analytics === true;
       if (analytics) {
-        enableAnalytics();
+        queueAnalytics();
         setEnabled(true);
         return;
       }

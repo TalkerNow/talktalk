@@ -1,13 +1,3 @@
-/**
- * Reference schema for a future Sanity Studio.
- * Not deployed from this repo. Fields match `lib/content/types.ts`
- * and `lib/content/landing.ts`.
- *
- * When you add a Studio:
- * 1. Copy this type into the Studio schema
- * 2. Publish a singleton `landingPage`
- * 3. `loadLandingContent()` will pick it up over the in-code fallback
- */
 export const landingPageSchemaReference = {
   name: "landingPage",
   title: "Page d’accueil",

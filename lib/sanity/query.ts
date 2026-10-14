@@ -1,9 +1,5 @@
 import type { LandingContent } from "@/lib/content/types";
 
-/**
- * Same fields as `lib/content/landing.ts`.
- * Publish a `landingPage` singleton in Sanity to override the in-code copy.
- */
 export const landingPageQuery = `*[_type == "landingPage"][0]{
   banner,
   heroTitle,

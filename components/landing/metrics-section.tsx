@@ -71,7 +71,6 @@ export function MetricsSection() {
   return (
     <section id="studio" ref={sectionRef} className="relative py-12 lg:py-16 border-y border-foreground/10">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
           <div>
             <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
@@ -98,7 +97,6 @@ export function MetricsSection() {
           </div>
         </div>
         
-        {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-foreground/10">
           {metrics.map((metric, index) => (
             <div

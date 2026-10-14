@@ -46,7 +46,7 @@ class Talker_Now_REST {
 
 		$claimed = isset( $body['actor'] ) ? sanitize_key( (string) $body['actor'] ) : 'visitor';
 		$surface = isset( $body['surface'] ) ? sanitize_key( (string) $body['surface'] ) : 'public';
-		$actor   = ( 'manager' === $claimed && 'admin' === $surface && talker_now_is_manager() ) ? 'manager' : 'visitor';
+		$actor   = ( 'manager' === $claimed && 'admin' === $surface && talker_now_can_manage_options() ) ? 'manager' : 'visitor';
 
 		if ( 'manager' === $actor ) {
 			return self::manager_message( $intent, $message, $session );
@@ -128,9 +128,6 @@ class Talker_Now_REST {
 	}
 
 	/**
-	 * Gérant path: scan visual while crawling, then a fact-based QCM.
-	 * Never the visitor contact stub.
-	 *
 	 * @param string $intent
 	 * @param string $message
 	 * @param string $session
@@ -165,8 +162,6 @@ class Talker_Now_REST {
 	}
 
 	/**
-	 * Visitor-facing copy: vouvoiement, no product name, no quota, no backstage.
-	 *
 	 * @param array<string, string> $contact
 	 */
 	private static function stub_reply( $contact, $message ) {

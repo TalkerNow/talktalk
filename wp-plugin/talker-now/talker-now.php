@@ -27,11 +27,6 @@ require_once TALKER_NOW_DIR . 'includes/class-rest.php';
 require_once TALKER_NOW_DIR . 'includes/class-widget.php';
 
 /**
- * Defaults. Widget is on at activate. No admin form.
- * Plan stays free until a licence writes otherwise. Webhook is Talker-side later.
- * hide_badge is per site and does not change the plan: it hides the free badge
- * and the "Talker Now" chip only. privacy_url overrides the WP policy URL when set.
- *
  * @return array<string, string>
  */
 function talker_now_defaults() {
@@ -65,8 +60,6 @@ function talker_now_get_settings() {
 }
 
 /**
- * Truthy option values. Does not touch plan.
- *
  * @param mixed $value
  * @return bool
  */
@@ -75,9 +68,6 @@ function talker_now_flag_on( $value ) {
 }
 
 /**
- * Privacy policy link for the widget footer.
- * Site setting, then the WordPress policy page, then talker.now.
- *
  * @param array<string, string>|null $settings
  * @return string
  */
@@ -97,38 +87,19 @@ function talker_now_privacy_policy_url( $settings = null ) {
 	return 'https://talker.now/confidentialite';
 }
 
-/**
- * Site URL = this WordPress. Never asked in a form.
- *
- * @return string
- */
 function talker_now_home_url() {
 	return home_url( '/' );
 }
 
-/**
- * Contact email = WordPress admin_email. Never asked in a form.
- *
- * @return string
- */
 function talker_now_admin_email() {
 	return sanitize_email( (string) get_option( 'admin_email', '' ) );
 }
 
-/**
- * Person is in WP-Admin: that is the gérant *surface* (cookie + capability).
- * The logged-in display name / admin_email is not the company director.
- *
- * @return bool
- */
-function talker_now_is_manager() {
+function talker_now_can_manage_options() {
 	return is_user_logged_in() && current_user_can( 'manage_options' );
 }
 
 /**
- * Site-read: this plugin reads this WordPress (`home_url`) only, extracts facts,
- * and classifies one of five intensity families. Not a generic QCM. No visitor path.
- *
  * @return array<string, string>
  */
 function talker_now_site_read() {

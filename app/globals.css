@@ -139,8 +139,7 @@
   }
 }
 
-/* Live demo panel: dvw + safe-area so iPhone 16 Pro Max does not overflow
-   the right edge, and folded Flip-class widths hug that edge. */
+/* iOS 100vw includes the scrollbar; safe-area insets cover the notch. */
 .talker-demo-panel {
   --talker-panel-gutter-left: max(12px, env(safe-area-inset-left, 0px));
   --talker-panel-gutter-right: max(12px, env(safe-area-inset-right, 0px));
@@ -320,7 +319,6 @@
   transform: scaleX(1);
 }
 
-/* Card chrome must never paint the pill. Only the button's own hover/focus. */
 .pricing-card:hover .btn-iridescent:not(:hover):not(:focus-visible)::before,
 .pricing-card:focus-within .btn-iridescent:not(:hover):not(:focus-visible)::before {
   transform: scaleX(0);

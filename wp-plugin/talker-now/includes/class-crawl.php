@@ -1,11 +1,4 @@
 <?php
-/**
- * Same-origin read of this WordPress. Extracts facts, classifies one of five
- * intensity families, then the gérant QCM is generated from those facts.
- * Visitors never use this. Not a generic questionnaire. Not an EOR prompt.
- *
- * @package TalkerNow
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -88,9 +81,6 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * Fetch this WordPress home_url, then a few same-origin pages named like
-	 * services / horaires / contact. Safe to call twice.
-	 *
 	 * @return array<string, mixed>
 	 */
 	public static function run() {
@@ -144,8 +134,6 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * Open-panel payload: scan wheel while running, otherwise scanned + first QCM.
-	 *
 	 * @return array<string, mixed>
 	 */
 	public static function hello() {
@@ -181,8 +169,6 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * One gérant answer. Confirm, reclass, frame, or fact questions.
-	 *
 	 * @param string $message
 	 * @return array<string, mixed>
 	 */
@@ -238,7 +224,7 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * @deprecated Use confirm_question(). Kept as a named entry for older calls.
+	 * @deprecated Use confirm_crawled_identity().
 	 *
 	 * @param array<string, mixed> $crawl
 	 * @return string
@@ -249,17 +235,15 @@ class Talker_Now_Crawl {
 			$framing = self::framing_questions( $facts );
 			return $framing[0];
 		}
-		return self::confirm_question( (string) $crawl['family'], $facts );
+		return self::confirm_crawled_identity( (string) $crawl['family'], $facts );
 	}
 
 	/**
-	 * Identity first — crawled names, never the WP account.
-	 *
 	 * @param string               $family
 	 * @param array<string, mixed> $facts
 	 * @return string
 	 */
-	public static function confirm_question( $family, $facts ) {
+	public static function confirm_crawled_identity( $family, $facts ) {
 		$people  = self::people_list( $facts );
 		$city    = trim( (string) $facts['city'] );
 		$where   = '' !== $city ? ' à ' . $city : '';
@@ -306,11 +290,9 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * 4–8 questions from crawled facts for this family. Not a stock métier form.
-	 *
 	 * @param string               $family
 	 * @param array<string, mixed> $facts
-	 * @param string               $spoken extra words from the gérant (reclass / framing)
+	 * @param string               $spoken
 	 * @return array<int, string>
 	 */
 	public static function questions_for( $family, $facts, $spoken = '' ) {
@@ -413,7 +395,7 @@ class Talker_Now_Crawl {
 		$crawl['questions']        = array();
 		$crawl['q_index']          = 0;
 		$crawl['family_confirmed'] = false;
-		$crawl['qcm_question']     = self::confirm_question( (string) $crawl['family'], $crawl['facts'] );
+		$crawl['qcm_question']     = self::confirm_crawled_identity( (string) $crawl['family'], $crawl['facts'] );
 		self::save( $crawl );
 		return $crawl;
 	}
@@ -440,7 +422,7 @@ class Talker_Now_Crawl {
 		}
 
 		if ( 'confirm' === $phase && '' === $question ) {
-			$question = self::confirm_question( (string) $crawl['family'], $crawl['facts'] );
+			$question = self::confirm_crawled_identity( (string) $crawl['family'], $crawl['facts'] );
 		}
 		if ( in_array( $phase, array( 'frame', 'questions' ), true ) && '' === $question ) {
 			$i = (int) $crawl['q_index'];
@@ -649,8 +631,6 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * Technician path: identify the real gérant, never write in the installer voice.
-	 *
 	 * @param array<string, mixed> $crawl
 	 * @param string               $message
 	 * @return array<string, mixed>
@@ -797,8 +777,6 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * Rewrite a client QCM line so it is not in the technician's mouth.
-	 *
 	 * @param string               $question
 	 * @param array<string, mixed> $facts
 	 * @return string
@@ -827,8 +805,6 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * Crawled people only. WP display name may reorder, never invent.
-	 *
 	 * @param array<string, mixed> $facts
 	 * @return array<int, string>
 	 */
@@ -850,7 +826,7 @@ class Talker_Now_Crawl {
 	 * @return array<int, string>
 	 */
 	public static function rank_people_by_hint( $people ) {
-		$hint = self::wp_identity_hint();
+		$hint = self::wp_account_hint();
 		$hn   = self::norm( $hint['name'] );
 		if ( '' === $hn || empty( $people ) ) {
 			return array_values( $people );
@@ -872,11 +848,9 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * Weak hint only. Never treat as the gérant identity.
-	 *
 	 * @return array{name:string,email:string}
 	 */
-	public static function wp_identity_hint() {
+	public static function wp_account_hint() {
 		$hint = array(
 			'name'  => '',
 			'email' => '',
@@ -992,7 +966,7 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * @param string $haystack lowercase-ish text
+	 * @param string $haystack
 	 * @return string
 	 */
 	public static function classify_family( $haystack ) {
@@ -1148,7 +1122,7 @@ class Talker_Now_Crawl {
 		$facts['contact']     = self::find_contact( $excerpt . ' ' . $description );
 		$facts['services']    = self::find_services( $parsed, $haystack );
 		$facts['societe']     = self::clip( $h1 ? $h1 : $title, 80 );
-		$facts['people']      = self::find_people( $parsed );
+		$facts['people']      = self::people_from_page_text( $parsed );
 		return $facts;
 	}
 
@@ -1526,8 +1500,6 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * High-ticket / conseil. Not an EOR questionnaire.
-	 *
 	 * @param array<string, mixed> $facts
 	 * @return array<int, string>
 	 */
@@ -1619,12 +1591,10 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * Names from À propos / équipe / footer. Never WP display_name or admin_email.
-	 *
 	 * @param array<string, string> $parsed
 	 * @return array<int, string>
 	 */
-	public static function find_people( $parsed ) {
+	public static function people_from_page_text( $parsed ) {
 		$chunks = array(
 			isset( $parsed['footer'] ) ? (string) $parsed['footer'] : '',
 			isset( $parsed['headings'] ) ? (string) $parsed['headings'] : '',

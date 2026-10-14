@@ -65,7 +65,7 @@ export function writeConsent(analytics: boolean): ConsentChoice {
   try {
     window.localStorage.setItem(CONSENT_STORAGE_KEY, raw);
   } catch {
-    // Cookie below still persists the choice.
+    // Storage can throw in private modes. The cookie below still stores the choice.
   }
   const secure = window.location.protocol === "https:" ? "; Secure" : "";
   document.cookie = `${CONSENT_COOKIE}=${encodeURIComponent(raw)}; Path=/; Max-Age=${CONSENT_MAX_AGE}; SameSite=Lax${secure}`;
@@ -90,8 +90,7 @@ function installGtag() {
   };
 }
 
-/** Queue a GA4 page view. The gtag script itself is mounted only after this runs. */
-export function enableAnalytics() {
+export function queueAnalytics() {
   setAnalyticsDisabled(false);
   installGtag();
   const now = Date.now();
