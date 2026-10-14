@@ -57,7 +57,6 @@ export function InstallerVignette() {
           const arrow = q('[data-v="cursor-arrow"]');
           const hand = q('[data-v="cursor-hand"]');
           const zip = q('[data-v="zip"]');
-          const chips = q('[data-v="chat-chips"]');
           const user = q('[data-v="chat-user"]');
           const typing = q('[data-v="chat-typing"]');
           const reply = q('[data-v="chat-reply"]');
@@ -100,8 +99,6 @@ export function InstallerVignette() {
               autoAlpha: 0,
             });
             resetChatDialogue({
-              chips,
-              chipTalker: q('[data-v="chip-talker"]'),
               user,
               typing,
               reply,
@@ -168,8 +165,6 @@ export function InstallerVignette() {
             gsap.set(hand, { autoAlpha: 0 });
             gsap.set(zip, { autoAlpha: 0, x: 0, y: 0, scale: 1 });
             resetChatDialogue({
-              chips,
-              chipTalker: q('[data-v="chip-talker"]'),
               user,
               typing,
               reply,
@@ -199,13 +194,11 @@ export function InstallerVignette() {
           const chatDone = addChatDialogue(
             tl,
             {
-              chips,
-              chipTalker: q('[data-v="chip-talker"]'),
               user,
               typing,
               reply,
             },
-            { cursor: { el: cursor, chipAt: chatAt } },
+            { cursor: { el: cursor } },
           );
           tl.addLabel("download", chatDone);
 

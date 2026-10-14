@@ -40,10 +40,6 @@ export function ChatPanel({
         >
           {copy.greeting}
         </p>
-        <div data-v="chat-chips" className="hidden" aria-hidden>
-          <span data-v="chip-talker">{copy.chipTalker}</span>
-          <span>{copy.chipQuestion}</span>
-        </div>
         <p
           data-v="chat-user"
           className={cn(

@@ -56,7 +56,7 @@
   var i18n = cfg.i18n || {};
   var isManager = Boolean(cfg.manager && cfg.surface === "admin");
   var hideBadge = Boolean(cfg.hideBadge);
-  var root = el("div", "talker-now-root is-beat-a");
+  var root = el("div", "talker-now-root is-beat-bubble");
   if (isManager) {
     root.classList.add("is-admin");
   }
@@ -269,10 +269,15 @@
     launcher.setAttribute("aria-expanded", panelOpen || show ? "true" : "false");
   }
 
-  function setBeat(name) {
-    root.classList.remove("is-beat-a", "is-beat-b", "is-beat-c", "is-beat-d");
-    if (name) {
-      root.classList.add("is-beat-" + name);
+  var BEAT_BUBBLE = "is-beat-bubble";
+  var BEAT_RINGS = "is-beat-rings";
+  var BEAT_UNREAD = "is-beat-unread";
+  var BEAT_CHIPS = "is-beat-chips";
+
+  function setBeat(beat) {
+    root.classList.remove(BEAT_BUBBLE, BEAT_RINGS, BEAT_UNREAD, BEAT_CHIPS);
+    if (beat) {
+      root.classList.add(beat);
     }
   }
 
@@ -322,7 +327,7 @@
     setCalm(true);
     launcherWrap.classList.add("is-shown");
     hideAllChips();
-    setBeat("a");
+    setBeat(BEAT_BUBBLE);
     syncChrome();
   }
 
@@ -332,14 +337,14 @@
     unreadOn = true;
     badge.classList.add("is-on");
     launcherWrap.classList.add("is-unread");
-    setBeat("c");
+    setBeat(BEAT_UNREAD);
     hideAllChips();
     syncChrome();
   }
 
   function revealChips() {
     chipsRevealed = true;
-    setBeat("d");
+    setBeat(BEAT_CHIPS);
     var i = 0;
     function nextChip() {
       if (panelOpen || !unreadOn) {
@@ -379,7 +384,7 @@
         return;
       }
       stopHalo();
-      setBeat("a");
+      setBeat(BEAT_BUBBLE);
       attractTimer = setTimeout(function () {
         if (panelOpen) {
           return;
@@ -407,7 +412,7 @@
       stopUnread();
       hideAllChips();
       setCalm(true);
-      setBeat("b");
+      setBeat(BEAT_RINGS);
       halo.classList.add("is-pulse");
       attractBadgeTimer = setTimeout(afterWave, WAVE_MS);
     }, A_HOLD_MS);

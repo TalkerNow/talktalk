@@ -65,6 +65,7 @@ export function writeConsent(analytics: boolean): ConsentChoice {
   try {
     window.localStorage.setItem(CONSENT_STORAGE_KEY, raw);
   } catch {
+    // Storage can throw in private modes. The cookie below still stores the choice.
   }
   const secure = window.location.protocol === "https:" ? "; Secure" : "";
   document.cookie = `${CONSENT_COOKIE}=${encodeURIComponent(raw)}; Path=/; Max-Age=${CONSENT_MAX_AGE}; SameSite=Lax${secure}`;
@@ -89,7 +90,7 @@ function installGtag() {
   };
 }
 
-export function enableAnalytics() {
+export function queueAnalytics() {
   setAnalyticsDisabled(false);
   installGtag();
   const now = Date.now();

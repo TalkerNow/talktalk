@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { TalkerWordmark } from "@/components/brand/mark";
 import { useTalker } from "./provider";
 import { useTalkerTranscript } from "./use-transcript";
@@ -44,16 +44,24 @@ export function TalkerChat({
   );
 }
 
+function subscribePaidPreview() {
+  return () => {};
+}
+
+function freeBadgeFromLocation() {
+  return new URLSearchParams(window.location.search).get("widget") !== "paid";
+}
+
+function freeBadgeDuringRender() {
+  return true;
+}
+
 function useShowFreeBadge() {
-  const [show, setShow] = useState(true);
-
-  useEffect(() => {
-    const paid = new URLSearchParams(window.location.search).get("widget") === "paid";
-    if (!paid) return;
-    setShow(false);
-  }, []);
-
-  return show;
+  return useSyncExternalStore(
+    subscribePaidPreview,
+    freeBadgeFromLocation,
+    freeBadgeDuringRender,
+  );
 }
 
 function ChatShell({

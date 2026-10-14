@@ -16,7 +16,7 @@ class Talker_Now_Widget {
 	}
 
 	public static function enqueue_admin() {
-		if ( ! talker_now_is_manager() ) {
+		if ( ! talker_now_can_manage_options() ) {
 			return;
 		}
 		self::enqueue( 'admin' );

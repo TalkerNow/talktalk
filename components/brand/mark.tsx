@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-const BUBBLE_VIEWBOX = "-520 -470 1040 1080";
+const TIGHT_BUBBLE_VIEWBOX = "-520 -470 1040 1080";
 
 type MarkProps = {
   className?: string;
@@ -14,7 +14,7 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox={BUBBLE_VIEWBOX}
+        viewBox={TIGHT_BUBBLE_VIEWBOX}
         width="1em"
         height="1em"
         role="img"
@@ -33,7 +33,7 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={BUBBLE_VIEWBOX}
+      viewBox={TIGHT_BUBBLE_VIEWBOX}
       width="1em"
       height="1em"
       role="img"
@@ -75,7 +75,7 @@ export function TalkerWordmark({
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox={BUBBLE_VIEWBOX}
+        viewBox={TIGHT_BUBBLE_VIEWBOX}
         width="1em"
         height="1em"
         role="img"

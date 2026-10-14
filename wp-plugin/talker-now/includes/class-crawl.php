@@ -224,7 +224,7 @@ class Talker_Now_Crawl {
 	}
 
 	/**
-	 * @deprecated Use confirm_question().
+	 * @deprecated Use confirm_crawled_identity().
 	 *
 	 * @param array<string, mixed> $crawl
 	 * @return string
@@ -235,7 +235,7 @@ class Talker_Now_Crawl {
 			$framing = self::framing_questions( $facts );
 			return $framing[0];
 		}
-		return self::confirm_question( (string) $crawl['family'], $facts );
+		return self::confirm_crawled_identity( (string) $crawl['family'], $facts );
 	}
 
 	/**
@@ -243,7 +243,7 @@ class Talker_Now_Crawl {
 	 * @param array<string, mixed> $facts
 	 * @return string
 	 */
-	public static function confirm_question( $family, $facts ) {
+	public static function confirm_crawled_identity( $family, $facts ) {
 		$people  = self::people_list( $facts );
 		$city    = trim( (string) $facts['city'] );
 		$where   = '' !== $city ? ' à ' . $city : '';
@@ -395,7 +395,7 @@ class Talker_Now_Crawl {
 		$crawl['questions']        = array();
 		$crawl['q_index']          = 0;
 		$crawl['family_confirmed'] = false;
-		$crawl['qcm_question']     = self::confirm_question( (string) $crawl['family'], $crawl['facts'] );
+		$crawl['qcm_question']     = self::confirm_crawled_identity( (string) $crawl['family'], $crawl['facts'] );
 		self::save( $crawl );
 		return $crawl;
 	}
@@ -422,7 +422,7 @@ class Talker_Now_Crawl {
 		}
 
 		if ( 'confirm' === $phase && '' === $question ) {
-			$question = self::confirm_question( (string) $crawl['family'], $crawl['facts'] );
+			$question = self::confirm_crawled_identity( (string) $crawl['family'], $crawl['facts'] );
 		}
 		if ( in_array( $phase, array( 'frame', 'questions' ), true ) && '' === $question ) {
 			$i = (int) $crawl['q_index'];
@@ -826,7 +826,7 @@ class Talker_Now_Crawl {
 	 * @return array<int, string>
 	 */
 	public static function rank_people_by_hint( $people ) {
-		$hint = self::wp_identity_hint();
+		$hint = self::wp_account_hint();
 		$hn   = self::norm( $hint['name'] );
 		if ( '' === $hn || empty( $people ) ) {
 			return array_values( $people );
@@ -850,7 +850,7 @@ class Talker_Now_Crawl {
 	/**
 	 * @return array{name:string,email:string}
 	 */
-	public static function wp_identity_hint() {
+	public static function wp_account_hint() {
 		$hint = array(
 			'name'  => '',
 			'email' => '',
@@ -1122,7 +1122,7 @@ class Talker_Now_Crawl {
 		$facts['contact']     = self::find_contact( $excerpt . ' ' . $description );
 		$facts['services']    = self::find_services( $parsed, $haystack );
 		$facts['societe']     = self::clip( $h1 ? $h1 : $title, 80 );
-		$facts['people']      = self::find_people( $parsed );
+		$facts['people']      = self::people_from_page_text( $parsed );
 		return $facts;
 	}
 
@@ -1594,7 +1594,7 @@ class Talker_Now_Crawl {
 	 * @param array<string, string> $parsed
 	 * @return array<int, string>
 	 */
-	public static function find_people( $parsed ) {
+	public static function people_from_page_text( $parsed ) {
 		$chunks = array(
 			isset( $parsed['footer'] ) ? (string) $parsed['footer'] : '',
 			isset( $parsed['headings'] ) ? (string) $parsed['headings'] : '',

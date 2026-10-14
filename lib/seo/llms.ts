@@ -1,7 +1,6 @@
-const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://talker.now").replace(
-  /\/$/,
-  "",
-);
+import { siteOrigin } from "../site-url.mjs";
+
+const origin = siteOrigin();
 
 export const llmsTxt = `# Talker
 

@@ -139,6 +139,7 @@
   }
 }
 
+/* iOS 100vw includes the scrollbar; safe-area insets cover the notch. */
 .talker-demo-panel {
   --talker-panel-gutter-left: max(12px, env(safe-area-inset-left, 0px));
   --talker-panel-gutter-right: max(12px, env(safe-area-inset-right, 0px));

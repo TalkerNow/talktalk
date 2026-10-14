@@ -103,7 +103,7 @@ foreach ( $fixtures as $name => $html ) {
 	}
 	tn_assert( $family === $name, "$name classified as $name (got {$family})" );
 	tn_assert( ! $thin, "$name is not thin" );
-	$confirm = Talker_Now_Crawl::confirm_question( $family, $facts );
+	$confirm = Talker_Now_Crawl::confirm_crawled_identity( $family, $facts );
 	$confirms[ $name ] = $confirm;
 	$qs = Talker_Now_Crawl::questions_for( $family, $facts );
 	$sequences[ $name ] = $qs;
@@ -189,7 +189,7 @@ $widget = file_get_contents( dirname( __DIR__ ) . '/wp-plugin/talker-now/include
 $boot   = file_get_contents( dirname( __DIR__ ) . '/wp-plugin/talker-now/talker-now.php' );
 tn_assert( false !== strpos( $widget, 'Bonjour, vous me voyez ? je suis là, cliquez-moi.' ), "admin chip unchanged" );
 tn_assert( false !== strpos( $css, 'min-width: 13.5rem' ) && false !== strpos( $js, 'createElement("br")' ), "hello chip wraps on 2–3 lines, not one word per line" );
-tn_assert( false !== strpos( $js, 'function playAttractSequence' ) && false !== strpos( $js, 'var WAVE_MS = 1500' ) && false !== strpos( $js, 'var BADGE_ALONE_MS = 1600' ) && false !== strpos( $js, 'var CHIP_STAGGER_MS = 1000' ), "both surfaces share A bubble, B rings, C the 1 alone, D chips one by one" );
+tn_assert( false !== strpos( $js, 'function playAttractSequence' ) && false !== strpos( $js, 'var WAVE_MS = 1500' ) && false !== strpos( $js, 'var BADGE_ALONE_MS = 1600' ) && false !== strpos( $js, 'var CHIP_STAGGER_MS = 1000' ), "both surfaces share bubble, rings, unread mark, then chips" );
 tn_assert( false === strpos( $js, 'playAdminAttract' ) && false === strpos( $js, 'ADMIN_HALO_MS' ) && false === strpos( $js, 'ADMIN_BADGE_MS' ), "old admin-only stagger is gone" );
 tn_assert( false === strpos( $js, 'halo.classList.toggle("is-on"' ) && false === strpos( $js, 'attractOn' ) && false === strpos( $js, 'scheduleAttract' ), "halo is never flipped on with the badge; bubble is not delayed off-screen" );
 $seq = '';
@@ -200,11 +200,11 @@ tn_assert( '' !== $seq, "attract sequence function is parseable" );
 tn_assert( false !== strpos( $seq, 'halo.classList.add("is-pulse")' ) && false !== strpos( $seq, 'setTimeout(afterWave, WAVE_MS)' ), "rings start, then stop, before the 1" );
 tn_assert( false !== strpos( $seq, 'stopHalo()' ) && false !== strpos( $seq, 'showUnreadMark()' ) && strpos( $seq, 'stopHalo()' ) < strpos( $seq, 'showUnreadMark()' ), "red 1 only after the rings are gone" );
 tn_assert( false !== strpos( $js, 'setTimeout(afterBadgeAlone, BADGE_ALONE_MS)' ), "the 1 sits alone before any chip" );
-tn_assert( false !== strpos( $js, 'is-beat-a' ) && false !== strpos( $js, 'is-beat-b' ) && false !== strpos( $js, 'is-beat-c' ) && false !== strpos( $js, 'is-beat-d' ), "beats A–D are exclusive classes" );
+tn_assert( false !== strpos( $js, 'is-beat-bubble' ) && false !== strpos( $js, 'is-beat-rings' ) && false !== strpos( $js, 'is-beat-unread' ) && false !== strpos( $js, 'is-beat-chips' ), "beats are exclusive named classes" );
 tn_assert( false !== strpos( $js, 'chipsRevealed' ) && false !== strpos( $js, 'chip.classList.add("is-in")' ), "chips stay hidden until staggered in" );
 tn_assert( false === strpos( $css, 'talker-now-ripple' ) && false !== strpos( $css, 'talker-now-ring-out' ) && false !== strpos( $css, 'ease-out 1 forwards' ), "wave is 2–3 finite rings, not an infinite ripple" );
-tn_assert( false !== strpos( $css, '.talker-now-chip.is-in' ) && false !== strpos( $css, '.talker-now-root.is-beat-c .talker-now-chip' ), "CSS keeps chips off during A–C and the 1 off during the wave" );
-tn_assert( false !== strpos( $css, '.talker-now-root:not(.is-beat-b) .talker-now-ring' ), "rings cannot leak outside beat B" );
+tn_assert( false !== strpos( $css, '.talker-now-chip.is-in' ) && false !== strpos( $css, '.talker-now-root.is-beat-unread .talker-now-chip' ), "CSS keeps chips off during bubble, rings, and unread" );
+tn_assert( false !== strpos( $css, '.talker-now-root:not(.is-beat-rings) .talker-now-ring' ), "rings cannot leak outside the rings beat" );
 tn_assert( false !== strpos( $css, '.talker-now-launcher-wrap.is-calm .talker-now-dot' ), "unread 1 sits on a calm bubble" );
 tn_assert( false !== strpos( $css, 'talker-now-badge-in' ), "the 1 still pops once the wave is gone" );
 tn_assert( false === strpos( $js, 'var CALM_MS' ) && false === strpos( $js, 'CHIP_STAGGER_MS = 240' ), "0.1.11 220ms/240ms dump timings are gone" );
@@ -213,18 +213,18 @@ tn_assert( false !== strpos( $boot, 'Poser une question' ) && false !== strpos( 
 $one = '<html><head><title>Cabinet dentaire Dupont à Lyon</title><meta name="description" content="Dentiste à Lyon. Doctolib. Lun-Ven 8h30-18h."></head><body><h1>Cabinet dentaire Dupont</h1><p>Soins, implants. 69003 Lyon.</p><footer>Dr Marie Dupont — dentiste à Lyon</footer></body></html>';
 $one_facts = Talker_Now_Crawl::extract_facts( Talker_Now_Crawl::parse( $one ) );
 tn_assert( in_array( 'Marie Dupont', $one_facts['people'], true ), "one person crawled from footer" );
-$one_q = Talker_Now_Crawl::confirm_question( 'medical', $one_facts );
+$one_q = Talker_Now_Crawl::confirm_crawled_identity( 'medical', $one_facts );
 tn_assert( 0 === strpos( $one_q, 'Vous êtes bien Marie Dupont' ), "one-name identity question" );
 tn_assert( false !== strpos( $one_q, 'Lyon' ) && false !== strpos( $one_q, 'j’installe pour quelqu’un d’autre' ), "one-name question has city and technician escape" );
 tn_assert( false === strpos( $one_q, 'Tech Webmaster' ), "crawled name wins over WP account" );
 
 $team = '<html><head><title>Cabinet dentaire à Lyon</title></head><body><h1>Cabinet dentaire</h1><h2>L’équipe</h2><h3>Marie Dupont</h3><h3>Jean Martin</h3><h3>Claire Bernard</h3><p>Dentiste à Lyon. Doctolib.</p></body></html>';
 $team_facts = Talker_Now_Crawl::extract_facts( Talker_Now_Crawl::parse( $team ) );
-$team_q = Talker_Now_Crawl::confirm_question( 'medical', $team_facts );
+$team_q = Talker_Now_Crawl::confirm_crawled_identity( 'medical', $team_facts );
 tn_assert( 0 === strpos( $team_q, 'Je vois ' ) && false !== strpos( $team_q, 'Marie Dupont' ) && false !== strpos( $team_q, 'Jean Martin' ), "two-or-three names listed from crawl" );
 tn_assert( false !== strpos( $team_q, 'c’est bien vous, ou quelqu’un d’autre' ), "multi-name asks which person" );
 
-$none_q = Talker_Now_Crawl::confirm_question( 'medical', Talker_Now_Crawl::extract_facts( Talker_Now_Crawl::parse( $fixtures['medical'] ) ) );
+$none_q = Talker_Now_Crawl::confirm_crawled_identity( 'medical', Talker_Now_Crawl::extract_facts( Talker_Now_Crawl::parse( $fixtures['medical'] ) ) );
 tn_assert( 0 === strpos( $none_q, 'Vous parlez pour' ) && false !== strpos( $none_q, 'posez le plugin' ), "no names: dirigeant vs prestataire" );
 
 tn_assert( Talker_Now_Crawl::is_technician( 'j’installe pour quelqu’un d’autre' ), "technician escape is detected" );

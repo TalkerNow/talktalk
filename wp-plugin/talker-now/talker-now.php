@@ -95,7 +95,7 @@ function talker_now_admin_email() {
 	return sanitize_email( (string) get_option( 'admin_email', '' ) );
 }
 
-function talker_now_is_manager() {
+function talker_now_can_manage_options() {
 	return is_user_logged_in() && current_user_can( 'manage_options' );
 }
 
