@@ -1,23 +1,30 @@
+import {
+  BUBBLE_DOTS,
+  BUBBLE_OUTLINE,
+  BUBBLE_STROKE,
+  BUBBLE_VIEWBOX,
+} from "@/components/brand/bubble";
+
 export function IdleTalkerBubble({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="-682.69 -622.02 1365.38 1365.38"
+      viewBox={BUBBLE_VIEWBOX}
       role="img"
       aria-hidden="true"
       className={className}
     >
       <path
-        d="M -93.33 396.27 A 466.65 400.00 0 1 0 -291.66 315.72 L -312.50 554.69 Z"
+        d={BUBBLE_OUTLINE}
         fill="#F7F6F4"
         stroke="#C43F17"
-        strokeWidth="66.70"
-        strokeLinejoin="miter"
-        strokeMiterlimit={10}
+        strokeWidth={BUBBLE_STROKE}
+        strokeLinejoin="round"
+        strokeLinecap="round"
       />
-      <circle cx="-163" cy="0" r="60" fill="#111111" />
-      <circle cx="0" cy="0" r="60" fill="#111111" />
-      <circle cx="163" cy="0" r="60" fill="#111111" />
+      {BUBBLE_DOTS.map((dot) => (
+        <circle key={dot.cx} cx={dot.cx} cy={dot.cy} r={dot.r} fill={dot.fill} />
+      ))}
     </svg>
   );
 }

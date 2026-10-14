@@ -144,7 +144,7 @@ export function InfrastructureSection() {
                       <div className="bg-[#111111] px-3 py-3 text-white">
                         <div className="flex flex-wrap items-center justify-between gap-2">
                           <span className="inline-flex items-center gap-1.5 text-[12px] leading-none">
-                            <TalkerMark filled className="h-3 w-3" />
+                            <TalkerMark className="h-3 w-3" />
                             <span>
                               <span className="font-bold">talker</span>
                               <span className="font-normal text-white/55">.now</span>
