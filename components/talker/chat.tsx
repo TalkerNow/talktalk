@@ -511,35 +511,22 @@ function Compose({
 
 function ChatFoot({ showBadge }: { showBadge: boolean }) {
   const { t } = useLocale();
+  if (!showBadge) return null;
   return (
     <div className="shrink-0 border-t border-foreground/8 bg-[#F7F6F4]">
-      {showBadge ? (
-        <p className="inline-flex w-full items-center justify-center gap-1.5 px-3 pt-2 font-mono text-[10px] tracking-wide text-[#6B6B73]">
-          <span
-            role="img"
-            aria-label={t.bubble.connected}
-            className="size-1.5 shrink-0 rounded-full bg-[#22c55e]"
-          />
-          <a
-            href={site.homepage}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-inherit underline-offset-2 hover:underline"
-          >
-            {t.bubble.poweredBy}
-          </a>
-        </p>
-      ) : null}
-      <p
-        className={
-          showBadge
-            ? "px-3 pt-1.5 pb-2 text-center text-[11px] leading-snug text-[#6B6B73]"
-            : "px-3 py-2 text-center text-[11px] leading-snug text-[#6B6B73]"
-        }
-      >
-        {t.bubble.privacyLead}{" "}
-        <a href="/confidentialite" className="underline underline-offset-2 hover:text-[#111111]">
-          {t.bubble.privacyLink}
+      <p className="inline-flex w-full items-center justify-center gap-1.5 px-3 py-2 font-mono text-[10px] tracking-wide text-[#6B6B73]">
+        <span
+          role="img"
+          aria-label={t.bubble.connected}
+          className="size-1.5 shrink-0 rounded-full bg-[#22c55e]"
+        />
+        <a
+          href={site.homepage}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-inherit underline-offset-2 hover:underline"
+        >
+          {t.bubble.poweredBy}
         </a>
       </p>
     </div>

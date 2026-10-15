@@ -89,7 +89,6 @@ class Talker_Now_Widget {
 				'greeting'    => $admin ? '' : $settings['greeting'],
 				'poweredBy'   => ( ! $admin && 'free' === $plan && ! $hide_badge ),
 				'hideBadge'   => $hide_badge,
-				'privacyUrl'  => talker_now_privacy_policy_url( $settings ),
 				'showContact' => ! $admin,
 				'invites'     => $invites,
 				'i18n'      => array(
@@ -110,8 +109,6 @@ class Talker_Now_Widget {
 					'scanned'        => __( 'J’ai parcouru votre site, on peut commencer le QCM.', 'talker-now' ),
 					'poweredBy'      => __( 'Powered by Talker · Créez le vôtre', 'talker-now' ),
 					'connected'      => __( 'connecté', 'talker-now' ),
-					'privacyLead'    => __( 'En discutant, vous acceptez la', 'talker-now' ),
-					'privacyLink'    => __( 'politique de confidentialité', 'talker-now' ),
 				),
 			)
 		);

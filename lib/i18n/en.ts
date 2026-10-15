@@ -432,8 +432,6 @@ export const en = {
     writing: "Talker is typing",
     poweredBy: "Powered by Talker · Create yours",
     connected: "connected",
-    privacyLead: "By chatting, you accept the",
-    privacyLink: "privacy policy",
     opener:
       "Hello — I'm here for your site. Tell me what you need, I'll point you the right way.",
     fallback:
