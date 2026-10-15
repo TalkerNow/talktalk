@@ -437,8 +437,6 @@ export const fr = {
     writing: "Talker écrit",
     poweredBy: "Powered by Talker · Créez le vôtre",
     connected: "connecté",
-    privacyLead: "En discutant, vous acceptez la",
-    privacyLink: "politique de confidentialité",
     opener:
       "Bonjour — je suis là pour votre site. Dites-moi ce que vous cherchez, je vous oriente.",
     fallback:

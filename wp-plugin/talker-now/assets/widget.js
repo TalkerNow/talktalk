@@ -156,8 +156,8 @@
     panel.appendChild(contact);
   }
   panel.appendChild(composer);
-  var foot = el("div", "talker-now-foot");
   if (cfg.poweredBy) {
+    var foot = el("div", "talker-now-foot");
     var powered = el("p", "talker-now-powered");
     powered.appendChild(
       el("span", "talker-now-live", {
@@ -174,22 +174,8 @@
       })
     );
     foot.appendChild(powered);
+    panel.appendChild(foot);
   }
-  var privacy = el("p", "talker-now-privacy");
-  var privacyLead = String(
-    i18n.privacyLead || "En discutant, vous acceptez la"
-  ).replace(/\s+$/, "");
-  privacy.appendChild(document.createTextNode(privacyLead + " "));
-  privacy.appendChild(
-    el("a", null, {
-      href: cfg.privacyUrl || "https://talker.now/confidentialite",
-      target: "_blank",
-      rel: "noopener noreferrer",
-      text: i18n.privacyLink || "politique de confidentialité",
-    })
-  );
-  foot.appendChild(privacy);
-  panel.appendChild(foot);
 
   launcherWrap.appendChild(halo);
   launcherWrap.appendChild(badge);
