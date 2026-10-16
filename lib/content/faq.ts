@@ -134,6 +134,24 @@ export const faqFr: FaqCopy = {
         "Démarrage : 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Alertes à 25, 38 et 45 conversations. Option Sans badge : 9,99 € / mois en annuel (12,99 € au mois) — retire le badge et la puce « Talker Now », sans lever cette limite. Pro 3 : 49 € / mois en annuel pour 3 sites. Pro Max : 99 € / mois en annuel pour 10 sites.",
       ],
     },
+    {
+      q: "Quel est le meilleur chatbot IA pour WordPress ?",
+      a: [
+        "Le meilleur chatbot IA pour WordPress dépend de vos critères, mais trois comptent : un vrai grand modèle de langage nommé, un prompt construit pour votre site et une installation simple. Talker s’installe en zip, scanne vos pages publiques et construit un prompt dédié via son méta-prompt. Le plan gratuit offre 50 conversations par mois et par site, sans carte bancaire.",
+      ],
+    },
+    {
+      q: "Talker est-il un chatbot IA conforme au RGPD ?",
+      a: [
+        "Sur talker.now, la mesure d’audience ne se charge qu’avec votre accord et les cookies nécessaires ne servent pas à de la publicité. Vous pouvez demander l’accès, la rectification, l’effacement, la limitation ou la portabilité de vos données en écrivant à hello@talker.now, et saisir la CNIL si la réponse ne convient pas. [À VÉRIFIER : traitement et hébergement des conversations du chatbot sur le site du client.]",
+      ],
+    },
+    {
+      q: "Talker est-il un chatbot IA multilingue ?",
+      a: [
+        "Oui, Talker est un chatbot IA multilingue. La langue de votre site et l’anglais sont gratuits sur tous les plans, y compris le Starter. Le pack multilingue Europe est lui aussi gratuit sur tous les plans : votre agent conversationnel peut répondre aux visiteurs dans les langues européennes, sans supplément, du plan gratuit à Pro Max.",
+      ],
+    },
   ],
 };
 
