@@ -275,8 +275,13 @@ export function PricingSection({
           );
           })}
         </div>
-        <div className="mt-6 border border-foreground/12 bg-background px-8 py-8 lg:px-10">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="pricing-card relative mt-6 flex cursor-default flex-col overflow-hidden border border-foreground/12 bg-background px-8 py-8 lg:px-10">
+          <ShineBorder
+            borderWidth={1}
+            duration={16}
+            shineColor={["#C43F17", "#111111"]}
+          />
+          <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <p className="font-mono text-xs text-muted-foreground">Starter</p>
               <h3 className="mt-2 font-display text-3xl font-semibold leading-tight text-foreground">
