@@ -26,7 +26,7 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
         <path
           fill="#C43F17"
           fillRule="evenodd"
-          d="M -312.50 338.28 A 500.00 433.35 0 1 1 -100.00 424.60 L -312.50 554.69 Z M -223 0 A 60 60 0 1 0 -103 0 A 60 60 0 1 0 -223 0 Z M -60 0 A 60 60 0 1 0 60 0 A 60 60 0 1 0 -60 0 Z M 103 0 A 60 60 0 1 0 223 0 A 60 60 0 1 0 103 0 Z"
+          d="M -312.50 338.28 A 500.00 433.35 0 1 1 -100.00 424.60 L -312.50 554.69 Z M -292.2 0 A 48.7 48.7 0 1 0 -194.8 0 A 48.7 48.7 0 1 0 -292.2 0 Z M -121.75 0 A 73.05 73.05 0 1 0 24.35 0 A 73.05 73.05 0 1 0 -121.75 0 Z M 97.4 0 A 97.4 97.4 0 1 0 292.2 0 A 97.4 97.4 0 1 0 97.4 0 Z"
         />
       </svg>
     );
@@ -50,9 +50,9 @@ export function TalkerMark({ className, title, filled = false }: MarkProps) {
         strokeLinejoin="miter"
         strokeMiterlimit={10}
       />
-      <circle cx="-163" cy="0" r="60" fill="#111111" />
-      <circle cx="0" cy="0" r="60" fill="#111111" />
-      <circle cx="163" cy="0" r="60" fill="#111111" />
+      <circle cx="-243.5" cy="0" r="48.7" fill="#111111" />
+      <circle cx="-48.7" cy="0" r="73.05" fill="#111111" />
+      <circle cx="194.8" cy="0" r="97.4" fill="#111111" />
     </svg>
   );
 }
@@ -91,9 +91,9 @@ export function TalkerWordmark({
           strokeLinejoin="miter"
           strokeMiterlimit={10}
         />
-        <circle cx="-163" cy="0" r="60" fill="#111111" />
-        <circle cx="0" cy="0" r="60" fill="#111111" />
-        <circle cx="163" cy="0" r="60" fill="#111111" />
+        <circle cx="-243.5" cy="0" r="48.7" fill="#111111" />
+        <circle cx="-48.7" cy="0" r="73.05" fill="#111111" />
+        <circle cx="194.8" cy="0" r="97.4" fill="#111111" />
       </svg>
       <span className="tracking-[-0.02em]">
         <span className="font-bold text-[#111111]">talker</span>

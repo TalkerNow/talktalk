@@ -77,9 +77,9 @@
     '<svg class="talker-now-bubble" viewBox="-682.69 -622.02 1365.38 1365.38" aria-hidden="true">' +
     '<path fill="#F7F6F4" stroke="#C43F17" stroke-width="66.70" stroke-linejoin="miter" stroke-miterlimit="10" ' +
     'd="M -93.33 396.27 A 466.65 400.00 0 1 0 -291.66 315.72 L -312.50 554.69 Z"/>' +
-    '<circle class="talker-now-dot" cx="-163" cy="0" r="60"/>' +
-    '<circle class="talker-now-dot" cx="0" cy="0" r="60"/>' +
-    '<circle class="talker-now-dot" cx="163" cy="0" r="60"/>' +
+    '<circle class="talker-now-dot" cx="-243.5" cy="0" r="48.7"/>' +
+    '<circle class="talker-now-dot" cx="-48.7" cy="0" r="73.05"/>' +
+    '<circle class="talker-now-dot" cx="194.8" cy="0" r="97.4"/>' +
     "</svg>";
 
   var ad = el("div", "talker-now-ad");

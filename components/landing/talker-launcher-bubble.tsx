@@ -9,14 +9,12 @@ import {
   type ReactNode,
 } from "react";
 import { TalkerChat } from "@/components/talker/chat";
-import { useTalker, type TalkerIntent } from "@/components/talker/provider";
-import { ShineBorder } from "@/components/ui/shine-border";
+import { useTalker } from "@/components/talker/provider";
 import { useLocale } from "@/components/i18n/locale-context";
 
 const BUBBLE_PX = 80;
-const ATTRACT_REST_MS = 7000;
-const ATTRACT_ON_MS = 4000;
-const CHIP_LEAVE_MS = 220;
+const STAGE_MS = [3200, 3600, 3600];
+const PILL_PX = [168, 244];
 const TOUCH_SLOP_PX = 16;
 const FINE_HOVER_MQ = "(hover: hover) and (pointer: fine)";
 const TOUCH_SAFE_CLASS =
@@ -114,59 +112,28 @@ export function TalkerLauncherBubble() {
   const invites = t.bubble.chips;
   const { open, openTalker, closeTalker, resetKey } = useTalker();
   const fineHover = useFineHover();
-  const [chipsPinned, setChipsPinned] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const [attract, setAttract] = useState(false);
+  const [stage, setStage] = useState(0);
   const panelRef = useRef<HTMLDivElement>(null);
   const clusterRef = useRef<HTMLDivElement>(null);
-  const hideTimer = useRef(0);
-
-  const clearHideTimer = () => {
-    window.clearTimeout(hideTimer.current);
-    hideTimer.current = 0;
-  };
-
-  const onChipRegionEnter = () => {
-    if (!fineHover) return;
-    clearHideTimer();
-    setHovered(true);
-  };
-
-  const onChipRegionLeave = () => {
-    if (!fineHover) return;
-    clearHideTimer();
-    hideTimer.current = window.setTimeout(() => {
-      setHovered(false);
-    }, CHIP_LEAVE_MS);
-  };
-
-  useEffect(() => () => clearHideTimer(), []);
 
   useEffect(() => {
     if (open) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
-
     let cancelled = false;
-    let restTimer = 0;
-    let onTimer = 0;
-
-    const pulse = () => {
+    let timer = 0;
+    let current = 0;
+    const next = () => {
       if (cancelled) return;
-      setAttract(true);
-      onTimer = window.setTimeout(() => {
-        if (cancelled) return;
-        setAttract(false);
-        restTimer = window.setTimeout(pulse, ATTRACT_REST_MS);
-      }, ATTRACT_ON_MS);
+      current = (current + 1) % 3;
+      setStage(current);
+      timer = window.setTimeout(next, STAGE_MS[current]);
     };
-
-    restTimer = window.setTimeout(pulse, 2400);
+    timer = window.setTimeout(next, 2400 + STAGE_MS[0]);
     return () => {
       cancelled = true;
-      window.clearTimeout(restTimer);
-      window.clearTimeout(onTimer);
+      window.clearTimeout(timer);
     };
   }, [open]);
 
@@ -180,46 +147,29 @@ export function TalkerLauncherBubble() {
   }, [open, closeTalker]);
 
   useEffect(() => {
-    if (open) {
-      const onPointerDown = (event: PointerEvent) => {
-        const target = event.target as Node;
-        if (panelRef.current?.contains(target)) return;
-        if (clusterRef.current?.contains(target)) return;
-        closeTalker();
-      };
-      document.addEventListener("pointerdown", onPointerDown);
-      return () => document.removeEventListener("pointerdown", onPointerDown);
-    }
-
-    if (!chipsPinned) return;
+    if (!open) return;
     const onPointerDown = (event: PointerEvent) => {
       const target = event.target as Node;
+      if (panelRef.current?.contains(target)) return;
       if (clusterRef.current?.contains(target)) return;
-      setChipsPinned(false);
+      closeTalker();
     };
     document.addEventListener("pointerdown", onPointerDown);
     return () => document.removeEventListener("pointerdown", onPointerDown);
-  }, [open, chipsPinned, closeTalker]);
+  }, [open, closeTalker]);
 
-  const chipsShown =
-    !open && ((fineHover && hovered) || chipsPinned || attract);
+  const pill = !open && stage > 0 ? invites[stage - 1] : null;
+  const pulsing = !open && stage === 0;
 
-  const toggleBubble = () => {
+  const activate = () => {
     if (open) {
       closeTalker();
       return;
     }
-    setChipsPinned(false);
-    setHovered(false);
-    setAttract(false);
-    openTalker();
-  };
-
-  const openFromChip = (intent: TalkerIntent) => {
-    setChipsPinned(false);
-    setHovered(false);
-    setAttract(false);
-    openTalker(intent);
+    const intent = pill?.intent;
+    setStage(0);
+    if (intent) openTalker(intent);
+    else openTalker();
   };
 
   return (
@@ -245,58 +195,34 @@ export function TalkerLauncherBubble() {
             "calc(max(1.5rem, env(safe-area-inset-bottom)) + 20px + var(--cookie-banner-offset, 0px))",
         }}
       >
-        {!open ? (
-          <div
-            onPointerEnter={fineHover ? onChipRegionEnter : undefined}
-            onPointerLeave={fineHover ? onChipRegionLeave : undefined}
-            aria-hidden={!chipsShown}
-            className={`absolute right-0 bottom-full z-30 flex w-max flex-col items-end gap-1.5 pb-3 transition-opacity duration-200 ${TOUCH_SAFE_CLASS} ${
-              chipsShown
-                ? "pointer-events-auto opacity-100"
-                : "pointer-events-none opacity-0"
-            }`}
-          >
-            {invites.map((invite) => {
-              const shine = invite.intent === "talker";
-              return (
-                <TouchSafeButton
-                  key={invite.label}
-                  tabIndex={chipsShown ? 0 : -1}
-                  onActivate={() => openFromChip(invite.intent)}
-                  className={`relative max-w-[min(calc(100vw-6rem),20rem)] rounded-full border bg-background px-3 py-1.5 text-left text-[13px] leading-snug text-ink transition-colors hover:border-ink ${TOUCH_SAFE_CLASS} ${
-                    shine
-                      ? "overflow-hidden border-foreground/12"
-                      : "border-line"
-                  }`}
-                >
-                  {shine ? (
-                    <ShineBorder
-                      borderWidth={1}
-                      duration={16}
-                      shineColor={["#C43F17", "#111111"]}
-                    />
-                  ) : null}
-                  <span className={`relative z-10 ${TOUCH_SAFE_CLASS}`}>
-                    {invite.label}
-                  </span>
-                </TouchSafeButton>
-              );
-            })}
-          </div>
-        ) : null}
-
         <TouchSafeButton
-          onActivate={toggleBubble}
-          onPointerEnter={fineHover ? onChipRegionEnter : undefined}
-          onPointerLeave={fineHover ? onChipRegionLeave : undefined}
-          aria-label={t.bubble.open}
+          onActivate={activate}
+          aria-label={pill ? pill.label : t.bubble.open}
           aria-expanded={open}
-          className={`pointer-events-auto relative z-10 flex size-[80px] cursor-pointer items-center justify-center overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17] ${TOUCH_SAFE_CLASS}`}
+          data-stage={open ? "open" : stage}
+          style={{ width: pill ? PILL_PX[stage - 1] : BUBBLE_PX }}
+          className={`talker-morph pointer-events-auto relative z-10 flex h-[80px] cursor-pointer items-center justify-end overflow-visible border-0 bg-transparent p-0 shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C43F17] ${fineHover ? "talker-morph-hover" : ""} ${TOUCH_SAFE_CLASS}`}
         >
           <span
             aria-hidden
-            className={`talker-ripple ${attract ? "is-on" : ""}`}
+            className={`talker-wave ${pulsing ? "is-on" : ""}`}
           />
+          <span
+            aria-hidden
+            className={`talker-pill ${pill ? "is-on" : ""} ${TOUCH_SAFE_CLASS}`}
+          >
+            {invites.map((invite, index) => (
+              <span
+                key={invite.label}
+                className={`talker-pill-label ${stage - 1 === index ? "is-on" : ""}`}
+              >
+                {invite.label}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="#C43F17" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            ))}
+          </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="-682.69 -622.02 1365.38 1365.38"
@@ -304,7 +230,7 @@ export function TalkerLauncherBubble() {
             height={BUBBLE_PX}
             role="img"
             aria-hidden="true"
-            className={`pointer-events-none drop-shadow-[0_8px_20px_rgba(0,0,0,0.12)] ${TOUCH_SAFE_CLASS}`}
+            className={`talker-morph-icon pointer-events-none drop-shadow-[0_8px_20px_rgba(0,0,0,0.12)] ${pill ? "is-off" : ""} ${TOUCH_SAFE_CLASS}`}
           >
             <path
               d="M -93.33 396.27 A 466.65 400.00 0 1 0 -291.66 315.72 L -312.50 554.69 Z"
@@ -315,23 +241,23 @@ export function TalkerLauncherBubble() {
               strokeMiterlimit={10}
             />
             <circle
-              cx="-163"
+              cx="-243.5"
               cy="0"
-              r="60"
+              r="48.7"
               fill="#111111"
               className="talker-typing-dot talker-typing-dot-1"
             />
             <circle
-              cx="0"
+              cx="-48.7"
               cy="0"
-              r="60"
+              r="73.05"
               fill="#111111"
               className="talker-typing-dot talker-typing-dot-2"
             />
             <circle
-              cx="163"
+              cx="194.8"
               cy="0"
-              r="60"
+              r="97.4"
               fill="#111111"
               className="talker-typing-dot talker-typing-dot-3"
             />
@@ -339,7 +265,7 @@ export function TalkerLauncherBubble() {
           <span
             aria-hidden
             className={`absolute top-0.5 right-0.5 z-20 flex size-5 items-center justify-center rounded-full bg-[#E11D48] text-[11px] font-semibold leading-none text-white transition-opacity duration-300 ${TOUCH_SAFE_CLASS} ${
-              attract ? "opacity-100" : "opacity-0"
+              pulsing ? "opacity-100" : "opacity-0"
             }`}
           >
             1
