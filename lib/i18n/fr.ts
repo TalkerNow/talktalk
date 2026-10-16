@@ -449,9 +449,9 @@ export const fr = {
       { label: "Laisser un contact", userText: "Je vous laisse un contact." },
     ],
     chips: [
-      { label: "Testez-moi !", intent: "talker" as const },
+      { label: "Testez-moi", intent: "talker" as const },
       {
-        label: "Je suis disponible pour votre site — cliquez ici",
+        label: "Vous avez une question ?",
         intent: "question" as const,
       },
     ],

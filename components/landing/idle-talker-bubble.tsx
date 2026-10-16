@@ -15,9 +15,9 @@ export function IdleTalkerBubble({ className }: { className?: string }) {
         strokeLinejoin="miter"
         strokeMiterlimit={10}
       />
-      <circle cx="-163" cy="0" r="60" fill="#111111" />
-      <circle cx="0" cy="0" r="60" fill="#111111" />
-      <circle cx="163" cy="0" r="60" fill="#111111" />
+      <circle cx="-243.5" cy="0" r="48.7" fill="#111111" />
+      <circle cx="-48.7" cy="0" r="73.05" fill="#111111" />
+      <circle cx="194.8" cy="0" r="97.4" fill="#111111" />
     </svg>
   );
 }
