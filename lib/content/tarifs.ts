@@ -87,7 +87,7 @@ export const tarifsFaq: readonly FaqItem[] = [
   },
   {
     q: "Combien coûte un chatbot IA pour site WordPress avec Talker ?",
-    a: "Un chatbot IA Talker coûte de 0 € à 99 € par mois selon le plan choisi en paiement annuel. Le Starter est gratuit, avec 50 conversations par mois et par site. Pro coûte 29 € (1 site), Pro 3 coûte 49 € (3 sites) et Pro Max coûte 99 € (10 sites), soit 17 % de moins qu'au mois.",
+    a: "Un chatbot IA Talker coûte de 0 € à 99 € par mois selon le plan choisi en paiement annuel. Le Starter est gratuit, avec 50 conversations par mois et par site. Pro coûte 29 € (1 site), Pro 3 coûte 49 € (3 sites) et Pro Max coûte 99 € (10 sites), soit 17 % de moins qu'au mois sur Pro et Pro Max, 29 % sur Pro 3.",
   },
   {
     q: "Peut-on payer son chatbot IA au mois plutôt qu'à l'année ?",
