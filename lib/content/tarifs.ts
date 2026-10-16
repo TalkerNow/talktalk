@@ -93,6 +93,14 @@ export const tarifsFaq: readonly FaqItem[] = [
     q: "Peut-on payer son chatbot IA au mois plutôt qu'à l'année ?",
     a: "Oui, chaque plan payant de Talker se règle aussi au mois. Pro coûte 35 € par mois pour 1 site, Pro 3 coûte 69 € pour 3 sites et Pro Max coûte 119 € pour 10 sites. En paiement annuel, les mêmes plans reviennent à 29 €, 49 € et 99 € par mois.",
   },
+  {
+    q: "Comment mettre une IA LLM ou un agent IA sur mon site ?",
+    a: "Pour mettre une IA LLM sur votre site WordPress, vous installez le plugin Talker (un zip) et l'agent IA répond à vos visiteurs. Talker utilise un grand modèle de langage, Google Gemini 2.5 Flash, dont le nom n'est pas montré aux visiteurs. Le plan gratuit offre 50 conversations par mois et par site, sans carte.",
+  },
+  {
+    q: "Talker, c'est ChatGPT sur mon site ?",
+    a: "Non, Talker n'est pas ChatGPT et n'est pas un produit OpenAI, mais il apporte sur votre site une conversation du même style. Talker utilise un LLM de la même catégorie que les systèmes derrière ChatGPT, Gemini ou Claude : Google Gemini 2.5 Flash. Un méta-prompt construit un prompt spécifique pour chaque site.",
+  },
 ];
 
 export const tarifsFaqJsonLd = faqPageJsonLd(tarifsFaq);
