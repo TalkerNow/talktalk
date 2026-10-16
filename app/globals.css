@@ -548,3 +548,9 @@
     animation: none;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .talker-typing-dot {
+    animation: none;
+  }
+}
