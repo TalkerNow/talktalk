@@ -76,4 +76,32 @@ export function FaqBlock({
   );
 }
 
+export function FaqAccordion({
+  items,
+}: {
+  items: readonly { q: string; a: string }[];
+}) {
+  return (
+    <div className="mt-6 border-t border-[#DCD9CE]">
+      {items.map((item) => (
+        <details key={item.q} className="group border-b border-[#DCD9CE]">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C43F17]">
+            <h3 className="text-lg font-medium leading-snug text-[#111111]">{item.q}</h3>
+            <span
+              className="flex h-6 w-6 shrink-0 items-center justify-center text-2xl font-light leading-none text-[#C43F17]"
+              aria-hidden
+            >
+              <span className="group-open:hidden">+</span>
+              <span className="hidden group-open:inline">−</span>
+            </span>
+          </summary>
+          <p className="max-w-2xl pb-6 text-base leading-relaxed text-[#52525B] lg:text-lg">
+            {item.a}
+          </p>
+        </details>
+      ))}
+    </div>
+  );
+}
+
 export { linkClass };

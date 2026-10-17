@@ -1,7 +1,7 @@
 import { PricingSection } from "@/components/landing/pricing-section";
 import { Navigation } from "@/components/landing/navigation";
 import { FooterSection } from "@/components/landing/footer-section";
-import { FaqBlock, JsonLd, linkClass, SeeAlso } from "@/components/pages/article-shell";
+import { FaqAccordion, JsonLd, linkClass, SeeAlso } from "@/components/pages/article-shell";
 import {
   TARIFS_H1,
   tarifsAfterHundred,
@@ -104,7 +104,7 @@ export function TarifsBody() {
             <h2 className="font-display text-2xl font-semibold tracking-tight text-[#111111] lg:text-3xl">
               FAQ
             </h2>
-            <FaqBlock items={tarifsFaq} />
+            <FaqAccordion items={tarifsFaq} />
           </section>
 
           <SeeAlso links={tarifsAlso} />
