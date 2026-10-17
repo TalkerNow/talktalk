@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { useLocale } from "@/components/i18n/locale-context";
 import type { Messages } from "@/lib/i18n";
-import { BADGE_OPTION, PLAN_PRICES } from "@/lib/pricing/plans";
+import { BADGE_OPTION, PLAN_PRICES, maxAnnualDiscountPercent } from "@/lib/pricing/plans";
 
 type PlanCopy = Messages["pricing"]["plans"][number];
 type AgencySites = 3 | 10;
@@ -175,7 +175,7 @@ export function PricingSection({
           </span>
           {isAnnual && (
             <span className="px-2 py-0.5 bg-black text-white text-[10px] font-mono uppercase tracking-wider">
-              jusqu&apos;à -29%
+              jusqu&apos;à -{maxAnnualDiscountPercent()}%
             </span>
           )}
         </div>

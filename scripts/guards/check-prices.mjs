@@ -30,7 +30,7 @@ function isExcepted(file, line) {
 
 function priceAfter(text, from) {
   const tail = text.slice(from, from + 45);
-  const m = tail.match(/^[^.;€$\n(]*?(?:(\d+(?:,\d+)?)\s?€|€\s?(\d+(?:,\d+)?))/);
+  const m = tail.match(/^[^.;€$\n(]*?(?:(\d+(?:,\d+)?)\s?(?:€|euros?\b)|€\s?(\d+(?:,\d+)?))/i);
   if (!m) return null;
   return m[1] ?? m[2];
 }
@@ -59,10 +59,22 @@ for (const f of files) {
         failures.push(`${where} Option Sans badge à ${v} € ; la source donne ${badgeAllowed.join(" ou ")} €.`);
       }
     }
-    const annualContext = /annuel|annual|isAnnual/i.test(line) || (file.endsWith("pricing-section.tsx") && /^\s*-\d+%\s*$/.test(line));
+    for (const m of line.matchAll(/(\d+(?:,\d+)?)\s?(?:€|euros?\b)(?:\s?(?:\/|par)\s?mois)?(?:\s?(?:HT|TTC))?\s(?:pour|sur|avec|en|:)\s(?:le |l['’]offre |le plan |la formule )?(Pro Max|Pro 3|Pro|Starter)\b/gi)) {
+      const p = plans.find((x) => x.label.toLowerCase() === m[2].toLowerCase());
+      const n = Number(m[1].replace(",", "."));
+      if (p && !p.allowed.includes(n) && !isExcepted(file, line)) {
+        failures.push(`${where} ${m[1]} € écrit avant « ${p.label} » ; la source donne ${p.allowed.join(" ou ")} €.`);
+      }
+    }
+    if (/jusqu/i.test(line)) {
+      for (const m of line.matchAll(/[−-]\s?(\d+)\s?%/g)) {
+        if (!isExcepted(file, line)) failures.push(`${where} remise « jusqu'à -${m[1]}% » écrite en dur ; utiliser maxAnnualDiscountPercent() (${maxDiscount} %).`);
+      }
+    }
+    const annualContext = /annuel|annual|isAnnual|moins cher/i.test(line) || (file.endsWith("pricing-section.tsx") && /^\s*-\d+%\s*$/.test(line));
     if (!annualContext) return;
-    for (const m of line.matchAll(/(?:[−-]\s?(\d+)\s?%|(\d+)\s?% de moins|(\d+)\s?% (?:less|off))/g)) {
-      const n = Number(m[1] ?? m[2] ?? m[3]);
+    for (const m of line.matchAll(/(?:[−-]\s?(\d+)\s?%|(\d+)\s?% (?:de moins|moins cher|en annuel|de remise|de réduction|d['’]économie|less|off|cheaper))/gi)) {
+      const n = Number(m[1] ?? m[2]);
       if (isExcepted(file, line)) continue;
       if (!discounts.includes(n)) {
         failures.push(`${where} remise annuelle ${n} % ; les remises calculées sont ${[...new Set(discounts)].join(" et ")} %.`);

@@ -34,6 +34,11 @@ for (const { f, text } of targets) {
     const ex = allowed.findIndex((a) => a.file === rel(f) && a.rule === r.why);
     if (m && ex >= 0) {
       used.add(ex);
+      const all = [...text.matchAll(new RegExp(r.re.source, r.re.flags.includes("g") ? r.re.flags : r.re.flags + "g"))];
+      const max = allowed[ex].count ?? 1;
+      if (all.length > max) failures.push(`${rel(f)} : ${r.why} — ${all.length} occurrences pour ${max} tolérée(s) dans known-exceptions.json.`);
+      const extra = all.filter((x) => allowed[ex].context && !text.slice(Math.max(0, x.index - 80), x.index + 80).includes(allowed[ex].context));
+      if (extra.length) failures.push(`${rel(f)} : ${r.why} — occurrence hors de l'emplacement toléré : « …${text.slice(Math.max(0, extra[0].index - 40), extra[0].index + 40)}… »`);
       continue;
     }
     if (m) {

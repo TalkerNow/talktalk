@@ -2,7 +2,7 @@ import { execSync } from "node:child_process";
 import { report } from "./lib.mjs";
 
 const base = process.env.GUARD_BASE || "origin/main";
-const EXT = /\.(ts|tsx|js|jsx|mjs|cjs|css|php)$/;
+const EXT = /\.(ts|tsx|js|jsx|mjs|cjs|css|php|ya?ml|sh)$/;
 let diff = "";
 try {
   diff = execSync(`git diff --unified=0 --no-color ${base}...HEAD`, { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
@@ -36,7 +36,8 @@ for (const raw of diff.split("\n")) {
       (t.startsWith("*") && !t.startsWith("**") && /^\*(\s|\/|$)/.test(t)) ||
       /[;,{}()\]]\s*\/\/(?!\/)/.test(code) ||
       /\s\/\*[\s\S]*\*\//.test(code) ||
-      (file.endsWith(".php") && /^\s*#(?!\[)/.test(line));
+      (file.endsWith(".php") && /^\s*#(?!\[)/.test(line)) ||
+      (/\.(ya?ml|sh)$/.test(file) && !(lineNo === 1 && t.startsWith("#!")) && (t.startsWith("#") || /\s#\s/.test(code)));
     if (isComment) failures.push(`${file}:${lineNo} commentaire ajouté : ${t.slice(0, 80)}`);
     lineNo++;
   }

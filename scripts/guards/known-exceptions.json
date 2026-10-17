@@ -208,12 +208,14 @@
     {
       "file": ".next/server/app/installer.html",
       "rule": "faux texte",
-      "reason": "Maquette de site client sur /installer (Lorem ipsum). Décision JF à prendre ; retirer après remplacement."
+      "reason": "Maquette de site client sur /installer (Lorem ipsum). Décision JF à prendre ; retirer après remplacement.",
+      "count": 1
     },
     {
       "file": "lib/demo/system-prompt-client.ts",
       "rule": "marqueur « TROU »",
-      "reason": "Vidéo démo sans URL (VERDICT 2db689f). Retirer quand l'URL existe."
+      "reason": "Vidéo démo sans URL (VERDICT 2db689f). Retirer quand l'URL existe.",
+      "count": 3
     }
   ]
 }
