@@ -143,7 +143,7 @@ export const faqFr: FaqCopy = {
     {
       q: "Talker est-il un chatbot IA conforme au RGPD ?",
       a: [
-        "Sur talker.now, la mesure d’audience ne se charge qu’avec votre accord et les cookies nécessaires ne servent pas à de la publicité. Vous pouvez demander l’accès, la rectification, l’effacement, la limitation ou la portabilité de vos données en écrivant à hello@talker.now, et saisir la CNIL si la réponse ne convient pas. La console Talker et ses données sont hébergées dans l’Union européenne, à Francfort.",
+        "Sur talker.now, la mesure d’audience ne se charge qu’avec votre accord et les cookies nécessaires ne servent pas à de la publicité. Vous pouvez demander l’accès, la rectification, l’effacement, la limitation ou la portabilité de vos données en écrivant à hello@talker.now, et saisir la CNIL si la réponse ne convient pas. La console Talker et ses données sont hébergées dans l'Union européenne.",
       ],
     },
     {
