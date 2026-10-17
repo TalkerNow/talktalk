@@ -58,7 +58,7 @@ assert(
 
 const added = faqFr.items.filter((item) => /Intercom/.test(item.q));
 assert(added.length === 2, "two FAQ questions name Intercom");
-assert(faqFr.items.length === 16, "v3.2 fourteen plus two live-chat questions");
+assert(faqFr.items.length === 19, "v3.3 sixteen plus best, GDPR and multilingual questions");
 assert(
   !faqFr.items.some((item) => /Ancien chiffre|HARD JF/.test(JSON.stringify(item))),
   "no draft notes in FAQ",

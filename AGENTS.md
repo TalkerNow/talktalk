@@ -43,3 +43,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Garde-fous (recette poteto)
+1. Prix, remises et couleurs viennent de `lib/pricing/plans.ts` et `lib/brand/tokens.ts` ; le CI `garde-fous` bloque tout écart, ne jamais l'affaiblir pour passer.
+2. Un fait nouveau (lieu, chiffre, promesse) doit avoir une source écrite dans le dépôt ou dans /workspace/evidence ; sinon il ne sort pas.
+3. Ne jamais restaurer de mémoire : repartir du commit ou de la capture de référence (`tests/visual/baselines`).
+4. Une décision de JF devient un test, un token ou une ligne de `scripts/guards/known-exceptions.json` dans le même commit ; les exceptions ne font que diminuer.
+5. Un changement visuel voulu porte le label `changement-visuel-valide-jf`, posé seulement après le GO de JF ; Contrôle relit, sans remplacer ce GO.

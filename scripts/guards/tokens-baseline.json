@@ -1,0 +1,498 @@
+{
+  "app/contact/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 2,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "app/faq/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 1,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "app/gate/gate-screen.tsx": {
+    "hex": 13,
+    "offCharter": 0,
+    "arbitrary": 17,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "app/globals.css": {
+    "hex": 27,
+    "offCharter": 9,
+    "arbitrary": 0,
+    "funcColor": 28,
+    "palette": 0,
+    "inline": 0
+  },
+  "app/installer/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 2,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "app/methode/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 1,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "app/opengraph-image.tsx": {
+    "hex": 5,
+    "offCharter": 4,
+    "arbitrary": 0,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 5
+  },
+  "app/produit/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 1,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/brand/mark.tsx": {
+    "hex": 11,
+    "offCharter": 0,
+    "arbitrary": 6,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/consent/cookie-banner.tsx": {
+    "hex": 34,
+    "offCharter": 0,
+    "arbitrary": 36,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/i18n/language-switcher.tsx": {
+    "hex": 12,
+    "offCharter": 6,
+    "arbitrary": 7,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/animated-wave.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 0,
+    "funcColor": 1,
+    "palette": 0,
+    "inline": 1
+  },
+  "components/landing/contact-form.tsx": {
+    "hex": 3,
+    "offCharter": 1,
+    "arbitrary": 5,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/contact-panel.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 2,
+    "funcColor": 1,
+    "palette": 0,
+    "inline": 1
+  },
+  "components/landing/context-section.tsx": {
+    "hex": 11,
+    "offCharter": 1,
+    "arbitrary": 15,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/cta-section.tsx": {
+    "hex": 4,
+    "offCharter": 2,
+    "arbitrary": 4,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/faq-list.tsx": {
+    "hex": 6,
+    "offCharter": 0,
+    "arbitrary": 7,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/features-section.tsx": {
+    "hex": 5,
+    "offCharter": 0,
+    "arbitrary": 10,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 1
+  },
+  "components/landing/footer-section.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 2,
+    "funcColor": 0,
+    "palette": 1,
+    "inline": 0
+  },
+  "components/landing/hero-section.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 6,
+    "funcColor": 0,
+    "palette": 1,
+    "inline": 3
+  },
+  "components/landing/how-it-works-section.tsx": {
+    "hex": 4,
+    "offCharter": 2,
+    "arbitrary": 12,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 1
+  },
+  "components/landing/idle-talker-bubble.tsx": {
+    "hex": 5,
+    "offCharter": 1,
+    "arbitrary": 0,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/infra-beam-variant.tsx": {
+    "hex": 7,
+    "offCharter": 1,
+    "arbitrary": 6,
+    "funcColor": 6,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/infrastructure-section.tsx": {
+    "hex": 17,
+    "offCharter": 11,
+    "arbitrary": 48,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/installer-panel.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 2,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/installer-vignette/chat-panel.tsx": {
+    "hex": 13,
+    "offCharter": 6,
+    "arbitrary": 22,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/installer-vignette/demo-assistant-header.tsx": {
+    "hex": 4,
+    "offCharter": 1,
+    "arbitrary": 13,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/installer-vignette/desktop-window.tsx": {
+    "hex": 3,
+    "offCharter": 3,
+    "arbitrary": 6,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/installer-vignette/index.tsx": {
+    "hex": 4,
+    "offCharter": 1,
+    "arbitrary": 7,
+    "funcColor": 1,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/installer-vignette/scenes.tsx": {
+    "hex": 57,
+    "offCharter": 36,
+    "arbitrary": 172,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/installer-vignette/talker-chat-loop.tsx": {
+    "hex": 10,
+    "offCharter": 4,
+    "arbitrary": 14,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/integrations-section.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 1,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/methode-article.tsx": {
+    "hex": 28,
+    "offCharter": 0,
+    "arbitrary": 31,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/metrics-section.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 1,
+    "funcColor": 0,
+    "palette": 1,
+    "inline": 1
+  },
+  "components/landing/navigation.tsx": {
+    "hex": 3,
+    "offCharter": 1,
+    "arbitrary": 8,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 4
+  },
+  "components/landing/pricing-section.tsx": {
+    "hex": 7,
+    "offCharter": 0,
+    "arbitrary": 12,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/talker-launcher-bubble.tsx": {
+    "hex": 9,
+    "offCharter": 3,
+    "arbitrary": 7,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 2
+  },
+  "components/landing/variante-label.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 2,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/landing/visitor-orbit.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 5,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 1
+  },
+  "components/layout/site-frame.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 1,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/layout/site-header.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 11,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/pages/alternative-body.tsx": {
+    "hex": 27,
+    "offCharter": 0,
+    "arbitrary": 28,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/pages/article-shell.tsx": {
+    "hex": 8,
+    "offCharter": 1,
+    "arbitrary": 8,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/pages/cas-client-agence-body.tsx": {
+    "hex": 20,
+    "offCharter": 0,
+    "arbitrary": 20,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/pages/comparatif-body.tsx": {
+    "hex": 15,
+    "offCharter": 0,
+    "arbitrary": 15,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/pages/info-body.tsx": {
+    "hex": 25,
+    "offCharter": 0,
+    "arbitrary": 26,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/pages/tarifs-body.tsx": {
+    "hex": 20,
+    "offCharter": 1,
+    "arbitrary": 20,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/sections/beta.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 10,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/sections/contact.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 10,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/sections/hero-art.tsx": {
+    "hex": 5,
+    "offCharter": 3,
+    "arbitrary": 2,
+    "funcColor": 1,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/sections/hero.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 9,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/sections/how.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 8,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/sections/reasons.tsx": {
+    "hex": 2,
+    "offCharter": 2,
+    "arbitrary": 15,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/sections/situations.tsx": {
+    "hex": 7,
+    "offCharter": 7,
+    "arbitrary": 22,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 1
+  },
+  "components/talker/chat.tsx": {
+    "hex": 20,
+    "offCharter": 6,
+    "arbitrary": 36,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/talker/launcher.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 7,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/ui/animated-beam.tsx": {
+    "hex": 2,
+    "offCharter": 2,
+    "arbitrary": 0,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/ui/aurora-text.tsx": {
+    "hex": 4,
+    "offCharter": 4,
+    "arbitrary": 1,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/ui/button.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 4,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "components/ui/scroll-based-velocity.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 0,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 1
+  },
+  "components/ui/shine-border.tsx": {
+    "hex": 6,
+    "offCharter": 4,
+    "arbitrary": 2,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  },
+  "lib/site.ts": {
+    "hex": 1,
+    "offCharter": 0,
+    "arbitrary": 0,
+    "funcColor": 0,
+    "palette": 0,
+    "inline": 0
+  }
+}
