@@ -1,16 +1,5 @@
 {
-  "prices": [
-    {
-      "file": "components/landing/pricing-section.tsx",
-      "match": "-17%",
-      "reason": "Badge du sélecteur annuel : la remise maximale calculée est 29 % (Pro 3). Corrigé par la branche cursor/tarifs-sans-badge-animation (« jusqu'à -29% »). Retirer cette ligne après son merge."
-    },
-    {
-      "file": "lib/demo/system-prompt-client.ts",
-      "match": "Annuel −17 % sur Pro, Pro 3 et Pro Max",
-      "reason": "Prompt démo : Pro 3 est à −29 %. Corrigé par la branche cursor/tarifs-sans-badge-animation. Retirer cette ligne après son merge."
-    }
-  ],
+  "prices": [],
   "faqWordCount": [
     {
       "page": "/alternative-ai-engine-wordpress",
@@ -206,21 +195,6 @@
       "page": "/methode",
       "q": "Quels chiffres Talker publie-t-il ?",
       "words": 21
-    },
-    {
-      "page": "/tarifs",
-      "q": "Faut-il une carte bancaire pour commencer ?",
-      "words": 27
-    },
-    {
-      "page": "/tarifs",
-      "q": "Que se passe-t-il après 50 conversations ?",
-      "words": 17
-    },
-    {
-      "page": "/tarifs",
-      "q": "Peut-on payer au mois ?",
-      "words": 25
     }
   ],
   "h1": [

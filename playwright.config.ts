@@ -12,7 +12,7 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   reporter: [["list"]],
-  expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.002, animations: "disabled", caret: "hide" } },
+  expect: { toHaveScreenshot: { maxDiffPixels: 0, animations: "disabled", caret: "hide" } },
   use: { baseURL: `http://127.0.0.1:${port}`, contextOptions: { reducedMotion: "reduce" }, locale: "fr-FR", timezoneId: "Europe/Paris" },
   webServer: { command: `npx next start -p ${port}`, url: `http://127.0.0.1:${port}`, reuseExistingServer: false, timeout: 120000 },
   projects: [

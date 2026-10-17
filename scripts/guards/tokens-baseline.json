@@ -170,7 +170,7 @@
     "arbitrary": 8
   },
   "components/landing/pricing-section.tsx": {
-    "hex": 5,
+    "hex": 7,
     "offCharter": 0,
     "arbitrary": 12
   },
@@ -225,9 +225,9 @@
     "arbitrary": 26
   },
   "components/pages/tarifs-body.tsx": {
-    "hex": 24,
+    "hex": 20,
     "offCharter": 1,
-    "arbitrary": 24
+    "arbitrary": 20
   },
   "components/sections/beta.tsx": {
     "hex": 0,

@@ -50,7 +50,7 @@ Faits publics preview Talker 0e81 seulement. Absent = on ne le dit pas.
 - **Pro** 29 €/mois en annuel (35 € au mois) — 1 site · illimité · capture · alertes SMS · avis Google · marque blanche (pas de badge)
 - **Pro 3** 49 €/mois en annuel (69 € au mois) — 3 sites
 - **Pro Max** 99 €/mois en annuel (119 € au mois) — 10 sites
-- Annuel −17 % sur Pro, Pro 3 et Pro Max
+- Annuel −17 % sur Pro et Pro Max, −29 % sur Pro 3
 
 **FAQ** — e-mail conversations 4 h côté produit gérant (ne pas en faire un digest dans le dialogue) ; SMS si urgent côté produit ; pas de code pour installer.
 

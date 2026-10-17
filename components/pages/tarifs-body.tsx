@@ -8,7 +8,6 @@ import {
   tarifsAlso,
   tarifsFaq,
   tarifsFaqJsonLd,
-  tarifsSummary,
   tarifsWhiteLabel,
 } from "@/lib/content/tarifs";
 
@@ -17,28 +16,8 @@ export function TarifsBody() {
     <main className="relative min-h-screen overflow-x-hidden bg-[#F7F6F4] noise-overlay">
       <JsonLd data={tarifsFaqJsonLd} />
       <Navigation />
-      <div className="pt-32 lg:pt-40">
-        <div className="mx-auto max-w-3xl px-6 lg:px-12">
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-[#111111] lg:text-6xl">
-            {TARIFS_H1}
-          </h1>
-          <div className="mt-8 space-y-3 text-xl font-semibold leading-snug text-[#111111] md:text-2xl">
-            {tarifsSummary.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
-          </div>
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <a
-              href="/installer"
-              className="inline-flex h-11 items-center rounded-full bg-[#C43F17] px-5 text-sm font-medium text-white transition-colors hover:bg-[#A8350F]"
-            >
-              Installer Talker
-            </a>
-            <a href="#pricing" className={linkClass}>
-              Voir le détail des plans
-            </a>
-          </div>
-        </div>
+      <div className="pt-20 lg:pt-24">
+        <h1 className="sr-only">{TARIFS_H1}</h1>
       </div>
 
       <PricingSection showTarifsLink={false} />

@@ -70,24 +70,28 @@ export const tarifsWhiteLabel = {
 
 export const tarifsFaq: readonly FaqItem[] = [
   {
-    q: "Faut-il une carte bancaire pour commencer ?",
-    a: "Non. Vous installez le zip. Le plan gratuit, c'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée.",
+    q: "Faut-il une carte bancaire pour commencer à utiliser un chatbot IA ?",
+    a: "Non, le chatbot IA Talker démarre sans carte bancaire. Vous installez le plugin WordPress (un zip) et le plan gratuit vous donne 50 conversations par mois et par site, remises à zéro chaque mois, sans limite de durée. Aucune carte n'a été demandée, donc rien n'est prélevé automatiquement.",
   },
   {
-    q: "Les 50 conversations sont-elles par mois ?",
-    a: "Oui. C'est 50 conversations par mois et par site, remises à zéro chaque mois, sans carte, sans limite de durée. Le compteur repart chaque mois. Une conversation, c'est un visiteur qui discute (une session). Alertes à 25, 38 et 45 conversations.",
+    q: "Les 50 conversations de l'agent conversationnel de site web sont-elles par mois ?",
+    a: "Oui, l'agent conversationnel Talker offre 50 conversations par mois et par site, et le compteur repart à zéro chaque mois. Une conversation, c'est un visiteur qui discute avec le chatbot, soit une session. Vous recevez des alertes à 25, 38 et 45 conversations pour suivre votre consommation.",
   },
   {
     q: "Que se passe-t-il après 50 conversations ?",
-    a: "Au-delà de 50 conversations dans le mois, passez à un plan payant ou attendez le mois suivant.",
+    a: "Après 50 conversations dans le mois, vous passez à un plan payant ou vous attendez le mois suivant, quand le compteur repart à zéro. Aucune carte n'ayant été demandée, rien n'est prélevé automatiquement. Les plans Pro, Pro 3 et Pro Max offrent des conversations illimitées, à partir de 29 € par mois en annuel.",
   },
   {
-    q: "C'est quoi, la marque blanche ?",
-    a: "Le Starter affiche « Powered by Talker · Créez le vôtre », avec un lien vers talker.now, et une puce « Talker Now ». L'Option Sans badge (9,99 €/mois en annuel, 12,99 € au mois) retire le badge et la puce, sans lever la limite. Sur Pro, Pro 3 et Pro Max, la mention disparaît.",
+    q: "C'est quoi la marque blanche du chatbot IA Talker ?",
+    a: "La marque blanche du chatbot IA Talker, c'est un widget sans mention de Talker. Le Starter gratuit affiche « Powered by Talker · Créez le vôtre » et une puce « Talker Now ». L'Option Sans badge (9,99 €/mois en annuel, 12,99 € au mois) les retire, sans lever la limite. Sur Pro, Pro 3 et Pro Max, la mention disparaît.",
   },
   {
-    q: "Peut-on payer au mois ?",
-    a: "Oui. Pro : 35 € par mois (1 site). Pro 3 : 69 € (3 sites). Pro Max : 119 € (10 sites). En annuel : 29 €, 49 € et 99 € par mois.",
+    q: "Combien coûte un chatbot IA pour site WordPress avec Talker ?",
+    a: "Un chatbot IA Talker coûte de 0 € à 99 € par mois selon le plan choisi en paiement annuel. Le Starter est gratuit, avec 50 conversations par mois et par site. Pro coûte 29 € (1 site), Pro 3 coûte 49 € (3 sites) et Pro Max coûte 99 € (10 sites), soit 17 % de moins qu'au mois sur Pro et Pro Max, 29 % sur Pro 3.",
+  },
+  {
+    q: "Peut-on payer son chatbot IA au mois plutôt qu'à l'année ?",
+    a: "Oui, chaque plan payant de Talker se règle aussi au mois. Pro coûte 35 € par mois pour 1 site, Pro 3 coûte 69 € pour 3 sites et Pro Max coûte 119 € pour 10 sites. En paiement annuel, les mêmes plans reviennent à 29 €, 49 € et 99 € par mois.",
   },
 ];
 
