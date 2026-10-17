@@ -68,7 +68,7 @@ for (const f of files) {
         failures.push(`${where} remise annuelle ${n} % ; les remises calculées sont ${[...new Set(discounts)].join(" et ")} %.`);
         continue;
       }
-      const claimsAll = /Pro 3/.test(line) && n !== annualDiscountPercent("agency3") && !line.includes(`${annualDiscountPercent("agency3")}`);
+      const claimsAll = /Pro 3/.test(line) && n !== annualDiscountPercent("agency3") && !new RegExp(`\\b${annualDiscountPercent("agency3")}\\s?%`).test(line);
       if (claimsAll) failures.push(`${where} ${n} % appliqué à Pro 3, dont la remise calculée est ${annualDiscountPercent("agency3")} %.`);
     }
   });
