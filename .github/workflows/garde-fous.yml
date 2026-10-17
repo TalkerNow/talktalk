@@ -1,0 +1,88 @@
+name: garde-fous
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  push:
+    branches: [main]
+
+concurrency:
+  group: garde-fous-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source:
+    name: prix, tokens, commentaires, lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run guard:prices
+      - run: npm run guard:tokens
+      - name: guard:comments
+        run: npm run guard:comments
+        env:
+          GUARD_BASE: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD~1' }}
+      - run: npm run lint
+      - run: npm run smoke:comparatif
+      - run: npm run smoke:methode
+      - run: npm run smoke:seo
+      - run: npm run smoke:gate
+
+  build:
+    name: build, mots interdits, FAQ et H1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run guard:forbidden
+      - run: npm run guard:faq
+
+  visual:
+    name: aucun changement visuel par rapport à main
+    if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'changement-visuel-valide-jf')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: head
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          path: base
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: base
+        working-directory: base
+        run: |
+          npm ci
+          npm run build
+          cp ../head/playwright.config.ts .
+          rm -rf tests/visual && mkdir -p tests && cp -r ../head/tests/visual tests/
+          npm i --no-save @playwright/test@$(node -p "require('../head/package.json').devDependencies['@playwright/test']")
+          npx playwright install --with-deps chromium webkit
+          VISUAL_SNAPSHOTS=$RUNNER_TEMP/base-shots npx playwright test --update-snapshots
+      - name: head
+        working-directory: head
+        run: |
+          npm ci
+          npm run build
+          npx playwright install chromium webkit
+          VISUAL_SNAPSHOTS=$RUNNER_TEMP/base-shots VISUAL_OUTPUT=$RUNNER_TEMP/visual-diff npx playwright test
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-diff
+          path: ${{ runner.temp }}/visual-diff

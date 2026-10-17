@@ -13,7 +13,16 @@
     "smoke:methode": "node --experimental-strip-types scripts/smoke-methode.mjs",
     "smoke:comparatif": "node --experimental-strip-types scripts/smoke-comparatif.mjs",
     "smoke:tarifs": "node --experimental-strip-types scripts/smoke-tarifs-alternatives.mjs",
-    "smoke:talker": "node --experimental-strip-types scripts/smoke-talker-session.mjs"
+    "smoke:talker": "node --experimental-strip-types scripts/smoke-talker-session.mjs",
+    "guard:prices": "node --experimental-strip-types scripts/guards/check-prices.mjs",
+    "guard:tokens": "node --experimental-strip-types scripts/guards/check-tokens.mjs",
+    "guard:comments": "node scripts/guards/check-no-comments.mjs",
+    "guard:forbidden": "node scripts/guards/check-forbidden.mjs",
+    "guard:faq": "node scripts/guards/check-built-faq-h1.mjs",
+    "guard:source": "npm run guard:prices && npm run guard:tokens && npm run guard:comments",
+    "guard:built": "npm run guard:forbidden && npm run guard:faq",
+    "visual": "playwright test",
+    "visual:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -30,6 +39,7 @@
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
