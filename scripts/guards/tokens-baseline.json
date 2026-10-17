@@ -1,0 +1,302 @@
+{
+  "app/contact/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 2
+  },
+  "app/faq/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 1
+  },
+  "app/gate/gate-screen.tsx": {
+    "hex": 13,
+    "offCharter": 0,
+    "arbitrary": 17
+  },
+  "app/globals.css": {
+    "hex": 27,
+    "offCharter": 9,
+    "arbitrary": 0
+  },
+  "app/installer/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 2
+  },
+  "app/methode/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 1
+  },
+  "app/opengraph-image.tsx": {
+    "hex": 5,
+    "offCharter": 4,
+    "arbitrary": 0
+  },
+  "app/produit/page.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 1
+  },
+  "components/brand/mark.tsx": {
+    "hex": 11,
+    "offCharter": 0,
+    "arbitrary": 6
+  },
+  "components/consent/cookie-banner.tsx": {
+    "hex": 34,
+    "offCharter": 0,
+    "arbitrary": 36
+  },
+  "components/i18n/language-switcher.tsx": {
+    "hex": 12,
+    "offCharter": 6,
+    "arbitrary": 7
+  },
+  "components/landing/contact-form.tsx": {
+    "hex": 3,
+    "offCharter": 1,
+    "arbitrary": 5
+  },
+  "components/landing/contact-panel.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 2
+  },
+  "components/landing/context-section.tsx": {
+    "hex": 11,
+    "offCharter": 1,
+    "arbitrary": 15
+  },
+  "components/landing/cta-section.tsx": {
+    "hex": 4,
+    "offCharter": 2,
+    "arbitrary": 4
+  },
+  "components/landing/faq-list.tsx": {
+    "hex": 6,
+    "offCharter": 0,
+    "arbitrary": 7
+  },
+  "components/landing/features-section.tsx": {
+    "hex": 5,
+    "offCharter": 0,
+    "arbitrary": 10
+  },
+  "components/landing/footer-section.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 2
+  },
+  "components/landing/hero-section.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 6
+  },
+  "components/landing/how-it-works-section.tsx": {
+    "hex": 4,
+    "offCharter": 2,
+    "arbitrary": 12
+  },
+  "components/landing/idle-talker-bubble.tsx": {
+    "hex": 5,
+    "offCharter": 1,
+    "arbitrary": 0
+  },
+  "components/landing/infra-beam-variant.tsx": {
+    "hex": 7,
+    "offCharter": 1,
+    "arbitrary": 6
+  },
+  "components/landing/infrastructure-section.tsx": {
+    "hex": 17,
+    "offCharter": 11,
+    "arbitrary": 48
+  },
+  "components/landing/installer-panel.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 2
+  },
+  "components/landing/installer-vignette/chat-panel.tsx": {
+    "hex": 13,
+    "offCharter": 6,
+    "arbitrary": 22
+  },
+  "components/landing/installer-vignette/demo-assistant-header.tsx": {
+    "hex": 4,
+    "offCharter": 1,
+    "arbitrary": 13
+  },
+  "components/landing/installer-vignette/desktop-window.tsx": {
+    "hex": 3,
+    "offCharter": 3,
+    "arbitrary": 6
+  },
+  "components/landing/installer-vignette/index.tsx": {
+    "hex": 4,
+    "offCharter": 1,
+    "arbitrary": 7
+  },
+  "components/landing/installer-vignette/scenes.tsx": {
+    "hex": 57,
+    "offCharter": 36,
+    "arbitrary": 172
+  },
+  "components/landing/installer-vignette/talker-chat-loop.tsx": {
+    "hex": 10,
+    "offCharter": 4,
+    "arbitrary": 14
+  },
+  "components/landing/integrations-section.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 1
+  },
+  "components/landing/methode-article.tsx": {
+    "hex": 28,
+    "offCharter": 0,
+    "arbitrary": 31
+  },
+  "components/landing/metrics-section.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 1
+  },
+  "components/landing/navigation.tsx": {
+    "hex": 3,
+    "offCharter": 1,
+    "arbitrary": 8
+  },
+  "components/landing/pricing-section.tsx": {
+    "hex": 5,
+    "offCharter": 0,
+    "arbitrary": 12
+  },
+  "components/landing/talker-launcher-bubble.tsx": {
+    "hex": 9,
+    "offCharter": 3,
+    "arbitrary": 7
+  },
+  "components/landing/variante-label.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 2
+  },
+  "components/landing/visitor-orbit.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 5
+  },
+  "components/layout/site-frame.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 1
+  },
+  "components/layout/site-header.tsx": {
+    "hex": 1,
+    "offCharter": 1,
+    "arbitrary": 11
+  },
+  "components/pages/alternative-body.tsx": {
+    "hex": 27,
+    "offCharter": 0,
+    "arbitrary": 28
+  },
+  "components/pages/article-shell.tsx": {
+    "hex": 8,
+    "offCharter": 1,
+    "arbitrary": 8
+  },
+  "components/pages/cas-client-agence-body.tsx": {
+    "hex": 20,
+    "offCharter": 0,
+    "arbitrary": 20
+  },
+  "components/pages/comparatif-body.tsx": {
+    "hex": 15,
+    "offCharter": 0,
+    "arbitrary": 15
+  },
+  "components/pages/info-body.tsx": {
+    "hex": 25,
+    "offCharter": 0,
+    "arbitrary": 26
+  },
+  "components/pages/tarifs-body.tsx": {
+    "hex": 24,
+    "offCharter": 1,
+    "arbitrary": 24
+  },
+  "components/sections/beta.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 10
+  },
+  "components/sections/contact.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 10
+  },
+  "components/sections/hero-art.tsx": {
+    "hex": 5,
+    "offCharter": 3,
+    "arbitrary": 2
+  },
+  "components/sections/hero.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 9
+  },
+  "components/sections/how.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 8
+  },
+  "components/sections/reasons.tsx": {
+    "hex": 2,
+    "offCharter": 2,
+    "arbitrary": 15
+  },
+  "components/sections/situations.tsx": {
+    "hex": 7,
+    "offCharter": 7,
+    "arbitrary": 22
+  },
+  "components/talker/chat.tsx": {
+    "hex": 20,
+    "offCharter": 6,
+    "arbitrary": 36
+  },
+  "components/talker/launcher.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 7
+  },
+  "components/ui/animated-beam.tsx": {
+    "hex": 2,
+    "offCharter": 2,
+    "arbitrary": 0
+  },
+  "components/ui/aurora-text.tsx": {
+    "hex": 4,
+    "offCharter": 4,
+    "arbitrary": 1
+  },
+  "components/ui/button.tsx": {
+    "hex": 0,
+    "offCharter": 0,
+    "arbitrary": 4
+  },
+  "components/ui/shine-border.tsx": {
+    "hex": 6,
+    "offCharter": 4,
+    "arbitrary": 2
+  },
+  "lib/site.ts": {
+    "hex": 1,
+    "offCharter": 0,
+    "arbitrary": 0
+  }
+}

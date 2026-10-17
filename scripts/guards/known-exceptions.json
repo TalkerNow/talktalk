@@ -1,0 +1,245 @@
+{
+  "prices": [
+    {
+      "file": "components/landing/pricing-section.tsx",
+      "match": "-17%",
+      "reason": "Badge du sélecteur annuel : la remise maximale calculée est 29 % (Pro 3). Corrigé par la branche cursor/tarifs-sans-badge-animation (« jusqu'à -29% »). Retirer cette ligne après son merge."
+    },
+    {
+      "file": "lib/demo/system-prompt-client.ts",
+      "match": "Annuel −17 % sur Pro, Pro 3 et Pro Max",
+      "reason": "Prompt démo : Pro 3 est à −29 %. Corrigé par la branche cursor/tarifs-sans-badge-animation. Retirer cette ligne après son merge."
+    }
+  ],
+  "faqWordCount": [
+    {
+      "page": "/alternative-ai-engine-wordpress",
+      "q": "Comment récupérer le téléphone et l'e-mail ?",
+      "words": 35
+    },
+    {
+      "page": "/alternative-botpress-wordpress",
+      "q": "Faut-il construire l'agent Talker comme sur Botpress ?",
+      "words": 21
+    },
+    {
+      "page": "/alternative-botpress-wordpress",
+      "q": "Que se passe-t-il quand le quota est atteint ?",
+      "words": 74
+    },
+    {
+      "page": "/alternative-botpress-wordpress",
+      "q": "Combien coûte la marque blanche ?",
+      "words": 80
+    },
+    {
+      "page": "/alternative-botpress-wordpress",
+      "q": "Talker fonctionne-t-il sans WordPress ?",
+      "words": 6
+    },
+    {
+      "page": "/alternative-chatbase-wordpress",
+      "q": "Faut-il entraîner Talker comme un agent Chatbase ?",
+      "words": 21
+    },
+    {
+      "page": "/alternative-chatbase-wordpress",
+      "q": "Peut-on envoyer des PDF à Talker ?",
+      "words": 15
+    },
+    {
+      "page": "/alternative-chatbase-wordpress",
+      "q": "Combien coûte la marque blanche ?",
+      "words": 81
+    },
+    {
+      "page": "/alternative-chatbase-wordpress",
+      "q": "Talker fonctionne-t-il sans WordPress ?",
+      "words": 6
+    },
+    {
+      "page": "/alternative-crisp-wordpress",
+      "q": "Talker remplace-t-il la boîte de réception de Crisp ?",
+      "words": 21
+    },
+    {
+      "page": "/alternative-crisp-wordpress",
+      "q": "Talker fonctionne-t-il sans WordPress ?",
+      "words": 6
+    },
+    {
+      "page": "/alternative-livechat-wordpress",
+      "q": "Talker est-il le même produit que LiveChat ?",
+      "words": 34
+    },
+    {
+      "page": "/alternative-livechat-wordpress",
+      "q": "Talker fonctionne-t-il sans WordPress ?",
+      "words": 6
+    },
+    {
+      "page": "/alternative-smartsupp-wordpress",
+      "q": "D'où Mira tire-t-elle ses réponses ?",
+      "words": 33
+    },
+    {
+      "page": "/alternative-smartsupp-wordpress",
+      "q": "Talker fonctionne-t-il sans WordPress ?",
+      "words": 6
+    },
+    {
+      "page": "/alternative-tawk-to-wordpress",
+      "q": "Talker est-il un chat en direct comme tawk.to ?",
+      "words": 20
+    },
+    {
+      "page": "/alternative-tawk-to-wordpress",
+      "q": "Combien coûte l'agent IA ?",
+      "words": 88
+    },
+    {
+      "page": "/alternative-tawk-to-wordpress",
+      "q": "Talker fonctionne-t-il sans WordPress ?",
+      "words": 6
+    },
+    {
+      "page": "/alternative-tidio-wordpress",
+      "q": "Talker est-il un chat en direct comme Tidio ?",
+      "words": 20
+    },
+    {
+      "page": "/alternative-tidio-wordpress",
+      "q": "Combien coûte Talker par rapport à Tidio ?",
+      "words": 100
+    },
+    {
+      "page": "/alternative-tidio-wordpress",
+      "q": "Faut-il régler quelque chose à l'installation ?",
+      "words": 18
+    },
+    {
+      "page": "/alternative-tidio-wordpress",
+      "q": "Talker fonctionne-t-il sans WordPress ?",
+      "words": 6
+    },
+    {
+      "page": "/faq",
+      "q": "C'est quoi Talker ?",
+      "words": 165
+    },
+    {
+      "page": "/faq",
+      "q": "Pour qui est fait Talker ?",
+      "words": 73
+    },
+    {
+      "page": "/faq",
+      "q": "Pourquoi un agent conversationnel IA sur mon site si ChatGPT (ou Gemini) répond déjà aux questions ?",
+      "words": 165
+    },
+    {
+      "page": "/faq",
+      "q": "Faut-il demander une démo ?",
+      "words": 8
+    },
+    {
+      "page": "/faq",
+      "q": "Quelle est la différence entre Talker et un chatbot WordPress classique ?",
+      "words": 174
+    },
+    {
+      "page": "/faq",
+      "q": "Qu'est-ce que le méta-prompt Talker ?",
+      "words": 160
+    },
+    {
+      "page": "/faq",
+      "q": "Un grand modèle de langage sur mon site web, c'est possible avec Talker ?",
+      "words": 145
+    },
+    {
+      "page": "/faq",
+      "q": "Talker utilise-t-il un grand modèle de langage (ChatGPT, Gemini, Claude…) ? Quelle version ?",
+      "words": 154
+    },
+    {
+      "page": "/faq",
+      "q": "Talker lit-il mes fichiers ou une base documentaire (RAG) ?",
+      "words": 164
+    },
+    {
+      "page": "/faq",
+      "q": "Pourquoi Talker est-il entièrement gratuit ? À partir de quand devient-il payant ?",
+      "words": 162
+    },
+    {
+      "page": "/faq",
+      "q": "Quelle différence entre Talker et un chat live (Intercom, Crisp, Tidio) ?",
+      "words": 100
+    },
+    {
+      "page": "/methode",
+      "q": "Talker lit-il tout le WordPress ?",
+      "words": 18
+    },
+    {
+      "page": "/methode",
+      "q": "Faut-il quelqu'un derrière le chat ?",
+      "words": 13
+    },
+    {
+      "page": "/methode",
+      "q": "Talker convertit-il à 82 % ?",
+      "words": 19
+    },
+    {
+      "page": "/methode",
+      "q": "Que se passe-t-il si une réponse est mauvaise ?",
+      "words": 33
+    },
+    {
+      "page": "/methode",
+      "q": "Comment l'installer ?",
+      "words": 16
+    },
+    {
+      "page": "/methode",
+      "q": "Quels chiffres Talker publie-t-il ?",
+      "words": 21
+    },
+    {
+      "page": "/tarifs",
+      "q": "Faut-il une carte bancaire pour commencer ?",
+      "words": 27
+    },
+    {
+      "page": "/tarifs",
+      "q": "Que se passe-t-il après 50 conversations ?",
+      "words": 17
+    },
+    {
+      "page": "/tarifs",
+      "q": "Peut-on payer au mois ?",
+      "words": 25
+    }
+  ],
+  "h1": [
+    {
+      "page": "/installer",
+      "count": 2,
+      "reason": "Deux H1 sur /installer, existant sur main. À corriger dans une PR dédiée, puis retirer."
+    }
+  ],
+  "forbidden": [
+    {
+      "file": ".next/server/app/installer.html",
+      "rule": "faux texte",
+      "reason": "Maquette de site client sur /installer (Lorem ipsum). Décision JF à prendre ; retirer après remplacement."
+    },
+    {
+      "file": "lib/demo/system-prompt-client.ts",
+      "rule": "marqueur « TROU »",
+      "reason": "Vidéo démo sans URL (VERDICT 2db689f). Retirer quand l'URL existe."
+    }
+  ]
+}
